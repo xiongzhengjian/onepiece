@@ -29,4 +29,9 @@ public class Test01 {
 		modelAndView.setViewName("/jsp/test_login.jsp");
 		return modelAndView;
 	}
+	
+	@RequestMapping("/testlogin2")
+	public String login2() {
+		return "/jsp/test_login.jsp";
+	}
 }
