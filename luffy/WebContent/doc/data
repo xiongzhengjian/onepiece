@@ -1,0 +1,4 @@
+1.create database luffy;
+2.use luffy;
+3.create table user (id int(11) unsigned primary key auto_increment not null,staffid varchar(20),username varchar(50),enname varchar(20),sex char(1),email varchar(30));
+4. load data local infile 'E:/java/demo2_mybatis/WebContent/doc/datas.txt' into table user lines terminated by '\r\n';

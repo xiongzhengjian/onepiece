@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="wistron.pojo.dictionary">
+  
+  	<select id="findById" parameterType="java.lang.Integer" resultType="com.wistron.pojo.Dictionary">  	
+  		select * from dictionary where dictionary_id = #{id}  		
+  	</select>
+  
+  	<insert id="insert" parameterType="com.wistron.pojo.Dictionary">
+  		insert into dictionary
+  		  (dictionary_id,message,code)
+  		 values
+  		  (#{dictionary_id},#{message},#{code})
+  	</insert>
+  	
+  	<update id="update" parameterType="com.wistron.pojo.Dictionary">
+  		update dictionary set message = #{message}, code = #{code} where dictionary_id=#{dictionary_id}
+  	</update>
+  	
+  	<delete id="delete" parameterType="com.wistron.pojo.Dictionary">
+  		delete from dictionary where dictionary_id = #{dictionary_id}
+  	</delete>
+  	
+  	<select id="findAll" resultType="com.wistron.pojo.Dictionary">
+  		select * from dictionary
+  	</select>
+  	
+  </mapper>
