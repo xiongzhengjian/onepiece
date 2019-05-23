@@ -14,6 +14,10 @@
 		select * from user where user_id = #{id}
 	</select>
 	
+	<select id="findUserByStaffid" parameterType="java.lang.String" resultType="com.wistron.pojo.User">
+		select * from user where staffid = #{staffid}
+	</select>
+	
 	<insert id="insertUser" parameterType="com.wistron.pojo.User" keyProperty="user_id" useGeneratedKeys="false">
 		insert into user
 		 	(user_id,staffid,name,enname,sex,email,department)

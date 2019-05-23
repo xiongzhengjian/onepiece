@@ -34,4 +34,9 @@ public class Test01 {
 	public String login2() {
 		return "/jsp/test_login.jsp";
 	}
+	
+	@RequestMapping("/testoFood2")
+	public String testoFood2() {
+		return "/WEB-INF/views/oFood.jsp";
+	}
 }

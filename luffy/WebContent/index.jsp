@@ -14,7 +14,11 @@
 		//  basePath="http://localhost:8080/luffy/"
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 	%>
+	<style type="text/css">
+		
+	</style>
 	<base href="<%=basePath%>">
+	<link rel="icon" href="./icon/favicon.ico">
 	<!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -48,7 +52,7 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Work</a></li>
                   <li><a href="#">Plan</a></li>
-                  <li><a href="./dashboard_meal.html">oFood</a></li>
+                  <li><a href="oFood.action">oFood</a></li>
                   <li><a  href="#" data-toggle="modal" data-target="#myModal">login</a>
 				  </li>
                 </ul>
@@ -57,7 +61,7 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Dream</h1>
+            <h1 class="cover-heading">Life</h1>
             <p class="lead">生活就像一盒巧克力，你永远不知道下一颗会是什么味道。</p>
             <p class="lead">Life is like a box of chocolate,you never kown what you are going to get.</p>
             <p class="lead">
@@ -89,17 +93,17 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action="./login.action" method="post">						   					
 						  <div class="form-group">
 						    <label for="username" class="col-sm-2 control-label">用户名</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="username" placeholder="请输入您的工号">
+						      <input type="text" class="form-control" id="username" placeholder="请输入您的工号" name="staffid">
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="password" class="col-sm-2 control-label">密码</label>
 						    <div class="col-sm-10">
-						      <input type="password" class="form-control" id="password" placeholder="请输入您的密码">
+						      <input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="password">
 						    </div>
 						  </div>
 						  <div class="form-group">
