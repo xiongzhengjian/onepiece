@@ -50,9 +50,9 @@
               <h3 class="masthead-brand">One Piece</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Work</a></li>
-                  <li><a href="#">Plan</a></li>
-                  <li><a href="oFood.action">oFood</a></li>
+                  <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#myModal">Plan</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#myModal">oFood</a></li>
                   <li><a  href="#" data-toggle="modal" data-target="#myModal">login</a>
 				  </li>
                 </ul>
@@ -65,13 +65,13 @@
             <p class="lead">生活就像一盒巧克力，你永远不知道下一颗会是什么味道。</p>
             <p class="lead">Life is like a box of chocolate,you never kown what you are going to get.</p>
             <p class="lead">
-              <a href="./../html/carousel.html" class="btn btn-lg btn-default">Let's go</a>
+              <a href="#" class="btn btn-lg btn-default" data-toggle="modal" data-target="#myModal">Let's go</a>
             </p>
           </div>
 
           <div class="mastfoot">
             <div class="inner">
-              <p>Cover template for <a href="#http://getbootstrap.com">One Piece</a>, by <a href="#https://twitter.com/mdo">WCQ@1STQ10</a>.</p>
+              <p>Cover template for <a href="#http://getbootstrap.com">Wistron</a>, by <a href="#https://twitter.com/mdo">WCQ@1STQ10</a>.</p>
             </div>
           </div>
 
