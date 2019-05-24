@@ -57,7 +57,7 @@
             <li><a href="./index.jsp">Home</a></li>
             <li><a href="#">Saturday</a></li>
             <li><a href="#">Sunday</a></li>
-            <li><a href="#">Hi!熊正健</a></li>
+            <li><a href="#">Hi! ${user.enname }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

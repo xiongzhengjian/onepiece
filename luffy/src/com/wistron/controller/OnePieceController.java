@@ -14,9 +14,12 @@ public class OnePieceController {
 	
 	private UserDaoImpl userDao = new UserDaoImpl();
 	
+	//springMVC可以直接接受pojo类型：要求页面上属性名称必须等于pojo的属性名称
 	@RequestMapping("/oFood")
-	public String testoFood2() {
-		
+	public String testoFood2(User user,Model model) {	
+		int user_id = user.getUser_id();
+		User user2 = userDao.findUserById(user_id);
+		model.addAttribute("user", user2);
 		return "/WEB-INF/views/oFood.jsp";
 	}
 	/**

@@ -52,7 +52,7 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Work</a></li>
                   <li><a href="#">Plan</a></li>
-                  <li><a href="oFood.action">oFood</a></li>
+                  <li><a href="oFood.action?user_id=${user.user_id }">oFood</a></li>
                   <li><a  href="#" data-toggle="modal" data-target="#myModal">login</a>
 				  </li>
                 </ul>

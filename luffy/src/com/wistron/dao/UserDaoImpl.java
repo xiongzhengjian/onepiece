@@ -25,4 +25,10 @@ public class UserDaoImpl {
 		return user;
 	}
 	
+	public User findUserById(int user_id) {
+		SqlSession sqlSession = factory.openSession();
+		User user = sqlSession.selectOne("com.wistron.meal.user.findUserById", user_id);
+		return user;
+	}
+	
 }

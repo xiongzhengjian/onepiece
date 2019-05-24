@@ -28,4 +28,6 @@
 	<update id="updateUserById" parameterType="com.wistron.pojo.User">
 		update user set enname = #{enname} where user_id = #{user_id}
 	</update>
+	
+	
 </mapper>
