@@ -69,7 +69,7 @@
 
           <div class="mastfoot">
             <div class="inner">
-              <p>Cover template for <a href="#http://getbootstrap.com">Wistron</a>, by <a href="#https://twitter.com/mdo">WCQ@1STQ10</a>.</p>
+              <p>Cover template for <a href="#http://getbootstrap.com">Wistron(CQ)</a>, by <a href="#https://twitter.com/mdo">WCQ@1STQ10</a>.</p>
             </div>
           </div>
 
