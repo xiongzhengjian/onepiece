@@ -1,5 +1,7 @@
 package com.wistron.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +20,12 @@ public class OfoodController {
 		User user2 = userDao.findUserById(user_id);
 		model.addAttribute("user", user2);
 		return "/WEB-INF/views/captain.jsp";
+	}
+	
+	@RequestMapping("/ofood/ordermeal")
+	public String ordermeal(HttpSession session,User user,Model model) {
+		int user_id = (int) session.getAttribute("user_id");
+		
+		return "";		
 	}
 }

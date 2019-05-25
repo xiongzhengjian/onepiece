@@ -344,7 +344,8 @@
 				</div>
 				<div class="modal-body">
 					
-				      <form class="form-signin">
+				      <form class="form-signin" action="./ofood/ordermeal.action?user_id=${user.user_id }" method="post">
+				      	<input type="hidden" name="user_id" value="${user.user_id }"> 
 				        <table class="table table-striped">
 						  <caption>Please make your decision</caption>							
 						  	<tbody id="mealTb">
@@ -352,23 +353,23 @@
 							      <td>							    
 									<div class="form-group">
 									    <label for="name">Weekday</label>
-									    <select class="form-control">
-									      <option>星期一</option>
-									      <option>星期二</option>
-									      <option>星期三</option>
-									      <option>星期四</option>
-									      <option>星期五</option>
-									      <option>星期六</option>
-									      <option>星期日</option>
+									    <select class="form-control" name="date">
+									      <option value="1">星期一</option>
+									      <option value="2">星期二</option>
+									      <option value="3">星期三</option>
+									      <option value="4">星期四</option>
+									      <option value="5">星期五</option>
+									      <option value="6">星期六</option>
+									      <option value="7">星期日</option>
 									    </select>									    
   									</div>
 							      </td>
 							      <td>
 							      	<div class="form-group">
 									    <label for="name">Meal</label>
-									    <select class="form-control">
-									      <option>午餐</option>
-									      <option>晚餐</option>									     
+									    <select class="form-control" name="type">
+									      <option value="">午餐</option>
+									      <option value="">晚餐</option>									     
 									    </select>									    
   									</div>
 							      </td>
