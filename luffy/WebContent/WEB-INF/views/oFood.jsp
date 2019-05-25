@@ -50,12 +50,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">oFood</a>
+          <a class="navbar-brand">oFood</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./ofood/captain.action?user_id=${user.user_id }">Home</a></li>           
-            <li><a href="#">Hi! ${user.name }</a></li>
+            <li><a >Hi! ${user.name }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -68,7 +68,7 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a>Overview <span class="sr-only">(current)</span></a></li>
             <li><a  href="#" data-toggle="modal" data-target="#myModal">Order meal</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
@@ -347,8 +347,8 @@
 				      <form class="form-signin">
 				        <table class="table table-striped">
 						  <caption>Please make your decision</caption>							
-						  	<tbody>
-							    <tr>
+						  	<tbody id="mealTb">
+							    <tr id="trs0">
 							      <td>							    
 									<div class="form-group">
 									    <label for="name">Weekday</label>
@@ -374,82 +374,29 @@
 							      </td>
 							      <td>
 							      	<div class="form-group">
-									    <label for="name">Decide</label>
-									    <!-- <div>										 
-										    <label class="radio-inline">
-										        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
-										    </label>
-										    <label class="radio-inline">
-										        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
-										    </label>
-										</div>		 -->
+									    <label for="name">Decide</label>									  
 										<select class="form-control">
 									      <option>要吃</option>
 									      <option>不吃</option>									     
 									    </select>						    
   									</div>
 							      </td>
-							    </tr>
+							    </tr>			    
 							    
-							    <tr>
-							      <td>							    
-									<div class="form-group">
-									    <label for="name"></label>
-									    <select class="form-control">
-									      <option>星期一</option>
-									      <option>星期二</option>
-									      <option>星期三</option>
-									      <option>星期四</option>
-									      <option>星期五</option>
-									      <option>星期六</option>
-									      <option>星期日</option>
-									    </select>									    
-  									</div>
-							      </td>
-							      <td>
-							      	<div class="form-group">
-									    <label for="name"></label>
-									    <select class="form-control">
-									      <option>午餐</option>
-									      <option>晚餐</option>									     
-									    </select>									    
-  									</div>
-							      </td>
-							      <td>
-							      	<div class="form-group">
-									    <label for="name"></label>
-									    <!-- <div>										 
-										    <label class="radio-inline">
-										        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
-										    </label>
-										    <label class="radio-inline">
-										        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
-										    </label>
-										</div>		 -->
-										<select class="form-control">
-									      <option>要吃</option>
-									      <option>不吃</option>									     
-									    </select>						    
-  									</div>
-							      </td>
-							    </tr>
-							    
-							    <tr>
-							      <td>Uma</td>
-							      <td>Pune</td>
-							      <td>411027</td>
-							    </tr>
 						  	</tbody>
 						</table>
 				        <div style="float:right;" class="form-group">
-				          <button class="btn  btn-default">add</button>
+				          <a  class="btn  btn-default" id ="add">add</a>
 				        </div>
 				        <button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
 				      </form>
+				        <!-- <div style="float:right;" class="form-group">
+				          <button class="btn  btn-default" id ="add">add</button>
+				        </div> -->
     				
 				</div>
 				<div class="modal-footer">
-					<button type="button"  data-dismiss="modal">cancel
+					<button type="button"  data-dismiss="modal" id="cancel">cancel
 					</button>
 					<!-- <button type="button" class="btn btn-primary">
 						ok
@@ -476,6 +423,54 @@
     	var date = document.getElementById("current_date");
     	var weekday = today.getDay();
     	date.innerHTML = (today.getFullYear())+"-"+(today.getMonth()+1)+"-"+today.getDate()+" "+show_day[weekday-1];
+    </script>
+    <script type="text/javascript">
+    	//<a class="btn  btn-default" id ="add">add</a>
+    	
+    	 window.onload = function(){
+    		var clicks = 0;
+    		document.getElementById("add").onclick=function(){
+    			clicks +=1; 
+    			if(clicks>=7){
+    				window.alert("一次性报餐过多");
+    				return;
+    			}
+    			//create three <td>:WeekdayTD MealTD  DecideTD
+    			var WeekdayTd = document.createElement("td");    			
+    			WeekdayTd.innerHTML=('<div class="form-group"><select class="form-control"><option>星期一</option><option>星期二</option><option>星期三</option><option>星期四</option><option>星期五</option><option>星期六</option><option>星期日</option></select></div>');
+    			var MealTd = document.createElement("td");
+    			MealTd.innerHTML=('<div class="form-group"><select class="form-control"><option>午餐</option><option>晚餐</option></select></div>');
+    			var DecideTd = document.createElement("td");
+    			DecideTd.innerHTML=('<div class="form-group"><select class="form-control"><option>要吃</option><option>不吃</option></select>	</div>');
+    			//create one <tr>
+    			var newTr = document.createElement("tr");
+    			//added a attribut for the new tr
+    			newTr.setAttribute("id","trs"+clicks);
+    			//add those td into the new tr
+    			newTr.appendChild(WeekdayTd);
+    			newTr.appendChild(MealTd);
+    			newTr.appendChild(DecideTd);
+    			//get the table object
+    			var mealTb = document.getElementById("mealTb");
+    			mealTb.appendChild(newTr);
+    		}
+    		document.getElementById("cancel").onclick=function(){   
+    			if(clicks=0){
+    				return;
+    			}
+    			
+    			var mealTb = document.getElementById("mealTb");
+    			//get the number of tr
+    			var trs = mealTb.getElementsByTagName('tr').length;    			
+    			for(var i=1;i<=trs;i++){
+    				var tr = document.getElementById("trs"+i);
+    				mealTb.removeChild(tr);
+    			}
+    			clicks = 0;
+    			
+    		}
+    	} 
+    	/* window.open ("page.html", "newwindow", "height=100, width=100, top=0, left=0,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no");  */ 
     </script>
   </body>
 </html>
