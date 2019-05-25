@@ -69,7 +69,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Order a meal</a></li>
+            <li><a  href="#" data-toggle="modal" data-target="#myModal">Order meal</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
@@ -329,6 +329,59 @@
         </div>
       </div>
     </div>
+    
+    <!-- login模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						login
+					</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form" action="./login.action" method="post">						   					
+						  <div class="form-group">
+						    <label for="username" class="col-sm-2 control-label">用户名</label>
+						    <div class="col-sm-10">
+						      <input type="text" class="form-control" id="username" placeholder="请输入您的工号" name="staffid">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="password" class="col-sm-2 control-label">密码</label>
+						    <div class="col-sm-10">
+						      <input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="password">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <div class="checkbox">
+						        <label>
+						          <input type="checkbox" onclick="remember()">请记住我
+						        </label>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-offset-2 col-sm-10">
+						      <button type="submit">登录</button>
+						    </div>
+						  </div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button"  data-dismiss="modal">取消
+					</button>
+					<!-- <button type="button" class="btn btn-primary">
+						ok
+					</button> -->
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
