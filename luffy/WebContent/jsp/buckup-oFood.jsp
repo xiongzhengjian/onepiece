@@ -54,9 +54,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./ofood/captain.action?user_id=${user.user_id }">Home</a></li>
-            <li><a href="#">Saturday</a></li>
-            <li><a href="#">Sunday</a></li>
+            <li><a href="./ofood/captain.action?user_id=${user.user_id }">Home</a></li>           
             <li><a href="#">Hi! ${user.name }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -71,7 +69,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Order a meal</a></li>
+            <li><a  href="#" data-toggle="modal" data-target="#myModal">Order meal</a></li>
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
@@ -331,6 +329,135 @@
         </div>
       </div>
     </div>
+    
+    <!-- login模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						order a meal
+					</h4>
+				</div>
+				<div class="modal-body">
+					
+				      <form class="form-signin">
+				        <table class="table table-striped">
+						  <caption>Please make your decision</caption>							
+						  	<tbody>
+							    <tr>
+							      <td>							    
+									<div class="form-group">
+									    <label for="name">Weekday</label>
+									    <select class="form-control">
+									      <option>星期一</option>
+									      <option>星期二</option>
+									      <option>星期三</option>
+									      <option>星期四</option>
+									      <option>星期五</option>
+									      <option>星期六</option>
+									      <option>星期日</option>
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Meal</label>
+									    <select class="form-control">
+									      <option>午餐</option>
+									      <option>晚餐</option>									     
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Decide</label>
+									    <!-- <div>										 
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
+										    </label>
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
+										    </label>
+										</div>		 -->
+										<select class="form-control">
+									      <option>要吃</option>
+									      <option>不吃</option>									     
+									    </select>						    
+  									</div>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td>							    
+									<div class="form-group">
+									    <label for="name"></label>
+									    <select class="form-control">
+									      <option>星期一</option>
+									      <option>星期二</option>
+									      <option>星期三</option>
+									      <option>星期四</option>
+									      <option>星期五</option>
+									      <option>星期六</option>
+									      <option>星期日</option>
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name"></label>
+									    <select class="form-control">
+									      <option>午餐</option>
+									      <option>晚餐</option>									     
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name"></label>
+									    <!-- <div>										 
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
+										    </label>
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
+										    </label>
+										</div>		 -->
+										<select class="form-control">
+									      <option>要吃</option>
+									      <option>不吃</option>									     
+									    </select>						    
+  									</div>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td>Uma</td>
+							      <td>Pune</td>
+							      <td>411027</td>
+							    </tr>
+						  	</tbody>
+						</table>
+				        <div style="float:right;" class="form-group">
+				          <button class="btn  btn-default">add</button>
+				        </div>
+				        <button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
+				      </form>
+    				
+				</div>
+				<div class="modal-footer">
+					<button type="button"  data-dismiss="modal">cancel
+					</button>
+					<!-- <button type="button" class="btn btn-primary">
+						ok
+					</button> -->
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

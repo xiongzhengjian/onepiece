@@ -339,41 +339,117 @@
 						&times;
 					</button>
 					<h4 class="modal-title" id="myModalLabel">
-						login
+						order a meal
 					</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-horizontal" role="form" action="./login.action" method="post">						   					
-						  <div class="form-group">
-						    <label for="username" class="col-sm-2 control-label">用户名</label>
-						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="username" placeholder="请输入您的工号" name="staffid">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <label for="password" class="col-sm-2 control-label">密码</label>
-						    <div class="col-sm-10">
-						      <input type="password" class="form-control" id="password" placeholder="请输入您的密码" name="password">
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-sm-offset-2 col-sm-10">
-						      <div class="checkbox">
-						        <label>
-						          <input type="checkbox" onclick="remember()">请记住我
-						        </label>
-						      </div>
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-sm-offset-2 col-sm-10">
-						      <button type="submit">登录</button>
-						    </div>
-						  </div>
-					</form>
+					
+				      <form class="form-signin">
+				        <table class="table table-striped">
+						  <caption>Please make your decision</caption>							
+						  	<tbody>
+							    <tr>
+							      <td>							    
+									<div class="form-group">
+									    <label for="name">Weekday</label>
+									    <select class="form-control">
+									      <option>星期一</option>
+									      <option>星期二</option>
+									      <option>星期三</option>
+									      <option>星期四</option>
+									      <option>星期五</option>
+									      <option>星期六</option>
+									      <option>星期日</option>
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Meal</label>
+									    <select class="form-control">
+									      <option>午餐</option>
+									      <option>晚餐</option>									     
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Decide</label>
+									    <!-- <div>										 
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
+										    </label>
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
+										    </label>
+										</div>		 -->
+										<select class="form-control">
+									      <option>要吃</option>
+									      <option>不吃</option>									     
+									    </select>						    
+  									</div>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td>							    
+									<div class="form-group">
+									    <label for="name"></label>
+									    <select class="form-control">
+									      <option>星期一</option>
+									      <option>星期二</option>
+									      <option>星期三</option>
+									      <option>星期四</option>
+									      <option>星期五</option>
+									      <option>星期六</option>
+									      <option>星期日</option>
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name"></label>
+									    <select class="form-control">
+									      <option>午餐</option>
+									      <option>晚餐</option>									     
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name"></label>
+									    <!-- <div>										 
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios3" value="option1" checked> 选项 1
+										    </label>
+										    <label class="radio-inline">
+										        <input type="radio" name="optionsRadiosinline" id="optionsRadios4"  value="option2"> 选项 2
+										    </label>
+										</div>		 -->
+										<select class="form-control">
+									      <option>要吃</option>
+									      <option>不吃</option>									     
+									    </select>						    
+  									</div>
+							      </td>
+							    </tr>
+							    
+							    <tr>
+							      <td>Uma</td>
+							      <td>Pune</td>
+							      <td>411027</td>
+							    </tr>
+						  	</tbody>
+						</table>
+				        <div style="float:right;" class="form-group">
+				          <button class="btn  btn-default">add</button>
+				        </div>
+				        <button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
+				      </form>
+    				
 				</div>
 				<div class="modal-footer">
-					<button type="button"  data-dismiss="modal">取消
+					<button type="button"  data-dismiss="modal">cancel
 					</button>
 					<!-- <button type="button" class="btn btn-primary">
 						ok
