@@ -7,15 +7,31 @@ public class User{
 	private String enname;
 	private char sex;
 	private String email;
+	//the foreign key of table User which is associated with table Dictionary
 	private int department;
-	public int getUser_id() {
-		return user_id;
-	}
+	//status of order a meal:0 default  1 done
+	private int mealstatus;
+	//is the member attendance:1 default, 0 dosn't attendance
+	private int attendance;
+	
+	
 	
 	public User() {
 		super();
 	}
-
+	public User(int user_id, String staffid, String name, String enname, char sex, String email, int department,
+			int mealstatus, int attendance) {
+		super();
+		this.user_id = user_id;
+		this.staffid = staffid;
+		this.name = name;
+		this.enname = enname;
+		this.sex = sex;
+		this.email = email;
+		this.department = department;
+		this.mealstatus = mealstatus;
+		this.attendance = attendance;
+	}
 	public User(int user_id, String staffid, String name, String enname, char sex, String email, int department) {
 		super();
 		this.user_id = user_id;
@@ -25,7 +41,23 @@ public class User{
 		this.sex = sex;
 		this.email = email;
 		this.department = department;
-	}
+		
+	}	
+	
+	public User(int user_id, String staffid, String name, String enname, char sex, String email, int department,
+			int mealstatus) {
+		super();
+		this.user_id = user_id;
+		this.staffid = staffid;
+		this.name = name;
+		this.enname = enname;
+		this.sex = sex;
+		this.email = email;
+		this.department = department;
+		this.mealstatus = mealstatus;
+	}	
+
+	
 	public User(String staffid, String name, String enname, char sex, String email, int department) {
 		super();		
 		this.staffid = staffid;
@@ -34,6 +66,9 @@ public class User{
 		this.sex = sex;
 		this.email = email;
 		this.department = department;
+	}
+	public int getUser_id() {
+		return user_id;
 	}
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
@@ -74,11 +109,26 @@ public class User{
 	public void setDepartment(int department) {
 		this.department = department;
 	}
+	public int getMealstatus() {
+		return mealstatus;
+	}
+	public void setMealstatus(int mealstatus) {
+		this.mealstatus = mealstatus;
+	}
+	public int getAttendance() {
+		return attendance;
+	}
+	public void setAttendance(int attendance) {
+		this.attendance = attendance;
+	}
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", staffid=" + staffid + ", name=" + name + ", enname=" + enname + ", sex="
-				+ sex + ", email=" + email + ", department=" + department + "]";
+				+ sex + ", email=" + email + ", department=" + department + ", mealstatus=" + mealstatus
+				+ ", attendance=" + attendance + "]";
 	}
+	
+	
 	
 	
 	
