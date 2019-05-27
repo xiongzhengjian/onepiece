@@ -54,8 +54,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./ofood/captain.action?user_id=${user.user_id }">Home</a></li>           
-            <li><a >Hi! ${user.name }</a></li>
+            <li><a href="./ofood/captain.action?user_id=${session_user.user_id }">Home</a></li>           
+            <li><a >Hi! ${session_user.name }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -344,8 +344,7 @@
 				</div>
 				<div class="modal-body">
 					
-				      <form class="form-signin" action="./ofood/ordermeal.action?user_id=${user.user_id }" method="post">
-				      	<input type="hidden" name="user_id" value="${user.user_id }"> 
+				      <form class="form-signin" action="./ofood/ordermeal.action" method="post">				      	
 				        <table class="table table-striped">
 						  <caption>Please make your decision</caption>							
 						  	<tbody id="mealTb">
@@ -353,7 +352,7 @@
 							      <td>							    
 									<div class="form-group">
 									    <label for="name">Weekday</label>
-									    <select class="form-control" name="date">
+									    <select class="form-control" name="weekday">
 									      <option value="1">星期一</option>
 									      <option value="2">星期二</option>
 									      <option value="3">星期三</option>
@@ -368,17 +367,17 @@
 							      	<div class="form-group">
 									    <label for="name">Meal</label>
 									    <select class="form-control" name="type">
-									      <option value="">午餐</option>
-									      <option value="">晚餐</option>									     
+									      <option value="1">午餐</option>
+									      <option value="2">晚餐</option>									     
 									    </select>									    
   									</div>
 							      </td>
 							      <td>
 							      	<div class="form-group">
 									    <label for="name">Decide</label>									  
-										<select class="form-control">
-									      <option>要吃</option>
-									      <option>不吃</option>									     
+										<select class="form-control" name="decide">
+									      <option value="1">要吃</option>
+									      <option value="0">不吃</option>									     
 									    </select>						    
   									</div>
 							      </td>

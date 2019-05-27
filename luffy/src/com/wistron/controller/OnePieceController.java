@@ -17,10 +17,7 @@ public class OnePieceController {
 	
 	//springMVC可以直接接受pojo类型：要求页面上属性名称必须等于pojo的属性名称
 	@RequestMapping("/oFood")
-	public String oFood(User user,Model model) {	
-		int user_id = user.getUser_id();
-		User user2 = userDao.findUserById(user_id);
-		model.addAttribute("user", user2);
+	public String oFood() {	
 		return "/WEB-INF/views/oFood.jsp";
 	}
 	/**
@@ -35,13 +32,11 @@ public class OnePieceController {
 		String staffid = request.getParameter("staffid");
 		String password =  request.getParameter("password");
 		User user = userDao.findUserByStaffid(staffid);
-		//put the user id in the session 
-		session.setAttribute("user_id", user.getUser_id());
-		model.addAttribute("user",user);
+		//put the user  in the session 
+		session.setAttribute("session_user", user);
+		//doesn't need put the user in the model,just use session_user at captain.jsp 
+		//model.addAttribute("user",user);		
 		
-		
-		System.out.println(staffid+password);
-		System.out.println(user);
 		return "/WEB-INF/views/captain.jsp";
 	}
 	

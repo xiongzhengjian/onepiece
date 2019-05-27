@@ -1,5 +1,6 @@
 package com.wistron.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,9 +24,20 @@ public class OfoodController {
 	}
 	
 	@RequestMapping("/ofood/ordermeal")
-	public String ordermeal(HttpSession session,User user,Model model) {
-		int user_id = (int) session.getAttribute("user_id");
+	public String ordermeal(HttpSession session,HttpServletRequest request,Model model) {
+		//get user form session
+		User user = (User) session.getAttribute("session_user");
+		//get 
+		 String wday = request.getParameter("weekday");
+		 int weekday = Integer.parseInt(wday);
+		 String tpe = request.getParameter("type");
+		 int type = Integer.parseInt(tpe);
+		 String deci = request.getParameter("decide");
+		 int decide = Integer.parseInt(deci);
 		
-		return "";		
+		System.out.println(user);
+		System.out.println(weekday+type+decide);
+		
+		return "/WEB-INF/views/oFood.jsp";		
 	}
 }

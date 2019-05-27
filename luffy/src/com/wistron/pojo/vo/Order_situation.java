@@ -1,10 +1,13 @@
 package com.wistron.pojo.vo;
+
+
 /**
  * the vo class load message of oFood order situation
  * @author slim2
  *
  */
-public class Order_situation {
+public class Order_situation {	
+	
 	
 	private int department;
 	//the amount of yes
