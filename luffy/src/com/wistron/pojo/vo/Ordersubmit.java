@@ -4,17 +4,17 @@ package com.wistron.pojo.vo;
  * @author slim2
  *
  */
-public class Meals {
+public class Ordersubmit {
 	//1 2 3 4 5 6 7 map to 周一 周二 周三  周四   周五   周六   周日 
 	private int weekday;
 	//0 breakfast 1 lunch 2 dinner
 	private int type;
 	// 0 want  1 don't want 
 	private int decide;
-	public Meals() {
+	public Ordersubmit() {
 		super();
 	}
-	public Meals(int weekday, int type, int decide) {
+	public Ordersubmit(int weekday, int type, int decide) {
 		super();
 		this.weekday = weekday;
 		this.type = type;

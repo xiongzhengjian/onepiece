@@ -1,5 +1,7 @@
 package com.wistron.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,34 +11,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wistron.dao.UserDaoImpl;
 import com.wistron.pojo.User;
+import com.wistron.pojo.vo.Ordersubmit;
+import com.wistron.pojo.vo.Ordersubmitvo;
 
 @Controller
 public class OfoodController {
 	
 	private UserDaoImpl userDao = new UserDaoImpl();
-	
+	/**
+	 * go to home page while it is also called captain
+	 * @return
+	 */
 	@RequestMapping("/ofood/captain")
-	public String home(User user,Model model) {
-		int user_id = user.getUser_id();
-		User user2 = userDao.findUserById(user_id);
-		model.addAttribute("user", user2);
+	public String home() {		
 		return "/WEB-INF/views/captain.jsp";
 	}
 	
+	/**
+	 * order meal
+	 * @param session: get user message
+	 * @param orders : the values of order meals 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/ofood/ordermeal")
-	public String ordermeal(HttpSession session,HttpServletRequest request,Model model) {
+	public String ordermeal(HttpSession session,Ordersubmitvo orders ,Model model) {
 		//get user form session
 		User user = (User) session.getAttribute("session_user");
-		//get 
-		 String wday = request.getParameter("weekday");
-		 int weekday = Integer.parseInt(wday);
-		 String tpe = request.getParameter("type");
-		 int type = Integer.parseInt(tpe);
-		 String deci = request.getParameter("decide");
-		 int decide = Integer.parseInt(deci);
+		List<Ordersubmit> orderlist = orders.getOrderlist();
+		System.out.println(orderlist);
 		
-		System.out.println(user);
-		System.out.println(weekday+type+decide);
 		
 		return "/WEB-INF/views/oFood.jsp";		
 	}

@@ -352,7 +352,7 @@
 							      <td>							    
 									<div class="form-group">
 									    <label for="name">Weekday</label>
-									    <select class="form-control" name="weekday">
+									    <select class="form-control" name="orderlist[0].weekday">
 									      <option value="1">星期一</option>
 									      <option value="2">星期二</option>
 									      <option value="3">星期三</option>
@@ -366,7 +366,7 @@
 							      <td>
 							      	<div class="form-group">
 									    <label for="name">Meal</label>
-									    <select class="form-control" name="type">
+									    <select class="form-control" name="orderlist[0].type">
 									      <option value="1">午餐</option>
 									      <option value="2">晚餐</option>									     
 									    </select>									    
@@ -375,7 +375,7 @@
 							      <td>
 							      	<div class="form-group">
 									    <label for="name">Decide</label>									  
-										<select class="form-control" name="decide">
+										<select class="form-control" name="orderlist[0].decide">
 									      <option value="1">要吃</option>
 									      <option value="0">不吃</option>									     
 									    </select>						    
@@ -436,13 +436,115 @@
     				return;
     			}
     			//create three <td>:WeekdayTD MealTD  DecideTD
-    			var WeekdayTd = document.createElement("td");    			
-    			WeekdayTd.innerHTML=('<div class="form-group"><select class="form-control"><option>星期一</option><option>星期二</option><option>星期三</option><option>星期四</option><option>星期五</option><option>星期六</option><option>星期日</option></select></div>');
-    			var MealTd = document.createElement("td");
-    			MealTd.innerHTML=('<div class="form-group"><select class="form-control"><option>午餐</option><option>晚餐</option></select></div>');
-    			var DecideTd = document.createElement("td");
-    			DecideTd.innerHTML=('<div class="form-group"><select class="form-control"><option>要吃</option><option>不吃</option></select>	</div>');
-    			//create one <tr>
+    			/*------Wakday--------*/
+    			//var WeekdayTd = document.createElement("td");    			
+    			//WeekdayTd.innerHTML=('<div class="form-group"><select class="form-control" name="orderlist[clicks].weekday"><option>星期一</option><option>星期二</option><option>星期三</option><option>星期四</option><option>星期五</option><option>星期六</option><option>星期日</option></select></div>');
+    			
+    			
+    			var WeekdayTd = document.createElement("td"); 
+    			var value_name = "orderlist["+clicks+"].weekday";    		
+    			var select_weekday = document.createElement("Select");
+    			select_weekday.setAttribute("class","form-control");
+    			select_weekday.setAttribute("name",value_name);
+    			
+    			//create option of weekday
+    			var opt1 = document.createElement("option");
+    			opt1.setAttribute("value",'1');
+    			opt1.appendChild(document.createTextNode("星期一"));
+    			var opt2 = document.createElement("option");
+    			opt2.setAttribute("value",'2');
+    			opt2.appendChild(document.createTextNode("星期二"));
+    			var opt3 = document.createElement("option");
+    			opt3.setAttribute("value",'3');
+    			opt3.appendChild(document.createTextNode("星期三"));
+    			var opt4 = document.createElement("option");
+    			opt4.setAttribute("value",'4');
+    			opt4.appendChild(document.createTextNode("星期四"));
+    			var opt5 = document.createElement("option");
+    			opt5.setAttribute("value",'5');
+    			opt5.appendChild(document.createTextNode("星期五"));
+    			var opt6 = document.createElement("option");
+    			opt6.setAttribute("value",'6');
+    			opt6.appendChild(document.createTextNode("星期六"));
+    			var opt7 = document.createElement("option");
+    			opt7.setAttribute("value",'7');
+    			opt7.appendChild(document.createTextNode("星期日"));    			
+    			
+    			//added weekday option in select
+    			select_weekday.appendChild(opt1);
+    			select_weekday.appendChild(opt2);
+    			select_weekday.appendChild(opt3);
+    			select_weekday.appendChild(opt4);
+    			select_weekday.appendChild(opt5);
+    			select_weekday.appendChild(opt6);
+    			select_weekday.appendChild(opt7);
+    			
+    			//create label:div
+    			var div_weekday = document.createElement("div");
+    			div_weekday.setAttribute("class","form-group");
+    			div_weekday.appendChild(select_weekday);
+    			WeekdayTd.appendChild(div_weekday);
+    			
+    			/*------MealTd--------*/
+    			//var MealTd = document.createElement("td");
+    			//MealTd.innerHTML=('<div class="form-group"><select class="form-control" name="orderlist[clicks].type"><option>午餐</option><option>晚餐</option></select></div>');
+    			
+    			//create labels: td  select
+    			var MealTd = document.createElement("td"); 
+    			var value_type = "orderlist["+clicks+"].type";   		
+    			var select_type = document.createElement("Select");
+    			select_type.setAttribute("class","form-control");
+    			select_type.setAttribute("name",value_type);
+    			//create option of eat type
+    			var opt1_type = document.createElement("option");
+    			opt1_type.setAttribute("value",'1');
+    			opt1_type.appendChild(document.createTextNode("午餐"));
+    			var opt2_type = document.createElement("option");
+    			opt2_type.setAttribute("value",'2');
+    			opt2_type.appendChild(document.createTextNode("晚餐"));
+    			
+    			//added type option in select
+    			select_type.appendChild(opt1_type);
+    			select_type.appendChild(opt2_type);
+    			
+    			//create label:div
+    			var div_type = document.createElement("div");
+    			div_type.setAttribute("class","form-group");
+    			div_type.appendChild(select_type);
+    			MealTd.appendChild(div_type);
+    			
+    			
+    			/*------DecideTd--------*/
+    			//var DecideTd = document.createElement("td");
+    			//DecideTd.innerHTML=('<div class="form-group"><select class="form-control" name="orderlist[clicks].decide"><option>要吃</option><option>不吃</option></select>	</div>');
+    			
+    			//create labels: DecideTd  select_decide
+    			var DecideTd = document.createElement("td"); 
+    			var value_decide = "orderlist["+clicks+"].decide";   	
+    			var select_decide = document.createElement("Select");
+    			select_decide.setAttribute("class","form-control");
+    			select_decide.setAttribute("name",value_decide);
+    			//create option of decide
+    			var opt1_decide = document.createElement("option");
+    			opt1_decide.setAttribute("value",'1');
+    			opt1_decide.appendChild(document.createTextNode("要吃"));
+    			var opt2_decide = document.createElement("option");
+    			opt2_decide.setAttribute("value",'0');
+    			opt2_decide.appendChild(document.createTextNode("不吃"));
+    			
+    			//added decide option in select
+    			select_decide.appendChild(opt1_decide);
+    			select_decide.appendChild(opt2_decide);
+    			
+    			//create label:div
+    			var div_decide = document.createElement("div");
+    			div_decide.setAttribute("class","form-group");
+    			div_decide.appendChild(select_decide);
+    			DecideTd.appendChild(div_decide);
+    			
+    			
+    			
+    			/*------create one <tr>--------*/
     			var newTr = document.createElement("tr");
     			//added a attribut for the new tr
     			newTr.setAttribute("id","trs"+clicks);
