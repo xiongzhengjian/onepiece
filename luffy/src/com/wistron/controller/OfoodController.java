@@ -23,7 +23,11 @@ public class OfoodController {
 	 * @return
 	 */
 	@RequestMapping("/ofood/captain")
-	public String home() {		
+	public String home(HttpSession session) {
+		User user = (User) session.getAttribute("session_user");
+		if(user==null) {
+			return "/html/error.html";
+		}
 		return "/WEB-INF/views/captain.jsp";
 	}
 	
