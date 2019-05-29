@@ -15,16 +15,28 @@
 	 	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 	 	http://www.springframework.org/schema/task
 	 	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
-	 	 
+	 	 <!-- @Controller annotation scan -->
 	 	 <context:component-scan base-package="com.wistron.controller"></context:component-scan>
-	 	 <mvc:annotation-driven/>
-	 	  <!--添加访问静态资源的功能 -->
+	 	 
+	 	 <!--Annotation driven:
+	 	 		processor mapper and processor adapter configured with the latest version of annotations for our display
+	 	  -->
+	 	 <mvc:annotation-driven conversion-service="conversionService"/>
+	 	  
       	 <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
-      
-      	<!-- 视图层配置 -->
-      	<!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-            <property name="prefix" value="/WEB-INF/views/"></property>
-           <property name="suffix" value=".jsp"></property>
-      </bean> -->
+      	 
+      	 <!-- 
+      	 	Configure custom converters
+      	 		Note:be sure to configure custom converters on annotation drivers
+      	  -->
+      	  <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+      	  	<property name="converters">
+      	  		<set>
+      	  			<!-- specifies the full path name of the custom converter -->
+      	  			<bean class="com.wistron.controller.converter.CustomStrToDateConverter"></bean>
+      	  		</set>
+      	  	</property>
+      	  </bean>
+      	
       
 </beans>

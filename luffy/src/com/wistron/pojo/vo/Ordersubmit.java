@@ -1,4 +1,7 @@
 package com.wistron.pojo.vo;
+
+import java.util.Date;
+
 /**
  * use the vo Class to pack the values of order meals
  * @author slim2
@@ -6,7 +9,7 @@ package com.wistron.pojo.vo;
  */
 public class Ordersubmit {
 	//1 2 3 4 5 6 7 map to 周一 周二 周三  周四   周五   周六   周日 
-	private int weekday;
+	private Date weekday;
 	//0 breakfast 1 lunch 2 dinner
 	private int type;
 	// 0 want  1 don't want 
@@ -14,16 +17,16 @@ public class Ordersubmit {
 	public Ordersubmit() {
 		super();
 	}
-	public Ordersubmit(int weekday, int type, int decide) {
+	public Ordersubmit(Date weekday, int type, int decide) {
 		super();
 		this.weekday = weekday;
 		this.type = type;
 		this.decide = decide;
 	}
-	public int getWeekday() {
+	public Date getWeekday() {
 		return weekday;
 	}
-	public void setWeekday(int weekday) {
+	public void setWeekday(Date weekday) {
 		this.weekday = weekday;
 	}
 	public int getType() {
@@ -40,8 +43,9 @@ public class Ordersubmit {
 	}
 	@Override
 	public String toString() {
-		return "Meals [weekday=" + weekday + ", type=" + type + ", decide=" + decide + "]";
+		return "Ordersubmit [weekday=" + weekday + ", type=" + type + ", decide=" + decide + "]";
 	}
+	
 	
 	
 	

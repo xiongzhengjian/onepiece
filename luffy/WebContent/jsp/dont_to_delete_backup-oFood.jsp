@@ -167,7 +167,162 @@
                   <td>Praesent</td>
                   <td>Praesent</td>
                 </tr>
-                
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,004</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                  <td>Sed</td>
+                  <td>nisi</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                  <td>Sed</td>
+                  <td>nisi</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,005</td>
+                  <td>Nulla</td>
+                  <td>quis</td>
+                  <td>sem</td>
+                  <td>at</td>
+                   <td>Nulla</td>
+                  <td>quis</td>
+                  <td>sem</td>
+                  <td>at</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,006</td>
+                  <td>nibh</td>
+                  <td>elementum</td>
+                  <td>imperdiet</td>
+                  <td>Duis</td>
+                   <td>nibh</td>
+                  <td>elementum</td>
+                  <td>imperdiet</td>
+                  <td>Duis</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,007</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                  <td>Praesent</td>
+                  <td>mauris</td>
+                  <td>sagittis</td>
+                  <td>ipsum</td>
+                  <td>Praesent</td>
+                  <td>mauris</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,008</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                  <td>tellus</td>
+                  <td>sed</td>
+                  <td>Fusce</td>
+                  <td>nec</td>
+                  <td>tellus</td>
+                  <td>sed</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,009</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                  <td>porta</td>
+                  <td>Mauris</td>
+                  <td>augue</td>
+                  <td>semper</td>
+                  <td>porta</td>
+                  <td>Mauris</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,010</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+                  <td>lacinia</td>
+                  <td>arcu</td>
+                  <td>massa</td>
+                  <td>Vestibulum</td>
+                  <td>lacinia</td>
+                  <td>arcu</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,011</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+                  <td>Class</td>
+                  <td>aptent</td>
+                  <td>eget</td>
+                  <td>nulla</td>
+                  <td>Class</td>
+                  <td>aptent</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,012</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+                  <td>ad</td>
+                  <td>litora</td>
+                  <td>taciti</td>
+                  <td>sociosqu</td>
+                  <td>ad</td>
+                  <td>litora</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,013</td>
+                  <td>torquent</td>
+                  <td>per</td>
+                  <td>conubia</td>
+                  <td>nostra</td>
+                  <td>torquent</td>
+                  <td>per</td>
+                  <td>conubia</td>
+                  <td>nostra</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,014</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+                  <td>himenaeos</td>
+                  <td>Curabitur</td>
+                  <td>per</td>
+                  <td>inceptos</td>
+                  <td>himenaeos</td>
+                  <td>Curabitur</td>
+                  <td>1,003</td>
+                </tr>
+                <tr>
+                  <td>1,015</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+                  <td>in</td>
+                  <td>libero</td>
+                  <td>sodales</td>
+                  <td>ligula</td>
+                  <td>in</td>
+                  <td>libero</td>
+                  <td>1,003</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -189,8 +344,7 @@
 				</div>
 				<div class="modal-body">
 					
-				      <form class="form-signin" action="./ofood/ordermeal.action" method="post">
-				      				      	
+				      <form class="form-signin" action="./ofood/ordermeal.action" method="post">				      	
 				        <table class="table table-striped">
 						  <caption>Please make your decision</caption>							
 						  	<tbody id="mealTb">
@@ -198,9 +352,15 @@
 							      <td>							    
 									<div class="form-group">
 									    <label for="name">Weekday</label>
-									    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
-									   	<p class="form-control" id="show_weekday">today</p>
-									   	<input type=hidden name="orderlist[0].weekday" id="today_weekday" value=""/>					    
+									    <select class="form-control" name="orderlist[0].weekday">
+									      <option value="1">星期一</option>
+									      <option value="2">星期二</option>
+									      <option value="3">星期三</option>
+									      <option value="4">星期四</option>
+									      <option value="5">星期五</option>
+									      <option value="6">星期六</option>
+									      <option value="7">星期日</option>
+									    </select>									    
   									</div>
 							      </td>
 							      <td>
@@ -268,10 +428,6 @@
     	//<a class="btn  btn-default" id ="add">add</a>
     	
     	 window.onload = function(){
-    		/* init today */
-    		document.getElementById("show_weekday").innerHTML= DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.US_DAYNAME);
-    		document.getElementById("today_weekday").value=DateFormat.format(new Date() , 'yyyy-MM-dd hh:mm:ss');    		
-    		/*add meal*/
     		var clicks = 0;
     		document.getElementById("add").onclick=function(){
     			clicks +=1; 
@@ -280,31 +436,53 @@
     				return;
     			}
     			//create three <td>:WeekdayTD MealTD  DecideTD
+    			/*------Wakday--------*/
+    			//var WeekdayTd = document.createElement("td");    			
+    			//WeekdayTd.innerHTML=('<div class="form-group"><select class="form-control" name="orderlist[clicks].weekday"><option>星期一</option><option>星期二</option><option>星期三</option><option>星期四</option><option>星期五</option><option>星期六</option><option>星期日</option></select></div>');
     			
-    			/*------Weekday--------*/
-    			
-    			
-    			
-    			 /* <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 --> */
-				 /* <p class="form-control" id="show_weekday">today</p> */
     			
     			var WeekdayTd = document.createElement("td"); 
-    			//create show_weekday label
-    			var show_weekday = document.createElement("p");
-    			show_weekday.setAttribute("class","form-control");
-    			show_weekday.innerHTML=DateFormat.getWeek(DateFormat.addDay(new Date(), clicks),DateFormat.WEEKTYPE.US_DAYNAME);    			
-    			var value_name = "orderlist["+clicks+"].weekday";		
-    			//create hidden input label:<input type=hidden name="orderlist[0].weekday" value=""/>    			
-    			var next_weekday = document.createElement("input");
-    			next_weekday.setAttribute("type","hidden");
-    			next_weekday.setAttribute("name",value_name);
-    			next_weekday.value=DateFormat.format(DateFormat.addDay(new Date(), clicks) , 'yyyy-MM-dd hh:mm:ss')
+    			var value_name = "orderlist["+clicks+"].weekday";    		
+    			var select_weekday = document.createElement("Select");
+    			select_weekday.setAttribute("class","form-control");
+    			select_weekday.setAttribute("name",value_name);
+    			
+    			//create option of weekday
+    			var opt1 = document.createElement("option");
+    			opt1.setAttribute("value",'1');
+    			opt1.appendChild(document.createTextNode("星期一"));
+    			var opt2 = document.createElement("option");
+    			opt2.setAttribute("value",'2');
+    			opt2.appendChild(document.createTextNode("星期二"));
+    			var opt3 = document.createElement("option");
+    			opt3.setAttribute("value",'3');
+    			opt3.appendChild(document.createTextNode("星期三"));
+    			var opt4 = document.createElement("option");
+    			opt4.setAttribute("value",'4');
+    			opt4.appendChild(document.createTextNode("星期四"));
+    			var opt5 = document.createElement("option");
+    			opt5.setAttribute("value",'5');
+    			opt5.appendChild(document.createTextNode("星期五"));
+    			var opt6 = document.createElement("option");
+    			opt6.setAttribute("value",'6');
+    			opt6.appendChild(document.createTextNode("星期六"));
+    			var opt7 = document.createElement("option");
+    			opt7.setAttribute("value",'7');
+    			opt7.appendChild(document.createTextNode("星期日"));    			
+    			
+    			//added weekday option in select
+    			select_weekday.appendChild(opt1);
+    			select_weekday.appendChild(opt2);
+    			select_weekday.appendChild(opt3);
+    			select_weekday.appendChild(opt4);
+    			select_weekday.appendChild(opt5);
+    			select_weekday.appendChild(opt6);
+    			select_weekday.appendChild(opt7);
     			
     			//create label:div
     			var div_weekday = document.createElement("div");
     			div_weekday.setAttribute("class","form-group");
-    			div_weekday.appendChild(show_weekday);
-    			div_weekday.appendChild(next_weekday);
+    			div_weekday.appendChild(select_weekday);
     			WeekdayTd.appendChild(div_weekday);
     			
     			/*------MealTd--------*/

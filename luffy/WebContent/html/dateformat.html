@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>时间，日期转换</title>
+    <script src="./../assets/js/dateformat.js"></script>
+    <script>
+        alert(DateFormat.format(new Date() , 'yyyy/MM/dd hh:mm:ss'));
+        //alert(DateFormat.getDateStart(new Date()) , 'yyyyMMdd');
+        //alert(DateFormat.getDateEndStr(new Date(), 'yyyy/MM/dd'));
+        alert(DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.US_DAYNAME));
+       
+        //console.log(DateFormat.format(new Date()));
+        //console.log(DateFormat.formatToDate('2017/04/14 14:31:07'));
+        //console.log(DateFormat.isValidDate('2017-04-14 14:31:07'));
+        //console.log(DateFormat.format(new Date()));
+		
+		console.log(DateFormat.addDay(new Date(), 3));
+        console.log(DateFormat.addDayStr('2019-05-29 12:12:12' , 3));
+		
+		
+    </script>
+</head>
+<body>
+
+</body>
+</html>

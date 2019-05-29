@@ -2,7 +2,6 @@ package com.wistron.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -42,8 +41,9 @@ public class OfoodController {
 	public String ordermeal(HttpSession session,Ordersubmitvo orders ,Model model) {
 		//get user form session
 		User user = (User) session.getAttribute("session_user");
-		List<Ordersubmit> orderlist = orders.getOrderlist();
-		System.out.println(orderlist);
+		List<Ordersubmit> ordersubmitlist = orders.getOrderlist();
+		System.out.println(ordersubmitlist);
+		
 		
 		
 		return "/WEB-INF/views/oFood.jsp";		
