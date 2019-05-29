@@ -221,6 +221,33 @@
 									    </select>						    
   									</div>
 							      </td>
+							    </tr>
+							    <tr id="trs1">
+							      <td>							    
+									<div class="form-group">									   
+									    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
+									   	<p class="form-control" id="show_weekday">today</p>
+									   	<input type=hidden name="orderlist[1].weekday" id="today_weekday" value=""/>					    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    
+									    <select class="form-control" name="orderlist[1].type">
+									      <option value="2">晚餐</option>									     
+									      <option value="1">午餐</option>
+									    </select>									    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									   									  
+										<select class="form-control" name="orderlist[1].decide">
+									      <option value="1">要吃</option>
+									      <option value="0">不吃</option>									     
+									    </select>						    
+  									</div>
+							      </td>
 							    </tr>			    
 							    
 						  	</tbody>
