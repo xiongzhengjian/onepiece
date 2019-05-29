@@ -14,13 +14,20 @@ public class Meal {
 	private String site;
 	//the foreign key of table meal which is associated with table user 
 	private int user;
-	//0 breakfast  1 lunch  2 dinner
+	//0 breakfast; 1 lunch;  2 dinner
 	private int type;
+	//0 wanted ; 1 want
 	private int decide;
 	public Meal() {
 		super();
 	}
 	
+	public Meal(String site, int user) {
+		super();
+		this.site = site;
+		this.user = user;
+	}
+
 	public Meal(int meal_id, Date date, String site, int user, int type, int decide) {
 		super();
 		this.meal_id = meal_id;

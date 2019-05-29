@@ -17,6 +17,7 @@
   <mappers>
   	<mapper resource="User.xml"/>
   	<mapper resource="Dictionary.xml"/>
+  	<mapper resource="Meal.xml" />
   </mappers>
   
 </configuration>

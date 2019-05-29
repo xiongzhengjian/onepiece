@@ -261,7 +261,7 @@
     <script type="text/javascript">    
     	var date = document.getElementById("current_date");    	
     	//date.innerHTML = (today.getFullYear())+"-"+(today.getMonth()+1)+"-"+today.getDate()+" "+show_day[weekday-1];    	
-    	date.innerHTML = DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.US_DAYNAME);
+    	date.innerHTML = DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.ZH_DAYNAME);
     </script>
     
     <script type="text/javascript">
@@ -269,7 +269,7 @@
     	
     	 window.onload = function(){
     		/* init today */
-    		document.getElementById("show_weekday").innerHTML= DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.US_DAYNAME);
+    		document.getElementById("show_weekday").innerHTML= DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.ZH_DAYNAME);
     		document.getElementById("today_weekday").value=DateFormat.format(new Date() , 'yyyy-MM-dd hh:mm:ss');    		
     		/*add meal*/
     		var clicks = 0;
@@ -281,8 +281,7 @@
     			}
     			//create three <td>:WeekdayTD MealTD  DecideTD
     			
-    			/*------Weekday--------*/
-    			
+    			/*------Weekday--------*/ 			
     			
     			
     			 /* <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 --> */
@@ -292,7 +291,7 @@
     			//create show_weekday label
     			var show_weekday = document.createElement("p");
     			show_weekday.setAttribute("class","form-control");
-    			show_weekday.innerHTML=DateFormat.getWeek(DateFormat.addDay(new Date(), clicks),DateFormat.WEEKTYPE.US_DAYNAME);    			
+    			show_weekday.innerHTML=DateFormat.getWeek(DateFormat.addDay(new Date(), clicks),DateFormat.WEEKTYPE.ZH_DAYNAME);    			
     			var value_name = "orderlist["+clicks+"].weekday";		
     			//create hidden input label:<input type=hidden name="orderlist[0].weekday" value=""/>    			
     			var next_weekday = document.createElement("input");
