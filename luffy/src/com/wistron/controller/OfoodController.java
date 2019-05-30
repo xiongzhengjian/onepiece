@@ -93,6 +93,13 @@ public class OfoodController {
 			}
 			
 	}
+	
+	@RequestMapping("/ofood/personal")
+	public String personal() {
+		
+		return "/WEB-INF/views/ofood_personal.jsp";
+	}
+	
 	/**
 	 * 
 	 * @param ordered_meals:  meal data from database which greater than or equal to today

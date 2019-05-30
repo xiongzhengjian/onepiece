@@ -70,7 +70,7 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a>Overview <span class="sr-only">(current)</span></a></li>
             <li><a  href="#" data-toggle="modal" data-target="#myModal">Order meal</a></li>
-            <li><a href="#">Analytics</a></li>
+            <li><a href="./ofood/personal.action">Personal</a></li>
             <li><a href="#">Export</a></li>
           </ul>
           <!-- <ul class="nav nav-sidebar">
@@ -81,11 +81,11 @@
             <li><a href="">More navigation</a></li>
           </ul>-->
           
-          <ul class="nav nav-sidebar">
+          <!-- <ul class="nav nav-sidebar">
             <li><a href="">Nav item again</a></li>
             <li><a href="">One more nav</a></li>            
             <li><a href="">Another nav item</a></li>
-          </ul>
+          </ul> -->
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Order situation</h1>
@@ -175,7 +175,7 @@
       </div>
     </div>
     
-    <!-- login模态框（Modal） -->
+    <!-- login（Modal） -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -187,10 +187,8 @@
 						order a meal
 					</h4>
 				</div>
-				<div class="modal-body">
-					
-				      <form class="form-signin" action="./ofood/ordermeal.action" method="post">
-				      				      	
+				<div class="modal-body">					
+				      <form class="form-signin" action="./ofood/ordermeal.action" method="post">				      				      	
 				        <table class="table table-striped">
 						  <caption>Please make your decision</caption>							
 						  	<tbody id="mealTb">
@@ -233,7 +231,7 @@
 							      <td>
 							      	<div class="form-group">									    
 									    <p class="form-control" id="show_type_lunch">晚餐</p>
-									    <input type=hidden name="orderlist[0].type" value="2"/>									    
+									    <input type=hidden name="orderlist[1].type" value="2"/>									    
   									</div>
 							      </td>
 							      <td>
@@ -255,8 +253,7 @@
 				      </form>
 				        <!-- <div style="float:right;" class="form-group">
 				          <button class="btn  btn-default" id ="add">add</button>
-				        </div> -->
-    				
+				        </div> -->   				
 				</div>
 				<div class="modal-footer">
 					<button type="button"  data-dismiss="modal" id="cancel">cancel
