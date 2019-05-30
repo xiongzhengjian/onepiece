@@ -1,5 +1,6 @@
 package com.wistron.pojo.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -14,9 +15,18 @@ public class Ordersubmit {
 	private int type;
 	// 0 want  1 don't want 
 	private int decide;
+	private int user_id;
+	private String today;
+	
 	public Ordersubmit() {
 		super();
 	}
+	
+	public Ordersubmit(int user_id) {
+		super();
+		this.user_id = user_id;
+	}
+
 	public Ordersubmit(Date weekday, int type, int decide) {
 		super();
 		this.weekday = weekday;
@@ -41,6 +51,19 @@ public class Ordersubmit {
 	public void setDecide(int decide) {
 		this.decide = decide;
 	}
+	
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+	
+	public String getToday() {
+		String today = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+		return today;
+	}
+	
 	@Override
 	public String toString() {
 		return "Ordersubmit [weekday=" + weekday + ", type=" + type + ", decide=" + decide + "]";

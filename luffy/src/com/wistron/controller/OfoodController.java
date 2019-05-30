@@ -1,6 +1,9 @@
 package com.wistron.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +22,7 @@ import com.wistron.pojo.vo.Ordersubmitvo;
 public class OfoodController {
 	
 	private MealDaoImpl mealDao = new MealDaoImpl();
+	
 	/**
 	 * go to home page while it is also called captain
 	 * @return
@@ -38,36 +42,80 @@ public class OfoodController {
 	 * @param orders : the values of order meals 
 	 * @param model
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping("/ofood/ordermeal")
-	public String ordermeal(HttpSession session,Ordersubmitvo orders ,Model model) {
-		//get user form session
+	public String ordermeal(HttpSession session,Ordersubmitvo orders ,Model model) throws ParseException {
+		//get user form session，then get the user_id
 		User user = (User) session.getAttribute("session_user");
-		List<Ordersubmit> ordersubmitlist = orders.getOrderlist();		
 		int user_id = user.getUser_id();
 		if (user_id<=0) {
 			return "/html/error.html";
+		}		
+		//Multiple pieces of data coming in from the oFood.jsp
+		List<Ordersubmit> ordersubmitlist = orders.getOrderlist();
+		//Pass the data that needs to be stored to the database through the List
+		List<Meal> list = new ArrayList<Meal>();		
+		//find all user order situation data that date >= today
+		List<Meal> ordered_meals = mealDao.findAll(new Ordersubmit(user_id));		
+		//Create a reference variable
+		Meal meal = null;		
+		//Fetch data from the "ordersubmitlist" and compare the fetched data with the meal data in the database
+		for(int i=0;i<ordersubmitlist.size();i++) {			
+			Ordersubmit ordersubmit = ordersubmitlist.get(i);			
+			Date weekday = ordersubmit.getWeekday();				
+			String weekday_format = new SimpleDateFormat("yyyy-MM-dd").format(weekday);
+			SimpleDateFormat parse = new SimpleDateFormat("yyyy-MM-dd");
+			//convert ordersubmit date format form yyyy-MM-dd hh:mm:ss  to date format yyyy-MM-dd
+			Date weekday_jsp = parse.parse(weekday_format);	
+			//to compare
+			boolean isContains = isContains(ordered_meals,weekday_jsp);
+			if(isContains==true) {//true: Indicates that the 'ordersubmit' does not need to be inserted into the database
+				continue;
+			}else {
+				//create a meal and initialize it
+				meal = new Meal("WCQ",user_id);					
+				meal.setDate(weekday);	
+				//0 breakfast; 1 lunch;  2 dinner
+				meal.setType(ordersubmit.getType());
+				//0 don't want ; 1 want
+				meal.setDecide(ordersubmit.getDecide());		
+				list.add(meal);		
+			}	
+			
+			
+		}	
+			if(list.size()>0) {//Add tips for successful meal plan submission
+				mealDao.ofood(list);
+				return "/WEB-INF/views/oFood.jsp";	
+			}else {//Add tip for "repeat submission, please jump to personal details page if you need to modify" 
+				return "/WEB-INF/views/oFood.jsp";	
+			}
+			
+	}
+	/**
+	 * 
+	 * @param ordered_meals:  meal data from database which greater than or equal to today
+	 * @param weekday_jsp : date of data submitted from the front page
+	 * @return true is contain ;false is not contain.
+	 * @throws ParseException
+	 */
+	private boolean isContains(List<Meal> ordered_meals, Date weekday_jsp) throws ParseException {
+		List<Date> sources = new ArrayList<Date>();
+		for(int j=0;j<ordered_meals.size();j++) {
+			Meal ordered_meal = ordered_meals.get(j);
+			Date ordered_date = ordered_meal.getDate();
+			String ordered_date_format = new SimpleDateFormat("yyyy-MM-dd").format(ordered_date);
+			SimpleDateFormat parse_date_mysql = new SimpleDateFormat("yyyy-MM-dd");
+			//convert ordered date format form yyyy-MM-dd hh:mm:ss  to date format yyyy-MM-dd
+			Date ordered_date_mysql = parse_date_mysql.parse(ordered_date_format);	
+			sources.add(ordered_date_mysql);			
+			
 		}
-		//System.out.println(ordersubmitlist);
-		Meal meal = null;
-		List<Meal> list = new ArrayList<Meal>();
-		for(int i=0;i<ordersubmitlist.size();i++) {
-			Ordersubmit ordersubmit = ordersubmitlist.get(i);
-			//create a meal and initialize it
-			meal = new Meal("WCQ",user_id);
-			//today next_day ....
-			meal.setDate(ordersubmit.getWeekday());
-			//0 breakfast; 1 lunch;  2 dinner
-			meal.setType(ordersubmit.getType());
-			//0 wanted ; 1 want
-			meal.setDecide(ordersubmit.getDecide());
-			list.add(meal);
-		}
-		mealDao.ofood(list);
-		
-		
-		
-		
-		return "/WEB-INF/views/oFood.jsp";		
+		//
+		if(sources.contains(weekday_jsp)) {
+			return true;
+		}	
+		return false;
 	}
 }

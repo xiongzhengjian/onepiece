@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.wistron.pojo.Meal;
+import com.wistron.pojo.vo.Ordersubmit;
 
 public class MealDaoImpl {
 	
@@ -28,7 +29,16 @@ public class MealDaoImpl {
 		int row = sqlSession.insert("com.wistron.meal.ofood.insert_meal", meals);
 		sqlSession.commit();	
 		return row;
-	}		
+	}
+	/**
+	 * find all meal data that meal date >= today
+	 * @return
+	 */
+	public List<Meal> findAll(Ordersubmit ordersubmit){
+		SqlSession sqlSession = factory.openSession();
+		List<Meal> meals = sqlSession.selectList("com.wistron.meal.ofood.findAll",ordersubmit);
+		return meals;
+	}
 	
 	
 	
