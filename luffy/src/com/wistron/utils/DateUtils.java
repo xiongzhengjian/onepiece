@@ -1,6 +1,8 @@
 package com.wistron.utils;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -35,5 +37,27 @@ public class DateUtils {
         return myCal.compareTo(compareCal);    
    
     
+    }
+    
+    /**
+     * 日期相加减天数
+     * @param date if is Null the value is current day
+     * @param days : count of days to add
+     * @param includeTime:  is include hh mm ss; true:include
+     * @return	return the date after added  days
+     * @throws ParseException 
+     */
+    public static Date dateAdd(Date date, int days, boolean includeTime) throws ParseException{
+        if(date == null){
+            date = new Date();
+        }
+        if(!includeTime){
+            SimpleDateFormat sdf = new SimpleDateFormat(DateUtils_origin.DATE_PATTERN);
+            date = sdf.parse(sdf.format(date));
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days);
+        return cal.getTime();
     }
 }

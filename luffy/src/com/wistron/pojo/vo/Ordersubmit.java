@@ -1,7 +1,10 @@
 package com.wistron.pojo.vo;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import com.wistron.utils.DateUtils;
 
 /**
  * use the vo Class to pack the values of order meals
@@ -17,6 +20,7 @@ public class Ordersubmit {
 	private int decide;
 	private int user_id;
 	private String today;
+	private Date nextDay;
 	
 	public Ordersubmit() {
 		super();
@@ -62,12 +66,21 @@ public class Ordersubmit {
 	public String getToday() {
 		String today = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
 		return today;
+	}		
+	
+	
+	public Date getNextDay() throws ParseException {
+		Date nextDay = DateUtils.dateAdd(new Date(), 1, false);
+		return nextDay;	
 	}
 	
+
 	@Override
 	public String toString() {
 		return "Ordersubmit [weekday=" + weekday + ", type=" + type + ", decide=" + decide + "]";
 	}
+
+	
 	
 	
 	

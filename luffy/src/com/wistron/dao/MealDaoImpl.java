@@ -13,6 +13,7 @@ import com.wistron.pojo.vo.Ordersubmit;
 public class MealDaoImpl {
 	
 	private SqlSessionFactory factory;
+	private List<Meal> meals;
 	
 	//initialize factory when MealDaoImpl is created
 	public MealDaoImpl() {
@@ -36,7 +37,13 @@ public class MealDaoImpl {
 	 */
 	public List<Meal> findAll(Ordersubmit ordersubmit){
 		SqlSession sqlSession = factory.openSession();
-		List<Meal> meals = sqlSession.selectList("com.wistron.meal.ofood.findAll",ordersubmit);
+		meals = sqlSession.selectList("com.wistron.meal.ofood.findAll",ordersubmit);
+		return meals;
+	}
+	
+	public List<Meal> findAllLater(Ordersubmit ordersubmit){
+		SqlSession sqlSession = factory.openSession();
+		meals = sqlSession.selectList("com.wistron.meal.ofood.findAllLater",ordersubmit);
 		return meals;
 	}
 	

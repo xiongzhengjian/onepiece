@@ -95,8 +95,11 @@ public class OfoodController {
 	}
 	
 	@RequestMapping("/ofood/personal")
-	public String personal() {
-		
+	public String personal(HttpSession session,Model model) {	
+		User user = (User) session.getAttribute("session_user");
+		int user_id = user.getUser_id();
+		List<Meal> meals = mealDao.findAllLater(new Ordersubmit(user_id));
+		model.addAttribute("meals", meals);
 		return "/WEB-INF/views/ofood_personal.jsp";
 	}
 	

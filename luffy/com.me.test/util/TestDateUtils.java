@@ -18,7 +18,9 @@ public class TestDateUtils {
 //		Date dateAdd = DateUtils.dateAdd(new Date(), 1, false);
 //		System.out.println(dateAdd);
 		
-		System.out.println(new Ordersubmit().getToday());
+		Ordersubmit ordersubmit = new Ordersubmit();
+		System.out.println(ordersubmit.getToday());
+//		System.out.println(ordersubmit.getNextday());
 	}
 	
 	

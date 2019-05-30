@@ -29,6 +29,15 @@ public class DaoTest_Meal {
 		System.out.println(all);
 		
 	}
+	
+	@Test
+	public void findAllLater() throws Exception {
+		Ordersubmit ordersubmit = new Ordersubmit();
+		ordersubmit.setUser_id(11);
+		List<Meal> all = mealDao.findAllLater(ordersubmit);
+		System.out.println(all);
+		
+	}
 
 	
 	

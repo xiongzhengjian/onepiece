@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" import="java.util.*"%>  
 <!DOCTYPE html>
 <html>
   <head>
@@ -40,70 +42,96 @@
   </head>
 
   <body>
-
-		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Order situation</h1>       
-          <h2 class="sub-header" id="current_date">Section title</h2>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Personal</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="./ofood/captain.action">Home</a></li>           
+            <%-- <li><a >Hi! ${session_user.name }</a></li> --%>
+          </ul>
+          <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form> -->
+        </div>
+      </div>
+    </nav>
+		<div class="main">
+          <h3 class="page-header">${session_user.enname }</h3>       
+          <h4 class="sub-header">The food in the canteen is cost-effective...</h4>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>部门代号</th>
-                  <th>要吃</th>
-                  <th>不吃</th>
-                  <th>未决定</th>
-                  <th>订餐</th>
-                  <th>免订</th>
-                  <th>在职</th>
-                  <th>订餐</th>
-                  <th>订餐率</th>
-                   <th>详情</th>
+                  <th>site</th>
+                  <th>weekday</th>
+                  <th>date</th>
+                  <th>meal</th>
+                  <th>decide</th>                 
+                  <th>operate</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                  <td>elit</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                  <td>Praesent</td>
-                </tr>
+              <tbody>                
+                <c:forEach items="${meals}" varStatus="i" var="meal" >              		
+                	<tr>               		
+            			<td>${meal.site }</td> 
+            			<td>星期几</td>
+            			<td>${meal.date }</td> 
+            			<td>${(meal.type==1)?'午餐':'晚餐' }</td> 
+            			<%-- <td>${meal.decide }</td>  --%>
+            			<td>
+            				<%-- <label class="radio-inline">
+            					<c:if test="${meal.decide == 1}">
+	        						<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1" checked="checked">要吃            					
+            					</c:if>	            					
+    						</label>
+    						<label class="radio-inline">
+        						<c:if test="${u.sex == '1'}">
+	        						<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="0" checked="${(meal.decide==1)?checked:unchecked }">要吃            					
+            					</c:if>	
+    						</label> --%>
+    						
+    						
+    						<label class="radio-inline">
+	    						<c:choose>
+	    							<c:when test="${meal.decide == '1'}">
+	        							<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1" checked="checked">要吃       
+	    							</c:when>
+	   								 <c:otherwise>
+	      								  <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1">要吃 
+	    							</c:otherwise>
+								</c:choose>
+							</label>
+							<label class="radio-inline">
+	    						<c:choose>
+	    							<c:when test="${meal.decide == '0'}">
+	        							<input type="radio" name="optionsRadiosinline" id="optionsRadios" value="0" checked="checked">不吃       
+	    							</c:when>
+	   								 <c:otherwise>
+	      								  <input type="radio" name="optionsRadiosinline" id="optionsRadios" value="0">不吃 
+	    							</c:otherwise>
+								</c:choose>
+							</label>            				
+            			</td>
+            			<td><a class="label label-default">edit</a></td>  
+        			</tr>  
+        		</c:forEach>  
+               
                 
               </tbody>
             </table>
           </div>
         </div>
     
-    
+   
     
 
     <!-- Bootstrap core JavaScript
@@ -115,9 +143,13 @@
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="./assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>    
     <script src="./assets/js/dateformat.js"></script>
     
+    <!-- initial table with meals data-->
+    <script type="text/javascript">
+    	
+    </script>
     
     
     
