@@ -87,7 +87,8 @@
             			<td>星期几</td>
             			<td>${meal.date }</td> 
             			<td>${(meal.type==1)?'午餐':'晚餐' }</td>             			
-            			<td class="decided">${(meal.decide==0)?'No':'Yes' }</td>	            			
+            			<%-- <td class="decided">${(meal.decide==0)?'No':'Yes' }</td> --%>	
+            			<td class="decided">${(meal.decide==0)?'不吃':'要吃' }</td>            			
             			<td><a class="label label-default  edits" title="${meal.decide }" id="${idStatus.index+0 }">change</a></td>  
         			</tr>  
         		</c:forEach>  
@@ -123,7 +124,7 @@
     				//The listening environment does not seem to be able to pass values with the external environment, so you can only add an attribute on the tag itself to pass values
     				var index = this.id;  	    				
     				//Get the value of whether a meal has been ordered:Carry this value with the title attribute
-    				var decided = this.title;
+    				var decided = this.title;    				
     				//Click change once to switch values between 0 and 1
     				if(decided==0){
     					this.title=1;
@@ -134,12 +135,13 @@
     				//Get all decided TD tags:decided_TDs
     				var decided_TDs = document.getElementsByClassName("decided");   
     				//Get the corresponding 'decided' object
-    				var decided_TD = decided_TDs[index]; 
+    				var decided_TD = decided_TDs[index];     				
     				//Change display information
     	    		if(decided==0){
-    	    			decided_TD.innerText='Yes';
+    	    			decided_TD.innerText='要吃';    	    			
     	    		}else{
-    	    			decided_TD.innerText='No';
+    	    			decided_TD.innerText='不吃';
+    	    			
     	    		}
     				
     				
