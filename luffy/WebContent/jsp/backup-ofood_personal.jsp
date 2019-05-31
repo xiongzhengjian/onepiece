@@ -18,7 +18,6 @@
 		//  basePath="http://localhost:8080/luffy/"
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 	%>
-	
 	<base href="<%=basePath%>">
     <link rel="icon" href="./icon/favicon.ico">
     <!-- Bootstrap core CSS -->
@@ -67,30 +66,66 @@
     </nav>
 		<div class="main">
           <h3 class="page-header">${session_user.enname }</h3>       
-          <h4 class="sub-header">You have made a reservation decision <span class="badge">${meals.size() div 2}</span> days in advance</h4>
+          <h4 class="sub-header">The food in the canteen is cost-effective...</h4>
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-striped">
               <thead>
                 <tr>
                   <th>site</th>
                   <th>weekday</th>
                   <th>date</th>
                   <th>meal</th>
-                  <th>decided</th>                 
+                  <th>decide</th>                 
                   <th>operate</th>
                 </tr>
               </thead>
               <tbody>                
-                <c:forEach items="${meals}" varStatus="idStatus" var="meal" >              		
+                <c:forEach items="${meals}" varStatus="i" var="meal" >              		
                 	<tr>               		
             			<td>${meal.site }</td> 
             			<td>星期几</td>
             			<td>${meal.date }</td> 
-            			<td>${(meal.type==1)?'午餐':'晚餐' }</td>             			
-            			<td class="decided">${(meal.decide==0)?'No':'Yes' }</td>	            			
-            			<td><a class="label label-default  edits" title="${meal.decide }" id="${idStatus.index+0 }">change</a></td>  
+            			<td>${(meal.type==1)?'午餐':'晚餐' }</td> 
+            			<%-- <td>${meal.decide }</td>  --%>
+            			<td>
+            				<%-- <label class="radio-inline">
+            					<c:if test="${meal.decide == 1}">
+	        						<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1" checked="checked">要吃            					
+            					</c:if>	            					
+    						</label>
+    						<label class="radio-inline">
+        						<c:if test="${u.sex == '1'}">
+	        						<input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="0" checked="${(meal.decide==1)?checked:unchecked }">要吃            					
+            					</c:if>	
+    						</label> --%>
+    						
+    						
+    						<label class="radio-inline">
+	    						<c:choose>
+	    							<c:when test="${meal.decide == '1'}">
+	        							<input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1" checked="checked">要吃       
+	    							</c:when>
+	   								 <c:otherwise>
+	      								  <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="1">要吃 
+	    							</c:otherwise>
+								</c:choose>
+							</label>
+							<label class="radio-inline">
+	    						<c:choose>
+	    							<c:when test="${meal.decide == '0'}">
+	        							<input type="radio" name="optionsRadiosinline" id="optionsRadios" value="0" checked="checked">不吃       
+	    							</c:when>
+	   								 <c:otherwise>
+	      								  <input type="radio" name="optionsRadiosinline" id="optionsRadios" value="0">不吃 
+	    							</c:otherwise>
+								</c:choose>
+							</label>            				
+            			</td>
+            			<td><a class="label label-default">edit</a></td>  
         			</tr>  
         		</c:forEach>  
+               
+                
               </tbody>
             </table>
           </div>
@@ -112,45 +147,8 @@
     <script src="./assets/js/dateformat.js"></script>
     
     <!-- initial table with meals data-->
-    <script type="text/javascript">    
-    	window.onload= function(){    		     		   		
-    		//Get all the edit tags:edits_tags
-    		var edits_tags = document.getElementsByClassName("edits");
-    		var edits_amounts = edits_tags.length;    		
-    		for (var i=0;i<edits_amounts;i++){
-    			var edit_tag =  edits_tags[i];
-    			edit_tag.addEventListener('click',function(){	
-    				//The listening environment does not seem to be able to pass values with the external environment, so you can only add an attribute on the tag itself to pass values
-    				var index = this.id;  	    				
-    				//Get the value of whether a meal has been ordered:Carry this value with the title attribute
-    				var decided = this.title;
-    				//Click change once to switch values between 0 and 1
-    				if(decided==0){
-    					this.title=1;
-    					
-    				}else{
-    					this.title=0
-    				}
-    				//Get all decided TD tags:decided_TDs
-    				var decided_TDs = document.getElementsByClassName("decided");   
-    				//Get the corresponding 'decided' object
-    				var decided_TD = decided_TDs[index]; 
-    				//Change display information
-    	    		if(decided==0){
-    	    			decided_TD.innerText='Yes';
-    	    		}else{
-    	    			decided_TD.innerText='No';
-    	    		}
-    				
-    				
-    				
-    				
-    			}); 
-    			
-    				
-    			
-    		}
-    	}
+    <script type="text/javascript">
+    	
     </script>
     
     
