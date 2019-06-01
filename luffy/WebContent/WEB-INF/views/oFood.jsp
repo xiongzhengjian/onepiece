@@ -30,6 +30,7 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="./assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="./assets/js/echarts.js"></script>    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -73,44 +74,25 @@
             <li><a href="./ofood/personal.action">Personal</a></li>
             <li><a href="#">Export</a></li>
           </ul>
-          <!-- <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>-->
           
-          <!-- <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>            
-            <li><a href="">Another nav item</a></li>
-          </ul> -->
+          
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Order situation</h1>
 
           <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="./pictures/circle.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="./pictures/circle.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="./pictures/circle.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="./pictures/circle.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+   			 <div id="main1" style="width: 600px;height:400px;"></div>           
+          </div>
+          
+           <div class="row placeholders">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+   			 <div id="main2" style="width: 600px;height:400px;"></div>           
+          </div>
+          
+          <div class="row placeholders">
+            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+   			 <div id="main3" style="width: 1200px;height:800px;"></div>           
           </div>
 
           <h2 class="sub-header" id="current_date">Section title</h2>
@@ -428,11 +410,309 @@
     			}
     			clicks = 0;
     			index=1;
-    			console.log(clicks);
+    			//console.log(clicks);
     			
     		}
     	} 
     	/* window.open ("page.html", "newwindow", "height=100, width=100, top=0, left=0,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no");  */ 
+    </script>
+    
+    <!--  Overview -->
+    
+    <script type="text/javascript">	 	
+		 	// 基于准备好的dom，初始化echarts实例
+		    var myChart1 = echarts.init(document.getElementById('main1'));
+		
+		    // 指定图表的配置项和数据
+		    var option1 = {
+		        title: {
+		            text: 'ECharts 入门示例'
+		        },
+		        tooltip: {},
+		        legend: {
+		            data:['销量']
+		        },
+		        xAxis: {
+		            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+		        },
+		        yAxis: {},
+		        series: [{
+		            name: '销量',
+		            type: 'bar',
+		            data: [5, 20, 36, 10, 10, 20]
+		        }]
+		    };
+		
+		    // 使用刚指定的配置项和数据显示图表。
+		    myChart1.setOption(option1);  
+
+    </script>
+    
+    <!--  Overview2 -->
+    <script type="text/javascript">	 	
+		 	// 基于准备好的dom，初始化echarts实例
+		   var myChart2 = echarts.init(document.getElementById('main2'));
+		   var title = '堆叠柱状图';
+
+		   var option2 = {
+		        tooltip : {
+		            trigger: 'axis',
+		            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		            }
+		        },
+		        legend: {
+		            data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+		        },
+		        grid: {
+		            left: '3%',
+		            right: '4%',
+		            bottom: '3%',
+		            containLabel: true
+		        },
+		        xAxis : [
+		            {
+		                type : 'category',
+		                data : ['周一','周二','周三','周四','周五','周六','周日']
+		            }
+		        ],
+		        yAxis : [
+		            {
+		                type : 'value'
+		            }
+		        ],
+		        series : [
+		            {
+		                name:'直接访问',
+		                type:'bar',
+		                data:[320, 332, 301, 334, 390, 330, 320]
+		            },
+		            {
+		                name:'邮件营销',
+		                type:'bar',
+		                stack: '广告',
+		                data:[120, 132, 101, 134, 90, 230, 210]
+		            },
+		            {
+		                name:'联盟广告',
+		                type:'bar',
+		                stack: '广告',
+		                data:[220, 182, 191, 234, 290, 330, 310]
+		            },
+		            {
+		                name:'视频广告',
+		                type:'bar',
+		                stack: '广告',
+		                data:[150, 232, 201, 154, 190, 330, 410]
+		            },
+		            {
+		                name:'搜索引擎',
+		                type:'bar',
+		                data:[862, 1018, 964, 1026, 1679, 1600, 1570],
+		                markLine : {
+		                    lineStyle: {
+		                        normal: {
+		                            type: 'dashed'
+		                        }
+		                    },
+		                    data : [
+		                        [{type : 'min'}, {type : 'max'}]
+		                    ]
+		                }
+		            },
+		            {
+		                name:'百度',
+		                type:'bar',
+		                barWidth : 5,
+		                stack: '搜索引擎',
+		                data:[620, 732, 701, 734, 1090, 1130, 1120]
+		            },
+		            {
+		                name:'谷歌',
+		                type:'bar',
+		                stack: '搜索引擎',
+		                data:[120, 132, 101, 134, 290, 230, 220]
+		            },
+		            {
+		                name:'必应',
+		                type:'bar',
+		                stack: '搜索引擎',
+		                data:[60, 72, 71, 74, 190, 130, 110]
+		            },
+		            {
+		                name:'其他',
+		                type:'bar',
+		                stack: '搜索引擎',
+		                data:[62, 82, 91, 84, 109, 110, 120]
+		            }
+		        ]
+		    };
+
+		
+		    // 使用刚指定的配置项和数据显示图表。
+		    myChart2.setOption(option2);  
+
+    </script>
+     <!--  Overview3 -->
+    <script type="text/javascript">
+ 		// 基于准备好的dom，初始化echarts实例
+    	var myChart3 = echarts.init(document.getElementById('main3'));
+ 		
+    	var posList = [
+    	    'left', 'right', 'top', 'bottom',
+    	    'inside',
+    	    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+    	    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+    	];
+
+    	var configParameters = {
+    	    rotate: {
+    	        min: -90,
+    	        max: 90
+    	    },
+    	    align: {
+    	        options: {
+    	            left: 'left',
+    	            center: 'center',
+    	            right: 'right'
+    	        }
+    	    },
+    	    verticalAlign: {
+    	        options: {
+    	            top: 'top',
+    	            middle: 'middle',
+    	            bottom: 'bottom'
+    	        }
+    	    },
+    	    position: {
+    	        options: echarts.util.reduce(posList, function (map, pos) {
+    	            map[pos] = pos;
+    	            return map;
+    	        }, {})
+    	    },
+    	    distance: {
+    	        min: 0,
+    	        max: 100
+    	    }
+    	};
+
+    	var config = {
+    	    rotate: 90,
+    	    align: 'left',
+    	    verticalAlign: 'middle',
+    	    position: 'insideBottom',
+    	    distance: 15,
+    	    onChange: function () {
+    	        var labelOption = {
+    	            normal: {
+    	                rotate: config.rotate,
+    	                align: config.align,
+    	                verticalAlign: config.verticalAlign,
+    	                position: config.position,
+    	                distance: config.distance
+    	            }
+    	        };
+    	        myChart.setOption({
+    	            series: [{
+    	                label: labelOption
+    	            }, {
+    	                label: labelOption
+    	            }, {
+    	                label: labelOption
+    	            }, {
+    	                label: labelOption
+    	            }]
+    	        });
+    	    }
+    	};
+
+
+    	var labelOption = {
+    	    normal: {
+    	        show: true,
+    	        position: config.position,
+    	        distance: config.distance,
+    	        align: config.align,
+    	        verticalAlign: config.verticalAlign,
+    	        rotate: config.rotate,
+    	        formatter: '{c}  {name|{a}}',
+    	        fontSize: 16,
+    	        rich: {
+    	            name: {
+    	                textBorderColor: '#fff'
+    	            }
+    	        }
+    	    }
+    	};
+
+    	var option3 = {
+    	    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+    	    tooltip: {
+    	        trigger: 'axis',
+    	        axisPointer: {
+    	            type: 'shadow'
+    	        }
+    	    },
+    	    legend: {
+    	        data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+    	    },
+    	    toolbox: {
+    	        show: true,
+    	        orient: 'vertical',
+    	        left: 'right',
+    	        top: 'center',
+    	        feature: {
+    	            mark: {show: true},
+    	            dataView: {show: true, readOnly: false},
+    	            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+    	            restore: {show: true},
+    	            saveAsImage: {show: true}
+    	        }
+    	    },
+    	    calculable: true,
+    	    xAxis: [
+    	        {
+    	            type: 'category',
+    	            axisTick: {show: false},
+    	            data: ['2012', '2013', '2014', '2015', '2016']
+    	        }
+    	    ],
+    	    yAxis: [
+    	        {
+    	            type: 'value'
+    	        }
+    	    ],
+    	    series: [
+    	        {
+    	            name: 'Forest',
+    	            type: 'bar',
+    	            barGap: 0,
+    	            label: labelOption,
+    	            data: [320, 332, 301, 334, 390]
+    	        },
+    	        {
+    	            name: 'Steppe',
+    	            type: 'bar',
+    	            label: labelOption,
+    	            data: [220, 182, 191, 234, 290]
+    	        },
+    	        {
+    	            name: 'Desert',
+    	            type: 'bar',
+    	            label: labelOption,
+    	            data: [150, 232, 201, 154, 190]
+    	        },
+    	        {
+    	            name: 'Wetland',
+    	            type: 'bar',
+    	            label: labelOption,
+    	            data: [98, 77, 101, 99, 40]
+    	        }
+    	    ]
+    	};
+    	 // 使用刚指定的配置项和数据显示图表。
+	    myChart3.setOption(option3);  
+ 		
     </script>
   </body>
 </html>
