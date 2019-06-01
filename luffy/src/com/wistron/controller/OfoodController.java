@@ -102,12 +102,13 @@ public class OfoodController {
 	 * @param session
 	 * @param model
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping("/ofood/personal")
-	public String personal(HttpSession session,Model model) {	
+	public String personal(HttpSession session,Model model) throws ParseException {	
 		User user = (User) session.getAttribute("session_user");
 		int user_id = user.getUser_id();
-		List<Meal> meals = mealDao.findAllLater(new Ordersubmit(user_id));
+		List<Meal> meals = mealDao.findAllLater(new Ordersubmit(user_id));		
 		model.addAttribute("meals", meals);
 		return "/WEB-INF/views/ofood_personal.jsp";
 	}
