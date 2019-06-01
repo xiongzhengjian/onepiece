@@ -46,6 +46,13 @@ public class MealDaoImpl {
 		meals = sqlSession.selectList("com.wistron.meal.ofood.findAllLater",ordersubmit);
 		return meals;
 	}
+
+	public int update(Meal meal) {
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.update("com.wistron.meal.ofood.update", meal);
+		sqlSession.commit();
+		return rows;
+	}
 	
 	
 	

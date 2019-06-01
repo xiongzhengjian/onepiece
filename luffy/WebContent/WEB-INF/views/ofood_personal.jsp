@@ -88,8 +88,8 @@
             			<td>${meal.date }</td> 
             			<td>${(meal.type==1)?'午餐':'晚餐' }</td>             			
             			<%-- <td class="decided">${(meal.decide==0)?'No':'Yes' }</td> --%>	
-            			<td class="decided">${(meal.decide==0)?'不吃':'要吃' }</td>            			
-            			<td><a class="label label-default  edits" title="${meal.decide }" id="${idStatus.index+0 }">change</a></td>  
+            			<td class="decided" id="${meal.type }">${(meal.decide==0)?'不吃':'要吃' }</td>            			
+            			<td><a class="label label-default  edits" title="${meal.decide }" id="${idStatus.index+0 }" lang="${meal.meal_id }" >change</a></td>  
         			</tr>  
         		</c:forEach>  
               </tbody>
@@ -121,10 +121,14 @@
     		for (var i=0;i<edits_amounts;i++){
     			var edit_tag =  edits_tags[i];
     			edit_tag.addEventListener('click',function(){	
+    				/* Make a change  */
     				//The listening environment does not seem to be able to pass values with the external environment, so you can only add an attribute on the tag itself to pass values
     				var index = this.id;  	    				
     				//Get the value of whether a meal has been ordered:Carry this value with the title attribute
-    				var decided = this.title;    				
+    				var decided = this.title;    	
+    				//get meal_id
+    				var meal_id = this.lang;
+    				
     				//Click change once to switch values between 0 and 1
     				if(decided==0){
     					this.title=1;
@@ -135,7 +139,9 @@
     				//Get all decided TD tags:decided_TDs
     				var decided_TDs = document.getElementsByClassName("decided");   
     				//Get the corresponding 'decided' object
-    				var decided_TD = decided_TDs[index];     				
+    				var decided_TD = decided_TDs[index];    
+    				//get meal type
+    				var type = decided_TD.id;    				
     				//Change display information
     	    		if(decided==0){
     	    			decided_TD.innerText='要吃';    	    			
@@ -143,10 +149,27 @@
     	    			decided_TD.innerText='不吃';
     	    			
     	    		}
-    				
-    				
-    				
-    				
+    				/*  Submit a request */
+    				//1.Create a ajax objects
+    				if(window.XMLHttpRequest){
+    					var oAjax = new XMLHttpRequest();
+    				}else{
+    					var oAjax = new ActiveXObject("Microsoft.XMLHTTP");
+    				}
+    				//2.connect to server
+    				oAjax.open("GET","./ofood/change.action?meal_id="+meal_id+"&decide="+this.title+"&type="+type+"&t="+new Date().getTime());
+    				//3.send request
+    				oAjax.send();
+    				//4.receive data of returned
+    				oAjax.onreadystatechange=function(){
+    					if(oAjax.readyState==4){
+    						if(oAjax.status==200){
+    							alert(oAjax.responseText);
+    						}else{
+    							alert("fail!");
+    						}
+    					}
+    				}
     			}); 
     			
     				

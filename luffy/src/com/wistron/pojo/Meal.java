@@ -46,6 +46,13 @@ public class Meal {
 		this.user = user;
 		this.type = type;
 	}
+	public Meal(int meal_id, int user, int decide) {
+		super();
+		this.meal_id = meal_id;		
+		this.user = user;
+		this.decide = decide;
+	}
+
 	public int getMeal_id() {
 		return meal_id;
 	}

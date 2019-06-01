@@ -1,11 +1,15 @@
 package com.wistron.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -93,7 +97,12 @@ public class OfoodController {
 			}
 			
 	}
-	
+	/**
+	 * Respond to customer requests for meal information after the day
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/ofood/personal")
 	public String personal(HttpSession session,Model model) {	
 		User user = (User) session.getAttribute("session_user");
@@ -102,6 +111,28 @@ public class OfoodController {
 		model.addAttribute("meals", meals);
 		return "/WEB-INF/views/ofood_personal.jsp";
 	}
+	
+	@RequestMapping("/ofood/change")
+	public void change(HttpSession session,HttpServletRequest request, HttpServletResponse response) throws IOException {
+		User user = (User) session.getAttribute("session_user");
+		int user_id = user.getUser_id();
+		String decide = request.getParameter("decide");
+		String meal_id = request.getParameter("meal_id");
+		String type_page = request.getParameter("type");
+		int toUpdateDecide = Integer.parseInt(decide);
+		int target_meal_id = Integer.parseInt(meal_id);
+		int type = Integer.parseInt(type_page);
+		//System.out.println("id:"+target_meal_id+"  user_id:"+user_id+"  decide:"+toUpdateDecide+"  type:"+type);
+		Meal meal = new Meal(target_meal_id,user_id,toUpdateDecide);
+		int status = mealDao.update(meal);
+		PrintWriter printWriter = response.getWriter();
+		if(status==1) {
+			printWriter.print("success");
+		}else {
+			printWriter.print("fail");
+		}
+	}
+	
 	
 	/**
 	 * 

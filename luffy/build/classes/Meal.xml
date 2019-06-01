@@ -26,6 +26,11 @@
 		 user=#{user_id} and date >=#{nextDay}
 	</select>
 	
+	<update id="update" parameterType="com.wistron.pojo.Meal">
+		update meal set decide = #{decide}
+			where
+		meal_id=#{meal_id} and user=#{user}
+	</update>
 	
 	
 	
