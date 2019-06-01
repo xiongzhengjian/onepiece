@@ -108,8 +108,16 @@ public class OfoodController {
 	public String personal(HttpSession session,Model model) throws ParseException {	
 		User user = (User) session.getAttribute("session_user");
 		int user_id = user.getUser_id();
-		List<Meal> meals = mealDao.findAllLater(new Ordersubmit(user_id));		
+		List<Meal> meals = mealDao.findAllLater(new Ordersubmit(user_id));	
+		List<String> dates = new ArrayList<String>();
+		for (int i=0;i<meals.size();i++) {
+			Meal meal = meals.get(i);
+			Date date = meal.getDate();
+			String formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
+			dates.add(formatDate);
+		}
 		model.addAttribute("meals", meals);
+		model.addAttribute("dates",dates);
 		return "/WEB-INF/views/ofood_personal.jsp";
 	}
 	
