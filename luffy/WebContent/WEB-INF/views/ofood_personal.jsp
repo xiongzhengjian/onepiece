@@ -175,29 +175,27 @@
     				
     			
     		}
-    	}
-    </script>
-    
-    <!-- date format weekday and date -->
-    <script type="text/javascript">
-  		//Get all the weekday and date tags
-  		window.onload= function(){
-  			var date_TDs = document.getElementsByClassName("date");
+    		
+    		
+    		
+    		/*date format weekday and date*/
+    		var date_TDs = document.getElementsByClassName("date");
   			var weekday_TDs = document.getElementsByClassName("weekday");
   			var date_TDs_amounts = date_TDs.length;
   			var weekday_TDs_amounts = weekday_TDs.length;
   			//Processing date
-   			for (var index=0;index<date_TDs_amounts;index++){
+   			 for (var index=0;index<date_TDs_amounts;index++){
    				var date_td = date_TDs[index];
    				var weekday_td = weekday_TDs[index];
    				var date_origin = date_td.innerText;
-   				var date = DateFormat.format(new Date(date_origin) , 'yyyy-MM-dd hh:mm:ss');
-   				date_td.innerText=date;
+   				var date = DateFormat.format(new Date(date_origin) , 'yyyy-MM-dd');
+   				//date_td.innerText=date;
    				weekday_td.innerText=DateFormat.getWeek(new Date(date_origin),DateFormat.WEEKTYPE.ZH_DAYNAME)
-  			}
-  		}
-		
+  			} 
+    	}
     </script>
+    
+   
     
     
   </body>

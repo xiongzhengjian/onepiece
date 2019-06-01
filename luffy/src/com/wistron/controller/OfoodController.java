@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wistron.dao.MealDaoImpl;
 import com.wistron.pojo.Meal;
 import com.wistron.pojo.User;
+import com.wistron.pojo.vo.Mealvo;
 import com.wistron.pojo.vo.Ordersubmit;
 import com.wistron.pojo.vo.Ordersubmitvo;
 
@@ -108,16 +109,18 @@ public class OfoodController {
 	public String personal(HttpSession session,Model model) throws ParseException {	
 		User user = (User) session.getAttribute("session_user");
 		int user_id = user.getUser_id();
-		List<Meal> meals = mealDao.findAllLater(new Ordersubmit(user_id));	
-		List<String> dates = new ArrayList<String>();
-		for (int i=0;i<meals.size();i++) {
-			Meal meal = meals.get(i);
-			Date date = meal.getDate();
-			String formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date);
-			dates.add(formatDate);
+		List<Meal> meals_origin = mealDao.findAllLater(new Ordersubmit(user_id));	
+		List<Mealvo> meals = new ArrayList<Mealvo>();
+		//Format the date and convert it to a String type			
+		for(int i=0;i<meals_origin.size();i++) {
+			Meal meal = meals_origin.get(i);
+			Date date_origin = meal.getDate();
+			String date = new SimpleDateFormat("yyyy-MM-dd").format(date_origin);
+			//int meal_id, String date, String site, int user, int type, int decide
+			Mealvo mealvo = new Mealvo(meal.getMeal_id(),date,meal.getSite(),meal.getUser(),meal.getType(),meal.getDecide());
+			meals.add(mealvo);
 		}
 		model.addAttribute("meals", meals);
-		model.addAttribute("dates",dates);
 		return "/WEB-INF/views/ofood_personal.jsp";
 	}
 	
