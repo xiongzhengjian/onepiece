@@ -115,8 +115,7 @@ public class OfoodController {
 		for(int i=0;i<meals_origin.size();i++) {
 			Meal meal = meals_origin.get(i);
 			Date date_origin = meal.getDate();
-			String date = new SimpleDateFormat("yyyy-MM-dd").format(date_origin);
-			//int meal_id, String date, String site, int user, int type, int decide
+			String date = new SimpleDateFormat("yyyy-MM-dd").format(date_origin);			
 			Mealvo mealvo = new Mealvo(meal.getMeal_id(),date,meal.getSite(),meal.getUser(),meal.getType(),meal.getDecide());
 			meals.add(mealvo);
 		}

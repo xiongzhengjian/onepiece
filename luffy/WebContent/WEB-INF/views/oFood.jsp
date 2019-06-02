@@ -87,7 +87,7 @@
           
           
 
-          <h2 class="sub-header" id="current_date">Section title</h2>
+          <h4 class="sub-header" id="current_date">未报餐详情</h4>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -253,9 +253,8 @@
     <script src="./assets/js/dateformat.js"></script>
     <!-- set element to show date -->
     <script type="text/javascript">    
-    	var date = document.getElementById("current_date");    	
-    	//date.innerHTML = (today.getFullYear())+"-"+(today.getMonth()+1)+"-"+today.getDate()+" "+show_day[weekday-1];    	
-    	date.innerHTML = DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.ZH_DAYNAME);
+    	/* var date = document.getElementById("current_date");    	    	    	
+    	date.innerHTML = DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.ZH_DAYNAME); */
     </script>
     
     <script type="text/javascript">
@@ -503,7 +502,7 @@
     	};
 
     	var option = {
-    	    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+    	    color: ['#003366', '#006699', '#e5323e','#4cabce'],
     	    tooltip: {
     	        trigger: 'axis',
     	        axisPointer: {
@@ -511,7 +510,7 @@
     	        }
     	    },
     	    legend: {
-    	        data: ['Forest', 'Steppe', 'Desert', 'Wetland']
+    	        data: ['人数', '已报餐', '未报餐', '报餐率']
     	    },
     	    toolbox: {
     	        show: true,
@@ -531,7 +530,7 @@
     	        {
     	            type: 'category',
     	            axisTick: {show: false},
-    	            data: ['2012', '2013', '2014', '2015', '2016']
+    	            data: ['1STQ10', '1STQ20', '1STQ30', '1STQ50', '1STC20']
     	        }
     	    ],
     	    yAxis: [
@@ -541,26 +540,26 @@
     	    ],
     	    series: [
     	        {
-    	            name: 'Forest',
+    	            name: '人数',
     	            type: 'bar',
     	            barGap: 0,
     	            label: labelOption,
     	            data: [320, 332, 301, 334, 390]
     	        },
     	        {
-    	            name: 'Steppe',
+    	            name: '已报餐',
     	            type: 'bar',
     	            label: labelOption,
     	            data: [220, 182, 191, 234, 290]
     	        },
     	        {
-    	            name: 'Desert',
+    	            name: '未报餐',
     	            type: 'bar',
     	            label: labelOption,
     	            data: [150, 232, 201, 154, 190]
     	        },
     	        {
-    	            name: 'Wetland',
+    	            name: '报餐率',
     	            type: 'bar',
     	            label: labelOption,
     	            data: [98, 77, 101, 99, 40]
