@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wistron.dao.MealDaoImpl;
+import com.wistron.dao.UserDaoImpl;
 import com.wistron.pojo.Meal;
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.Mealvo;
@@ -27,6 +28,7 @@ import com.wistron.pojo.vo.Ordersubmitvo;
 public class OfoodController {
 	
 	private MealDaoImpl mealDao = new MealDaoImpl();
+	private UserDaoImpl userDao = new UserDaoImpl();
 	
 	/**
 	 * go to home page while it is also called captain
@@ -40,6 +42,21 @@ public class OfoodController {
 		}
 		return "/WEB-INF/views/captain.jsp";
 	}
+	
+	/**
+	 * Today's reservation information
+	 */
+	public void orderSituation() {
+		//int employeesNum = userDao.getUserAmount();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * order meal

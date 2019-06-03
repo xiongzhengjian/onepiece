@@ -87,35 +87,28 @@
           
           
 
-          <h4 class="sub-header" id="current_date">未报餐详情</h4>
+          <h6 class="sub-header" id="current_date">未报餐详情</h6>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>部门代号</th>
-                  <th>要吃</th>
-                  <th>不吃</th>
-                  <th>未决定</th>
-                  <th>订餐</th>
-                  <th>免订</th>
-                  <th>在职</th>
-                  <th>订餐</th>
-                  <th>订餐率</th>
-                   <th>详情</th>
+                  <th>no</th>                  
+                  <th>site</th>
+                  <th>department</th>
+                  <th>name</th>
+                  <th>employeeID</th>
+                  <th>email</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
+                  <td>1,001</td>                  
                   <td>ipsum</td>
                   <td>dolor</td>
                   <td>sit</td>
                   <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td>sit</td>
+                  <td>ipsum</td>                 
                 </tr>
                 <tr>
                   <td>1,002</td>
@@ -123,11 +116,7 @@
                   <td>consectetur</td>
                   <td>adipiscing</td>
                   <td>elit</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                  <td>elit</td>
-                  <td>elit</td>
+                  <td>consectetur</td>                               
                 </tr>
                 <tr>
                   <td>1,003</td>
@@ -135,11 +124,7 @@
                   <td>nec</td>
                   <td>odio</td>
                   <td>Praesent</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                  <td>Praesent</td>
+                  <td>Integer</td>                             
                 </tr>
                 
               </tbody>
@@ -492,7 +477,7 @@
     	        verticalAlign: config.verticalAlign,
     	        rotate: config.rotate,
     	        formatter: '{c}  {name|{a}}',
-    	        fontSize: 16,
+    	        fontSize: 10,
     	        rich: {
     	            name: {
     	                textBorderColor: '#fff'
@@ -530,7 +515,7 @@
     	        {
     	            type: 'category',
     	            axisTick: {show: false},
-    	            data: ['1STQ10', '1STQ20', '1STQ30', '1STQ50', '1STC20']
+    	            data: ['1STQ10', '1STQ20', '1STQ30', '1STQ50', '1STC10','1STC20', '1STC30', '1STC50']
     	        }
     	    ],
     	    yAxis: [
@@ -544,26 +529,27 @@
     	            type: 'bar',
     	            barGap: 0,
     	            label: labelOption,
-    	            data: [320, 332, 301, 334, 390]
+    	            data: [320, 332, 301, 334, 390, 301, 334, 390]
     	        },
     	        {
     	            name: '已报餐',
     	            type: 'bar',
     	            label: labelOption,
-    	            data: [220, 182, 191, 234, 290]
+    	            data: [220, 182, 191, 234, 290, 191, 234, 290]
     	        },
     	        {
     	            name: '未报餐',
     	            type: 'bar',
     	            label: labelOption,
-    	            data: [150, 232, 201, 154, 190]
+    	            data: [150, 232, 201, 154, 190, 201, 154, 190]
     	        },
     	        {
     	            name: '报餐率',
     	            type: 'bar',
     	            label: labelOption,
-    	            data: [98, 77, 101, 99, 40]
+    	            data: [98, 77, 101, 99, 40, 101, 99, 40]
     	        }
+    	        
     	    ]
     	};
     	 // 使用刚指定的配置项和数据显示图表。

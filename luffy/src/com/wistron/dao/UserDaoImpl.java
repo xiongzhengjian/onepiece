@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.wistron.pojo.User;
+import com.wistron.pojo.vo.OrderSituation;
 
 public class UserDaoImpl {
 	
@@ -29,6 +30,12 @@ public class UserDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		User user = sqlSession.selectOne("com.wistron.meal.user.findUserById", user_id);
 		return user;
+	}
+
+	public OrderSituation orderSituation() {
+		SqlSession sqlSession = factory.openSession();
+		OrderSituation orderSituation = sqlSession.selectOne("com.wistron.meal.user.orderSituation");
+		return orderSituation;
 	}
 	
 }

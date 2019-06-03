@@ -9,17 +9,22 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.wistron.dao.UserDaoImpl;
 import com.wistron.pojo.User;
+import com.wistron.pojo.vo.OrderSituation;
 
 public class Test_User {
 	
 	private SqlSessionFactory factory;
+	private UserDaoImpl userDao;
 	
 	@Before
 	public void initFactory() throws Exception {
 		String resource = "SqlMapConfig.xml";
 		InputStream inputStream = Resources.getResourceAsStream(resource);
 		factory = new SqlSessionFactoryBuilder().build(inputStream);
+		userDao = new UserDaoImpl();
+		
 	}	
 	
 	/**
@@ -57,6 +62,14 @@ public class Test_User {
 		int row = sqlSession.update("com.wistron.meal.user.updateUserById",user);
 		sqlSession.commit();
 		sqlSession.close();		
+	}
+	
+	@Test
+	public void testgetUserAmount() throws Exception{
+		
+		OrderSituation orderSituation = userDao.orderSituation();
+		System.out.println(orderSituation);
+		
 	}
 	
 	

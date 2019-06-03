@@ -29,5 +29,12 @@
 		update user set enname = #{enname} where user_id = #{user_id}
 	</update>
 	
+	<select id="orderSituation" resultType="com.wistron.pojo.vo.OrderSituation">
+		select t_user1.employeesNum ,t_user2.orderedNum ,t_user3.notOrderedNum,t_user2.orderedNum/t_user1.employeesNum as orderRate
+		   from 
+			 (select count(user_id) as employeesNum from user) t_user1,
+			 (select  count(*) as orderedNum from user where mealstatus=1 ) t_user2,
+			 (select  count(*) as notOrderedNum from user where mealstatus=0 ) t_user3
+	</select>
 	
 </mapper>
