@@ -32,9 +32,24 @@
 	<select id="orderSituation" resultType="com.wistron.pojo.vo.OrderSituation">
 		select t_user1.employeesNum ,t_user2.orderedNum ,t_user3.notOrderedNum,t_user2.orderedNum/t_user1.employeesNum as orderRate
 		   from 
-			 (select count(user_id) as employeesNum from user) t_user1,
-			 (select  count(*) as orderedNum from user where mealstatus=1 ) t_user2,
-			 (select  count(*) as notOrderedNum from user where mealstatus=0 ) t_user3
+		 (select count(user_id) as employeesNum from user) t_user1,
+		 (select  count(*) as orderedNum from user where mealstatus=1 ) t_user2,
+		 (select  count(*) as notOrderedNum from user where mealstatus=0 ) t_user3
+	</select>
+	<select id="findNomealstatus" resultType="com.wistron.pojo.vo.Uservo">
+		select u.*, d.message as dept 
+			from 
+		user u inner join dictionary d on u.department=d.dictionary_id where u.mealstatus =0
+	</select>
+	<select id="orderSituationStep1" resultType="com.wistron.pojo.vo.OrderSituation">
+		select t_d.message as dept,count(user_id) as employeesNum 
+			from 
+		user as t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id  group by t_u.department
+	</select>
+	<select id="orderSituationStep2" resultType="com.wistron.pojo.vo.OrderSituation">
+		select  t_d.message as dept ,count(*)  as orderedNum
+ 			from 
+ 		user t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id where t_u.mealstatus=1 group by t_u.department
 	</select>
 	
 </mapper>

@@ -1,5 +1,7 @@
+use luffy;
 select * from user;
-select count(user_id) as employeesNum from user group by department;
+select t_u.department,count(user_id) as employeesNum from user as t_u group by department;
+
 select  count(*) as orderedNum from user where mealstatus=1 group by department;
 select  count(*) as notOrderedNum from user where mealstatus=0 group by department;
 #=======union query  (trial)
@@ -45,3 +47,12 @@ select t_user1.employeesNum ,t_user2.orderedNum
 #=======message of employees who didn't make a meal order (used)
 select u.*, d.message as dept 
 from user u inner join dictionary d on u.department=d.dictionary_id where u.mealstatus =0;
+
+#order_situation_detail: 1.dept 1.1emplloyeeNum
+select t_d.message as dept,count(user_id) as employeesNum 
+from user as t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id  group by t_u.department;
+
+
+#order_situation_detail: 1.dept 1.2 orderedNum 1.3 notOrderedNum 1.4 orderRate
+select  t_d.message as dept ,count(*)  as orderedNum
+ from user t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id where t_u.mealstatus=1 group by t_u.department ;

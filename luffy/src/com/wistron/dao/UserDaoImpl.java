@@ -1,10 +1,13 @@
 package com.wistron.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.OrderSituation;
+import com.wistron.pojo.vo.Uservo;
 
 public class UserDaoImpl {
 	
@@ -36,6 +39,30 @@ public class UserDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		OrderSituation orderSituation = sqlSession.selectOne("com.wistron.meal.user.orderSituation");
 		return orderSituation;
+	}
+	
+	public List<Uservo> findNomealstatus(){
+		SqlSession sqlSession = factory.openSession();		
+		List<Uservo> uservos = sqlSession.selectList("com.wistron.meal.user.findNomealstatus");
+		return uservos;
+	}
+	/**
+	 * find  1 dept 2 emplloyeeNum value after group by department
+	 * @return
+	 */
+	public List<OrderSituation> orderSituationStep1(){
+		SqlSession sqlSession = factory.openSession();	
+		List<OrderSituation> listOrderSituationStep1 = sqlSession.selectList("com.wistron.meal.user.orderSituationStep1");
+		return listOrderSituationStep1;
+	}
+	/**
+	 * find   3 orderedNum 4 notOrderedNum 5 orderRatem value after group by department
+	 * @return
+	 */
+	public List<OrderSituation> orderSituationStep2(){
+		SqlSession sqlSession = factory.openSession();	
+		List<OrderSituation> listOrderSituationStep2 = sqlSession.selectList("com.wistron.meal.user.orderSituationStep2");
+		return listOrderSituationStep2;
 	}
 	
 }

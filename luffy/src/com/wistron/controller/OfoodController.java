@@ -21,6 +21,7 @@ import com.wistron.dao.UserDaoImpl;
 import com.wistron.pojo.Meal;
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.Mealvo;
+import com.wistron.pojo.vo.OrderSituation;
 import com.wistron.pojo.vo.Ordersubmit;
 import com.wistron.pojo.vo.Ordersubmitvo;
 
@@ -45,9 +46,32 @@ public class OfoodController {
 	
 	/**
 	 * Today's reservation information
+	 * listorderSituation = listOrderSituationStep1 + listOrderSituationStep2
 	 */
 	public void orderSituation() {
-		//int employeesNum = userDao.getUserAmount();
+		List<OrderSituation> listorderSituation  = new ArrayList<OrderSituation>();
+		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
+		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
+		
+		for(int i=0;i<listOrderSituationStep1.size();i++) {
+			OrderSituation orderSituationStep1 = listOrderSituationStep1.get(i);
+			OrderSituation orderSituationStep2 = listOrderSituationStep2.get(i);
+			OrderSituation orderSituation = new OrderSituation();
+			
+			orderSituation.setDept(orderSituationStep1.getDept());
+			
+			int employeesNum = orderSituationStep1.getEmployeesNum();
+			orderSituation.setEmployeesNum(employeesNum);
+			
+			int orderedNum = orderSituationStep2.getOrderedNum();
+			orderSituation.setOrderedNum(orderedNum);
+			orderSituation.setNotOrderedNum(employeesNum-orderedNum);
+			orderSituation.setOrderRate((double)orderedNum/employeesNum);
+			
+			listorderSituation.add(orderSituation);
+		}
+		System.out.println(listorderSituation);
+		
 	}
 	
 	

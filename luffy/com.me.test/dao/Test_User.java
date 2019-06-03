@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,6 +13,7 @@ import org.junit.Test;
 import com.wistron.dao.UserDaoImpl;
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.OrderSituation;
+import com.wistron.pojo.vo.Uservo;
 
 public class Test_User {
 	
@@ -65,10 +67,28 @@ public class Test_User {
 	}
 	
 	@Test
-	public void testgetUserAmount() throws Exception{
-		
+	public void orderSituation() throws Exception{		
 		OrderSituation orderSituation = userDao.orderSituation();
 		System.out.println(orderSituation);
+		
+	}
+	@Test
+	public void findNomealstatus() throws Exception{		
+		List<Uservo> uservos = userDao.findNomealstatus();
+		System.out.println(uservos);
+		
+	}
+	
+	@Test
+	public void orderSituationStep1() throws Exception{		
+		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
+		System.out.println(listOrderSituationStep1);
+		
+	}
+	@Test
+	public void orderSituationStep2() throws Exception{		
+		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
+		System.out.println(listOrderSituationStep2);
 		
 	}
 	

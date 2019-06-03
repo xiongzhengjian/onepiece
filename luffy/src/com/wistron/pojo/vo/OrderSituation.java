@@ -7,68 +7,67 @@ package com.wistron.pojo.vo;
  *
  */
 public class OrderSituation {	
+	private String dept;
 	//The number of employees
 	private int employeesNum;
 	//Number of people who have made a reservation
-	private int orderedNum;
+	private int orderedNum=0;
 	//The number of people who haven't made a reservation yet
 	private int notOrderedNum;
 	//Reservation rate
 	private double orderRate;
 	
-	
 	public OrderSituation() {
 		super();
 	}
 
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
 
 	public int getEmployeesNum() {
 		return employeesNum;
 	}
 
-
 	public void setEmployeesNum(int employeesNum) {
 		this.employeesNum = employeesNum;
 	}
-
 
 	public int getOrderedNum() {
 		return orderedNum;
 	}
 
-
 	public void setOrderedNum(int orderedNum) {
 		this.orderedNum = orderedNum;
 	}
-
 
 	public int getNotOrderedNum() {
 		return notOrderedNum;
 	}
 
-
 	public void setNotOrderedNum(int notOrderedNum) {
 		this.notOrderedNum = notOrderedNum;
 	}
-
 
 	public double getOrderRate() {
 		return orderRate;
 	}
 
-
 	public void setOrderRate(double orderRate) {
 		this.orderRate = orderRate;
 	}
 
-
 	@Override
 	public String toString() {
-		return "OrderSituation [employeesNum=" + employeesNum + ", orderedNum=" + orderedNum + ", notOrderedNum="
-				+ notOrderedNum + ", orderRate=" + orderRate + "]";
+		return "OrderSituation [dept=" + dept + ", employeesNum=" + employeesNum + ", orderedNum=" + orderedNum
+				+ ", notOrderedNum=" + notOrderedNum + ", orderRate=" + orderRate + "]";
 	}
-
-
+	
+	
 	
 	
 	
