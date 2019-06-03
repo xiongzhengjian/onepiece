@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wistron.dao.MealDaoImpl;
 import com.wistron.dao.UserDaoImpl;
@@ -48,6 +49,8 @@ public class OfoodController {
 	 * Today's reservation information
 	 * listorderSituation = listOrderSituationStep1 + listOrderSituationStep2
 	 */
+	@RequestMapping("/ofood/ordersituation")
+	@ResponseBody
 	public void orderSituation() {
 		List<OrderSituation> listorderSituation  = new ArrayList<OrderSituation>();
 		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
@@ -70,7 +73,9 @@ public class OfoodController {
 			
 			listorderSituation.add(orderSituation);
 		}
-		System.out.println(listorderSituation);
+		
+		
+		
 		
 	}
 	
