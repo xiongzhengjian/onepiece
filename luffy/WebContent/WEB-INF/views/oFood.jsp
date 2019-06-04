@@ -245,7 +245,8 @@
     <script type="text/javascript">
     	//<a class="btn  btn-default" id ="add">add</a>
     	
-    	 window.onload = function(){
+    	 window.onload = function(){	    		
+    		 
     		/* init today */
     		document.getElementById("show_weekday_lunch").innerHTML= DateFormat.getWeek(new Date(),DateFormat.WEEKTYPE.ZH_DAYNAME);
     		document.getElementById("today_weekday_lunch").value=DateFormat.format(new Date() , 'yyyy-MM-dd hh:mm:ss'); 
@@ -396,7 +397,7 @@
    
      <!--  Overview -->
     <script type="text/javascript">
- 		// 基于准备好的dom，初始化echarts实例
+ 		// init echarts instance
     	var myChart = echarts.init(document.getElementById('main'));
  		
     	var posList = [
@@ -515,7 +516,8 @@
     	        {
     	            type: 'category',
     	            axisTick: {show: false},
-    	            data: ['1STQ10', '1STQ20', '1STQ30', '1STQ50', '1STC10','1STC20', '1STC30', '1STC50']
+    	            /* data: ['1STQ10', '1STQ20', '1STQ30'] */
+    	            data: []
     	        }
     	    ],
     	    yAxis: [
@@ -529,25 +531,29 @@
     	            type: 'bar',
     	            barGap: 0,
     	            label: labelOption,
-    	            data: [320, 332, 301, 334, 390, 301, 334, 390]
+    	            /* data: [320, 332, 301] */
+    	       	    data: []
     	        },
     	        {
     	            name: '已报餐',
     	            type: 'bar',
     	            label: labelOption,
-    	            data: [220, 182, 191, 234, 290, 191, 234, 290]
+    	           /*  data: [220, 182, 191] */
+    	        	data: []
     	        },
     	        {
     	            name: '未报餐',
     	            type: 'bar',
     	            label: labelOption,
-    	            data: [150, 232, 201, 154, 190, 201, 154, 190]
+    	            /* data: [150, 232, 201] */
+    	        	data: []
     	        },
     	        {
     	            name: '报餐率',
     	            type: 'bar',
     	            label: labelOption,
-    	            data: [98, 77, 101, 99, 40, 101, 99, 40]
+    	            /* data: [98, 77, 101] */
+    	        	data: []
     	        }
     	        
     	    ]
@@ -555,6 +561,46 @@
     	 // 使用刚指定的配置项和数据显示图表。
 	    myChart.setOption(option);  
  		
+    </script>
+    
+    
+    <!-- order situation -->
+    <script type="text/javascript">
+   		 window.onload = function(){	    
+		    $.ajax({ 
+		 	   url:  './ofood/ordersituation.action',
+		 	   data: "{t:"+new Date().getTime()+"}",
+		 	   type: "POST",
+		 	   dataType: "json",
+		 	   contentType:'application/json',
+		 	   complete: function(data){		 		
+		 		 var situationData = data.responseText;
+		 		 var obj_situationData = JSON.parse(situationData);		 		 
+		 			var listorderSituation = obj_situationData.listorderSituation;
+		 			var nomealstatusUsers = obj_situationData.nomealstatusUsers;
+		 			//Deal with the Order situation
+		 			console.log(listorderSituation);
+		 			/* console.log(option.xAxis[0].data[1]);
+		 			console.log(option.series[0].data[1]);
+		 			console.log(option.series[1].data[1]);
+		 			console.log(option.series[2].data[1]);
+		 			console.log(option.series[3].data[1]); */
+		 			
+		 			for(var i=0;i<listorderSituation.length;i++){
+		 				option.xAxis[0].data[i]=listorderSituation[i].dept;
+		 				option.series[i].data[i] = listorderSituation[i].employeesNum;
+		 				option.series[i+1].data[i] = listorderSituation[i].orderedNum;
+		 				option.series[i+2].data[i] = listorderSituation[i].notOrderedNum;
+		 			    option.series[i+3].data[i] = listorderSituation[i].orderRate;
+		 				
+		 				console.log(listorderSituation[i].dept+";"+listorderSituation[i].employeesNum+";"+listorderSituation[i].orderedNum+";"+listorderSituation[i].notOrderedNum+";"+listorderSituation[i].orderRate);
+		 				
+		 				
+		 			}
+		 		}
+		 	   
+		 	   }); 
+		    }
     </script>
   </body>
 </html>

@@ -6,7 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +27,7 @@ import com.wistron.pojo.vo.Mealvo;
 import com.wistron.pojo.vo.OrderSituation;
 import com.wistron.pojo.vo.Ordersubmit;
 import com.wistron.pojo.vo.Ordersubmitvo;
+import com.wistron.pojo.vo.Uservo;
 
 @Controller
 public class OfoodController {
@@ -51,10 +54,11 @@ public class OfoodController {
 	 */
 	@RequestMapping("/ofood/ordersituation")
 	@ResponseBody
-	public void orderSituation() {
+	public Map<String,List> orderSituation() {
 		List<OrderSituation> listorderSituation  = new ArrayList<OrderSituation>();
 		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
 		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
+		List<Uservo> nomealstatusUsers = userDao.findNomealstatus();
 		
 		for(int i=0;i<listOrderSituationStep1.size();i++) {
 			OrderSituation orderSituationStep1 = listOrderSituationStep1.get(i);
@@ -73,8 +77,11 @@ public class OfoodController {
 			
 			listorderSituation.add(orderSituation);
 		}
-		
-		
+		Map<String,List> orderSituationvo = new HashMap<String,List>();
+		orderSituationvo.put("listorderSituation", listorderSituation);
+		orderSituationvo.put("nomealstatusUsers", nomealstatusUsers);
+		//System.out.println(orderSituationvo);
+		return orderSituationvo;
 		
 		
 	}

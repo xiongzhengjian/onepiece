@@ -15,7 +15,7 @@ import com.wistron.pojo.User;
 import com.wistron.pojo.vo.OrderSituation;
 import com.wistron.pojo.vo.Uservo;
 
-public class Test_User {
+public class Test_UserDao {
 	
 	private SqlSessionFactory factory;
 	private UserDaoImpl userDao;
