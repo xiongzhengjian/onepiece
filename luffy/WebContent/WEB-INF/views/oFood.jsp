@@ -574,9 +574,9 @@
     		 		var data_size = listorderSituation.length;
     	 			option.xAxis[0].data=new Array(data_size); 
     	 			option.series[0].data=new Array(data_size);
-    	 			option.series[1].data=new Array(data_size)
-    	 			option.series[2].data=new Array(data_size)
-    	 			option.series[3].data=new Array(data_size)
+    	 			option.series[1].data=new Array(data_size);
+    	 			option.series[2].data=new Array(data_size);
+    	 			option.series[3].data=new Array(data_size);
     	 			 for(var n=0;n<data_size;n++){
     	 				option.xAxis[0].data[n]=listorderSituation[n].dept;
     	 				option.series[0].data[n] = listorderSituation[n].employeesNum;
