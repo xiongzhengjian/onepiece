@@ -63,7 +63,7 @@
             <p class="lead">生活就像一盒巧克力，你永远不知道下一颗会是什么味道。</p>
             <p class="lead">Life is like a box of chocolate,you never kown what you are going to get.</p>
             <p class="lead">
-              <a href="./../html/carousel.html" class="btn btn-lg btn-default">Let's go</a>
+              <a href="./grandline.action" class="btn btn-lg btn-default">Let's go</a>
             </p>
           </div>
 
