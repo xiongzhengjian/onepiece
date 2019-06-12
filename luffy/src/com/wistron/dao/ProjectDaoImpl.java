@@ -41,7 +41,7 @@ public class ProjectDaoImpl {
 	 * 
 	 * @return
 	 */
-	public List<Project> findplatform(String chassis){
+	public List<Project> findPlatform(String chassis){
 		SqlSession sqlSession = factory.openSession();
 		projects = sqlSession.selectList("com.wistron.record.project.findplatform",chassis);
 		return projects;

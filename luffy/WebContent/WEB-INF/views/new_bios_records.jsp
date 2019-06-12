@@ -104,44 +104,38 @@
 					      </td>
 					       <td>
 					      	<div class="form-group">
-							    <label for="name">Start</label>									  
-								 <p class="form-control" id="show_type_lunch">start date</p>
-							    <input type=hidden name="orderlist[0].type" value="1"/>					    
+							    <label for="name">Start</label>
+							    <input  class="form-control" name="orderlist[0].type"/>					    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							    <label for="name">End</label>									  
-								 <p class="form-control" id="show_type_lunch">end date</p>
-							    <input type=hidden name="orderlist[0].type" value="1"/>							    
+								<input class="form-control" id="show_type_lunch" name="orderlist[0].type"/>					    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
-							   <label for="name">BIOS Version</label>									  
-								 <p class="form-control" id="show_type_lunch">B.47</p>
-							   <input type=hidden name="orderlist[0].type" value="1"/>							    
+							   <label for="name">BIOS Version</label>							 
+							   	<input class="form-control" id="show_type_lunch" name="orderlist[0].type"/>							   			    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
-							    <label for="name">Image Build ID</label>									  
-								 <p class="form-control" id="show_type_lunch">18WW2SVT6AF</p>
-							    <input type=hidden name="orderlist[0].type" value="1"/>					    
+							    <label for="name">Image Build ID</label>
+							    <input class="form-control" name="orderlist[0].type"/>					    
 							</div>
 					      </td>
 					       <td>
 					      	<div class="form-group">
-							    <label for="name">Test Plan</label>									  
-								 <p class="form-control" id="show_type_lunch">CDT-BIOS-Checklist-v4.6-pre-test</p>
-							    <input type=hidden name="orderlist[0].type" value="1"/>					    
+							    <label for="name">Test Plan</label>
+							    <input class="form-control"  name="orderlist[0].type" value="1"/>					    
 							</div>
 					      </td>
 					       <td>
 					      	<div class="form-group">
 							    <label for="name">Tester</label>									  
-								 <p class="form-control" id="show_type_lunch">LittleBear</p>
-							    <input type=hidden name="orderlist[0].type" value="1"/>					    
+								 <input class="form-control" name="orderlist[0].type" value="1"/>					    
 							</div>
 					      </td>
 					    </tr>
@@ -173,15 +167,15 @@
 	    window.onload = function(){
 	    	/* init Chassis */
 	    	$.ajax({ 
- 		 	   url:  './record/findchassis.action',
+ 		 	   url:  './record/findChassises.action',
  		 	   data: "{t:"+new Date().getTime()+"}",
  		 	   type: "POST",
  		 	   dataType: "json",
  		 	   contentType:'application/json',
  		 	   complete: function(data){		 		
- 		 		 var situationData = data.responseText;
- 		 		 var obj_situationData = JSON.parse(situationData);		 		 
- 		 		 
+ 		 		 var chassises = data.responseText;
+ 		 		 var obj_chassises = JSON.parse(chassises);		 		 
+ 		 		 	console.log(obj_chassises);
  	 			 
  	 			}
  	 	   

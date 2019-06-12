@@ -2,4 +2,4 @@ SELECT * FROM luffy.project;
 
 select distinct chassis from project;
 
-select platform 
+select platform from project where chassis = 'Tracer-I';

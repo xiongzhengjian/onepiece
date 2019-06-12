@@ -32,7 +32,7 @@ public class DaoTest_Project {
 	
 	@Test
 	public void findplatform() throws Exception {//pass			
-		List<Project> chassises = projectDao.findplatform("Shave3");
+		List<Project> chassises = projectDao.findPlatform("Shave3");
 		System.out.println(chassises);
 		
 	}
