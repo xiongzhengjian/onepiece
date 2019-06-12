@@ -75,11 +75,11 @@
 							<div class="form-group">
 							    <label for="name">Chassis</label>
 							    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
-							   	<select class="form-control" name="orderlist[0].decide">
-							      <option value="1">Nicolas</option>
-							      <option value="0">NesslerP</option>									     
+							   	<select class="form-control" id="chassis0" name="chassis">
+							     <!--  <option value="1">Nicolas</option>
+							      <option value="0">NesslerP</option> -->									     
 							    </select>							    
-									</div>
+							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
@@ -174,12 +174,30 @@
  		 	   contentType:'application/json',
  		 	   complete: function(data){		 		
  		 		 var chassises = data.responseText;
- 		 		 var obj_chassises = JSON.parse(chassises);		 		 
- 		 		 	console.log(obj_chassises);
+ 		 		 var json_chassises = JSON.parse(chassises); 		 		 
+ 		 		 console.log(json_chassises);
+ 		 		 //Gain array objects chassises 
+ 		 		 var obj_chassises = json_chassises.chassises;
+ 		 		 //Create option
+ 		 		 var option_chassises = "<option value=''>--select--</option>";
+ 		 		 //Add option based on the length of the array
+ 		 		 $.each(obj_chassises,function(i,n){
+ 		 			 //console.log("index:"+i+"  value:"+n.chassis); 		 			
+ 		 			option_chassises +="<option value=''"+n.chassis+">" + n.chassis + "</option>"; 
+ 		 		 });
+ 		 		 $('#chassis0').append(option_chassises);
+ 		 		 
+ 		 		 
+ 		 		
  	 			 
  	 			}
  	 	   
  	 	   		});
+	    	
+	    	 $('#chassis0').change(function(){
+		 		 	var selected_chassis = $(this).val();
+		 		 	console.log(selected_chassis);
+		 		 });
 	    }
     </script>
     
