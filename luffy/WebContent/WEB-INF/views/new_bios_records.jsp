@@ -174,30 +174,48 @@
  		 	   contentType:'application/json',
  		 	   complete: function(data){		 		
  		 		 var chassises = data.responseText;
- 		 		 var json_chassises = JSON.parse(chassises); 		 		 
- 		 		 console.log(json_chassises);
+ 		 		 var json_chassises = JSON.parse(chassises);
  		 		 //Gain array objects chassises 
  		 		 var obj_chassises = json_chassises.chassises;
  		 		 //Create option
  		 		 var option_chassises = "<option value=''>--select--</option>";
  		 		 //Add option based on the length of the array
- 		 		 $.each(obj_chassises,function(i,n){
- 		 			 //console.log("index:"+i+"  value:"+n.chassis); 		 			
- 		 			option_chassises +="<option value=''"+n.chassis+">" + n.chassis + "</option>"; 
+ 		 		 $.each(obj_chassises,function(i,n){ 		 			 		 			
+ 		 			option_chassises +="<option value=\""+n.chassis+"\">" + n.chassis + "</option>"; 
  		 		 });
+ 		 		 //Add the created options to the select
  		 		 $('#chassis0').append(option_chassises);
- 		 		 
- 		 		 
  		 		
- 	 			 
+ 		 		 
  	 			}
  	 	   
  	 	   		});
 	    	
+	    	//Add selected events
 	    	 $('#chassis0').change(function(){
-		 		 	var selected_chassis = $(this).val();
-		 		 	console.log(selected_chassis);
-		 		 });
+	    		 	//Get the selected chassis
+		 		 	var selected_chassis = $("#chassis0").val();
+		 		 	/* console.log(selected_chassis); */
+		 		 	//The ajax request loads the corresponding platform data
+		 		 	$.ajax({
+		 		 		url:  './record/findPlatform.action',
+		 		 		/* data: JSON.stringify("{'chassis':'"+selected_chassis+'"}"), */
+		 		 		/* data:"{\"chassis\":\""+selected_chassis+"\"}", */
+		 		 		data:'{"chassis":"NelsonP"}',		 		 		
+		 		 		type: "POST",
+		 		 	   	dataType: "json",
+		 		 	   	contentType:'application/json',
+		 		 		complete: function(data){
+		 		 			console.log(data);
+		 		 			/* var text_platforms = data.responseText;
+		 		 			var json_platforms = JSON.parse(text_platforms);
+		 		 			var array_platforms = json_platforms.chassises;
+		 		 			console.log(array_platforms); */
+		 		 		}
+		 		 	});
+		 		 }); 
+	    	
+	    	
 	    }
     </script>
     

@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wistron.dao.ProjectDaoImpl;
@@ -48,10 +50,10 @@ public class ProjectRecordController {
 	
 	@ResponseBody
 	@RequestMapping("/record/findPlatform")
-	public Map<String,List<Project>> findPlatform(HttpServletRequest request) throws ParseException {
-		String chassis =  request.getParameter("chassis");
+	public Map<String,List<Project>> findPlatform(@RequestBody Project project) throws ParseException {	
+	//public Map<String,List<Project>> findPlatform(@RequestParam ("chassis") String chassis) throws ParseException {	
 		Map<String,List<Project>> platforms = new HashMap<String,List<Project>>();
-		List<Project> list = projectDao.findPlatform(chassis);
+		List<Project> list = projectDao.findPlatform(project.getChassis());
 		platforms.put("chassises", list);
 		return platforms;
 	}
