@@ -56,49 +56,18 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a>Home</a></li>           
             <li><a>${session_user.enname }</a></li>
-          </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
+          </ul>          
         </div>
       </div>
     </nav>
 
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a>Sustaining Test<span class="sr-only">(current)</span></a></li>
-            <li><a  href="#" data-toggle="modal" data-target="#myModal">BIOS pre-release</a></li>
-            <li><a href="./ofood/personal.action">Commodity</a></li>
-            <li><a href="#">Softpaq</a></li>
-            <li><a href="#">WAT</a></li>
-            <li><a href="#">SWT</a></li>
-          </ul>
-           <ul class="nav nav-sidebar">
-            <li><a>Import</a></li>
-            <li><a>Export</a></li>            
-          </ul>
-          
-        
-          
-          
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h3 class="page-header">sustaining tasks record</h3>
-
-         <!--  <div class="row placeholders">            
-   			 <div id="main" style="width: 1200px;height:400px;"></div>           
-          </div> -->
-          
+       
+        <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
+          <h3 class="page-header">sustaining tasks record</h3>   
           
 
-         <!--  <h6 class="sub-header" id="current_date">Add</h6> -->
-         <!-- <button type="button" class="btn btn-success sub-header" >Add</button> -->
-  			<!-- <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> -->
-  		 <span class="sub-header">
-         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> new</a>
-		 </span>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -158,8 +127,124 @@
           </div>
         </div>
       </div>
-    </div>
-    
+    </div> 
+    <!-- ============ -->
+     <!-- new -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">
+						BIOS pre-release
+					</h4>
+				</div>
+				<div class="modal-body">					
+				      <form class="form-signin" action="./record/addbiosdata.action" method="post">				      				      	
+				        <table class="table table-striped">
+						  <!-- <caption>add  loading records</caption>	 -->						
+						  	<tbody id="mealTb">
+						  		<!-- =============lunch============ -->
+							    <tr id="trs0">
+							      <td>							    
+									<div class="form-group">
+									    <label for="name">Chassis</label>
+									    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
+									   	<select class="form-control" name="orderlist[0].decide">
+									      <option value="1">Nicolas</option>
+									      <option value="0">NesslerP</option>									     
+									    </select>							    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Platform</label>
+									    <select class="form-control" name="orderlist[0].decide">
+									      <option value="1">LincsB</option>
+									      <option value="0">Sunflower</option>									     
+									    </select>								    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Test Type</label>									  
+										<select class="form-control" name="orderlist[0].decide">
+									      <option value="1">BIOS pre-test</option>
+									      <option value="0">Weekly Test</option>	
+									      <option value="0">BC Test</option>	
+									      <option value="0">BIOS Softpaq</option>	
+									      <option value="0">BIOS Full</option>									     
+									    </select>						    
+  									</div>
+							      </td>
+							       <td>
+							      	<div class="form-group">
+									    <label for="name">Start</label>									  
+										 <p class="form-control" id="show_type_lunch">start date</p>
+									    <input type=hidden name="orderlist[0].type" value="1"/>					    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">End</label>									  
+										 <p class="form-control" id="show_type_lunch">end date</p>
+									    <input type=hidden name="orderlist[0].type" value="1"/>							    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">BIOS Version</label>									  
+										 <p class="form-control" id="show_type_lunch">B.47</p>
+									    <input type=hidden name="orderlist[0].type" value="1"/>							    
+  									</div>
+							      </td>
+							      <td>
+							      	<div class="form-group">
+									    <label for="name">Image Build ID</label>									  
+										 <p class="form-control" id="show_type_lunch">18WW2SVT6AF</p>
+									    <input type=hidden name="orderlist[0].type" value="1"/>					    
+  									</div>
+							      </td>
+							       <td>
+							      	<div class="form-group">
+									    <label for="name">Test Plan</label>									  
+										 <p class="form-control" id="show_type_lunch">CDT-BIOS-Checklist-v4.6-pre-test</p>
+									    <input type=hidden name="orderlist[0].type" value="1"/>					    
+  									</div>
+							      </td>
+							       <td>
+							      	<div class="form-group">
+									    <label for="name">Tester</label>									  
+										 <p class="form-control" id="show_type_lunch">LittleBear</p>
+									    <input type=hidden name="orderlist[0].type" value="1"/>					    
+  									</div>
+							      </td>
+							    </tr>
+							      
+							    
+						  	</tbody>
+						</table>
+				        <div style="float:right;" class="form-group">
+				          <a  class="btn  btn-default" id ="add">add</a>
+				        </div>
+				        <button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
+				      </form>
+				        <!-- <div style="float:right;" class="form-group">
+				          <button class="btn  btn-default" id ="add">add</button>
+				        </div> -->   				
+				</div>
+				<div class="modal-footer">
+					<button type="button"  data-dismiss="modal" id="cancel">cancel
+					</button>
+					<!-- <button type="button" class="btn btn-primary">
+						ok
+					</button> -->
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal -->
+	</div>
     
 	
     <!-- Bootstrap core JavaScript

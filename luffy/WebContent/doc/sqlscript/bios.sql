@@ -16,5 +16,11 @@ insert into bios
 (bios_id,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester)
  values
 (1,'Nicolas','LincsB','bios pre-test','2019-06-08 14:25:30','2019-06-11 14:25:30','F.10','18WW2SVT6AF','CDT-BIOS-Checklist_v4.6_pre-test','littlebear');
+alter table bios add column owner varchar(15) after bios_id;
 
 select * from bios;
+
+update bios set owner='Yiquan' 
+	where
+    bios_id = 1;
+
