@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.record.bios">
+
+	
+	<insert id="insertBioses" parameterType="java.util.ArrayList" keyProperty="bios_id" useGeneratedKeys="true">
+		insert into bios 
+			(bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester)
+		 values 
+		 	<foreach collection="list" item="bios" index="index" separator=",">
+			 	(#{bios.bios_id},#{bios.owner},#{bios.chassis},#{bios.platform},#{bios.test_type},#{bios.start},#{bios.end},#{bios.bios_version},#{bios.image_build_id},#{bios.test_plan},#{bios.tester})
+		 	</foreach>
+	</insert>
+	
+	
+	
+	
+</mapper>

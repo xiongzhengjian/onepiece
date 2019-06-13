@@ -25,6 +25,7 @@
 
     <!-- Custom styles for this template -->
     <link href="./assets/css/dashboard.css" rel="stylesheet">
+    
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -36,6 +37,10 @@
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+     <link rel="stylesheet" type="text/css" media="all" href="./assets/css/daterangepicker.css" />
+     <script type="text/javascript" src="./assets/js/moment.min.js"></script>
+     <script type="text/javascript" src="./assets/js/daterangepicker.js"></script>
     
   </head>
 
@@ -65,7 +70,7 @@
       <div class="row">
        <!--  <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main"> -->
           <h4 class="page-header">BIOS tasks record</h4>
-          <form class="form-signin" action="./record/addbiosdata.action" method="post">				      				      	
+          <form class="form-signin" action="./record/insertBioses.action" method="post">				      				      	
 		        <table class="table table-striped">
 				  <!-- <caption>add  loading records</caption>	 -->						
 				  	<tbody id="mealTb">
@@ -75,61 +80,63 @@
 							<div class="form-group">
 							    <label for="name">Chassis</label>
 							    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
-							   	<select class="form-control" id="chassis0" name="chassis"></select>	
+							    <input type=hidden name="biosVos[0].owner" id="owner0" value="${session_user.enname }"/>
+							   	<select class="form-control" id="chassis0" name="biosVos[0].chassis"></select>	
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							    <label for="name">Platform</label>
-							    <select class="form-control" id="platform0" name="platform"></select>								    
+							    <select class="form-control" id="platform0" name="biosVos[0].platform"></select>								    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							    <label for="name">Test Type</label>									  
-								<select class="form-control" name="orderlist[0].decide">
-							      <option value="1">BIOS pre-test</option>
-							      <option value="0">Weekly Test</option>	
-							      <option value="0">BC Test</option>	
-							      <option value="0">BIOS Softpaq</option>	
-							      <option value="0">BIOS Full</option>									     
+								<select class="form-control" name="biosVos[0].test_type">
+							      <option value="BIOS pre-test">BIOS pre-test</option>
+							      <option value="Weekly Test">Weekly Test</option>	
+							      <option value="BC Test">BC Test</option>	
+							      <option value="BIOS Softpaq">BIOS Softpaq</option>	
+							      <option value="BIOS Full">BIOS Full</option>									     
 							    </select>						    
 							</div>
 					      </td>
 					       <td>
 					      	<div class="form-group">
 							    <label for="name">Start</label>
-							    <input  class="form-control" name="orderlist[0].type"/>					    
+							    <input  id="config-demo" class="form-control" name="biosVos[0].start"/>
+							    					    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							    <label for="name">End</label>									  
-								<input class="form-control" id="show_type_lunch" name="orderlist[0].type"/>					    
+								<input class="form-control" id="show_type_lunch" name="biosVos[0].end"/>					    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							   <label for="name">BIOS Version</label>							 
-							   	<input class="form-control" id="show_type_lunch" name="orderlist[0].type"/>							   			    
+							   	<input class="form-control" id="show_type_lunch" name="biosVos[0].bios_version"/>							   			    
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							    <label for="name">Image Build ID</label>
-							    <input class="form-control" name="orderlist[0].type"/>					    
+							    <input class="form-control" name="biosVos[0].image_build_id"/>					    
 							</div>
 					      </td>
 					       <td>
 					      	<div class="form-group">
 							    <label for="name">Test Plan</label>
-							    <input class="form-control"  name="orderlist[0].type" value="1"/>					    
+							    <input class="form-control"  name="biosVos[0].test_plan" value=""/>					    
 							</div>
 					      </td>
 					       <td>
 					      	<div class="form-group">
 							    <label for="name">Tester</label>									  
-								 <input class="form-control" name="orderlist[0].type" value="1"/>					    
+								 <input class="form-control" name="biosVos[0].tester" value=""/>					    
 							</div>
 					      </td>
 					    </tr>
@@ -222,7 +229,8 @@
 	    	
 	    }
     </script>
-    
+   
+   
     
     
     

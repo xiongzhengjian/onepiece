@@ -19,6 +19,7 @@
   	<mapper resource="Dictionary.xml"/>
   	<mapper resource="Meal.xml"/>
   	<mapper resource="Project.xml"/>
+  	<mapper resource="Bios.xml"/>
   	
   </mappers>
   
