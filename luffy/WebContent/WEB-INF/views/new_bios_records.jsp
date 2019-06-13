@@ -25,19 +25,8 @@
 
     <!-- Custom styles for this template -->
     <link href="./assets/css/dashboard.css" rel="stylesheet">
-    
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="./assets/js/ie-emulation-modes-warning.js"></script>
-    <script src="./assets/js/echarts.js"></script>    
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    
+    <script src="./assets/js/ie-emulation-modes-warning.js"></script>   
+	 <script src="./assets/js/jquery.min.js"></script>
      <link rel="stylesheet" type="text/css" media="all" href="./assets/css/daterangepicker.css" />
      <script type="text/javascript" src="./assets/js/moment.min.js"></script>
      <script type="text/javascript" src="./assets/js/daterangepicker.js"></script>
@@ -105,7 +94,7 @@
 					       <td>
 					      	<div class="form-group">
 							    <label for="name">Start</label>
-							    <input  id="config-demo" class="form-control" name="biosVos[0].start"/>
+							    <input  id="demo" class="form-control" name="biosVos[0].start"/>
 							    					    
 							</div>
 					      </td>
@@ -155,7 +144,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./assets/js/jquery.min.js"></script>
+    
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="./assets/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
@@ -230,7 +219,42 @@
 	    }
     </script>
    
-   
+   <script type="text/javascript">
+   $('#demo').daterangepicker({
+	    "timePicker": true,
+	    "ranges": {
+	        "Today": [
+	            "2019-06-13T14:43:09.341Z",
+	            "2019-06-13T14:43:09.341Z"
+	        ],
+	        "Yesterday": [
+	            "2019-06-12T14:43:09.341Z",
+	            "2019-06-12T14:43:09.341Z"
+	        ],
+	        "Last 7 Days": [
+	            "2019-06-07T14:43:09.341Z",
+	            "2019-06-13T14:43:09.341Z"
+	        ],
+	        "Last 30 Days": [
+	            "2019-05-15T14:43:09.341Z",
+	            "2019-06-13T14:43:09.341Z"
+	        ],
+	        "This Month": [
+	            "2019-05-31T16:00:00.000Z",
+	            "2019-06-30T15:59:59.999Z"
+	        ],
+	        "Last Month": [
+	            "2019-04-30T16:00:00.000Z",
+	            "2019-05-31T15:59:59.999Z"
+	        ]
+	    },
+	    "linkedCalendars": false,
+	    "startDate": "06/13/2019",
+	    "endDate": "09/18/2019"
+	}, function(start, end, label) {
+	  console.log("New date range selected: ' + start.format('YYYY-MM-DD hh:mm:ss') + ' to ' + end.format('YYYY-MM-DD hh:mm:ss') + ' (predefined range: ' + label + ')");
+	});
+   </script>
     
     
     

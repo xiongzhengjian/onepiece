@@ -1,11 +1,4 @@
-/Dictionary.xml
-/Meal.xml
-/Project.xml
-/SqlMapConfig.xml
-/User.xml
 /com/
 /controller/
 /dao/
-/log4j.properties
-/springmvc-servlet.xml
 /util/
