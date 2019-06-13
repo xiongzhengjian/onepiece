@@ -75,20 +75,14 @@
 							<div class="form-group">
 							    <label for="name">Chassis</label>
 							    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
-							   	<select class="form-control" id="chassis0" name="chassis">
-							     <!--  <option value="1">Nicolas</option>
-							      <option value="0">NesslerP</option> -->									     
-							    </select>							    
+							   	<select class="form-control" id="chassis0" name="chassis"></select>	
 							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
 							    <label for="name">Platform</label>
-							    <select class="form-control" name="orderlist[0].decide">
-							      <option value="1">LincsB</option>
-							      <option value="0">Sunflower</option>									     
-							    </select>								    
-									</div>
+							    <select class="form-control" id="platform0" name="platform"></select>								    
+							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
@@ -164,7 +158,7 @@
     <script src="./assets/js/dateformat.js"></script>
     <!-- Bios -->
     <script type="text/javascript">
-	    window.onload = function(){
+	    window.onload = function(){	    	
 	    	/* init Chassis */
 	    	$.ajax({ 
  		 	   url:  './record/findChassises.action',
@@ -178,20 +172,20 @@
  		 		 //Gain array objects chassises 
  		 		 var obj_chassises = json_chassises.chassises;
  		 		 //Create option
- 		 		 var option_chassises = "<option value=''>--select--</option>";
+ 		 		 var option_chassises = "<option value=''>-chassises-</option>";
  		 		 //Add option based on the length of the array
  		 		 $.each(obj_chassises,function(i,n){ 		 			 		 			
  		 			option_chassises +="<option value=\""+n.chassis+"\">" + n.chassis + "</option>"; 
  		 		 });
  		 		 //Add the created options to the select
  		 		 $('#chassis0').append(option_chassises);
- 		 		
+ 		 		 
  		 		 
  	 			}
  	 	   
  	 	   		});
 	    	
-	    	//Add selected events
+	    	//Add selected events(If binding is dynamic, put the change method into chassis Ajax)
 	    	 $('#chassis0').change(function(){
 	    		 	//Get the selected chassis
 		 		 	var selected_chassis = $("#chassis0").val();
@@ -208,7 +202,18 @@
 		 		 			console.log(data);
 		 		 			var responseJSON = data.responseJSON;
 		 		 			var platforms = responseJSON.platforms;
-		 		 			console.log(platforms);
+		 		 			//console.log(platforms);
+		 		 			 //Create platform option
+ 		 		 			var option_platform = "<option value=''>-platforms-</option>";
+ 		 		 			//Add option based on the length of the array
+ 		 					 $.each(platforms,function(i,n){ 		 			 		 			
+ 		 						option_platform +="<option value=\""+n.platform+"\">" + n.platform + "</option>"; 
+ 		 					 });
+ 		 		 			//Add the created options to the select  childNodes
+		 		 			$('#platform0').append(option_platform);
+ 		 		 			//
+		 		 			$('#platform0').html(option_platform);
+		 		 			
 		 		 			
 		 		 		}
 		 		 	});
