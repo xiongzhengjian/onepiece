@@ -18,6 +18,7 @@ public class Bios {
 		super();
 	}
 	
+	
 	public Bios(String owner, String chassis, String platform, String test_type, Date start, Date end,
 			String bios_version, String image_build_id, String test_plan, String tester) {
 		super();		

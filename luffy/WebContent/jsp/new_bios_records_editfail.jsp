@@ -218,39 +218,70 @@
    
    <script type="text/javascript">
    $('#demo').daterangepicker({
-	    "timePicker": true,
-	    "ranges": {
-	        "Today": [
-	            "2019-06-13T14:43:09.341Z",
-	            "2019-06-13T14:43:09.341Z"
-	        ],
-	        "Yesterday": [
-	            "2019-06-12T14:43:09.341Z",
-	            "2019-06-12T14:43:09.341Z"
-	        ],
-	        "Last 7 Days": [
-	            "2019-06-07T14:43:09.341Z",
-	            "2019-06-13T14:43:09.341Z"
-	        ],
-	        "Last 30 Days": [
-	            "2019-05-15T14:43:09.341Z",
-	            "2019-06-13T14:43:09.341Z"
-	        ],
-	        "This Month": [
-	            "2019-05-31T16:00:00.000Z",
-	            "2019-06-30T15:59:59.999Z"
-	        ],
-	        "Last Month": [
-	            "2019-04-30T16:00:00.000Z",
-	            "2019-05-31T15:59:59.999Z"
-	        ]
-	    },
-	    "linkedCalendars": false,
-	    "startDate": "06/13/2019",
-	    "endDate": "09/18/2019"
-	}, function(start, end, label) {		
-	  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-	});
+	  /*  updateConfig(); */
+
+       function updateConfig() {
+         var options = {};
+
+        
+           options.singleDatePicker = false;
+         
+        
+           options.showDropdowns = false;
+
+         
+           options.showWeekNumbers = false;
+
+         
+           options.showISOWeekNumbers = false;
+
+        
+           options.timePicker = true;
+         
+         
+           options.timePicker24Hour = true;
+
+        
+
+        
+           options.timePickerSeconds = false;
+         
+       
+           options.autoApply = true;
+
+         
+           
+
+        
+           options.ranges = {
+             'Today': [moment(), moment()],
+             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+             'This Month': [moment().startOf('month'), moment().endOf('month')],
+             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+           };
+         
+
+         
+           
+
+        
+           options.linkedCalendars = false;
+
+        
+           options.autoUpdateInput = true;
+
+         
+           options.showCustomRangeLabel = true;
+
+        
+           options.alwaysShowCalendars = true;
+
+
+         $('#demo').daterangepicker(options, function(start, end, label) { console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')'); }).click();;
+         
+       }
    </script>
     
     

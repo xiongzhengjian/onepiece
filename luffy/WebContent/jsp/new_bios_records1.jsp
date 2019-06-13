@@ -93,13 +93,16 @@
 					      </td>
 					       <td>
 					      	<div class="form-group">
-							    <label for="name">Schedule</label>
-							    <input  id="demo" class="form-control" name="biosVos[0].schedule"/>
+							    <label for="name">Start</label>
+							    <input  id="demo" class="form-control" name="biosVos[0].start"/>
 							    					    
 							</div>
 					      </td>
 					      <td>
-					      	
+					      	<div class="form-group">
+							    <label for="name">End</label>									  
+								<input class="form-control" id="show_type_lunch" name="biosVos[0].end"/>					    
+							</div>
 					      </td>
 					      <td>
 					      	<div class="form-group">
@@ -248,8 +251,8 @@
 	    "linkedCalendars": false,
 	    "startDate": "06/13/2019",
 	    "endDate": "09/18/2019"
-	}, function(start, end, label) {		
-	  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+	}, function(start, end, label) {
+	  console.log("New date range selected: ' + start.format('YYYY-MM-DD hh:mm:ss') + ' to ' + end.format('YYYY-MM-DD hh:mm:ss') + ' (predefined range: ' + label + ')");
 	});
    </script>
     
