@@ -54,7 +54,7 @@ public class ProjectRecordController {
 	//public Map<String,List<Project>> findPlatform(@RequestParam ("chassis") String chassis) throws ParseException {	
 		Map<String,List<Project>> platforms = new HashMap<String,List<Project>>();
 		List<Project> list = projectDao.findPlatform(project.getChassis());
-		platforms.put("chassises", list);
+		platforms.put("platforms", list);
 		return platforms;
 	}
 	

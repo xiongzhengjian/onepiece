@@ -195,22 +195,21 @@
 	    	 $('#chassis0').change(function(){
 	    		 	//Get the selected chassis
 		 		 	var selected_chassis = $("#chassis0").val();
-		 		 	/* console.log(selected_chassis); */
+	    		 	//Encapsulation parameters
+	    		 	var param = {chassis:selected_chassis};		 		 	
 		 		 	//The ajax request loads the corresponding platform data
 		 		 	$.ajax({
-		 		 		url:  './record/findPlatform.action',
-		 		 		/* data: JSON.stringify("{'chassis':'"+selected_chassis+'"}"), */
-		 		 		/* data:"{\"chassis\":\""+selected_chassis+"\"}", */
-		 		 		data:'{"chassis":"NelsonP"}',		 		 		
+		 		 		url:  './record/findPlatform.action', 
+		 		 		data:JSON.stringify(param),	
 		 		 		type: "POST",
 		 		 	   	dataType: "json",
-		 		 	   	contentType:'application/json',
-		 		 		complete: function(data){
+		 		 	    contentType:'application/json',
+		 		 	  	complete: function(data){
 		 		 			console.log(data);
-		 		 			/* var text_platforms = data.responseText;
-		 		 			var json_platforms = JSON.parse(text_platforms);
-		 		 			var array_platforms = json_platforms.chassises;
-		 		 			console.log(array_platforms); */
+		 		 			var responseJSON = data.responseJSON;
+		 		 			var platforms = responseJSON.platforms;
+		 		 			console.log(platforms);
+		 		 			
 		 		 		}
 		 		 	});
 		 		 }); 
