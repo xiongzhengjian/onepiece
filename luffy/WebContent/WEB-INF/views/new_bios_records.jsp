@@ -149,10 +149,56 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="./assets/js/dateformat.js"></script>
+    
+    <!-- config timepicker -->
+  
+    
     <!-- Bios -->
     <script type="text/javascript">
 	    window.onload = function(){	    	
-	    	/* init Chassis */
+	    	
+	    	var options = {};
+			   function updateConfig() {
+				   options.singleDatePicker = false;
+				   options.showDropdowns = true;
+				   options.showWeekNumbers = false;
+				   options.showISOWeekNumbers = false;
+				   options.timePicker = true;
+				   options.timePicker24Hour = true;
+				   options.timePickerSeconds = true;
+				   //(true/false) Hide the apply and cancel buttons, and automatically apply a new date range as soon as two dates are clicked. 
+				   options.autoApply = false;
+				   options.ranges = {
+				              'Today': [moment(), moment()],
+				              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				              'This Month': [moment().startOf('month'), moment().endOf('month')],
+				              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				            };
+				   options.locale = {
+				              direction: $('#rtl').is(':checked') ? 'rtl' : 'ltr',
+				             /*  format: 'MM/DD/YYYY HH:mm', */
+				              format: 'YYYY/MM/DD',
+				              separator: ' - ',
+				              applyLabel: 'Apply',
+				              cancelLabel: 'Cancel',
+				              fromLabel: 'From',
+				              toLabel: 'To',
+				              customRangeLabel: 'Custom',
+				              daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+				              monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+				              firstDay: 1
+				            };
+				   options.linkedCalendars = false;
+				   options.autoUpdateInput = true;
+				   options.alwaysShowCalendars = false;
+				   
+			   }
+			   updateConfig();
+	    	
+	    	
+	    	/*----------------- init Chassis -----------------------*/
 	    	$.ajax({ 
  		 	   url:  './record/findChassises.action',
  		 	   data: "{t:"+new Date().getTime()+"}",
@@ -212,46 +258,13 @@
 		 		 	});
 		 		 }); 
 	    	
+	    	 $('#demo').daterangepicker(options, function(start, end, label) { console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')'); }).click();
+	    	
 	    	
 	    }
     </script>
    
-   <script type="text/javascript">
-   $('#demo').daterangepicker({
-	    "timePicker": true,
-	    "ranges": {
-	        "Today": [
-	            "2019-06-13T14:43:09.341Z",
-	            "2019-06-13T14:43:09.341Z"
-	        ],
-	        "Yesterday": [
-	            "2019-06-12T14:43:09.341Z",
-	            "2019-06-12T14:43:09.341Z"
-	        ],
-	        "Last 7 Days": [
-	            "2019-06-07T14:43:09.341Z",
-	            "2019-06-13T14:43:09.341Z"
-	        ],
-	        "Last 30 Days": [
-	            "2019-05-15T14:43:09.341Z",
-	            "2019-06-13T14:43:09.341Z"
-	        ],
-	        "This Month": [
-	            "2019-05-31T16:00:00.000Z",
-	            "2019-06-30T15:59:59.999Z"
-	        ],
-	        "Last Month": [
-	            "2019-04-30T16:00:00.000Z",
-	            "2019-05-31T15:59:59.999Z"
-	        ]
-	    },
-	    "linkedCalendars": false,
-	    "startDate": "06/13/2019",
-	    "endDate": "09/18/2019"
-	}, function(start, end, label) {		
-	  console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-	});
-   </script>
+  
     
     
     

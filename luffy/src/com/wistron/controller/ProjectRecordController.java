@@ -88,27 +88,21 @@ public class ProjectRecordController {
 		return "/WEB-INF/views/project_record.jsp";
 	}
 	/**
+	 * YYYY/MM/DD 2019/05/09 - 2019/12/28
 	 * Parse Schedule(06/13/2019 - 09/18/2019) into Start(2019-06-13) and End dates(2019-09-18)
-	 * @return
+	 * @return 
 	 * @throws ParseException 
 	 */
 	 private Date[] splitSchedule(String schedule) throws ParseException {
 		 schedule.replaceAll(" ", "");
-		 //06/13/2019 - 09/18/2019
+		 //2019/05/09 - 2019/12/28
 		 String[] startAndEnd = schedule.split("-");		
-			 //06/13/2019
+			 //2019/05/09
 			 String startStr = startAndEnd[0];
-			 //09/18/2019
+			 //2019/12/28
 			 String endStr = startAndEnd[1];
-			 //06 13 2019
-			 String[] startmdy  = startStr.split("/");
-			//09 18 2019
-			 String[] endmdy  = endStr.split("/");
-			 // 2019-06-13
-			 String startymd = startmdy[2]+"-"+startmdy[0]+"-"+startmdy[1];
-			 String endymd = endmdy[2]+"-"+endmdy[0]+"-"+endmdy[1];
-			 Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startymd.replaceAll(" ", ""));
-			 Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endymd.replaceAll(" ", ""));
+			 Date startDate = new SimpleDateFormat("yyyy/MM/dd").parse(startStr);
+			 Date endDate = new SimpleDateFormat("yyyy/MM/dd").parse(endStr);			 
 			 Date[] startDateAndEndDate = {startDate,endDate};		
 			 return startDateAndEndDate; 
 	 }

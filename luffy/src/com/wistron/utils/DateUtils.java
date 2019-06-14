@@ -40,7 +40,7 @@ public class DateUtils {
     }
     
     /**
-     * 日期相加减天数
+     * 
      * @param date if is Null the value is current day
      * @param days : count of days to add
      * @param includeTime:  is include hh mm ss; true:include
@@ -60,4 +60,33 @@ public class DateUtils {
         cal.add(Calendar.DATE, days);
         return cal.getTime();
     }
+    
+    /**
+     * 
+     * @param schedule(MM/dd/YYYY:06/13/2019 - 09/18/2019 )
+     * @return  return two date formate is yyyy-MM-dd
+     * @throws ParseException
+     */
+    public static Date[] splitSchedule(String schedule) throws ParseException {
+		 schedule.replaceAll(" ", "");
+		 //06/13/2019 - 09/18/2019  
+		 String[] startAndEnd = schedule.split("-");		
+			 //06/13/2019
+			 String startStr = startAndEnd[0];
+			 //09/18/2019
+			 String endStr = startAndEnd[1];
+			 //06 13 2019
+			 String[] startmdy  = startStr.split("/");
+			//09 18 2019
+			 String[] endmdy  = endStr.split("/");
+			 // 2019-06-13
+			 String startymd = startmdy[2]+"-"+startmdy[0]+"-"+startmdy[1];
+			 String endymd = endmdy[2]+"-"+endmdy[0]+"-"+endmdy[1];
+			 Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(startymd.replaceAll(" ", ""));
+			 Date endDate = new SimpleDateFormat("yyyy-MM-dd").parse(endymd.replaceAll(" ", ""));
+			 Date[] startDateAndEndDate = {startDate,endDate};		
+			 return startDateAndEndDate; 
+	 }
+    
+    
 }

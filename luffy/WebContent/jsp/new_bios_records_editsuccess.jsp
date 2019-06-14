@@ -216,72 +216,61 @@
 	    }
     </script>
    
+   <!-- config timepicker -->
    <script type="text/javascript">
-   $('#demo').daterangepicker({
-	  /*  updateConfig(); */
+   $(document).ready(function(){	       
+		   var options = {};
+	   function updateConfig() {
+		   options.singleDatePicker = false;
+		   options.showDropdowns = true;
+		   options.showWeekNumbers = false;
+		   options.showISOWeekNumbers = false;
+		   options.timePicker = true;
+		   options.timePicker24Hour = true;
+		   options.timePickerSeconds = true;
+		   options.autoApply = true;
+		   options.ranges = {
+		              'Today': [moment(), moment()],
+		              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+		              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+		              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+		              'This Month': [moment().startOf('month'), moment().endOf('month')],
+		              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+		            };
+		   options.locale = {
+		              direction: $('#rtl').is(':checked') ? 'rtl' : 'ltr',
+		             /*  format: 'MM/DD/YYYY HH:mm', */
+		              format: 'YYYY/MM/DD',
+		              separator: ' - ',
+		              applyLabel: 'Apply',
+		              cancelLabel: 'Cancel',
+		              fromLabel: 'From',
+		              toLabel: 'To',
+		              customRangeLabel: 'Custom',
+		              daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr','Sa'],
+		              monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+		              firstDay: 1
+		            };
+		   options.linkedCalendars = false;
+		   options.autoUpdateInput = true;
+		   options.alwaysShowCalendars = false;
+		   
+	   }
+	   updateConfig();
+	   $('#demo').daterangepicker(options, function(start, end, label) { console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')'); }).click();
+	   
+	  
+	   
+   });
+   
+   
+	 
 
-       function updateConfig() {
-         var options = {};
-
-        
-           options.singleDatePicker = false;
-         
-        
-           options.showDropdowns = false;
-
-         
-           options.showWeekNumbers = false;
-
-         
-           options.showISOWeekNumbers = false;
-
-        
-           options.timePicker = true;
-         
-         
-           options.timePicker24Hour = true;
-
-        
-
-        
-           options.timePickerSeconds = false;
-         
        
-           options.autoApply = true;
+        
 
-         
+        
            
-
-        
-           options.ranges = {
-             'Today': [moment(), moment()],
-             'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-             'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-             'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-             'This Month': [moment().startOf('month'), moment().endOf('month')],
-             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-           };
-         
-
-         
-           
-
-        
-           options.linkedCalendars = false;
-
-        
-           options.autoUpdateInput = true;
-
-         
-           options.showCustomRangeLabel = true;
-
-        
-           options.alwaysShowCalendars = true;
-
-
-         $('#demo').daterangepicker(options, function(start, end, label) { console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')'); }).click();;
-         
-       }
    </script>
     
     
