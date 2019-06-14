@@ -60,16 +60,15 @@
        <!--  <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main"> -->
           <h4 class="page-header">BIOS tasks record</h4>
           <form class="form-signin" action="./record/insertBioses.action" method="post">				      				      	
-		        <table class="table table-striped">
+		        <table class="table table-striped" id="biosTable">
 				  <!-- <caption>add  loading records</caption>	 -->						
-				  	<tbody id="mealTb">
-				  		<!-- =============lunch============ -->
+				  	<tbody id="biosTbody">
+				  		
 					    <tr id="trs0">
 					      <td>							    
 							<div class="form-group">
-							    <label for="name">Chassis</label>
-							    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
-							    <input type=hidden name="biosVos[0].owner" id="owner0" value="${session_user.enname }"/>
+							    <label for="name">Chassis</label>							    
+							    <%-- <input type=hidden name="biosVos[0].owner" id="owner0" value="${session_user.enname }"/> --%>
 							   	<select class="form-control" id="chassis0" name="biosVos[0].chassis"></select>	
 							</div>
 					      </td>
@@ -94,13 +93,11 @@
 					       <td>
 					      	<div class="form-group">
 							    <label for="name">Schedule</label>
-							    <input  id="demo" class="form-control" name="biosVos[0].schedule"/>
+							    <input  id="schedule0" class="form-control" name="biosVos[0].schedule"/>
 							    					    
 							</div>
 					      </td>
-					      <td>
-					      	
-					      </td>
+					      
 					      <td>
 					      	<div class="form-group">
 							   <label for="name">BIOS Version</label>							 
@@ -128,10 +125,16 @@
 					    </tr>
 				  	</tbody>
 				</table>
-		        <div style="float:right;" class="form-group">
-		          <a  class="btn  btn-default" id ="add">add</a>
+				
+				<div style="float:left;" class="form-group">
+		          <a class="btn btn-sm  btn-default glyphicon glyphicon-minus" id ="minusBtn"> minus</a>
 		        </div>
-		        <button class="btn btn-lg btn-success btn-block" type="submit">submit</button>
+		        
+		        <div style="float:right;" class="form-group">
+		          <a   class="btn btn-sm  btn-default glyphicon glyphicon-plus" id ="addBtn"> add</a>
+		        </div>
+		        
+		        <button class="btn btn-lg btn-default btn-block" type="submit">save</button>
 		    </form>
         </div>
      <!--  </div> -->
@@ -199,6 +202,8 @@
 	    	
 	    	
 	    	/*----------------- init Chassis -----------------------*/
+	    	//define a global common_chassises variable for all Tr_Chassis
+	    	var common_chassises = '';
 	    	$.ajax({ 
  		 	   url:  './record/findChassises.action',
  		 	   data: "{t:"+new Date().getTime()+"}",
@@ -209,11 +214,11 @@
  		 		 var chassises = data.responseText;
  		 		 var json_chassises = JSON.parse(chassises);
  		 		 //Gain array objects chassises 
- 		 		 var obj_chassises = json_chassises.chassises;
+ 		 		 common_chassises = json_chassises.chassises;
  		 		 //Create option
  		 		 var option_chassises = "<option value=''>-chassises-</option>";
  		 		 //Add option based on the length of the array
- 		 		 $.each(obj_chassises,function(i,n){ 		 			 		 			
+ 		 		 $.each(common_chassises,function(i,n){ 		 			 		 			
  		 			option_chassises +="<option value=\""+n.chassis+"\">" + n.chassis + "</option>"; 
  		 		 });
  		 		 //Add the created options to the select
@@ -258,9 +263,32 @@
 		 		 	});
 		 		 }); 
 	    	
-	    	 $('#demo').daterangepicker(options, function(start, end, label) { console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')'); }).click();
+	    	 $('#schedule0').daterangepicker(options, function(start, end, label) {
+	    		/*  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');  */
+	    		 }).click();
 	    	
+	    	 
+	    	 /* ----------Add------------------ */
+	    	 //record the amount of add click and minus clicks
+	    	 var add_clicks = 0;
+	    	 var minus_clicks = 0;
+	    	 
+	    	 $('#addBtn').click(function(){
+	    		 console.log(common_chassises);
+	    		 var Tr_length = $("#biosTbody")[0].rows.length;
+	    		 console.log(Tr_length);
+	    		 var last_Row = $("#biosTable tr:last")[0];
+	    		 console.log(last_Row);
+	    		 //add a row of data
+	    		 createRow();
+	    	 });
 	    	
+	    	 /* ----------createRow------------------ */
+	    	 function createRow(){	    		 
+	    		 add_clicks +=1;
+	    		 var row_content = '<tr id="trs"'+ add_clicks + '>';
+	    		 
+	    	 }
 	    }
     </script>
    

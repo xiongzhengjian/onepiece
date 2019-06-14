@@ -18,6 +18,7 @@ import com.wistron.dao.BiosDaoImpl;
 import com.wistron.dao.ProjectDaoImpl;
 import com.wistron.pojo.Bios;
 import com.wistron.pojo.Project;
+import com.wistron.pojo.User;
 import com.wistron.pojo.vo.BiosVo;
 import com.wistron.pojo.vo.BiosVos;
 
@@ -69,9 +70,12 @@ public class ProjectRecordController {
 	/* Partition of BIOS-------------------->Start  */
 	
 	@RequestMapping("/record/insertBioses")
-	public String insertBioses(BiosVos biosVos) throws ParseException {
-		System.out.println(biosVos);
-		
+	public String insertBioses(BiosVos biosVos,HttpSession session) throws ParseException {
+		System.out.println(biosVos);		
+		User user = (User) session.getAttribute("session_user");
+		if(user==null) {
+			return "index.jsp";
+		}
 		 List<BiosVo> list = biosVos.getBiosVos(); int size = list.size();
 		 List<Bios> bioses = new ArrayList<Bios>();
 		 for(int i=0;i<size;i++) {
@@ -80,7 +84,7 @@ public class ProjectRecordController {
 			 Date[] startAndEnd = splitSchedule(biosVo.getSchedule()); 
 			 //String owner, String chassis, String	 platform, String test_type, Date start, Date end,String bios_version, String image_build_id, String test_plan, String tester 
 			 //Initialize the BIOS
-			 Bios bios = new Bios(biosVo.getOwner(),biosVo.getChassis(),biosVo.getPlatform(),biosVo.getTest_type(),startAndEnd[0],startAndEnd[1],biosVo.getBios_version(),biosVo.getImage_build_id(),biosVo.getTest_plan(),biosVo.getTester());
+			 Bios bios = new Bios(user.getEnname(),biosVo.getChassis(),biosVo.getPlatform(),biosVo.getTest_type(),startAndEnd[0],startAndEnd[1],biosVo.getBios_version(),biosVo.getImage_build_id(),biosVo.getTest_plan(),biosVo.getTester());
 			 bioses.add(bios);
 		 }
 		 biosDao.insertBioses(bioses);
