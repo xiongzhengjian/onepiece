@@ -286,7 +286,37 @@
 	    	 /* ----------createRow------------------ */
 	    	 function createRow(){	    		 
 	    		 add_clicks +=1;
+	    		 //TR
 	    		 var row_content = '<tr id="trs"'+ add_clicks + '>';
+	    		 //TD: chassis
+	    		 row_content += '<td><div class="form-group">';
+	    		 row_content +='<select class="form-control" id="chassis'+add_clicks+'" name="biosVos['+add_clicks+'].chassis"></select>';
+	    		 row_content +='</div></td>';
+	    		
+	    		 
+	    		 //TD:platform
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='select class="form-control" id="platform'+add_clicks+'" name="biosVos['+add_clicks+'].platform"></select>';
+	    		 row_content +='</div></td>';
+	    		
+	    		 
+	    		 //TD:test_type
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='<select class="form-control" id="test_type'+add_clicks+'" name="biosVos['+add_clicks+'].test_type">';
+	    		 row_content +='<option value="BIOS pre-test">BIOS pre-test</option>';
+	    		 row_content +='<option value="Weekly Test">Weekly Test</option>';
+	    		 row_content +='<option value="BC Test">BC Test</option>';
+	    		 row_content +='<option value="BIOS Softpaq">BIOS Softpaq</option>';
+	    		 row_content +='<option value="BIOS Full">BIOS Full</option>';
+	    		 row_content +='</select></div></td>';
+	    		 
+	    		 //TD:schedule
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='select class="form-control" id="schedule'+add_clicks+'" name="biosVos['+add_clicks+'].schedule"></select>';
+	    		 row_content +='</div></td>';
+	    		 console.log(row_content);
+	    		 
+	    		 
 	    		 
 	    	 }
 	    }
