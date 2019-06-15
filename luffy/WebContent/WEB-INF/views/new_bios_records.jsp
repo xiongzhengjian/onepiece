@@ -159,7 +159,7 @@
     <!-- Bios -->
     <script type="text/javascript">
 	    window.onload = function(){	    	
-	    	
+/* ----------init time picker config------------------ */	    	
 	    	var options = {};
 			   function updateConfig() {
 				   options.singleDatePicker = false;
@@ -181,7 +181,7 @@
 				            };
 				   options.locale = {
 				              direction: $('#rtl').is(':checked') ? 'rtl' : 'ltr',
-				             /*  format: 'MM/DD/YYYY HH:mm', */
+				             // format: 'MM/DD/YYYY HH:mm'
 				              format: 'YYYY/MM/DD',
 				              separator: ' - ',
 				              applyLabel: 'Apply',
@@ -198,10 +198,11 @@
 				   options.alwaysShowCalendars = false;
 				   
 			   }
+			   //Perform configuration operations
 			   updateConfig();
 	    	
 	    	
-	    	/*----------------- init Chassis -----------------------*/
+/*----------------- init Chassis by Ajax-----------------------*/
 	    	//define a global common_chassises variable for all Tr_Chassis
 	    	var common_chassises = '';
 	    	$.ajax({ 
@@ -216,10 +217,12 @@
  		 		 //Gain array objects chassises 
  		 		 common_chassises = json_chassises.chassises;
  		 		 //Create option
- 		 		 var option_chassises = "<option value=''>-chassises-</option>";
+ 		 		 //var option_chassises = "<option value=''>-chassises-</option>";
+ 		 		var option_chassises = '<option value="">-chassises-</option>';
  		 		 //Add option based on the length of the array
  		 		 $.each(common_chassises,function(i,n){ 		 			 		 			
- 		 			option_chassises +="<option value=\""+n.chassis+"\">" + n.chassis + "</option>"; 
+ 		 			//option_chassises +="<option value=\""+n.chassis+"\">" + n.chassis + "</option>"; 
+ 		 			option_chassises +='<option value=\"'+n.chassis+'\">' + n.chassis + '</option>'; 
  		 		 });
  		 		 //Add the created options to the select
  		 		 $('#chassis0').append(option_chassises);
@@ -229,6 +232,7 @@
  	 	   
  	 	   		});
 	    	
+/*----------------- init Platform by change event and Ajax--------------*/
 	    	//Add selected events(If binding is dynamic, put the change method into chassis Ajax)
 	    	 $('#chassis0').change(function(){
 	    		 	//Get the selected chassis
@@ -243,48 +247,59 @@
 		 		 	   	dataType: "json",
 		 		 	    contentType:'application/json',
 		 		 	  	complete: function(data){
-		 		 			console.log(data);
+		 		 			//console.log(data);
 		 		 			var responseJSON = data.responseJSON;
 		 		 			var platforms = responseJSON.platforms;
 		 		 			//console.log(platforms);
 		 		 			 //Create platform option
- 		 		 			var option_platform = "<option value=''>-platforms-</option>";
+ 		 		 			var option_platform = "<option>-platforms-</option>";
  		 		 			//Add option based on the length of the array
  		 					 $.each(platforms,function(i,n){ 		 			 		 			
  		 						option_platform +="<option value=\""+n.platform+"\">" + n.platform + "</option>"; 
  		 					 });
  		 		 			//Add the created options to the select  childNodes
-		 		 			$('#platform0').append(option_platform);
- 		 		 			//
+		 		 			//$('#platform0').append(option_platform);(bug) 		 		 			
 		 		 			$('#platform0').html(option_platform);
 		 		 			
 		 		 			
 		 		 		}
 		 		 	});
 		 		 }); 
-	    	
+		 		 
+/* ----------add time picker function------------------ */	    	
 	    	 $('#schedule0').daterangepicker(options, function(start, end, label) {
 	    		/*  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');  */
 	    		 }).click();
 	    	
 	    	 
-	    	 /* ----------Add------------------ */
+/* ----------Add & Minus------------------ */
 	    	 //record the amount of add click and minus clicks
 	    	 var add_clicks = 0;
-	    	 var minus_clicks = 0;
+	    	 //var minus_clicks = 0;
 	    	 
-	    	 $('#addBtn').click(function(){
-	    		 console.log(common_chassises);
-	    		 var Tr_length = $("#biosTbody")[0].rows.length;
-	    		 console.log(Tr_length);
-	    		 var last_Row = $("#biosTable tr:last")[0];
-	    		 console.log(last_Row);
+	    	 
+ /* ----------Add -------------------------- */	    	 
+	    	 $('#addBtn').click(function(){	    		 
+	    		//console.log(common_chassises);	    		
+	    		//console.log(Tr_length);
+	    		//var last_Row = $("#biosTable tr:last")[0];
+	    		//console.log(last_Row);
 	    		 //add a row of data
-	    		 createRow();
+	    		 createRow(common_chassises);
 	    	 });
 	    	
-	    	 /* ----------createRow------------------ */
-	    	 function createRow(){	    		 
+			 //CreateRow/
+	    	 //parameter common_chassises0 is data of chassises
+	    	 function createRow(common_chassises0){
+	
+				 //Warning!Please complete the platform information of the previous record
+				 var previous_platform_information =  $('#platform'+add_clicks).val();
+				 //console.log(previous_platform_information);
+				 if(!previous_platform_information){
+					 alert('Please select information for the "Platform">');
+					 return;
+				 }
+				 
 	    		 add_clicks +=1;
 	    		 //TR
 	    		 var row_content = '<tr id="trs"'+ add_clicks + '>';
@@ -296,7 +311,7 @@
 	    		 
 	    		 //TD:platform
 	    		 row_content +='<td><div class="form-group">';
-	    		 row_content +='select class="form-control" id="platform'+add_clicks+'" name="biosVos['+add_clicks+'].platform"></select>';
+	    		 row_content +='<select class="form-control" id="platform'+add_clicks+'" name="biosVos['+add_clicks+'].platform"></select>';
 	    		 row_content +='</div></td>';
 	    		
 	    		 
@@ -309,16 +324,110 @@
 	    		 row_content +='<option value="BIOS Softpaq">BIOS Softpaq</option>';
 	    		 row_content +='<option value="BIOS Full">BIOS Full</option>';
 	    		 row_content +='</select></div></td>';
+	    		//console.log(row_content);
 	    		 
 	    		 //TD:schedule
 	    		 row_content +='<td><div class="form-group">';
-	    		 row_content +='select class="form-control" id="schedule'+add_clicks+'" name="biosVos['+add_clicks+'].schedule"></select>';
+	    		 row_content +='<input class="form-control" id="schedule'+add_clicks+'" name="biosVos['+add_clicks+'].schedule"></input>';
 	    		 row_content +='</div></td>';
-	    		 console.log(row_content);
+	    		
+	    		 //------------
+	    		 //bios_version
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='<input class="form-control" id="bios_version'+add_clicks+'" name="biosVos['+add_clicks+'].bios_version"></input>';
+	    		 row_content +='</div></td>';
+	    		 
+	    		 //image_build_id
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='<input class="form-control" id="image_build_id'+add_clicks+'" name="biosVos['+add_clicks+'].image_build_id"></input>';
+	    		 row_content +='</div></td>';
+	    		 
+	    		 //test_plan
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='<input class="form-control" id="test_plan'+add_clicks+'" name="biosVos['+add_clicks+'].test_plan"></input>';
+	    		 row_content +='</div></td>';
+	    		 
+	    		 //tester
+	    		 row_content +='<td><div class="form-group">';
+	    		 row_content +='<input class="form-control" id="tester'+add_clicks+'" name="biosVos['+add_clicks+'].tester"></input>';
+	    		 row_content +='</div></td>';
+	    		
+	    		 //Tr-End
+	    		 row_content +='</tr>';
+	    		 //Put the created Tr into the Tbody
+	    		 $("#biosTbody").append(row_content);
 	    		 
 	    		 
+	    		 /* load data: 1.option_chassises, 2.option_platform,3.timepicker function */
 	    		 
-	    	 }
+	    		 //3.add time picker function
+	    		  $('#schedule'+add_clicks).daterangepicker(options, function(start, end, label) {	    		
+	    		 }).click();
+	    		 
+	    		 
+	    		 //1.create option_chassises
+	    		 var option_chassises = '<option value="">-chassises-</option>';
+ 		 		 //Add option based on the length of the array
+ 		 		 $.each(common_chassises,function(i,n){	
+ 		 			option_chassises +='<option value=\"'+n.chassis+'\">' + n.chassis + '</option>'; 
+ 		 		 }); 		 		 
+ 		 		 $('#chassis'+add_clicks).append(option_chassises);
+	    		 
+ 		 		 //2option_platform
+ 		 		 
+		    	//Add selected events(If binding is dynamic, put the change method into chassis Ajax)
+		    	 $('#chassis'+add_clicks).change(function(){
+		    		 	//Get the selected chassis
+			 		 	var selected_chassis = $('#chassis'+add_clicks).val();
+		    		 	//Encapsulation parameters
+		    		 	var param = {chassis:selected_chassis};		 		 	
+			 		 	//The ajax request loads the corresponding platform data
+			 		 	$.ajax({
+			 		 		url:  './record/findPlatform.action', 
+			 		 		data:JSON.stringify(param),	
+			 		 		type: "POST",
+			 		 	   	dataType: "json",
+			 		 	    contentType:'application/json',
+			 		 	  	complete: function(data){
+			 		 			//console.log(data);
+			 		 			var responseJSON = data.responseJSON;
+			 		 			var platforms = responseJSON.platforms;
+			 		 			//console.log(platforms);
+			 		 			 //Create platform option
+	 		 		 			var option_platform = "<option>-platforms-</option>";
+	 		 		 			//Add option based on the length of the array
+	 		 					 $.each(platforms,function(i,n){ 		 			 		 			
+	 		 						option_platform +="<option value=\""+n.platform+"\">" + n.platform + "</option>"; 
+	 		 					 });
+	 		 		 			//Add the created options to the select  childNodes			 		 			
+			 		 			$('#platform'+add_clicks).html(option_platform);			 		 			
+			 		 			
+			 		 		}
+			 		 	});
+			 		 }); 
+	    		 
+	    		 
+	    		/*  console.log(row_content); */
+	    		
+	    		 
+	    	 }//createRow  End
+	    	 
+	    	 
+/* ----------Minus -------------------------- */
+			$('#minusBtn').click(function(){
+		    	if(add_clicks==0){
+		    		return;
+		    	}
+		    	add_clicks -=1;				
+				var last_Row = $("#biosTable tr:last");				
+				//console.log(last_Row[0]);
+				//console.log(last_Row);
+				last_Row.remove();				
+			});
+	    		 
+	    	 
+
+
 	    }
     </script>
    
