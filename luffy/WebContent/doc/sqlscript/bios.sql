@@ -19,10 +19,16 @@ insert into bios
 
 alter table bios add column owner varchar(15) after bios_id;
 
-select * from bios;
-
 update bios set owner='Yiquan' 
 	where
     bios_id = 1;
+
+select * from bios;
+
+select bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester 
+	from
+		bios
+    order by
+		bios_id desc,start desc;
 
 

@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.reactive.result.view.RedirectView;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.wistron.dao.BiosDaoImpl;
 import com.wistron.dao.ProjectDaoImpl;
@@ -29,16 +31,10 @@ public class ProjectRecordController {
 	private ProjectDaoImpl projectDao = new ProjectDaoImpl();
 	private BiosDaoImpl biosDao = new BiosDaoImpl();
 	
-	@RequestMapping("/record/projectrecord")
-	public String projectrecord(HttpSession session,Model model) throws ParseException {			
-		return "/WEB-INF/views/project_record.jsp";
-	}
 	
-	@RequestMapping("/record/addbiosdata")
-	public String addbiosdata(HttpSession session,Model model) throws ParseException {			
-		return "/WEB-INF/views/new_bios_records.jsp";
-	}
-	/* Partition of Project-------------------->Start  */
+	
+	
+/* Partition of Project-------------------->Start  */
 	/**
 	 * table project
 	 * @return
@@ -67,10 +63,57 @@ public class ProjectRecordController {
 		return platforms;
 	}
 	
-	/* Partition of BIOS-------------------->Start  */
+/* Partition of BIOS-------------------->Start  */
+	/**
+	 * Find all bios record
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws ParseException
+	 */
+	@RequestMapping("/record/projectrecord")
+	public String projectrecord(HttpSession session,Model model) throws ParseException {	
+		List<Bios> list = biosDao.findAll();
+		List<BiosVo> biosVos = new ArrayList<BiosVo>();
+		//bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester
+		int size = list.size();
+		for(int i=0;i<size;i++) {
+			Bios bios = list.get(i);
+			//Set the value of Schedule based on the Start date and End date
+			Date start = bios.getStart();
+			Date end = bios.getEnd();
+			String strStart = new SimpleDateFormat("yyyy/MM/dd").format(start);
+			String strEnd = new SimpleDateFormat("yyyy/MM/dd").format(end);
+			String schedule = strStart + " - " + strEnd;
+			BiosVo biosVo = new BiosVo(bios.getBios_id(),bios.getChassis(),bios.getPlatform(),bios.getTest_type(),schedule,bios.getBios_version(),bios.getImage_build_id(),bios.getTest_plan(),bios.getTester());
+			biosVos.add(biosVo);
+		}
+		model.addAttribute("biosVos",biosVos);
+		
+		return "/WEB-INF/views/project_record.jsp";
+	}
 	
+	/**
+	 * Jump to add records page
+	 * @param session
+	 * @param model
+	 * @return
+	 * @throws ParseException
+	 */
+	@RequestMapping("/record/addbiosdata")
+	public String addbiosdata(){			
+		return "/WEB-INF/views/new_bios_records.jsp";
+	}
+	
+	/**
+	 * Submit the newly added Bios data
+	 * @param biosVos 
+	 * @param session
+	 * @return
+	 * @throws ParseException
+	 */
 	@RequestMapping("/record/insertBioses")
-	public String insertBioses(BiosVos biosVos,HttpSession session) throws ParseException {
+	public String insertBioses(HttpSession session,BiosVos biosVos) throws ParseException {
 		System.out.println(biosVos);		
 		User user = (User) session.getAttribute("session_user");
 		if(user==null) {
@@ -87,10 +130,21 @@ public class ProjectRecordController {
 			 Bios bios = new Bios(user.getEnname(),biosVo.getChassis(),biosVo.getPlatform(),biosVo.getTest_type(),startAndEnd[0],startAndEnd[1],biosVo.getBios_version(),biosVo.getImage_build_id(),biosVo.getTest_plan(),biosVo.getTester());
 			 bioses.add(bios);
 		 }
-		 biosDao.insertBioses(bioses);
-		 
-		return "/WEB-INF/views/project_record.jsp";
+		 biosDao.insertBioses(bioses);	
+		 //Please note the suffix .action
+		 return "redirect:./projectrecord.action";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* Partition of Tool or Function--------------------  */
 	/**
 	 * YYYY/MM/DD 2019/05/09 - 2019/12/28
 	 * Parse Schedule(06/13/2019 - 09/18/2019) into Start(2019-06-13) and End dates(2019-09-18)

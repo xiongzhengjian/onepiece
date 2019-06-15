@@ -36,6 +36,15 @@ public class DaoTest_Bios {
 	}
 	
 	
+	@Test
+	public void findAll() throws Exception {		
+		List<Bios> list = biosDao.findAll();
+		System.out.println(list);
+		
+		
+	}
+	
+	
 	
 
 	

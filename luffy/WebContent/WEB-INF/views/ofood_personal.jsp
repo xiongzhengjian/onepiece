@@ -69,10 +69,10 @@
           <h3 class="page-header">${session_user.enname }</h3>       
           <h4 class="sub-header">You have made a reservation decision <span class="badge">${meals.size() div 2}</span> days in advance</h4>
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>site</th>
+                <!--   <th>site</th> -->
                   <th>weekday</th>
                   <th>date</th>
                   <th>meal</th>
@@ -83,7 +83,7 @@
               <tbody>                
                 <c:forEach items="${meals}" varStatus="idStatus" var="meal" >              		
                 	<tr>               		
-            			<td>${meal.site }</td> 
+            			<%-- <td>${meal.site }</td>  --%>
             			<td class="weekday">星期几</td>
             			<td class="date">${meal.date }</td> 
             			<td>${(meal.type==1)?'午餐':'晚餐' }</td>             			

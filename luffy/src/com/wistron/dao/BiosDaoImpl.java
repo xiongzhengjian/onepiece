@@ -15,7 +15,7 @@ import com.wistron.pojo.vo.Ordersubmit;
 public class BiosDaoImpl {
 	
 	private SqlSessionFactory factory;
-	private List<Bios> bioses;
+	//private List<Bios> bioses;
 	
 	//initialize factory when MealDaoImpl is created
 	public BiosDaoImpl() {
@@ -37,6 +37,16 @@ public class BiosDaoImpl {
 		int rows = sqlSession.insert("com.wistron.record.bios.insertBioses", bioses);
 		sqlSession.commit();	
 		return rows;
+	}
+	
+	/**
+	 * find all and sort in reverse order by bios_id desc		
+	 * @return
+	 */
+	public List<Bios> findAll(){
+		SqlSession sqlSession = factory.openSession();		
+		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.findAll");
+		return list;
 	}
 	
 	
