@@ -105,7 +105,10 @@
             			<td>${biosVo.image_build_id }</td>
             			<td>${biosVo.test_plan }</td>
             			<td>${biosVo.tester }</td>            			          			
-            			<td><a class="label label-default  edits" title="${biosVo.bios_id }" id="${idStatus.index+0 }" lang="${biosVo.bios_id }" >change</a></td>  
+            			<td>
+            				<a class="label label-default  edits" title="${biosVo.bios_id }" id="${idStatus.index+0 }" lang="${biosVo.bios_id }" >edit</a>
+            				<a class="label label-default  edits" title="${biosVo.bios_id }" id="${idStatus.index+0 }" lang="${biosVo.bios_id }" >delete</a>
+            			</td>  
         			</tr>  
         		</c:forEach>        
               </tbody>

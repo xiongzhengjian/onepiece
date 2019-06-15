@@ -29,6 +29,6 @@ select bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_bui
 	from
 		bios
     order by
-		bios_id desc,start desc;
+		bios_id desc;
 
 
