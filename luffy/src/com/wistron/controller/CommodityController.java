@@ -1,14 +1,18 @@
 package com.wistron.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.wistron.dao.CommodityDaoImpl;
@@ -90,24 +94,21 @@ public class CommodityController {
 	}
 	
 
-//	@RequestMapping("/record/editcommodity")
-//	public void edit(@RequestBody BiosVo biosVo, HttpSession session, HttpServletResponse response)
-//			throws ParseException, IOException {
-//		User user = (User) session.getAttribute("session_user");
-//		Date[] startAndEnd = splitSchedule(biosVo.getSchedule());
-//		Bios bios = new Bios(biosVo.getBios_id(), user.getEnname(), biosVo.getChassis(), biosVo.getPlatform(),
-//				biosVo.getTest_type(), startAndEnd[0], startAndEnd[1], biosVo.getBios_version(),
-//				biosVo.getImage_build_id(), biosVo.getTest_plan(), biosVo.getTester());
-//		int status = biosDao.edit(bios);
-//		PrintWriter printWriter = response.getWriter();
-//		if (status == 1) {
-//			printWriter.print("success");
-//		} else {
-//			printWriter.print("fail");
-//		}
-//		System.out.println(bios);
-//
-//	}
+	@RequestMapping("/record/editcommodity")
+	public void editcommodity(@RequestBody CommodityVo commodityVo, HttpSession session, HttpServletResponse response)throws ParseException, IOException {
+		User user = (User) session.getAttribute("session_user");
+		Date[] startAndEnd = splitSchedule(commodityVo.getSchedule());		
+		Commodity commodity = new Commodity(commodityVo.getCommodity_id(),user.getEnname(),commodityVo.getChassis(),commodityVo.getPlatform(),commodityVo.getType(),commodityVo.getName(),commodityVo.getPn_sn(),startAndEnd[0],startAndEnd[1],commodityVo.getBios_version(),commodityVo.getImage_build_id(),commodityVo.getTest_plan(),commodityVo.getTester());
+		int status = commodityDao.updateCommodity(commodity);
+		PrintWriter printWriter = response.getWriter();
+		if (status == 1) {
+			printWriter.print("success");
+		} else {
+			printWriter.print("fail");
+		}
+		System.out.println(commodity);
+
+	}
 
 	/* Partition of Tool or Function-------------------- */
 	/**

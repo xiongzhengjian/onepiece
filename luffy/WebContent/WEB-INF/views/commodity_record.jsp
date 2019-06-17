@@ -145,7 +145,7 @@
 /*----------------- init Chassis by Ajax-----------------------*/
 		    	//define a global common_chassises variable for all Tr_Chassis
 		    	var common_chassises = '';
-				var common_test_type = new Array('BIOS pre-test','Weekly Test','BC Test','BIOS Softpaq','BIOS Full');
+				var common_type = new Array('HHD','CPU','DIMM','SSD','Graphic Card','WLAN','PSU','PSU FAN');
 		    	$.ajax({ 
 	 		 	   url:  './record/findChassises.action',
 	 		 	   data: "{t:"+new Date().getTime()+"}",
@@ -191,12 +191,14 @@
  				//gets all content of the current row but except  Operate_Td
  				var origin_chassis = current_Tds[0].innerText;
  				var origin_platform = current_Tds[1].innerText;
- 				var origin_test_type = current_Tds[2].innerText;
- 				var origin_schedule = current_Tds[3].innerText;
- 				var origin_bios_version = current_Tds[4].innerText;
- 				var origin_image_build_id = current_Tds[5].innerText;
- 				var origin_test_plan = current_Tds[6].innerText;
- 				var origin_tester = current_Tds[7].innerText;
+ 				var origin_type = current_Tds[2].innerText;
+ 				var origin_name = current_Tds[3].innerText;
+ 				var origin_pn_sn = current_Tds[4].innerText;
+ 				var origin_schedule = current_Tds[5].innerText;
+ 				var origin_bios_version = current_Tds[6].innerText;
+ 				var origin_image_build_id = current_Tds[7].innerText;
+ 				var origin_test_plan = current_Tds[8].innerText;
+ 				var origin_tester = current_Tds[9].innerText;
  				////console.log(origin_chassis+"--;"+origin_platform+"--;"+origin_test_type+"--;"+origin_test_type+"--;"+origin_schedule+"--;"+origin_bios_version+"--;"+origin_image_build_id+"--;"+origin_test_plan+"--;"+origin_tester);
  				
  				/* chassis */
@@ -255,26 +257,42 @@
 	    		 new_platform_Td +='</div></td>';
 	    		 $(current_Tds[1]).html(new_platform_Td);   
 	    		 
-	    		/* test_type */
-	    		 var new_test_type = '<td><div class="form-group">';	    		
-	    		 new_test_type +='<select class="form-control" id="test_type'+editId+'" name="test_type">'; 
-				 $.each(common_test_type,function(i,n){
-					if(n==origin_test_type){
-						new_test_type +='<option selected="true" value=\"'+n+'\">'+ n + '</option>'; 
+	    		/* type */
+	    		 var new_type = '<td><div class="form-group">';	    		
+	    		 new_type +='<select class="form-control" id="test_type'+editId+'" name="type">'; 
+				 $.each(common_type,function(i,n){
+					if(n==origin_type){
+						new_type +='<option selected="true" value=\"'+n+'\">'+ n + '</option>'; 
 					}else{
-	 					new_test_type +='<option value=\"'+n+'\">'+ n + '</option>'; 
+	 					new_type +='<option value=\"'+n+'\">'+ n + '</option>'; 
 					}
 				});
 	    		
-	    		 new_test_type +='</select></div></td>';
-	    		 $(current_Tds[2]).html(new_test_type);
+	    		 new_type +='</select></div></td>';
+	    		 $(current_Tds[2]).html(new_type);
 	    		 ////console.log(common_test_type);
+	    		 
+	    		 /* name */
+	    		 var new_name ='<td><div class="form-group">';
+	    		 new_name +='<input class="form-control" id="name'+editId+'" name="name"></input>';
+	    		 new_name +='</div></td>';
+	    		 $(current_Tds[3]).html(new_name);
+	    		 $("#name"+editId).val(origin_name);
+	    		 
+	    		 
+	    		 /* pn_sn */
+	    		 var new_pn_sn ='<td><div class="form-group">';
+	    		 new_pn_sn +='<input class="form-control" id="pn_sn'+editId+'" name="pn_sn"></input>';
+	    		 new_pn_sn +='</div></td>';
+	    		 $(current_Tds[4]).html(new_pn_sn);
+	    		 $("#pn_sn"+editId).val(origin_pn_sn);
+	    		 
 	    		 
 	    		 /* schedule */
 	    		 var new_schedule ='<td><div class="form-group">';
 	    		 new_schedule +='<input class="form-control" id="schedule'+editId+'" name="schedule"></input>';
 	    		 new_schedule +='</div></td>';
-	    		 $(current_Tds[3]).html(new_schedule);
+	    		 $(current_Tds[5]).html(new_schedule);
 	    		 $("#schedule"+editId).val(origin_schedule);
 	    		 
 	    		 
@@ -282,21 +300,21 @@
 	    		 var new_bios_version ='<td><div class="form-group">';
 	    		 new_bios_version +='<input class="form-control" id="bios_version'+editId+'" name="bios_version"></input>';
 	    		 new_bios_version +='</div></td>';
-	    		 $(current_Tds[4]).html(new_bios_version);
+	    		 $(current_Tds[6]).html(new_bios_version);
 	    		 $("#bios_version"+editId).val(origin_bios_version);
 	    		 
 	    		/* image_build_id */
 	    		 var new_image_build_id ='<td><div class="form-group">';
 	    		 new_image_build_id +='<input class="form-control" id="image_build_id'+editId+'" name="image_build_id"></input>';
 	    		 new_image_build_id +='</div></td>';
-	    		 $(current_Tds[5]).html(new_image_build_id);
+	    		 $(current_Tds[7]).html(new_image_build_id);
 	    		 $("#image_build_id"+editId).val(origin_image_build_id);
 	    		 
 	    		/* test_plan */
 	    		 var new_test_plan ='<td><div class="form-group">';
 	    		 new_test_plan +='<input class="form-control" id="test_plan'+editId+'" name="test_plan"></input>';
 	    		 new_test_plan +='</div></td>';
-	    		 $(current_Tds[6]).html(new_test_plan);
+	    		 $(current_Tds[8]).html(new_test_plan);
 	    		 $("#test_plan"+editId).val(origin_test_plan);
 	    		 
 	    		/* tester */
@@ -304,22 +322,24 @@
 	    		 //new_tester +='<input class="form-control" id="tester'+editId+'" name="tester"></input>';
 	    		 new_tester +='<input class="form-control" id="tester'+editId+'" name="tester"></input>';
 	    		 new_tester +='</div></td>';
-	    		 $(current_Tds[7]).html(new_tester);
+	    		 $(current_Tds[9]).html(new_tester);
 	    		 $("#tester"+editId).val(origin_tester);
 	    		
 	    		 
 	    		/* operate */    
 	    		 //var new_operate = '<a class="label label-default  operate"  id="ok'+dataId+'">ok</a>';
 	    		 var new_operate = '<a class="btn btn-success  operate" title="'+dataId+'" id="'+editId+'">ok</a>';
-	    		 $(current_Tds[8]).html(new_operate);
+	    		 $(current_Tds[10]).html(new_operate);
 	    		 //
 	    		 $("#"+editId).click(function(){
-	    			 var data_Id = this.title;
-	    			 ////console.log(data_Id);
-	    			 //Fetch the contents of each field after modification
+	    			 var data_Id = this.title;	    			
 	    			 var altered_chassis2 = $("#chassis"+this.id).val();
 	  				 var altered_platform2 = $("#platform"+this.id).val();
-	  				 var altered_test_type2 = $("#test_type"+this.id).val();
+	  				 var altered_type2 = $("#test_type"+this.id).val();
+	  				 
+	  				 var altered_name2 = $("#name"+this.id).val();
+	  				 var altered_pn_sn2 = $("#pn_sn"+this.id).val();
+	  				 
 	  				 var altered_schedule2 = $("#schedule"+this.id).val();
 	  				 var altered_bios_version2 = $("#bios_version"+this.id).val();	
 	  				 var altered_image_build_id2 = $("#image_build_id"+this.id).val();	
@@ -328,13 +348,13 @@
 	  				 ////console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
 	    			 
 	  				 //------------Modify database data through Ajax
-	  				 var param = { bios_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,test_type:altered_test_type2,schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
+	  				 var param = { commodity_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,type:altered_type2,name:altered_name2,pn_sn:altered_pn_sn2,schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
 	  				 //var param = '{ "bios_id":"'+data_Id+'","chassis":"'+altered_chassis2+'"}';
 	  				 //var param = '{ bios_id:"'+data_Id+'",chassis:"'+altered_chassis2+'"}';
 	  				 //var param = '{ bios_id:'+data_Id+',chassis:'+altered_chassis2+'}';
 	  				 //var param = {bios_id:data_Id,chassis:altered_chassis2};
 	    			 $.ajax({
-			 		 		url:  './record/edit.action', 
+			 		 		url:  './record/editcommodity.action', 
 			 		 		data:JSON.stringify(param),	
 			 		 		type: "POST",
 			 		 	   	dataType: "json",
@@ -349,14 +369,16 @@
 	    			 var altered_Tds = '';
 		    		 var altered_chassis_Td ='<td>'+altered_chassis2+'</td>'; 
 		    		 var altered_platform_Td ='<td>'+altered_platform2+'</td>';
-		    		 var altered_test_type_Td ='<td>'+altered_test_type2+'</td>';
+		    		 var altered_type_Td ='<td>'+altered_type2+'</td>';		    		 
+		    		 var altered_name_Td ='<td>'+altered_name2+'</td>';
+		    		 var altered_pn_sn_Td ='<td>'+altered_pn_sn2+'</td>';		    		 
 		    		 var altered_schedule_Td ='<td>'+altered_schedule2+'</td>';
 		    		 var altered_bios_version_Td ='<td>'+altered_bios_version2+'</td>';
 		    		 var altered_image_build_id_Td ='<td>'+altered_image_build_id2+'</td>';
 		    		 var altered_test_plan_Td ='<td>'+altered_test_plan2+'</td>';
 		    		 var altered_tester_Td ='<td>'+altered_tester2+'</td>';		    		
 		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
-		    		 altered_Tds = altered_chassis_Td+altered_platform_Td+altered_test_type_Td+altered_schedule_Td+altered_bios_version_Td+altered_image_build_id_Td+altered_test_plan_Td+altered_tester_Td+altered_operate_Td;
+		    		 altered_Tds = altered_chassis_Td+altered_platform_Td+altered_type_Td+altered_name_Td+altered_pn_sn_Td+altered_schedule_Td+altered_bios_version_Td+altered_image_build_id_Td+altered_test_plan_Td+altered_tester_Td+altered_operate_Td;
 		    		 $("#tr"+editId).html(altered_Tds);
 		    		 ////console.log(altered_Tds);
 	  				
