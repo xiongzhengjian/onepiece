@@ -12,7 +12,7 @@ create table softpaq (
 	test_plan varchar(100),
 	tester varchar(15)
 );
-
+alter table softpaq add column owner varchar(15) after softpaq_id;
 describe softpaq;
 
 insert into softpaq 
