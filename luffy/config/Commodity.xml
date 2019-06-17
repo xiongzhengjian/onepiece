@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.record.commodity">
+
+	
+	<insert id="insertCommodities" parameterType="java.util.ArrayList" keyProperty="commodity_id" useGeneratedKeys="true">
+		insert into commodity 
+			(commodity_id,owner,chassis,platform,type,name,pn_sn,start,end,bios_version,image_build_id,test_plan,tester)
+ 		values
+		 	<foreach collection="list" item="commodity" index="index" separator=",">
+			 	(#{commodity.commodity_id},#{commodity.owner},#{commodity.chassis},#{commodity.platform},#{commodity.type},#{commodity.name},#{commodity.pn_sn},#{commodity.start},#{commodity.end},#{commodity.bios_version},#{commodity.image_build_id},#{commodity.test_plan},#{commodity.tester})
+		 	</foreach>
+	</insert>
+	
+	<select id="findAllCommodity" resultType="com.wistron.pojo.Commodity">
+		select * from
+			commodity
+    	order by
+			commodity_id desc
+	</select>
+	
+	<update id="updateCommodity" parameterType="com.wistron.pojo.Commodity">
+		update commodity set 			
+			owner=#{owner},
+		    chassis=#{chassis},
+		    platform=#{platform},
+		    type=#{type},
+		    name=#{name},
+		    pn_sn=#{pn_sn},
+		    start=#{start},
+		    end=#{end},
+		    bios_version=#{bios_version},
+		    image_build_id=#{image_build_id},
+		    test_plan=#{test_plan},
+		    tester=#{tester} 
+ 		where
+ 			commodity_id=#{commodity_id}
+	</update>
+	
+	
+	
+	
+</mapper>

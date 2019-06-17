@@ -11,7 +11,7 @@
     <meta name="description" content="record">
     <meta name="bear" content="">
 
-    <title>Bios record</title>
+    <title>Commodity record</title>
     <%
 		String path = request.getContextPath(); 		
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -76,9 +76,9 @@
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h4 class="page-header">BIOS tasks record</h4>          
+          <h4 class="page-header">Commodity tasks record</h4>          
   		 <span class="sub-header">
-         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> new</a>
+         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addcommoditydata.action"> new</a>
 		 </span>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -86,7 +86,9 @@
                 <tr>
                   <th>Chassis</th>                  
                   <th>Platform</th>
-                  <th>Test Type</th>
+                  <th>Type</th>
+                  <th>Name</th>
+                  <th>PN/SN</th>
                   <th>Schedule</th>                  
                   <th>Bios Version</th>
                   <th>Image Build ID</th>
@@ -96,20 +98,22 @@
                 </tr>
               </thead>
               <tbody>
-              	<c:forEach items="${biosVos}" varStatus="idStatus" var="biosVo" >              		
+              	<c:forEach items="${commodityVos}" varStatus="idStatus" var="commodityVo" >              		
                 	
                 	<tr id="tr${idStatus.index+0 }">               		
-            			<td>${biosVo.chassis }</td> 
-            			<td>${biosVo.platform }</td>
-            			<td>${biosVo.test_type }</td>
-            			<td>${biosVo.schedule }</td>
-            			<td>${biosVo.bios_version }</td>
-            			<td>${biosVo.image_build_id }</td>
-            			<td>${biosVo.test_plan }</td>
-            			<td>${biosVo.tester }</td>            			          			
+            			<td>${commodityVo.chassis }</td> 
+            			<td>${commodityVo.platform }</td>
+            			<td>${commodityVo.type }</td>
+            			<td>${commodityVo.name }</td>
+            			<td>${commodityVo.pn_sn }</td>
+            			<td>${commodityVo.schedule }</td>
+            			<td>${commodityVo.bios_version }</td>
+            			<td>${commodityVo.image_build_id }</td>
+            			<td>${commodityVo.test_plan }</td>
+            			<td>${commodityVo.tester }</td>            			          			
             			<td>
-            				<a class="label label-default  edit" title="${biosVo.bios_id }" id="${idStatus.index+0 }">edit</a>
-            				<a class="label label-default  delete" title="${biosVo.bios_id }" id="${idStatus.index+0 }">delete</a>
+            				<a class="label label-default  edit" title="${commodityVo.commodity_id }" id="${idStatus.index+0 }">edit</a>
+            				<a class="label label-default  delete" title="${commodityVo.commodity_id }" id="${idStatus.index+0 }">delete</a>
             			</td>  
         			</tr>  
         			

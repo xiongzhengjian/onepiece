@@ -20,6 +20,7 @@
   	<mapper resource="Meal.xml"/>
   	<mapper resource="Project.xml"/>
   	<mapper resource="Bios.xml"/>
+  	<mapper resource="Commodity.xml"/>
   	
   </mappers>
   
