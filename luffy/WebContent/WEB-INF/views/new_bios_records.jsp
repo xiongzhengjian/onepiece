@@ -331,7 +331,7 @@
 	    		 row_content +='<input class="form-control" id="schedule'+add_clicks+'" name="biosVos['+add_clicks+'].schedule"></input>';
 	    		 row_content +='</div></td>';
 	    		
-	    		 //------------
+	    		 
 	    		 //bios_version
 	    		 row_content +='<td><div class="form-group">';
 	    		 row_content +='<input class="form-control" id="bios_version'+add_clicks+'" name="biosVos['+add_clicks+'].bios_version"></input>';

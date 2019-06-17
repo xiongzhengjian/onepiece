@@ -13,8 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.reactive.result.view.RedirectView;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.wistron.dao.BiosDaoImpl;
 import com.wistron.dao.ProjectDaoImpl;
@@ -134,14 +132,6 @@ public class ProjectRecordController {
 		 //Please note the suffix .action
 		 return "redirect:./projectrecord.action";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	/* Partition of Tool or Function--------------------  */
