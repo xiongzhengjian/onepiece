@@ -311,7 +311,7 @@
 	    		 //
 	    		 $("#"+editId).click(function(){
 	    			 var data_Id = this.title;
-	    			 console.log(data_Id);
+	    			 //console.log(data_Id);
 	    			 //Fetch the contents of each field after modification
 	    			 var altered_chassis2 = $("#chassis"+this.id).val();
 	  				 var altered_platform2 = $("#platform"+this.id).val();
@@ -324,10 +324,24 @@
 	  				 console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
 	    			 
 	  				 //------------Modify database data through Ajax
-	    			 
+	  				 var param = { bios_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,test_type:altered_test_type2,schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
+	  				 //var param = '{ "bios_id":"'+data_Id+'","chassis":"'+altered_chassis2+'"}';
+	  				 //var param = '{ bios_id:"'+data_Id+'",chassis:"'+altered_chassis2+'"}';
+	  				 //var param = '{ bios_id:'+data_Id+',chassis:'+altered_chassis2+'}';
+	  				 //var param = {bios_id:data_Id,chassis:altered_chassis2};
+	    			 $.ajax({
+			 		 		url:  './record/edit.action', 
+			 		 		data:JSON.stringify(param),	
+			 		 		type: "POST",
+			 		 	   	dataType: "json",
+			 		 	    contentType:'application/json',
+			 		 	  	complete: function(data){			 		 	  	
+			 		 			alert(data.responseText);			 		 			
+			 		 		}
+			 		 	});
 	    			 
 	    			//Revert to table mode after successful update 
-	  				
+	    			
 	  				
 	  				
 	    		 });

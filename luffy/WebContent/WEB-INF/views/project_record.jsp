@@ -162,7 +162,7 @@
 	 		 			option_chassises +='<option value=\"'+n.chassis+'\">' + n.chassis + '</option>'; 
 	 		 		 });
 	 		 		 //Add the created options to the target Select
-	 		 		 console.log(option_chassises);
+	 		 		 ////console.log(option_chassises);
 	 		 		 //$('#chassis0').append(option_chassises);
 	 		 		 
 	 		 		 
@@ -226,10 +226,10 @@
 			 		 	   	dataType: "json",
 			 		 	    contentType:'application/json',
 			 		 	  	complete: function(data){
-			 		 			//console.log(data);
+			 		 			////console.log(data);
 			 		 			var responseJSON = data.responseJSON;
 			 		 			var platforms = responseJSON.platforms;
-			 		 			//console.log(platforms);
+			 		 			////console.log(platforms);
 			 		 			 //Create platform option
 	 		 		 			var option_platform = "<option>-platforms-</option>";
 	 		 		 			//Add option based on the length of the array
@@ -264,7 +264,7 @@
 	    		
 	    		 new_test_type +='</select></div></td>';
 	    		 $(current_Tds[2]).html(new_test_type);
-	    		 //console.log(common_test_type);
+	    		 ////console.log(common_test_type);
 	    		 
 	    		 /* schedule */
 	    		 var new_schedule ='<td><div class="form-group">';
@@ -311,7 +311,7 @@
 	    		 //
 	    		 $("#"+editId).click(function(){
 	    			 var data_Id = this.title;
-	    			 //console.log(data_Id);
+	    			 ////console.log(data_Id);
 	    			 //Fetch the contents of each field after modification
 	    			 var altered_chassis2 = $("#chassis"+this.id).val();
 	  				 var altered_platform2 = $("#platform"+this.id).val();
@@ -321,7 +321,7 @@
 	  				 var altered_image_build_id2 = $("#image_build_id"+this.id).val();	
 	  				 var altered_test_plan2 = $("#test_plan"+this.id).val();	  				
 	  				 var altered_tester2 = $("#tester"+this.id).val();		  				
-	  				 console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
+	  				 ////console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
 	    			 
 	  				 //------------Modify database data through Ajax
 	  				 var param = { bios_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,test_type:altered_test_type2,schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
@@ -336,18 +336,34 @@
 			 		 	   	dataType: "json",
 			 		 	    contentType:'application/json',
 			 		 	  	complete: function(data){			 		 	  	
-			 		 			alert(data.responseText);
-			 		 			console.log(data.responseText)
+			 		 			alert(data.responseText);			 		 			
 			 		 		}
 			 		 	});
 	    			 
 	    			//Revert to table mode after successful update 
-	    			
-	  				
+	    			 /* platform */
+	    			 var altered_Tds = '';
+		    		 var altered_chassis_Td ='<td>'+altered_chassis2+'</td>'; 
+		    		 var altered_platform_Td ='<td>'+altered_platform2+'</td>';
+		    		 var altered_test_type_Td ='<td>'+altered_test_type2+'</td>';
+		    		 var altered_schedule_Td ='<td>'+altered_schedule2+'</td>';
+		    		 var altered_bios_version_Td ='<td>'+altered_bios_version2+'</td>';
+		    		 var altered_image_build_id_Td ='<td>'+altered_image_build_id2+'</td>';
+		    		 var altered_test_plan_Td ='<td>'+altered_test_plan2+'</td>';
+		    		 var altered_tester_Td ='<td>'+altered_tester2+'</td>';		    		
+		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
+		    		 altered_Tds = altered_chassis_Td+altered_platform_Td+altered_test_type_Td+altered_schedule_Td+altered_bios_version_Td+altered_image_build_id_Td+altered_test_plan_Td+altered_tester_Td+altered_operate_Td;
+		    		 $("#tr"+editId).html(altered_Tds);
+		    		 ////console.log(altered_Tds);
 	  				
 	    		 });
 	    		 
 	    		 
+ 			});
+ 			
+ /*------------------delete-------------------------*/
+ 			$(".delete").click(function(){
+ 				alert('Delete function is provided later');
  			});
  			
     	}
