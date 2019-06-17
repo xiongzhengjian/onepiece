@@ -30,5 +30,19 @@ select bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_bui
 		bios
     order by
 		bios_id desc;
+        
+update bios set 
+	owner = 'Yiquan2',
+    chassis = 'Nicolas',
+    platform = 'LincsB',
+    test_type = 'Bios pre-test',
+    start = '2019-06-08 14:25:30',
+    end = '2019-06-11 14:25:30',
+    bios_version = 'F.10',
+    image_build_id = '18WW2SVT6AF',
+    test_plan = 'CDT-BIOS-Checklist_v4.6_pre-test',
+    tester = 'littlebear' 
+ where
+ bios_id=1;
 
 

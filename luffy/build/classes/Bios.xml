@@ -22,6 +22,22 @@
 			bios_id desc
 	</select>
 	
+	<update id="update" parameterType="com.wistron.pojo.Bios">
+		update bios set 
+			owner=#{owner},
+    		chassis=#{chassis},
+    		platform=#{platform},
+    		test_type=#{test_type},
+    		start=#{start},
+    		end=#{end},
+    		bios_version=#{bios_version},
+    		image_build_id=#{image_build_id},
+    		test_plan=#{test_plan},
+    		tester=#{tester}
+ 		where
+ 			bios_id=#{bios_id}
+	</update>
+	
 	
 	
 	

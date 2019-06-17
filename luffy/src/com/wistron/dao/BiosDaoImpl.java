@@ -48,6 +48,14 @@ public class BiosDaoImpl {
 		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.findAll");
 		return list;
 	}
+
+
+	public int edit(Bios bios) {
+		SqlSession sqlSession = factory.openSession();
+		int row = sqlSession.update("com.wistron.record.bios.update", bios);
+		sqlSession.commit();
+		return row;
+	}
 	
 	
 	

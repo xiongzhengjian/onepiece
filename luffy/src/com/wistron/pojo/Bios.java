@@ -33,6 +33,24 @@ public class Bios {
 		this.test_plan = test_plan;
 		this.tester = tester;
 	}
+	
+
+	public Bios(int bios_id, String owner, String chassis, String platform, String test_type, Date start, Date end,
+			String bios_version, String image_build_id, String test_plan, String tester) {
+		super();
+		this.bios_id = bios_id;
+		this.owner = owner;
+		this.chassis = chassis;
+		this.platform = platform;
+		this.test_type = test_type;
+		this.start = start;
+		this.end = end;
+		this.bios_version = bios_version;
+		this.image_build_id = image_build_id;
+		this.test_plan = test_plan;
+		this.tester = tester;
+	}
+
 
 	public int getBios_id() {
 		return bios_id;

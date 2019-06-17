@@ -1,4 +1,6 @@
 package com.wistron.controller;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -133,8 +136,25 @@ public class ProjectRecordController {
 		 return "redirect:./projectrecord.action";
 	}
 	
+	@RequestMapping("/record/edit")
+	public void edit(@RequestBody BiosVo biosVo,HttpSession session,HttpServletResponse response) throws ParseException, IOException {
+		User user = (User) session.getAttribute("session_user");
+		Date[] startAndEnd = splitSchedule(biosVo.getSchedule()); 
+		Bios bios = new Bios(biosVo.getBios_id(),user.getEnname(),biosVo.getChassis(),biosVo.getPlatform(),biosVo.getTest_type(),startAndEnd[0],startAndEnd[1],biosVo.getBios_version(),biosVo.getImage_build_id(),biosVo.getTest_plan(),biosVo.getTester());
+		int status = biosDao.edit(bios);
+		PrintWriter printWriter = response.getWriter();
+		if(status==1) {
+			printWriter.print("success");
+		}else {
+			printWriter.print("fail");
+		}
+		System.out.println(bios);
+		
+	}
 	
-	/* Partition of Tool or Function--------------------  */
+	
+	
+/* Partition of Tool or Function--------------------  */
 	/**
 	 * YYYY/MM/DD 2019/05/09 - 2019/12/28
 	 * Parse Schedule(06/13/2019 - 09/18/2019) into Start(2019-06-13) and End dates(2019-09-18)
