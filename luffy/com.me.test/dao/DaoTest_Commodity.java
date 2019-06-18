@@ -4,9 +4,7 @@ import java.util.Date;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
-import com.wistron.dao.BiosDaoImpl;
 import com.wistron.dao.CommodityDaoImpl;
-import com.wistron.pojo.Bios;
 import com.wistron.pojo.Commodity;
 
 public class DaoTest_Commodity {
@@ -49,7 +47,7 @@ public class DaoTest_Commodity {
 	@Test
 	public void updateCommodity() throws Exception {
 		Commodity c1 = new Commodity(1,"Sunny33","NesslerPxx","Sunflower","HDD","SEAGATE 1T","924121-001",new Date(),new Date(),"F.20","18WW2SVT6AF","CDT-BIOS-Checklist_v4.6_pre-test","littlebear");
-		int row = commodityDao.updateCommodity(c1);
+		 commodityDao.updateCommodity(c1);
 		
 	}
 	

@@ -15,40 +15,40 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.wistron.dao.WatDaoImpl;
+import com.wistron.dao.SoftrollRespinDaoImpl;
+import com.wistron.pojo.SoftrollRespin;
 import com.wistron.pojo.User;
-import com.wistron.pojo.Wat;
-import com.wistron.pojo.vo.WatVo;
-import com.wistron.pojo.vo.WatVos;
+import com.wistron.pojo.vo.SoftrollRespinVo;
+import com.wistron.pojo.vo.SoftrollRespinVos;
 
 @Controller
-public class WatController {
+public class SoftrollRespinController {
 
-	private WatDaoImpl  daoImple = new WatDaoImpl();
+	private SoftrollRespinDaoImpl  daoImple = new SoftrollRespinDaoImpl();
 
 	
 	
-	@RequestMapping("/record/wat")
-	public String wat(HttpSession session, Model model) throws ParseException {
+	@RequestMapping("/record/softrollrespin")
+	public String softrollrespin(HttpSession session, Model model) throws ParseException {
 		
-		 List<Wat> listpojo = daoImple.findAll();
-		 List<WatVo> listvos = new ArrayList<WatVo>();		
+		 List<SoftrollRespin> listpojo = daoImple.findAll();
+		 List<SoftrollRespinVo> listvos = new ArrayList<SoftrollRespinVo>();		
 	  	  int size = listpojo.size(); 
 	  	  for(int i=0;i<size;i++) { 
-	  		Wat pojo = listpojo.get(i); 
+	  		SoftrollRespin pojo = listpojo.get(i); 
 			  Date start = pojo.getStart();
 			  Date end = pojo.getEnd();
 			  String strStart = new SimpleDateFormat("yyyy/MM/dd").format(start); 
 			  String strEnd = new SimpleDateFormat("yyyy/MM/dd").format(end); 
 			  String schedule = strStart +" - " + strEnd; 		
-			  WatVo vo = new WatVo(pojo.getWat_id(),pojo.getOwner(),pojo.getChassis(),pojo.getPlatform(),pojo.getDevice_name(),pojo.getPn_sn(),schedule,pojo.getBios_version(),pojo.getImage_build_id(),pojo.getTest_plan(),pojo.getTester());
+			  SoftrollRespinVo vo = new SoftrollRespinVo(pojo.getSoftrollrespin_id(),pojo.getOwner(),pojo.getChassis(),pojo.getPlatform(),pojo.getTest_function(),schedule,pojo.getBios_version(),pojo.getImage_build_id(),pojo.getTest_plan(),pojo.getTester());
 			  listvos.add(vo);
 		  
 		}
 		 model.addAttribute("vos",listvos);
 		 
 
-		return "/WEB-INF/views/wat_record.jsp";
+		return "/WEB-INF/views/softrollrespin_record.jsp";
 	}
 
 	/**
@@ -59,40 +59,40 @@ public class WatController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@RequestMapping("/record/addwatdata")
+	@RequestMapping("/record/addsoftrollrespindata")
 	public String addsoftpaqdata() {
-		return "/WEB-INF/views/new_wat_records.jsp";
+		return "/WEB-INF/views/new_softrollrespin_records.jsp";
 	}
 
 	
-	@RequestMapping("/record/insertwats")
-	public String insertMultiple(HttpSession session, WatVos vos) throws ParseException {
+	@RequestMapping("/record/insertsoftrollrespins")
+	public String insertMultiple(HttpSession session, SoftrollRespinVos vos) throws ParseException {
 		System.out.println(vos);
 		User user = (User) session.getAttribute("session_user");
 		if (user == null) {
 			return "/index.jsp";
 		}
-		List<WatVo> list = vos.getWatVos();
+		List<SoftrollRespinVo> list = vos.getSoftrollRespinVos();
 		int size = list.size();
-		List<Wat> listpojo = new ArrayList<Wat>();
+		List<SoftrollRespin> listpojo = new ArrayList<SoftrollRespin>();
 		for (int i = 0; i < size; i++) {
-			WatVo vo = list.get(i);
+			SoftrollRespinVo vo = list.get(i);
 			// Parse Schedule into Start and End dates
 			Date[] startAndEnd = splitSchedule(vo.getSchedule());	
-			Wat pojo = new Wat(user.getEnname(),vo.getChassis(),vo.getPlatform(),vo.getDevice_name(),vo.getPn_sn(),startAndEnd[0],startAndEnd[1],vo.getBios_version(),vo.getImage_build_id(),vo.getTest_plan(),vo.getTester());
+			SoftrollRespin pojo = new SoftrollRespin(user.getEnname(),vo.getChassis(),vo.getPlatform(),vo.getTest_function(),startAndEnd[0],startAndEnd[1],vo.getBios_version(),vo.getImage_build_id(),vo.getTest_plan(),vo.getTester());
 			listpojo.add(pojo);
 		}
 		daoImple.insertMultiple(listpojo);
 		// Please note the suffix .action
-		return "redirect:./wat.action";
+		return "redirect:./softrollrespin.action";
 	}
 	
 
-	@RequestMapping("/record/editwat")
-	public void update(@RequestBody WatVo vo, HttpSession session, HttpServletResponse response)throws ParseException, IOException {
+	@RequestMapping("/record/editsoftrollrespin")
+	public void update(@RequestBody SoftrollRespinVo vo, HttpSession session, HttpServletResponse response)throws ParseException, IOException {
 		User user = (User) session.getAttribute("session_user");
 		Date[] startAndEnd = splitSchedule(vo.getSchedule());	
-		Wat pojo = new Wat(vo.getWat_id(),user.getEnname(),vo.getChassis(),vo.getPlatform(),vo.getDevice_name(),vo.getPn_sn(),startAndEnd[0],startAndEnd[1],vo.getBios_version(),vo.getImage_build_id(),vo.getTest_plan(),vo.getTester());
+		SoftrollRespin pojo = new SoftrollRespin(vo.getSoftrollrespin_id(),user.getEnname(),vo.getChassis(),vo.getPlatform(),vo.getTest_function(),startAndEnd[0],startAndEnd[1],vo.getBios_version(),vo.getImage_build_id(),vo.getTest_plan(),vo.getTester());
 		int status = daoImple.update(pojo);
 		PrintWriter printWriter = response.getWriter();
 		if (status == 1) {
