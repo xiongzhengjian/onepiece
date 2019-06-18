@@ -11,7 +11,7 @@
     <meta name="description" content="record">
     <meta name="bear" content="">
 
-    <title>Bios record</title>
+    <title>SoftrollRespin record</title>
     <%
 		String path = request.getContextPath(); 		
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -71,14 +71,12 @@
             <li><a>Export</a></li>            
           </ul>
           
-        
-          
           
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h4 class="page-header">BIOS tasks record</h4>          
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">       
+          <h4 class="page-header">Image softroll&respin tasks record</h4>          
   		 <span class="sub-header">
-         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> new</a>
+         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addsoftrollrespindata.action"> new</a>
 		 </span>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -86,7 +84,9 @@
                 <tr>
                   <th>Chassis</th>                  
                   <th>Platform</th>
-                  <th>Test Type</th>
+                  
+                  <th>Test Function</th>
+                  
                   <th>Schedule</th>                  
                   <th>Bios Version</th>
                   <th>Image Build ID</th>
@@ -96,23 +96,23 @@
                 </tr>
               </thead>
               <tbody>
-              	<c:forEach items="${biosVos}" varStatus="idStatus" var="biosVo" >              		
-                	
+              	<c:forEach items="${vos}" varStatus="idStatus" var="vo" > 
                 	<tr id="tr${idStatus.index+0 }">               		
-            			<td>${biosVo.chassis }</td> 
-            			<td>${biosVo.platform }</td>
-            			<td>${biosVo.test_type }</td>
-            			<td>${biosVo.schedule }</td>
-            			<td>${biosVo.bios_version }</td>
-            			<td>${biosVo.image_build_id }</td>
-            			<td>${biosVo.test_plan }</td>
-            			<td>${biosVo.tester }</td>            			          			
+            			<td>${vo.chassis }</td> 
+            			<td>${vo.platform }</td>
+            			
+            			<td>${vo.test_function }</td>
+            			
+            			<td>${vo.schedule }</td>
+            			<td>${vo.bios_version }</td>
+            			<td>${vo.image_build_id }</td>
+            			<td>${vo.test_plan }</td>
+            			<td>${vo.tester }</td>            			          			
             			<td>
-            				<a class="label label-default  edit" title="${biosVo.bios_id }" id="${idStatus.index+0 }">edit</a>
-            				<a class="label label-default  delete" title="${biosVo.bios_id }" id="${idStatus.index+0 }">delete</a>
+            				<a class="label label-default  edit" title="${vo.softrollrespin_id }" id="${idStatus.index+0 }">edit</a>
+            				<a class="label label-default  delete" title="${vo.softrollrespin_id }" id="${idStatus.index+0 }">delete</a>
             			</td>  
-        			</tr>  
-        			
+        			</tr>
         		</c:forEach> 
               </tbody>
             </table>
@@ -133,7 +133,6 @@
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
     
     
-    <!-- Bios -->
     <script type="text/javascript">
     
     	window.onload = function(){
@@ -141,7 +140,7 @@
 /*----------------- init Chassis by Ajax-----------------------*/
 		    	//define a global common_chassises variable for all Tr_Chassis
 		    	var common_chassises = '';
-				var common_test_type = new Array('BIOS pre-test','Weekly Test','BC Test','BIOS Softpaq','BIOS Full');
+				var common_test_function = new Array('FIT','WAT','Stress','HWQA','Benchmark','SWT');
 		    	$.ajax({ 
 	 		 	   url:  './record/findChassises.action',
 	 		 	   data: "{t:"+new Date().getTime()+"}",
@@ -186,9 +185,14 @@
  				var current_Tds = current_Tr.cells; 				
  				//gets all content of the current row but except  Operate_Td
  				var origin_chassis = current_Tds[0].innerText;
- 				var origin_platform = current_Tds[1].innerText;
- 				var origin_test_type = current_Tds[2].innerText;
- 				var origin_schedule = current_Tds[3].innerText;
+ 				var origin_platform = current_Tds[1].innerText; 
+ 				
+ 				/* --------variational-------START */
+ 				var origin_test_function = current_Tds[2].innerText;
+ 				/* --------variational-------END */
+ 				
+ 				
+ 				var origin_schedule = current_Tds[3].innerText; 				
  				var origin_bios_version = current_Tds[4].innerText;
  				var origin_image_build_id = current_Tds[5].innerText;
  				var origin_test_plan = current_Tds[6].innerText;
@@ -251,20 +255,29 @@
 	    		 new_platform_Td +='</div></td>';
 	    		 $(current_Tds[1]).html(new_platform_Td);   
 	    		 
-	    		/* test_type */
-	    		 var new_test_type = '<td><div class="form-group">';	    		
-	    		 new_test_type +='<select class="form-control" id="test_type'+editId+'" name="test_type">'; 
-				 $.each(common_test_type,function(i,n){
-					if(n==origin_test_type){
-						new_test_type +='<option selected="true" value=\"'+n+'\">'+ n + '</option>'; 
+	    		 
+	    		 
+	    		 
+	    		 
+	    		 /* --------variational-------START */
+	    		 
+	    		/*test_function */ 
+	    		 var new_test_function = '<td><div class="form-group">';	    		
+	    		 new_test_function +='<select class="form-control" id="test_function'+editId+'" name="test_function">'; 
+				 $.each(common_test_function,function(i,n){
+					if(n==origin_test_function){
+						new_test_function +='<option selected="true" value=\"'+n+'\">'+ n + '</option>'; 
 					}else{
-	 					new_test_type +='<option value=\"'+n+'\">'+ n + '</option>'; 
+						new_test_function +='<option value=\"'+n+'\">'+ n + '</option>'; 
 					}
 				});
-	    		
-	    		 new_test_type +='</select></div></td>';
-	    		 $(current_Tds[2]).html(new_test_type);
-	    		 ////console.log(common_test_type);
+				 new_test_function +='</select></div></td>';
+	    		 $(current_Tds[2]).html(new_test_function);
+	    		 
+	    		 /* --------variational-------END */
+	    		 
+	    		 
+	    		 
 	    		 
 	    		 /* schedule */
 	    		 var new_schedule ='<td><div class="form-group">';
@@ -310,12 +323,12 @@
 	    		 $(current_Tds[8]).html(new_operate);
 	    		 //
 	    		 $("#"+editId).click(function(){
-	    			 var data_Id = this.title;
-	    			 ////console.log(data_Id);
-	    			 //Fetch the contents of each field after modification
+	    			 var data_Id = this.title;	    			
 	    			 var altered_chassis2 = $("#chassis"+this.id).val();
 	  				 var altered_platform2 = $("#platform"+this.id).val();
-	  				 var altered_test_type2 = $("#test_type"+this.id).val();
+	  				 
+	  				 var altered_test_function2 = $("#test_function"+this.id).val();
+	  				 
 	  				 var altered_schedule2 = $("#schedule"+this.id).val();
 	  				 var altered_bios_version2 = $("#bios_version"+this.id).val();	
 	  				 var altered_image_build_id2 = $("#image_build_id"+this.id).val();	
@@ -324,13 +337,12 @@
 	  				 ////console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
 	    			 
 	  				 //------------Modify database data through Ajax
-	  				 var param = { bios_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,test_type:altered_test_type2,schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
-	  				 //var param = '{ "bios_id":"'+data_Id+'","chassis":"'+altered_chassis2+'"}';
-	  				 //var param = '{ bios_id:"'+data_Id+'",chassis:"'+altered_chassis2+'"}';
-	  				 //var param = '{ bios_id:'+data_Id+',chassis:'+altered_chassis2+'}';
-	  				 //var param = {bios_id:data_Id,chassis:altered_chassis2};
+	  				 var param = { softrollrespin_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,
+	  						test_function:altered_test_function2,
+	  						 	schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
+	  				 
 	    			 $.ajax({
-			 		 		url:  './record/edit.action', 
+			 		 		url:  './record/editsoftrollrespin.action', 
 			 		 		data:JSON.stringify(param),	
 			 		 		type: "POST",
 			 		 	   	dataType: "json",
@@ -345,15 +357,29 @@
 	    			 var altered_Tds = '';
 		    		 var altered_chassis_Td ='<td>'+altered_chassis2+'</td>'; 
 		    		 var altered_platform_Td ='<td>'+altered_platform2+'</td>';
-		    		 var altered_test_type_Td ='<td>'+altered_test_type2+'</td>';
+		    		 
+		    		 var altered_test_function_Td ='<td>'+altered_test_function2+'</td>';		    		 
+		    		 
+		    		 
 		    		 var altered_schedule_Td ='<td>'+altered_schedule2+'</td>';
 		    		 var altered_bios_version_Td ='<td>'+altered_bios_version2+'</td>';
 		    		 var altered_image_build_id_Td ='<td>'+altered_image_build_id2+'</td>';
 		    		 var altered_test_plan_Td ='<td>'+altered_test_plan2+'</td>';
 		    		 var altered_tester_Td ='<td>'+altered_tester2+'</td>';		    		
 		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
-		    		 altered_Tds = altered_chassis_Td+altered_platform_Td+altered_test_type_Td+altered_schedule_Td+altered_bios_version_Td+altered_image_build_id_Td+altered_test_plan_Td+altered_tester_Td+altered_operate_Td;
+		    		 altered_Tds = altered_chassis_Td
+		    		 +altered_platform_Td
+		    		 
+		    		 +altered_test_function_Td
+		    		 
+		    		 +altered_schedule_Td
+		    		 +altered_bios_version_Td
+		    		 +altered_image_build_id_Td
+		    		 +altered_test_plan_Td
+		    		 +altered_tester_Td
+		    		 +altered_operate_Td;
 		    		 $("#tr"+editId).html(altered_Tds);
+		    		 
 		    		 ////console.log(altered_Tds);
 	  				
 	    		 });

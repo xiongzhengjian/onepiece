@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.record.softrollrespin">
+
+	
+	<insert id="insertMultiple" parameterType="java.util.ArrayList" keyProperty="softrollrespin_id" useGeneratedKeys="true">
+		insert into softrollrespin 
+			(softrollrespin_id,owner,chassis,platform,test_function,start,end,bios_version,image_build_id,test_plan,tester)
+ 		values
+		 	<foreach collection="list" item="dao" index="index" separator=",">
+			 	(#{dao.softrollrespin_id},#{dao.owner},#{dao.chassis},#{dao.platform},#{dao.test_function},#{dao.start},#{dao.end},#{dao.bios_version},#{dao.image_build_id},#{dao.test_plan},#{dao.tester})
+		 	</foreach>
+	</insert>
+	
+	<select id="findAll" resultType="com.wistron.pojo.SoftrollRespin">
+		select * from
+			softrollrespin
+    	order by
+			softrollrespin_id desc
+	</select>
+	
+	<update id="update" parameterType="com.wistron.pojo.SoftrollRespin">
+		update softrollrespin set 			
+			owner=#{owner},
+		    chassis=#{chassis},
+		    platform=#{platform},
+		    test_function=#{test_function},		       
+		    start=#{start},
+		    end=#{end},
+		    bios_version=#{bios_version},
+		    image_build_id=#{image_build_id},
+		    test_plan=#{test_plan},
+		    tester=#{tester} 
+ 		where
+ 			softrollrespin_id=#{softrollrespin_id}
+	</update>
+	
+	
+	
+	
+</mapper>

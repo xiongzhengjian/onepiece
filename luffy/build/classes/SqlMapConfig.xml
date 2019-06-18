@@ -21,6 +21,10 @@
   	<mapper resource="Project.xml"/>
   	<mapper resource="Bios.xml"/>
   	<mapper resource="Commodity.xml"/>
+  	<mapper resource="Softpaq.xml"/>
+  	<mapper resource="Wat.xml"/>
+  	<mapper resource="SoftrollRespin.xml"/>
+  	
   	
   </mappers>
   
