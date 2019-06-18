@@ -23,9 +23,9 @@ public class SoftpaqDaoImpl {
 	 * Insert multiple data
 	 * @return
 	 */
-	public int insertSoftpaqs(List<Softpaq> softpaq){
+	public int insertMultiple(List<Softpaq> softpaq){
 		SqlSession sqlSession = factory.openSession();
-		int rows = sqlSession.insert("com.wistron.record.softpaq.insertSoftpaqs", softpaq);
+		int rows = sqlSession.insert("com.wistron.record.softpaq.insertMultiple", softpaq);
 		sqlSession.commit();	
 		return rows;
 	}
@@ -34,16 +34,16 @@ public class SoftpaqDaoImpl {
 	 * find all and sort in reverse order by softpaq desc		
 	 * @return
 	 */
-	public List<Softpaq> findAllSoftpaq(){
+	public List<Softpaq> findAll(){
 		SqlSession sqlSession = factory.openSession();		
-		List<Softpaq> list = sqlSession.selectList("com.wistron.record.softpaq.findAllSoftpaq");
+		List<Softpaq> list = sqlSession.selectList("com.wistron.record.softpaq.findAll");
 		return list;
 	}
 
 
-	public int updateSoftpaq(Softpaq softpaq) {
+	public int update(Softpaq softpaq) {
 		SqlSession sqlSession = factory.openSession();
-		int row = sqlSession.update("com.wistron.record.softpaq.updateSoftpaq", softpaq);
+		int row = sqlSession.update("com.wistron.record.softpaq.update", softpaq);
 		sqlSession.commit();
 		return row;
 	}

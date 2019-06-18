@@ -24,7 +24,7 @@ public class DaoTest_Softpaq {
 		Softpaq s2 = new Softpaq("Tester2","NesslerPxx","Sunflower","SP96603","NVIDIA GeForce Driver for VR1","26.21.14.3039-B-1",new Date(),new Date(),"F.20","18WW2SVT6AF","CDT-BIOS-Checklist_v4.6_pre-test","littlebear");
 		list.add(s1);
 		list.add(s2);
-		softpaqDaoImpl.insertSoftpaqs(list);
+		softpaqDaoImpl.insertMultiple(list);
 		
 		
 	}
@@ -32,7 +32,7 @@ public class DaoTest_Softpaq {
 	
 	@Test
 	public void findAllSoftpaq() throws Exception {		
-		List<Softpaq> list = softpaqDaoImpl.findAllSoftpaq();
+		List<Softpaq> list = softpaqDaoImpl.findAll();
 		System.out.println(list);
 		
 	}
@@ -41,7 +41,7 @@ public class DaoTest_Softpaq {
 	@Test
 	public void updateSoftpaq() throws Exception {
 		Softpaq data = new Softpaq(5,"AlterTester2","NesslerPxx","Sunflower","SP96603","NVIDIA GeForce Driver for VR1","26.21.14.3039-B-1",new Date(),new Date(),"F.20","18WW2SVT6AF","CDT-BIOS-Checklist_v4.6_pre-test","littlebear");
-		int row = softpaqDaoImpl.updateSoftpaq(data);
+		int row = softpaqDaoImpl.update(data);
 		
 	}
 	
