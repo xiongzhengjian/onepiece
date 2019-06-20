@@ -1,3 +1,4 @@
+use luffy;
 create table softpaq (
 	softpaq_id int(11) primary key auto_increment,
     chassis varchar(20),

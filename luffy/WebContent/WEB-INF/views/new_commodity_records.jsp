@@ -304,7 +304,7 @@
 				 var previous_platform_information =  $('#platform'+add_clicks).val();
 				 //console.log(previous_platform_information);
 				 if(!previous_platform_information){
-					 alert('Please select information for the "Platform">');
+					 alert('Please select information for the "Platform"');
 					 return;
 				 }
 				 
