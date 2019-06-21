@@ -56,7 +56,7 @@ public class RecordsExport {
 	}	
 	
 	@Test
-	public void bios() throws Exception{
+	public void biosExport() throws Exception{
 		//High level representation of a Excel workbook. 
 		//This is the first object most users will construct whether they are reading or writing a workbook. 
 		//It is also the top level object for creating new sheets/etc.
