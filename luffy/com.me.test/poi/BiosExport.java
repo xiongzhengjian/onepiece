@@ -26,32 +26,17 @@ import com.wistron.dao.BiosDaoImpl;
 import com.wistron.pojo.Bios;
 import com.wistron.pojo.vo.BiosVo;
 
-public class RecordsExport {
+public class BiosExport {
 	
 	private BiosDaoImpl biosDao;
-	private List<Bios> origindata;
-	List<BiosVo> data;
-	//private String[] titles = {"BIOS ID","Owner","Chassis","Platform","Test Type","Start","End","BIOS Version","Image Build Id","Test Plan","Tester"};
-	private String[] titles = {"BIOS ID","Chassis","Platform","Test Type","Schedule","BIOS Version","Image Build Id","Test Plan","Tester"};
+	private List<Bios> data;
+	private String[] titles = {"BIOS ID","Chassis","Platform","Test Type","Start","End","BIOS Version","Image Build Id","Test Plan","Tester"};
+	//private String[] titles = {"BIOS ID","Chassis","Platform","Test Type","Schedule","BIOS Version","Image Build Id","Test Plan","Tester"};
 	
 	@Before
 	public void initFactory() throws Exception {		
 		biosDao = new BiosDaoImpl();
-		origindata = biosDao.findAll();
-		data = new ArrayList<BiosVo>();
-		int size = origindata.size();
-		for(int i=0;i<size;i++) {
-			Bios bios = origindata.get(i);
-			//Set the value of Schedule based on the Start date and End date
-			Date start = bios.getStart();
-			Date end = bios.getEnd();
-			String strStart = new SimpleDateFormat("yyyy/MM/dd").format(start);
-			String strEnd = new SimpleDateFormat("yyyy/MM/dd").format(end);
-			String schedule = strStart + " - " + strEnd;
-			BiosVo biosVo = new BiosVo(bios.getBios_id(),bios.getChassis(),bios.getPlatform(),bios.getTest_type(),schedule,bios.getBios_version(),bios.getImage_build_id(),bios.getTest_plan(),bios.getTester());
-			data.add(biosVo);
-		}
-		
+		data = biosDao.findAll();		
 	}	
 	
 	@Test
@@ -88,34 +73,37 @@ public class RecordsExport {
         int rownum = 1;
         for (int i = 0; i < data.size(); i++, rownum++) {
         	Row row = sheet.createRow(rownum);
-        	BiosVo biosvo = data.get(i);
+        	Bios bios = data.get(i);
         	//"BIOS ID","Chassis","Platform","Test Type","Schedule","BIOS Version","Image Build Id","Test Plan","Tester"
         	Cell cellId = row.createCell(0);
-        	cellId.setCellValue(biosvo.getBios_id());
+        	cellId.setCellValue(bios.getBios_id());
         	
         	Cell cellChassis = row.createCell(1);
-        	cellChassis.setCellValue(biosvo.getChassis());
+        	cellChassis.setCellValue(bios.getChassis());
         	
         	Cell cellPlatform = row.createCell(2);
-        	cellPlatform.setCellValue(biosvo.getPlatform());
+        	cellPlatform.setCellValue(bios.getPlatform());
         	
         	Cell cellTestType = row.createCell(3);
-        	cellTestType.setCellValue(biosvo.getTest_type());
+        	cellTestType.setCellValue(bios.getTest_type());
         	
-        	Cell cellSchedule = row.createCell(4);
-        	cellSchedule.setCellValue(biosvo.getSchedule());
+        	Cell cellStart = row.createCell(4);
+        	cellStart.setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(bios.getStart()));
         	
-        	Cell cellBIOSVersion = row.createCell(5);
-        	cellBIOSVersion.setCellValue(biosvo.getBios_version());
+        	Cell cellEnd = row.createCell(5);
+        	cellEnd.setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(bios.getEnd()));
         	
-        	Cell cellImageBuildId = row.createCell(6);
-        	cellImageBuildId.setCellValue(biosvo.getImage_build_id());
+        	Cell cellBIOSVersion = row.createCell(6);
+        	cellBIOSVersion.setCellValue(bios.getBios_version());
         	
-        	Cell cellTestPlan = row.createCell(7);
-        	cellTestPlan.setCellValue(biosvo.getTest_plan());
+        	Cell cellImageBuildId = row.createCell(7);
+        	cellImageBuildId.setCellValue(bios.getImage_build_id());
         	
-        	Cell cellTester = row.createCell(8);
-        	cellTester.setCellValue(biosvo.getTester());
+        	Cell cellTestPlan = row.createCell(8);
+        	cellTestPlan.setCellValue(bios.getTest_plan());
+        	
+        	Cell cellTester = row.createCell(9);
+        	cellTester.setCellValue(bios.getTester());
         	
         }
         //set column widths, the width is measured in units of 1/256th of a character width
@@ -123,11 +111,12 @@ public class RecordsExport {
         sheet.setColumnWidth(1, 256*20);
         sheet.setColumnWidth(2, 256*20);
         sheet.setColumnWidth(3, 256*30);
-        sheet.setColumnWidth(4, 256*40);
-        sheet.setColumnWidth(5, 256*20);
-        sheet.setColumnWidth(6, 256*30);
-        sheet.setColumnWidth(7, 256*40);
-        sheet.setColumnWidth(8, 256*20);
+        sheet.setColumnWidth(4, 256*30);
+        sheet.setColumnWidth(5, 256*30);
+        sheet.setColumnWidth(6, 256*20);
+        sheet.setColumnWidth(7, 256*30);
+        sheet.setColumnWidth(8, 256*40);
+        sheet.setColumnWidth(9, 256*20);
         sheet.setZoom(75); //75% scale
         
         // Write the output to a file
@@ -196,13 +185,5 @@ public class RecordsExport {
         return style;
     }
 	
-	private String getSchedule(Bios bios) {
-		//Set the value of Schedule based on the Start date and End date
-		Date start = bios.getStart();
-		Date end = bios.getEnd();
-		String strStart = new SimpleDateFormat("yyyy/MM/dd").format(start);
-		String strEnd = new SimpleDateFormat("yyyy/MM/dd").format(end);
-		String schedule = strStart + " - " + strEnd;
-		return schedule;
-	}
+	
 }
