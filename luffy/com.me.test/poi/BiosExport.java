@@ -30,7 +30,7 @@ public class BiosExport {
 	
 	private BiosDaoImpl biosDao;
 	private List<Bios> data;
-	private String[] titles = {"BIOS ID","Chassis","Platform","Test Type","Start","End","BIOS Version","Image Build Id","Test Plan","Tester"};
+	private String[] titles = {"BIOS ID","Owner","Chassis","Platform","Test Type","Start","End","BIOS Version","Image Build Id","Test Plan","Tester"};
 	//private String[] titles = {"BIOS ID","Chassis","Platform","Test Type","Schedule","BIOS Version","Image Build Id","Test Plan","Tester"};
 	
 	@Before
@@ -50,7 +50,7 @@ public class BiosExport {
 		
 		Sheet sheet = wb.createSheet("Bios");
 		//turn off gridlines
-		sheet.setDisplayGridlines(false);
+		sheet.setDisplayGridlines(true);
 		sheet.setPrintGridlines(false);
 		sheet.setFitToPage(true);
 		sheet.setHorizontallyCenter(true);
@@ -74,35 +74,38 @@ public class BiosExport {
         for (int i = 0; i < data.size(); i++, rownum++) {
         	Row row = sheet.createRow(rownum);
         	Bios bios = data.get(i);
-        	//"BIOS ID","Chassis","Platform","Test Type","Schedule","BIOS Version","Image Build Id","Test Plan","Tester"
+        	//"BIOS ID","Owner","Chassis","Platform","Test Type","Schedule","BIOS Version","Image Build Id","Test Plan","Tester"
         	Cell cellId = row.createCell(0);
         	cellId.setCellValue(bios.getBios_id());
         	
-        	Cell cellChassis = row.createCell(1);
+        	Cell cellOwner = row.createCell(1);
+        	cellOwner.setCellValue(bios.getOwner());
+        	
+        	Cell cellChassis = row.createCell(2);
         	cellChassis.setCellValue(bios.getChassis());
         	
-        	Cell cellPlatform = row.createCell(2);
+        	Cell cellPlatform = row.createCell(3);
         	cellPlatform.setCellValue(bios.getPlatform());
         	
-        	Cell cellTestType = row.createCell(3);
+        	Cell cellTestType = row.createCell(4);
         	cellTestType.setCellValue(bios.getTest_type());
         	
-        	Cell cellStart = row.createCell(4);
+        	Cell cellStart = row.createCell(5);
         	cellStart.setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(bios.getStart()));
         	
-        	Cell cellEnd = row.createCell(5);
+        	Cell cellEnd = row.createCell(6);
         	cellEnd.setCellValue(new SimpleDateFormat("yyyy-MM-dd").format(bios.getEnd()));
         	
-        	Cell cellBIOSVersion = row.createCell(6);
+        	Cell cellBIOSVersion = row.createCell(7);
         	cellBIOSVersion.setCellValue(bios.getBios_version());
         	
-        	Cell cellImageBuildId = row.createCell(7);
+        	Cell cellImageBuildId = row.createCell(8);
         	cellImageBuildId.setCellValue(bios.getImage_build_id());
         	
-        	Cell cellTestPlan = row.createCell(8);
+        	Cell cellTestPlan = row.createCell(9);
         	cellTestPlan.setCellValue(bios.getTest_plan());
         	
-        	Cell cellTester = row.createCell(9);
+        	Cell cellTester = row.createCell(10);
         	cellTester.setCellValue(bios.getTester());
         	
         }
@@ -117,10 +120,11 @@ public class BiosExport {
         sheet.setColumnWidth(7, 256*30);
         sheet.setColumnWidth(8, 256*40);
         sheet.setColumnWidth(9, 256*20);
+        sheet.setColumnWidth(9, 256*20);
         sheet.setZoom(75); //75% scale
         
         // Write the output to a file
-        String file = "bios.xlsx";
+        String file = "bios_owner.xlsx";
         FileOutputStream out = new FileOutputStream(file);
         wb.write(out);
         out.close();
