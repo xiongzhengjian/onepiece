@@ -1,10 +1,7 @@
 package poi;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +31,7 @@ import com.wistron.pojo.Softpaq;
 import com.wistron.pojo.SoftrollRespin;
 import com.wistron.pojo.Wat;
 
-public class BiosExport {
+public class RecordExport {
 	
 	private BiosDaoImpl biosDao;
 	private List<Bios> data;
@@ -146,7 +143,7 @@ public class BiosExport {
 	
 	
 	@Test
-	public void exportAll() throws Exception {
+	public void exportAllRecord() throws Exception {
 		BiosDaoImpl biosDao = new BiosDaoImpl();
 		List<Bios> biosdata = biosDao.findAll();
 		//create a workbook

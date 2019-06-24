@@ -25,7 +25,7 @@ insert into softrollrespin
 (2,'Tester2','NesslerP','Sunflower','WAT','2018-06-08 14:25:30','2019-06-11 11:40:30','F.20','18WW2SVT6AF','CDT-BIOS-Checklist_v4.6_pre-test','littlebear'),
 (3,'Tester3','NesslerP','Sunflower','SWT','2019-02-08 08:25:30','2019-06-11 11:40:30','F.20','18WW2SVT6AF','CDT-BIOS-Checklist_v4.6_pre-test','littlebear');
 
-select * from softrollrespin;
+
 
 update softrollrespin set 			
 			owner='me',
@@ -40,3 +40,5 @@ update softrollrespin set
 		    tester='littlebear' 
  		where
  			softrollrespin_id='2';
+            
+select * from softrollrespin;

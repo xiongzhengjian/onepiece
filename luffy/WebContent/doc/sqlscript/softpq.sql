@@ -49,3 +49,5 @@ update softpaq set
 		    tester='littlebear' 
  		where
  			softpaq_id='3';
+            
+select * from softpaq;

@@ -24,7 +24,6 @@ insert into wat
 (6,'Tester6','NesslerP','Sunflower','Headset 1200','924121-008','2019-02-08 08:25:30','2019-06-11 11:40:30','F.20','18WW2SVT6AF','CDT-BIOS-Checklist_v4.6_pre-test','littlebear');
 
 
-select * from wat;
 
 update wat set 			
 			owner='Tester1',
@@ -40,3 +39,5 @@ update wat set
 		    tester='littlebear' 
  		where
  			wat_id='1';
+
+select * from wat;
