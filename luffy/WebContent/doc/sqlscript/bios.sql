@@ -23,6 +23,7 @@ update bios set owner='Yiquan'
 	where
     bios_id = 1;
 
+use luffy;
 select * from bios;
 
 select bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester 
