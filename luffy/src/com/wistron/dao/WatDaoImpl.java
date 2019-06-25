@@ -36,7 +36,7 @@ public class WatDaoImpl {
 	 */
 	public List<Wat> findAll(){
 		SqlSession sqlSession = factory.openSession();		
-		List<Wat> list = sqlSession.selectList("com.wistron.record.wat.findAllWat");
+		List<Wat> list = sqlSession.selectList("com.wistron.record.wat.findAll");
 		return list;
 	}
 

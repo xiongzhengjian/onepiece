@@ -73,22 +73,18 @@
           
           
           <form method="POST" enctype="multipart/form-data" id="form1" action="./record/import.action"">  
-       
              <!-- <label>Import </label> -->
             <input id="upfile" type="file" name="upfile"><br>     
+            <input type=hidden value="bios" name="category">
             <input type="submit" value="Import"  onclick="return checkData()">
-
-    		</form>
+    	  </form>
     	
-        
-          
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h4 class="page-header">BIOS tasks record</h4>          
   		 <span class="sub-header">
          	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> New</a>
-         	<!-- <a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/import.action""> Import</a> -->         	
 		 </span>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -377,6 +373,23 @@
  			});
  			
     	}
+    </script>
+    
+    <script type="text/javascript">
+	  //Verify that the file meets the requirements  
+	    function checkData(){  
+	       var fileDir = $("#upfile").val();  
+	       var suffix = fileDir.substr(fileDir.lastIndexOf("."));  
+	       if("" == fileDir){  
+	           alert("Select the Excel file you want to import!");  
+	           return false;  
+	       }  
+	       if(".xlsx" != suffix ){  
+	           alert("Select Excel format for file import!");  
+	           return false;  
+	       }  
+	       return true;  
+	    }   
     </script>
     
     

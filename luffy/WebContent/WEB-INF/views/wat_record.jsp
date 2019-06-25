@@ -67,9 +67,17 @@
             <li><a href="./record/softrollrespin.action">Image softroll&respin</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="./record/import.action">Import</a></li>
+           <!--  <li><a href="./record/import.action">Import</a></li> -->
             <li><a href="./record/export.action">Export</a></li>            
           </ul>
+          
+          <form method="POST" enctype="multipart/form-data" id="form1" action="./record/import.action"">  
+             <!-- <label>Import </label> -->
+            <input id="upfile" type="file" name="upfile"><br>     
+            <input type=hidden value="wat" name="category">
+            <input type="submit" value="Import"  onclick="return checkData()">
+    	  </form>
+          
           
           
         </div>
@@ -404,7 +412,22 @@
     	}
     </script>
     
-    
+    <script type="text/javascript">
+	  //Verify that the file meets the requirements  
+	    function checkData(){  
+	       var fileDir = $("#upfile").val();  
+	       var suffix = fileDir.substr(fileDir.lastIndexOf("."));  
+	       if("" == fileDir){  
+	           alert("Select the Excel file you want to import!");  
+	           return false;  
+	       }  
+	       if(".xlsx" != suffix ){  
+	           alert("Select Excel format for file import!");  
+	           return false;  
+	       }  
+	       return true;  
+	    }   
+    </script>
     
     
    

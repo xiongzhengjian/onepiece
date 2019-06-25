@@ -18,7 +18,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import com.wistron.dao.ExportRecordDaoImpl;
+import com.wistron.dao.ExcelRecordDaoImpl;
 import com.wistron.pojo.Bios;
 import com.wistron.pojo.Commodity;
 import com.wistron.pojo.Softpaq;
@@ -33,7 +33,7 @@ public class RecordExport {
 	
 	
 	public void exportAllRecord(ServletOutputStream out) throws Exception {
-	    ExportRecordDaoImpl  daoImple = new ExportRecordDaoImpl();
+	    ExcelRecordDaoImpl  daoImple = new ExcelRecordDaoImpl();
 		List<Bios> biosdata = daoImple.findAllBios();
 		//create a workbook
 		Workbook wb = new XSSFWorkbook();

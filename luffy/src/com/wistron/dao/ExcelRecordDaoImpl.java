@@ -11,11 +11,11 @@ import com.wistron.pojo.Softpaq;
 import com.wistron.pojo.SoftrollRespin;
 import com.wistron.pojo.Wat;
 
-public class ExportRecordDaoImpl {
+public class ExcelRecordDaoImpl {
 	
 	private SqlSessionFactory factory;
 	//initialize factory when MealDaoImpl is created
-	public ExportRecordDaoImpl() {
+	public ExcelRecordDaoImpl() {
 			super();
 			try {
 				factory = DaoUtil.getSqlSessionFactory();
@@ -54,5 +54,38 @@ public class ExportRecordDaoImpl {
 		return list;
 	}
 	
+	public int insertBioses(List<Bios> bioses){
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.insert("com.wistron.record.bios.insertBioses", bioses);
+		sqlSession.commit();	
+		return rows;
+	}
+	
+	public int insertCommodities(List<Commodity> commodity){
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.insert("com.wistron.record.commodity.insertCommodities", commodity);
+		sqlSession.commit();	
+		return rows;
+	}
+	
+	public int insertSoftpaq(List<Softpaq> softpaq){
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.insert("com.wistron.record.softpaq.insertMultiple", softpaq);
+		sqlSession.commit();	
+		return rows;
+	}
+	
+	public int insertWat(List<Wat> list){
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.insert("com.wistron.record.wat.insertMultiple", list);
+		sqlSession.commit();	
+		return rows;
+	}
 
+	public int insertIsr(List<SoftrollRespin> list){
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.insert("com.wistron.record.softrollrespin.insertMultiple", list);
+		sqlSession.commit();	
+		return rows;
+	}
 }
