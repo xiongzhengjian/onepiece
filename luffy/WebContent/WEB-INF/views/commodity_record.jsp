@@ -66,9 +66,9 @@
             <li><a href="./record/wat.action">WAT</a></li>
             <li><a href="./record/softrollrespin.action">Image softroll&respin</a></li>
           </ul>
-           <ul class="nav nav-sidebar">
-            <li><a>Import</a></li>
-            <li><a>Export</a></li>            
+          <ul class="nav nav-sidebar">
+            <li><a href="./record/import.action">Import</a></li>
+            <li><a href="./record/export.action">Export</a></li>            
           </ul>
           
         

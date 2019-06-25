@@ -22,6 +22,12 @@
 			bios_id desc
 	</select>
 	
+	<select id="findAllBios" resultType="com.wistron.pojo.Bios">
+		select bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester 
+		from
+			bios    	
+	</select>
+	
 	<update id="update" parameterType="com.wistron.pojo.Bios">
 		update bios set 
 			owner=#{owner},

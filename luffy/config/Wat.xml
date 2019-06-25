@@ -20,6 +20,10 @@
     	order by
 			wat_id desc
 	</select>
+	<select id="findAllWat" resultType="com.wistron.pojo.Wat">
+		select * from
+			wat    	
+	</select>
 	
 	<update id="update" parameterType="com.wistron.pojo.Wat">
 		update wat set 			

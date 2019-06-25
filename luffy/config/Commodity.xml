@@ -20,6 +20,10 @@
     	order by
 			commodity_id desc
 	</select>
+	<select id="findAll" resultType="com.wistron.pojo.Commodity">
+		select * from
+			commodity    	
+	</select>
 	
 	<update id="updateCommodity" parameterType="com.wistron.pojo.Commodity">
 		update commodity set 			

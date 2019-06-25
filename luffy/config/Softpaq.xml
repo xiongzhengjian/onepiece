@@ -20,6 +20,10 @@
     	order by
 			softpaq_id desc
 	</select>
+	<select id="findAllSoftpaq" resultType="com.wistron.pojo.Softpaq">
+		select * from
+			softpaq    	
+	</select>
 	
 	<update id="update" parameterType="com.wistron.pojo.Softpaq">
 		update softpaq set 			

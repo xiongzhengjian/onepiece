@@ -20,6 +20,10 @@
     	order by
 			softrollrespin_id desc
 	</select>
+	<select id="findAllsfrb" resultType="com.wistron.pojo.SoftrollRespin">
+		select * from
+			softrollrespin    	
+	</select>
 	
 	<update id="update" parameterType="com.wistron.pojo.SoftrollRespin">
 		update softrollrespin set 			

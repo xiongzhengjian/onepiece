@@ -359,7 +359,6 @@ public class RecordImport {
 						String  pn_sn = locateRow.getCell(5).getStringCellValue();
 						
 						
-						
 						String  start = locateRow.getCell(6).getStringCellValue();
 						String  end = locateRow.getCell(7).getStringCellValue();
 						Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse(start);
@@ -441,9 +440,6 @@ public class RecordImport {
 					SoftrollRespinDaoImpl isr_dao = new SoftrollRespinDaoImpl();
 					isr_dao.insertMultiple(new_isr_list);
 				}
-				
-				
-				
 				
 					inp.close();			        
 			        wb.close();

@@ -66,11 +66,20 @@
             <li><a href="./record/wat.action">WAT</a></li>
             <li><a href="./record/softrollrespin.action">Image softroll&respin</a></li>
           </ul>
-           <ul class="nav nav-sidebar">
-            <li><a>Import</a></li>
-            <li><a>Export</a></li>            
+          <ul class="nav nav-sidebar">
+            <!-- <li><a href="./record/import.action">Import</a></li> -->
+            <li><a href="./record/export.action">Export</a></li>                   
           </ul>
           
+          
+          <form method="POST" enctype="multipart/form-data" id="form1" action="./record/import.action"">  
+       
+             <!-- <label>Import </label> -->
+            <input id="upfile" type="file" name="upfile"><br>     
+            <input type="submit" value="Import"  onclick="return checkData()">
+
+    		</form>
+    	
         
           
           
@@ -78,7 +87,8 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h4 class="page-header">BIOS tasks record</h4>          
   		 <span class="sub-header">
-         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> new</a>
+         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> New</a>
+         	<!-- <a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/import.action""> Import</a> -->         	
 		 </span>
           <div class="table-responsive">
             <table class="table table-striped">
