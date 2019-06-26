@@ -115,7 +115,7 @@ public class ProjectRecordController {
 	 */
 	@RequestMapping("/record/insertBioses")
 	public String insertBioses(HttpSession session,BiosVos biosVos) throws ParseException {
-		System.out.println(biosVos);		
+//		System.out.println(biosVos);		
 		User user = (User) session.getAttribute("session_user");
 		if(user==null) {
 			return "index.jsp";
@@ -148,7 +148,7 @@ public class ProjectRecordController {
 		}else {
 			printWriter.print("fail");
 		}
-		System.out.println(bios);
+//		System.out.println(bios);
 		
 	}
 	

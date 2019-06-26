@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wistron.record.softpaq2">
+
+	
+	<insert id="insertMultiple" parameterType="java.util.ArrayList" keyProperty="softpaq_id" useGeneratedKeys="true">
+		insert into softpaq2 
+			(softpaq_id,owner,start,end,sp_number,softpaq_title,version,platform,sptest_tool_status,installation_status,function_status,products_sequence,mark)
+ 		values
+		 	<foreach collection="list" item="softpaq" index="index" separator=",">
+			 	(#{softpaq.softpaq_id},#{softpaq.owner},#{softpaq.start},#{softpaq.end},#{softpaq.sp_number},#{softpaq.softpaq_title},#{softpaq.version},#{softpaq.platform},#{softpaq.sptest_tool_status},#{softpaq.installation_status},#{softpaq.function_status},#{softpaq.products_sequence},#{softpaq.mark})
+		 	</foreach>
+	</insert>
+	
+	<select id="findAll" resultType="com.wistron.pojo.Softpaq2">
+		select * from
+			softpaq2
+    	order by
+			softpaq_id desc
+	</select>
+	<select id="findAllSoftpaq" resultType="com.wistron.pojo.Softpaq2">
+		select * from
+			softpaq2   	
+	</select>
+	
+	<update id="update" parameterType="com.wistron.pojo.Softpaq2">
+		update softpaq2 set
+			owner=#{owner},start=#{start},end=#{end},sp_number=#{sp_number},softpaq_title=#{softpaq_title},version=#{version},platform=#{platform},sptest_tool_status=#{sptest_tool_status},installation_status=#{installation_status},function_status=#{function_status},products_sequence=#{products_sequence},mark=#{mark}
+ 		where
+ 			softpaq_id=#{softpaq_id}
+	</update>
+	
+	
+	
+	
+</mapper>

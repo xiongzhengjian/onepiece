@@ -73,7 +73,7 @@ public class CommodityController {
 	
 	@RequestMapping("/record/insertcommodities")
 	public String insertCommodities(HttpSession session, CommodityVos commodityVos) throws ParseException {
-		System.out.println(commodityVos);
+//		System.out.println(commodityVos);
 		User user = (User) session.getAttribute("session_user");
 		if (user == null) {
 			return "index.jsp";
@@ -106,7 +106,7 @@ public class CommodityController {
 		} else {
 			printWriter.print("fail");
 		}
-		System.out.println(commodity);
+//		System.out.println(commodity);
 
 	}
 

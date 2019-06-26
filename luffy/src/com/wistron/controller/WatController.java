@@ -67,7 +67,7 @@ public class WatController {
 	
 	@RequestMapping("/record/insertwats")
 	public String insertMultiple(HttpSession session, WatVos vos) throws ParseException {
-		System.out.println(vos);
+//		System.out.println(vos);
 		User user = (User) session.getAttribute("session_user");
 		if (user == null) {
 			return "/index.jsp";
@@ -100,7 +100,7 @@ public class WatController {
 		} else {
 			printWriter.print("fail");
 		}
-		System.out.println(vo);
+//		System.out.println(vo);
 
 	}
 

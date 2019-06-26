@@ -67,7 +67,7 @@ public class SoftpaqController {
 	
 	@RequestMapping("/record/insertsoftpaqs")
 	public String insertMultiple(HttpSession session, SoftpaqVos vos) throws ParseException {
-		System.out.println(vos);
+//		System.out.println(vos);
 		User user = (User) session.getAttribute("session_user");
 		if (user == null) {
 			return "index.jsp";
@@ -100,7 +100,7 @@ public class SoftpaqController {
 		} else {
 			printWriter.print("fail");
 		}
-		System.out.println(vo);
+//		System.out.println(vo);
 
 	}
 
