@@ -28,6 +28,12 @@
 			bios    	
 	</select>
 	
+	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Page" resultType="com.wistron.pojo.Bios">
+		select * from bios 
+			order by bios_id desc
+			limit #{offset},#{rows};
+	</select>
+	
 	<update id="update" parameterType="com.wistron.pojo.Bios">
 		update bios set 
 			owner=#{owner},

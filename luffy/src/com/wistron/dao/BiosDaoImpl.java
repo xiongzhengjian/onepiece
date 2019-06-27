@@ -11,6 +11,7 @@ import com.wistron.pojo.Bios;
 import com.wistron.pojo.Meal;
 import com.wistron.pojo.Project;
 import com.wistron.pojo.vo.Ordersubmit;
+import com.wistron.pojo.vo.Page;
 
 public class BiosDaoImpl {
 	
@@ -55,6 +56,14 @@ public class BiosDaoImpl {
 		int row = sqlSession.update("com.wistron.record.bios.update", bios);
 		sqlSession.commit();
 		return row;
+	}
+
+
+	public List<Bios> limitFindAll(Page page) {
+		SqlSession sqlSession = factory.openSession();
+		
+		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.limitFindAll",page);
+		return list;
 	}
 	
 	

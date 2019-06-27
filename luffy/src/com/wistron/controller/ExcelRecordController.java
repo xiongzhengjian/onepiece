@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.wistron.utils.RecordExport;
 import com.wistron.utils.RecordExport2;
-import com.wistron.utils.RecordImport;
 import com.wistron.utils.RecordImport2;
 
 @Controller
@@ -27,7 +25,8 @@ public class ExcelRecordController {
 	public void exportExcel(HttpSession session,HttpServletResponse response) throws Exception{
 	    response.setContentType("application/binary;charset=UTF-8");
 	    ServletOutputStream out=response.getOutputStream();
-	    String datetime = new SimpleDateFormat("yyMMddHHmm").format(new Date());
+//	    String datetime = new SimpleDateFormat("yyMMddHHmm").format(new Date());
+	    String datetime = new SimpleDateFormat("yyMMdd").format(new Date());
 	    response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode("records_"+datetime+".xlsx", "UTF-8"));
 //	    RecordExport export = new RecordExport();
 	    RecordExport2 export = new RecordExport2();

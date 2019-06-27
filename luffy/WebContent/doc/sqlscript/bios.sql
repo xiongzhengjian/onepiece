@@ -47,3 +47,7 @@ update bios set
  bios_id=1;
 
 select * from bios;
+
+select * from bios 
+		order by bios_id desc
+		limit 0,10;
