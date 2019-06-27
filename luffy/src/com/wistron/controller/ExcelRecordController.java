@@ -16,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.wistron.utils.RecordExport;
+import com.wistron.utils.RecordExport2;
 import com.wistron.utils.RecordImport;
+import com.wistron.utils.RecordImport2;
 
 @Controller
 public class ExcelRecordController {
@@ -27,7 +29,8 @@ public class ExcelRecordController {
 	    ServletOutputStream out=response.getOutputStream();
 	    String datetime = new SimpleDateFormat("yyMMddHHmm").format(new Date());
 	    response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode("records_"+datetime+".xlsx", "UTF-8"));
-	    RecordExport export = new RecordExport();
+//	    RecordExport export = new RecordExport();
+	    RecordExport2 export = new RecordExport2();
 	    export.exportAllRecord(out);
 		
 	}
@@ -39,7 +42,8 @@ public class ExcelRecordController {
 		MultipartFile file = multipartRequest.getFile("upfile"); 
 		
 		InputStream inputStream = file.getInputStream();
-		RecordImport importExcel = new RecordImport();
+//		RecordImport importExcel = new RecordImport();
+		RecordImport2 importExcel = new RecordImport2();
 		importExcel.importAllRecord(inputStream);
 		
 		switch(category) {
@@ -50,7 +54,7 @@ public class ExcelRecordController {
 				return "redirect:./commodity.action";
 				
 			case "softpaq":
-				return "redirect:./softpaq.action";
+				return "redirect:./softpaq2.action";
 				
 			case "wat":
 				return "redirect:./wat.action";

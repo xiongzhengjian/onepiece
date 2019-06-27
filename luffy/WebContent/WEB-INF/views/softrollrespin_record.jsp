@@ -62,7 +62,8 @@
             <li class="active"><a>Sustaining Test<span class="sr-only">(current)</span></a></li>
             <li><a  href="./record/projectrecord.action">BIOS pre-release</a></li>
             <li><a href="./record/commodity.action">Commodity</a></li>
-            <li><a href="./record/softpaq.action">Softpaq</a></li>
+            <!-- <li><a href="./record/softpaq.action">Softpaq</a></li> -->
+            <li><a href="./record/softpaq2.action">Softpaq</a></li>
             <li><a href="./record/wat.action">WAT</a></li>
             <li><a href="./record/softrollrespin.action">Image softroll&respin</a></li>
           </ul>

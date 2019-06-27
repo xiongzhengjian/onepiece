@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import com.wistron.pojo.Bios;
 import com.wistron.pojo.Commodity;
 import com.wistron.pojo.Softpaq;
+import com.wistron.pojo.Softpaq2;
 import com.wistron.pojo.SoftrollRespin;
 import com.wistron.pojo.Wat;
 
@@ -42,6 +43,12 @@ public class ExcelRecordDaoImpl {
 		return list;
 	}
 	
+	public List<Softpaq2> findAllSoftpaq2(){
+		SqlSession sqlSession = factory.openSession();		
+		List<Softpaq2> list = sqlSession.selectList("com.wistron.record.softpaq2.findAllSoftpaq");
+		return list;
+	}
+	
 	public List<Wat> findAllWat(){
 		SqlSession sqlSession = factory.openSession();		
 		List<Wat> list = sqlSession.selectList("com.wistron.record.wat.findAll");
@@ -71,6 +78,13 @@ public class ExcelRecordDaoImpl {
 	public int insertSoftpaq(List<Softpaq> softpaq){
 		SqlSession sqlSession = factory.openSession();
 		int rows = sqlSession.insert("com.wistron.record.softpaq.insertMultiple", softpaq);
+		sqlSession.commit();	
+		return rows;
+	}
+	
+	public int insertSoftpaq2(List<Softpaq2> softpaq){
+		SqlSession sqlSession = factory.openSession();
+		int rows = sqlSession.insert("com.wistron.record.softpaq2.insertMultiple", softpaq);
 		sqlSession.commit();	
 		return rows;
 	}

@@ -20,6 +20,7 @@
     	order by
 			softpaq_id desc
 	</select>
+	
 	<select id="findAllSoftpaq" resultType="com.wistron.pojo.Softpaq2">
 		select * from
 			softpaq2   	
