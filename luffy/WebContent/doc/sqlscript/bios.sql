@@ -50,4 +50,5 @@ select * from bios;
 
 select * from bios 
 		order by bios_id desc
-		limit 0,10;
+		limit 5,10;
+select count(bios_id) as totalrows from bios;

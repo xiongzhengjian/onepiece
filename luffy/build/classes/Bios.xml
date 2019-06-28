@@ -28,7 +28,11 @@
 			bios    	
 	</select>
 	
-	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Page" resultType="com.wistron.pojo.Bios">
+	<select id="count" resultType="java.lang.Integer">
+		select count(bios_id) as totalrows from bios
+	</select>
+	
+	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Limit" resultType="com.wistron.pojo.Bios">
 		select * from bios 
 			order by bios_id desc
 			limit #{offset},#{rows};
@@ -49,6 +53,7 @@
  		where
  			bios_id=#{bios_id}
 	</update>
+	
 	
 	
 	

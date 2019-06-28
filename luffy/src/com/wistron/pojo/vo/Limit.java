@@ -1,13 +1,13 @@
 package com.wistron.pojo.vo;
 
-public class Page {
+public class Limit {
 
 	private int offset;
 	private int rows;
-	public Page() {
+	public Limit() {
 		super();
 	}
-	public Page(int offset, int rows) {
+	public Limit(int offset, int rows) {
 		super();
 		this.offset = offset;
 		this.rows = rows;

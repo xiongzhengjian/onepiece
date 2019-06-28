@@ -8,10 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.wistron.pojo.Bios;
-import com.wistron.pojo.Meal;
-import com.wistron.pojo.Project;
-import com.wistron.pojo.vo.Ordersubmit;
-import com.wistron.pojo.vo.Page;
+import com.wistron.pojo.vo.Limit;
 
 public class BiosDaoImpl {
 	
@@ -59,11 +56,17 @@ public class BiosDaoImpl {
 	}
 
 
-	public List<Bios> limitFindAll(Page page) {
+	public List<Bios> limitFindAll(Limit limit) {
 		SqlSession sqlSession = factory.openSession();
 		
-		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.limitFindAll",page);
+		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.limitFindAll",limit);
 		return list;
+	}
+	
+	public int count() {
+		SqlSession sqlSession = factory.openSession();
+		int  totalrows = sqlSession.selectOne("com.wistron.record.bios.count");
+		return totalrows;
 	}
 	
 	
