@@ -28,15 +28,15 @@ public class Test_PageBean {
 		int perPageRows = 15;
 		PageBean<Bios> pageBean = new PageBean<Bios>(totalRows,perPageRows,currentPage);
 		List<Bios> data = biosDao.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
-		pageBean.setData(data);
+//		pageBean.setData(data);
 		
 		
 		int offset = pageBean.getOffset();
 		int pageRangeStart = pageBean.getPageRangeStart();
 		int pageRangeEnd = pageBean.getPageRangeEnd();
-		List<Bios> list = pageBean.getData();
+//		List<Bios> list = pageBean.getData();
 		
-		System.out.println(list);
+//		System.out.println(list);
 		System.out.println("totalRows:  "+totalRows+";  totalPage:  "+pageBean.getTotalPage()+";  offset:  "+offset+";  pageRangeStart  :"+pageRangeStart+";  pageRangeEnd:   "+pageRangeEnd);
 		
 		for(int i=pageBean.getPageRangeStart();i<=pageBean.getPageRangeEnd();i++) {

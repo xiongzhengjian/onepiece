@@ -24,12 +24,10 @@ import com.wistron.pojo.Project;
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.BiosVo;
 import com.wistron.pojo.vo.BiosVos;
-import com.wistron.pojo.vo.Limit;
-import com.wistron.utils.PageBean;
 
 
 @Controller
-public class ProjectRecordController {
+public class ProjectRecordController2 {
 	
 	private ProjectDaoImpl projectDao = new ProjectDaoImpl();
 	private BiosDaoImpl biosDao = new BiosDaoImpl();
@@ -44,7 +42,7 @@ public class ProjectRecordController {
 	 * @throws ParseException
 	 */
 	@ResponseBody
-	@RequestMapping("/record/findChassises")
+//	@RequestMapping("/record/findChassises")
 	public Map<String,List<Project>> findChassises() throws ParseException {	
 		Map<String,List<Project>> chassises = new HashMap<String,List<Project>>();
 		List<Project> list = projectDao.findChassises();
@@ -57,7 +55,7 @@ public class ProjectRecordController {
 	 * @throws ParseException
 	 */
 	@ResponseBody
-	@RequestMapping("/record/findPlatform")
+//	@RequestMapping("/record/findPlatform")
 	public Map<String,List<Project>> findPlatform(@RequestBody Project project) throws ParseException {	
 	//public Map<String,List<Project>> findPlatform(@RequestParam ("chassis") String chassis) throws ParseException {	
 		Map<String,List<Project>> platforms = new HashMap<String,List<Project>>();
@@ -74,17 +72,9 @@ public class ProjectRecordController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@RequestMapping("/record/projectrecord")
-	public String projectrecord(HttpSession session,Model model) throws ParseException {
-		
-		int totalRows = biosDao.count();
-		int currentPage = 2;
-		int perPageRows = 15;
-		
-		PageBean<BiosVo> pageBean = new PageBean<BiosVo>(totalRows,perPageRows,currentPage);
-		//List<Bios> list = biosDao.findAll();
-		List<Bios> list = biosDao.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
-		
+//	@RequestMapping("/record/projectrecord")
+	public String projectrecord(HttpSession session,Model model) throws ParseException {	
+		List<Bios> list = biosDao.findAll();
 		List<BiosVo> biosVos = new ArrayList<BiosVo>();
 		//bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester
 		int size = list.size();
@@ -99,10 +89,7 @@ public class ProjectRecordController {
 			BiosVo biosVo = new BiosVo(bios.getBios_id(),bios.getChassis(),bios.getPlatform(),bios.getTest_type(),schedule,bios.getBios_version(),bios.getImage_build_id(),bios.getTest_plan(),bios.getTester());
 			biosVos.add(biosVo);
 		}
-		Map<String,Object> data = new HashMap<String,Object>();
-		data.put("vos", biosVos);
-		data.put("pagebean", pageBean);
-		model.addAttribute("data",data);
+		model.addAttribute("biosVos",biosVos);
 		
 		return "/WEB-INF/views/project_record.jsp";
 	}
@@ -114,7 +101,7 @@ public class ProjectRecordController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@RequestMapping("/record/addbiosdata")
+//	@RequestMapping("/record/addbiosdata")
 	public String addbiosdata(){			
 		return "/WEB-INF/views/new_bios_records.jsp";
 	}
@@ -126,7 +113,7 @@ public class ProjectRecordController {
 	 * @return
 	 * @throws ParseException
 	 */
-	@RequestMapping("/record/insertBioses")
+//	@RequestMapping("/record/insertBioses")
 	public String insertBioses(HttpSession session,BiosVos biosVos) throws ParseException {
 //		System.out.println(biosVos);		
 		User user = (User) session.getAttribute("session_user");
@@ -149,7 +136,7 @@ public class ProjectRecordController {
 		 return "redirect:./projectrecord.action";
 	}
 	
-	@RequestMapping("/record/edit")
+//	@RequestMapping("/record/edit")
 	public void edit(@RequestBody BiosVo biosVo,HttpSession session,HttpServletResponse response) throws ParseException, IOException {
 		User user = (User) session.getAttribute("session_user");
 		Date[] startAndEnd = splitSchedule(biosVo.getSchedule()); 

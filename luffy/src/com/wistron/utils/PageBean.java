@@ -16,7 +16,7 @@ public class PageBean<T> {
 	//specifies the offset of the first row to return after flip over 
 	private int offset;
 	//place the data to be displayed per page in the list collection
-    private List<T> data;
+    //private List<T> data;
 	
     
 	private int pageRangeStart;
@@ -47,13 +47,13 @@ public class PageBean<T> {
 		this.offset = (currentPage-1)*perPageRows;
 		
 		//sets the range value of the  paging
-		if(totalPage<=8) {
+		if(totalPage<=7) {
 			this.pageRangeStart = 1;
 			this.pageRangeEnd = this.totalPage;
 		}else {
 			//
 			this.pageRangeStart = currentPage - 3;
-			this.pageRangeEnd = currentPage + 4;
+			this.pageRangeEnd = currentPage + 3;
 			
 			if(pageRangeStart < 0) {
 				//exception: 比如当前页是第1页，或者第2页，那么就不如和这个规则，
@@ -90,13 +90,6 @@ public class PageBean<T> {
 
 
 
-	public List<T> getData() {
-		return data;
-	}
-
-	public void setData(List<T> data) {
-		this.data = data;
-	}
 
 
 	public int getOffset() {
@@ -142,10 +135,10 @@ public class PageBean<T> {
 	@Override
 	public String toString() {
 		return "PageBean [totalRows=" + totalRows + ", totalPage=" + totalPage + ", perPageRows=" + perPageRows
-				+ ", offset=" + offset + ", data=" + data + ", pageRangeStart=" + pageRangeStart + ", currentPage="
-				+ currentPage + ", pageRangeEnd=" + pageRangeEnd + "]";
+				+ ", offset=" + offset + ", pageRangeStart=" + pageRangeStart + ", currentPage=" + currentPage
+				+ ", pageRangeEnd=" + pageRangeEnd + "]";
 	}
-	
+
 	
 	
 	

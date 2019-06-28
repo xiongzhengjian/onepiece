@@ -88,7 +88,7 @@
          	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> New</a>
 		 </span>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped table-condensed">
               <thead>
                 <tr>
                   <th>Chassis</th>                  
@@ -102,8 +102,32 @@
                   <th>Operate</th>  
                 </tr>
               </thead>
+              <tfoot>
+              	<tr>
+              		<!-- <td style="text-align:center;vertical-align:middle;" colspan="9">Sum</td> -->
+              		
+              		<td style="text-align:center;vertical-align:middle;" colspan="8">
+              			<!-- Start  End --> 
+              			<ul class="pagination">
+              			<!-- <ul class="pager"> -->
+              				<li><a href="#">Start</a></li>
+						    <li><a href="#">&laquo;</a></li>
+						    <li><a href="#">1</a></li>
+						    <li><a href="#">2</a></li>
+						    <li><a href="#">3</a></li>
+						    <li><a href="#">4</a></li>
+						    <li><a href="#">5</a></li>
+						    <li><a href="#">6</a></li>
+						    <li><a href="#">7</a></li>
+						    <li><a href="#">&raquo;</a></li>
+						    <li><a href="#">End</a></li>
+						</ul>
+              		</td>
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Total:<a>234</a></td>
+      			</tr>
+              </tfoot>
               <tbody>
-              	<c:forEach items="${biosVos}" varStatus="idStatus" var="biosVo" >              		
+              	<c:forEach items='${data["vos"]}' varStatus="idStatus" var="biosVo" >              		
                 	
                 	<tr id="tr${idStatus.index+0 }">               		
             			<td>${biosVo.chassis }</td> 
@@ -122,6 +146,7 @@
         			
         		</c:forEach> 
               </tbody>
+             
             </table>
           </div>
         </div>
