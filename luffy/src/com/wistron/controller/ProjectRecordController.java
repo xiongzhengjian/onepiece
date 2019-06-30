@@ -33,7 +33,7 @@ public class ProjectRecordController {
 	
 	private ProjectDaoImpl projectDao = new ProjectDaoImpl();
 	private BiosDaoImpl biosDao = new BiosDaoImpl();
-	
+	private int perPageRows = 15;
 	
 	
 	
@@ -78,8 +78,9 @@ public class ProjectRecordController {
 	public String projectrecord(HttpSession session,Model model) throws ParseException {
 		
 		int totalRows = biosDao.count();
-		int currentPage = 2;
-		int perPageRows = 15;
+		int currentPage = 1;
+		
+		
 		
 		PageBean<BiosVo> pageBean = new PageBean<BiosVo>(totalRows,perPageRows,currentPage);
 		//List<Bios> list = biosDao.findAll();

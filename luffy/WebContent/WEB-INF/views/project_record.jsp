@@ -102,30 +102,36 @@
                   <th>Operate</th>  
                 </tr>
               </thead>
+              
               <tfoot>
               	<tr>
-              		<!-- <td style="text-align:center;vertical-align:middle;" colspan="9">Sum</td> -->
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">
+              			<select class="form-control" name="perPageRows">
+					      <option value="10">10</option>	
+					      <option value="15" selected="selected">15</option>
+					      <option value="20">20</option>	
+					      <option value="25">25</option>	
+					      <option value="30">30</option>									     
+					    </select>
+              		</td> 
               		
-              		<td style="text-align:center;vertical-align:middle;" colspan="8">
+              		<td style="text-align:center;vertical-align:middle;" colspan="7">
               			<!-- Start  End --> 
               			<ul class="pagination">
               			<!-- <ul class="pager"> -->
-              				<li><a href="#">Start</a></li>
+						    <li><a href="#">Start</a></li>
 						    <li><a href="#">&laquo;</a></li>
-						    <li><a href="#">1</a></li>
-						    <li><a href="#">2</a></li>
-						    <li><a href="#">3</a></li>
-						    <li><a href="#">4</a></li>
-						    <li><a href="#">5</a></li>
-						    <li><a href="#">6</a></li>
-						    <li><a href="#">7</a></li>
-						    <li><a href="#">&raquo;</a></li>
+							<c:forEach begin="${data['pagebean'].pageRangeStart}" end="${data['pagebean'].pageRangeEnd}" step="1" var="i">    
+							 	<li><a href="#">${i }</a></li>
+               				 </c:forEach>
+               				<li><a href="#">&raquo;</a></li>
 						    <li><a href="#">End</a></li>
 						</ul>
               		</td>
-              		<td style="text-align:center;vertical-align:middle;" colspan="1">Total:<a>234</a></td>
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${data['pagebean'].currentPage}</a> &nbsp Items:<a>${data['pagebean'].totalRows}</a></td>
       			</tr>
               </tfoot>
+              
               <tbody>
               	<c:forEach items='${data["vos"]}' varStatus="idStatus" var="biosVo" >              		
                 	

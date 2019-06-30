@@ -1,6 +1,5 @@
 package com.wistron.utils;
 
-import java.util.List;
 
 public class PageBean<T> {
 	
