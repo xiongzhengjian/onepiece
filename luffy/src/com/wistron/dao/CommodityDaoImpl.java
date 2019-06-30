@@ -11,6 +11,7 @@ import com.wistron.pojo.Bios;
 import com.wistron.pojo.Commodity;
 import com.wistron.pojo.Meal;
 import com.wistron.pojo.Project;
+import com.wistron.pojo.vo.Limit;
 import com.wistron.pojo.vo.Ordersubmit;
 
 public class CommodityDaoImpl {
@@ -55,6 +56,19 @@ public class CommodityDaoImpl {
 		int row = sqlSession.update("com.wistron.record.commodity.updateCommodity", commodity);
 		sqlSession.commit();
 		return row;
+	}
+
+	public List<Commodity> limitFindAll(Limit limit) {
+		SqlSession sqlSession = factory.openSession();
+		
+		List<Commodity> list = sqlSession.selectList("com.wistron.record.commodity.limitFindAll",limit);
+		return list;
+	}
+	
+	public int count() {
+		SqlSession sqlSession = factory.openSession();
+		int  totalrows = sqlSession.selectOne("com.wistron.record.commodity.count");
+		return totalrows;
 	}
 	
 	

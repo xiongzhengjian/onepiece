@@ -33,6 +33,16 @@
  			softpaq_id=#{softpaq_id}
 	</update>
 	
+	<select id="count" resultType="java.lang.Integer">
+		select count(softpaq_id) as totalrows from softpaq2
+	</select>
+	
+	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Limit" resultType="com.wistron.pojo.Softpaq2">
+		select * from softpaq2 
+			order by softpaq_id desc
+			limit #{offset},#{rows};
+	</select>
+	
 	
 	
 	

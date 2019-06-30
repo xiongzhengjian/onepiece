@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -18,20 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wistron.dao.WatDaoImpl;
 import com.wistron.pojo.User;
 import com.wistron.pojo.Wat;
+import com.wistron.pojo.vo.Limit;
 import com.wistron.pojo.vo.WatVo;
 import com.wistron.pojo.vo.WatVos;
+import com.wistron.utils.PageBean;
 
 @Controller
 public class WatController {
 
 	private WatDaoImpl  daoImple = new WatDaoImpl();
-
+	private int perPageRows = 15;
+	private int currentPage = 1;
 	
 	
 	@RequestMapping("/record/wat")
 	public String wat(HttpSession session, Model model) throws ParseException {
 		
-		 List<Wat> listpojo = daoImple.findAll();
+		 int totalRows = daoImple.count();
+		 PageBean pageBean = new PageBean(totalRows,perPageRows,currentPage);
+		 List<Wat> listpojo = daoImple.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
+		
 		 List<WatVo> listvos = new ArrayList<WatVo>();		
 	  	  int size = listpojo.size(); 
 	  	  for(int i=0;i<size;i++) { 
@@ -45,10 +52,24 @@ public class WatController {
 			  listvos.add(vo);
 		  
 		}
+		 model.addAttribute("pagebean",pageBean);
 		 model.addAttribute("vos",listvos);
-		 
 
 		return "/WEB-INF/views/wat_record.jsp";
+	}
+	
+	@RequestMapping("/record/watpaging")
+	public String paging(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_currentPage = request.getParameter("currentPage");
+		currentPage = Integer.parseInt(str_currentPage.trim());		
+		return "redirect:./wat.action";
+	}
+	
+	@RequestMapping("/record/watpageshow")
+	public String pageshow(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_perPageRows = request.getParameter("perPageRows");
+		perPageRows = Integer.parseInt(str_perPageRows.trim());		
+		return "redirect:./wat.action";
 	}
 
 	/**

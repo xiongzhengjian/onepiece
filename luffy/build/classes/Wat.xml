@@ -42,6 +42,16 @@
  			wat_id=#{wat_id}
 	</update>
 	
+	<select id="count" resultType="java.lang.Integer">
+		select count(wat_id) as totalrows from wat
+	</select>
+	
+	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Limit" resultType="com.wistron.pojo.Wat">
+		select * from wat 
+			order by wat_id desc
+			limit #{offset},#{rows};
+	</select>
+	
 	
 	
 	

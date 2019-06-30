@@ -83,13 +83,14 @@
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h4 class="page-header">BIOS tasks record</h4>          
+         <!--  <h4 class="page-header">BIOS tasks record</h4>     -->      
   		 <span class="sub-header">
-         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> New</a>
+         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> new</a>
 		 </span>
           <div class="table-responsive">
           	<form id="paging" method="post" action="./record/pageshow.action"> 
-            <table class="table table-striped table-condensed">
+            <table class="table table-condensed table-bordered">
+              <caption>BIOS Record</caption>
               <thead>
                 <tr>
                   <th>Chassis</th>                  
@@ -450,8 +451,8 @@
     	}
     </script>
     
+<!-- Verify that the import file meets the requirements   -->
     <script type="text/javascript">
-	  //Verify that the file meets the requirements  
 	    function checkData(){  
 	       var fileDir = $("#upfile").val();  
 	       var suffix = fileDir.substr(fileDir.lastIndexOf("."));  

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -18,20 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wistron.dao.SoftrollRespinDaoImpl;
 import com.wistron.pojo.SoftrollRespin;
 import com.wistron.pojo.User;
+import com.wistron.pojo.vo.Limit;
 import com.wistron.pojo.vo.SoftrollRespinVo;
 import com.wistron.pojo.vo.SoftrollRespinVos;
+import com.wistron.utils.PageBean;
 
 @Controller
 public class SoftrollRespinController {
 
 	private SoftrollRespinDaoImpl  daoImple = new SoftrollRespinDaoImpl();
-
+	private int perPageRows = 15;
+	private int currentPage = 1;
 	
 	
 	@RequestMapping("/record/softrollrespin")
 	public String softrollrespin(HttpSession session, Model model) throws ParseException {
 		
-		 List<SoftrollRespin> listpojo = daoImple.findAll();
+		 int totalRows = daoImple.count();
+		 PageBean pageBean = new PageBean(totalRows,perPageRows,currentPage);
+		 List<SoftrollRespin> listpojo = daoImple.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
+		
 		 List<SoftrollRespinVo> listvos = new ArrayList<SoftrollRespinVo>();		
 	  	  int size = listpojo.size(); 
 	  	  for(int i=0;i<size;i++) { 
@@ -45,10 +52,24 @@ public class SoftrollRespinController {
 			  listvos.add(vo);
 		  
 		}
+		 model.addAttribute("pagebean",pageBean);
 		 model.addAttribute("vos",listvos);
-		 
 
 		return "/WEB-INF/views/softrollrespin_record.jsp";
+	}
+	
+	@RequestMapping("/record/sfrpaging")
+	public String paging(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_currentPage = request.getParameter("currentPage");
+		currentPage = Integer.parseInt(str_currentPage.trim());		
+		return "redirect:./softrollrespin.action";
+	}
+	
+	@RequestMapping("/record/sfrpageshow")
+	public String pageshow(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_perPageRows = request.getParameter("perPageRows");
+		perPageRows = Integer.parseInt(str_perPageRows.trim());		
+		return "redirect:./softrollrespin.action";
 	}
 
 	/**

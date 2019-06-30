@@ -1,7 +1,7 @@
 package com.wistron.utils;
 
 
-public class PageBean<T> {
+public class PageBean {
 	
 	
 	//total number of records

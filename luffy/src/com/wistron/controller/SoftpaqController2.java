@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -18,19 +19,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.wistron.dao.SoftpaqDaoImpl2;
 import com.wistron.pojo.Softpaq2;
 import com.wistron.pojo.User;
+import com.wistron.pojo.vo.Limit;
 import com.wistron.pojo.vo.SoftpaqVo2;
+import com.wistron.utils.PageBean;
 
 @Controller
 public class SoftpaqController2 {
 
 	private SoftpaqDaoImpl2  daoImple = new SoftpaqDaoImpl2();
-
+	private int perPageRows = 15;
+	private int currentPage = 1;
 	/* Partition of Commodity-------------------->Start */
 	
 	@RequestMapping("/record/softpaq2")
 	public String softpaq(HttpSession session, Model model) throws ParseException {
 		
-		 List<Softpaq2> listpojo = daoImple.findAll();
+		 int totalRows = daoImple.count();
+		 PageBean pageBean = new PageBean(totalRows,perPageRows,currentPage);
+		 List<Softpaq2> listpojo = daoImple.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
+		
 		 List<SoftpaqVo2> listvos = new ArrayList<SoftpaqVo2>();		
 	  	  int size = listpojo.size(); 
 	  	  for(int i=0;i<size;i++) { 
@@ -44,11 +51,26 @@ public class SoftpaqController2 {
 			  listvos.add(vo);
 		  
 		}
+		 model.addAttribute("pagebean",pageBean);
 		 model.addAttribute("vos",listvos);
-		 
 
 		return "/WEB-INF/views/softpaq_record2.jsp";
 	}
+	
+	@RequestMapping("/record/softpaq2paging")
+	public String paging(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_currentPage = request.getParameter("currentPage");
+		currentPage = Integer.parseInt(str_currentPage.trim());		
+		return "redirect:./softpaq2.action";
+	}
+	
+	@RequestMapping("/record/softpaq2pageshow")
+	public String pageshow(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_perPageRows = request.getParameter("perPageRows");
+		perPageRows = Integer.parseInt(str_perPageRows.trim());		
+		return "redirect:./softpaq2.action";
+	}
+	
 
 	/**
 	 * Jump to add records page

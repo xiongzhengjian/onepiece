@@ -25,6 +25,16 @@
 			commodity    	
 	</select>
 	
+	<select id="count" resultType="java.lang.Integer">
+		select count(commodity_id) as totalrows from commodity
+	</select>
+	
+	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Limit" resultType="com.wistron.pojo.Commodity">
+		select * from commodity 
+			order by commodity_id desc
+			limit #{offset},#{rows};
+	</select>
+	
 	<update id="updateCommodity" parameterType="com.wistron.pojo.Commodity">
 		update commodity set 			
 			owner=#{owner},

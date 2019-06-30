@@ -83,12 +83,14 @@
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">       
-          <h4 class="page-header">Wat tasks record</h4>          
+          <!-- <h4 class="page-header">Wat tasks record</h4>  -->         
   		 <span class="sub-header">
          	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addwatdata.action"> new</a>
 		 </span>
           <div class="table-responsive">
-            <table class="table table-striped">
+          <form id="paging" method="post" action="./record/watpageshow.action">
+            <table class="table  table-condensed table-bordered">
+            <caption>Wat Record</caption>
               <thead>
                 <tr>
                   <th>Chassis</th>                  
@@ -105,6 +107,76 @@
                   <th>Operate</th>  
                 </tr>
               </thead>
+              <!-- -------------------------paging------------------------------------------- -->
+               <tfoot>
+              	
+              	<tr>
+              		<!-- config perPageRows -->
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">
+              			<select id="perPageRows" class="form-control"  name="perPageRows">
+              			  <option value="10">-change-</option>
+					      <option value="10">10</option>	
+					      <option value="15">15</option>
+					      <option value="20">20</option>	
+					      <option value="25">25</option>	
+					      <option value="30">30</option>									     
+					    </select>
+					    <!-- <input type=hidden value="1" name="currentPage"> -->
+              		</td> 
+              		
+              		<!-- paging -->
+              		<td style="text-align:center;vertical-align:middle;" colspan="8">
+              			
+              			<%-- <c:if test="${pagebean.totalPage==1 }">
+							<ul class="pagination">
+								<li><a href="./record/paging.action?currentPage=1">1</a></li>
+							</ul>
+						 </c:if> --%>
+              			
+              			<c:if test="${pagebean.totalPage>1 && pagebean.currentPage == 1}">
+							<ul class="pagination">
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+									<li><a href="./record/watpaging.action?currentPage=${i }">${i }</a></li>
+								 </c:forEach>
+								 
+								<li><a href="./record/watpaging.action?currentPage=${pagebean.currentPage+1 }">&raquo;</a></li>
+								<li><a href="./record/watpaging.action?currentPage=${pagebean.totalPage }">End</a></li>
+							</ul>
+						 </c:if> 
+						 
+              			<c:if test="${pagebean.totalPage>1 && pagebean.currentPage == pagebean.totalPage}">
+              				<ul class="pagination">
+								<li><a href="./record/watpaging.action?currentPage=1">Start</a></li>
+						    	<li><a href="./record/watpaging.action?currentPage=${pagebean.currentPage-1 }">&laquo;</a></li>
+						    	
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+								 	<li><a href="./record/watpaging.action?currentPage=${i }">${i }</a></li>
+	               				</c:forEach>
+							</ul>
+              			</c:if>
+              			
+              			<c:if test="${pagebean.currentPage>1 && pagebean.currentPage < pagebean.totalPage}">
+              			<%-- <c:if test="${pagebean.currentPage < pagebean.totalPage}"> --%>
+              				<ul class="pagination">
+	              				<!-- <ul class="pager"> -->
+							    <li><a href="./record/watpaging.action?currentPage=1">Start</a></li>
+							    <li><a href="./record/watpaging.action?currentPage=${pagebean.currentPage-1 }">&laquo;</a></li>
+							    
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+								 	<li><a href="./record/watpaging.action?currentPage=${i }">${i }</a></li>
+	               				 </c:forEach>
+	               				 
+	               				<li><a href="./record/watpaging.action?currentPage=${pagebean.currentPage+1 }">&raquo;</a></li>
+							    <li><a href="./record/watpaging.action?currentPage=${pagebean.totalPage }">End</a></li>
+							</ul>
+              			</c:if>
+						
+              		</td>
+              		
+              		<!-- show message of  Current Page and Items-->
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Items:<a>${pagebean.totalRows}</a></td>
+      			</tr>
+              </tfoot>
               <tbody>
               	<c:forEach items="${vos}" varStatus="idStatus" var="vo" > 
                 	<tr id="tr${idStatus.index+0 }">               		
@@ -127,6 +199,7 @@
         		</c:forEach> 
               </tbody>
             </table>
+            </form>
           </div>
         </div>
       </div>
@@ -428,6 +501,10 @@
 	       }  
 	       return true;  
 	    }   
+	    /* change the amount of data displayed per page, and then submit the form */
+	  	$("#perPageRows").change(function(){
+	  		$("#paging").submit();
+	  	});
     </script>
     
     

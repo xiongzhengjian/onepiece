@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -20,11 +21,15 @@ import com.wistron.pojo.Commodity;
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.CommodityVo;
 import com.wistron.pojo.vo.CommodityVos;
+import com.wistron.pojo.vo.Limit;
+import com.wistron.utils.PageBean;
 
 @Controller
 public class CommodityController {
 
 	private CommodityDaoImpl  commodityDao = new CommodityDaoImpl();
+	private int perPageRows = 15;
+	private int currentPage = 1;
 
 	/* Partition of Commodity-------------------->Start */
 	/**
@@ -37,8 +42,10 @@ public class CommodityController {
 	 */
 	@RequestMapping("/record/commodity")
 	public String commodity(HttpSession session, Model model) throws ParseException {
-		
-		 List<Commodity> list = commodityDao.findAllCommodity();
+		 int totalRows = commodityDao.count();
+		 PageBean pageBean = new PageBean(totalRows,perPageRows,currentPage);
+		 List<Commodity> list = commodityDao.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
+		 
 		 List<CommodityVo> commdityVos = new ArrayList<CommodityVo>();		
 	  	  int size = list.size(); for(int i=0;i<size;i++) { 
 	  	  Commodity commodity = list.get(i); 
@@ -51,10 +58,27 @@ public class CommodityController {
 		  commdityVos.add(commodityVo); 
 		  
 		}
-		 model.addAttribute("commodityVos",commdityVos);
-		 
+//		 model.addAttribute("commodityVos",commdityVos);
+	  	model.addAttribute("pagebean",pageBean);
+		model.addAttribute("vos",commdityVos);
 
 		return "/WEB-INF/views/commodity_record.jsp";
+	}
+	
+	@RequestMapping("/record/commoditypaging")
+	public String paging(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_currentPage = request.getParameter("currentPage");
+		currentPage = Integer.parseInt(str_currentPage.trim());		
+		return "redirect:./commodity.action";
+	}
+	
+	@RequestMapping("/record/commoditypageshow")
+	public String pageshow(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_perPageRows = request.getParameter("perPageRows");
+		//String str_currentPage = request.getParameter("currentPage");
+		//currentPage = Integer.parseInt(str_currentPage.trim());	
+		perPageRows = Integer.parseInt(str_perPageRows.trim());		
+		return "redirect:./commodity.action";
 	}
 
 	/**

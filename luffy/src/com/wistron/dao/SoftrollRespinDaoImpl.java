@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import com.wistron.pojo.SoftrollRespin;
 import com.wistron.pojo.Wat;
+import com.wistron.pojo.vo.Limit;
 
 public class SoftrollRespinDaoImpl {
 	
@@ -50,6 +51,17 @@ public class SoftrollRespinDaoImpl {
 		return row;
 	}
 	
+	public List<SoftrollRespin> limitFindAll(Limit limit) {
+		SqlSession sqlSession = factory.openSession();
+		List<SoftrollRespin> list = sqlSession.selectList("com.wistron.record.softrollrespin.limitFindAll",limit);
+		return list;
+	}
+	
+	public int count() {
+		SqlSession sqlSession = factory.openSession();
+		int  totalrows = sqlSession.selectOne("com.wistron.record.softrollrespin.count");
+		return totalrows;
+	}
 	
 	
 	

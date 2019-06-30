@@ -80,7 +80,7 @@ public class ProjectRecordController {
 	public String projectrecord(HttpSession session,Model model) throws ParseException {
 		int totalRows = biosDao.count();
 		
-		PageBean<BiosVo> pageBean = new PageBean<BiosVo>(totalRows,perPageRows,currentPage);
+		PageBean pageBean = new PageBean(totalRows,perPageRows,currentPage);
 		//List<Bios> list = biosDao.findAll();
 		List<Bios> list = biosDao.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
 		
@@ -98,10 +98,6 @@ public class ProjectRecordController {
 			BiosVo biosVo = new BiosVo(bios.getBios_id(),bios.getChassis(),bios.getPlatform(),bios.getTest_type(),schedule,bios.getBios_version(),bios.getImage_build_id(),bios.getTest_plan(),bios.getTester());
 			biosVos.add(biosVo);
 		}
-		Map<String,Object> data = new HashMap<String,Object>();
-//		data.put("vos", biosVos);
-//		data.put("pagebean", pageBean);
-//		model.addAttribute("data",data);
 		model.addAttribute("pagebean",pageBean);
 		model.addAttribute("vos",biosVos);
 		

@@ -2,7 +2,10 @@ package com.wistron.dao;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
+import com.wistron.pojo.Softpaq2;
 import com.wistron.pojo.Wat;
+import com.wistron.pojo.vo.Limit;
 
 public class WatDaoImpl {
 	
@@ -48,7 +51,17 @@ public class WatDaoImpl {
 		return row;
 	}
 	
+	public List<Wat> limitFindAll(Limit limit) {
+		SqlSession sqlSession = factory.openSession();
+		List<Wat> list = sqlSession.selectList("com.wistron.record.wat.limitFindAll",limit);
+		return list;
+	}
 	
+	public int count() {
+		SqlSession sqlSession = factory.openSession();
+		int  totalrows = sqlSession.selectOne("com.wistron.record.wat.count");
+		return totalrows;
+	}
 	
 	
 	

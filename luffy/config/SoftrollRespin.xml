@@ -41,6 +41,16 @@
  			softrollrespin_id=#{softrollrespin_id}
 	</update>
 	
+	<select id="count" resultType="java.lang.Integer">
+		select count(softrollrespin_id) as totalrows from softrollrespin
+	</select>
+	
+	<select id="limitFindAll" parameterType="com.wistron.pojo.vo.Limit" resultType="com.wistron.pojo.SoftrollRespin">
+		select * from softrollrespin 
+			order by softrollrespin_id desc
+			limit #{offset},#{rows};
+	</select>
+	
 	
 	
 	
