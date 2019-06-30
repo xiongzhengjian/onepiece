@@ -50,9 +50,9 @@
               <h3 class="masthead-brand">${session_user.enname }</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Plan</a></li>
-                  <li><a href="oFood.action?user_id=${session_user.user_id }">oFood</a></li>                  
+                  <li class="active"><li><a href="#">Logout</a></li> 
+                  <li><a>OT</a></li>
+                  <li><a href="oFood.action">oFood</a></li>                  
                 </ul>
               </nav>
             </div>

@@ -56,8 +56,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./ofood/captain.action">Home</a></li>           
-            <%-- <li><a >Hi! ${session_user.name }</a></li> --%>
+            <li><a href="./home.action">Home</a></li>            
+            <li><a >Hi! ${session_user.name }</a></li>
           </ul>
           <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -66,10 +66,11 @@
       </div>
     </nav>
 		<div class="main">
-          <h3 class="page-header">${session_user.enname }</h3>       
-          <h4 class="sub-header">You have made a reservation decision <span class="badge">${meals.size() div 2}</span> days in advance</h4>
+         <%--  <h3 class="page-header">${session_user.enname }</h3>        --%>
+          <%-- <h4 class="sub-header">You have made a reservation decision <span class="badge">${meals.size() div 2}</span> days in advance</h4> --%>
           <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped table-bordered">
+              <caption>You have made a reservation decision <span class="badge">${meals.size() div 2}</span> days in advance</caption>
               <thead>
                 <tr>
                 <!--   <th>site</th> -->
@@ -89,7 +90,7 @@
             			<td>${(meal.type==1)?'午餐':'晚餐' }</td>             			
             			<%-- <td class="decided">${(meal.decide==0)?'No':'Yes' }</td> --%>	
             			<td class="decided" id="${meal.type }">${(meal.decide==0)?'不吃':'要吃' }</td>            			
-            			<td><a class="label label-default  edits" title="${meal.decide }" id="${idStatus.index+0 }" lang="${meal.meal_id }" >change</a></td>  
+            			<td><a class="label label-info  edits" title="${meal.decide }" id="${idStatus.index+0 }" lang="${meal.meal_id }" >change</a></td>  
         			</tr>  
         		</c:forEach>  
               </tbody>

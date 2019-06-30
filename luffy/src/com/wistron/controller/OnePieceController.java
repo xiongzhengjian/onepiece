@@ -40,6 +40,10 @@ public class OnePieceController {
 		return "/WEB-INF/views/captain.jsp";
 	}
 	
+	@RequestMapping("/home")
+	public String home(HttpSession session) {
+		return "/WEB-INF/views/captain.jsp";
+	}
 	
 	@RequestMapping("/grandline")
 	public String grandline() {			

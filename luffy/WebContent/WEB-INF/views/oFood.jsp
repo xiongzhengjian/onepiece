@@ -54,7 +54,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./ofood/captain.action?user_id=${session_user.user_id }">Home</a></li>           
+            <li><a href="./home.action">Home</a></li>           
             <li><a >Hi! ${session_user.name }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -71,7 +71,7 @@
             <li class="active"><a>Overview <span class="sr-only">(current)</span></a></li>
             <li><a  href="#" data-toggle="modal" data-target="#myModal">Order meal</a></li>
             <li><a href="./ofood/personal.action">Personal</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a>Export</a></li>
           </ul>
           
           

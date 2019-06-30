@@ -45,7 +45,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a>Home</a></li>           
+            <li><a href="./home.action">Home</a></li>             
             <li><a>${session_user.enname }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
