@@ -166,7 +166,7 @@
               		</td>
               		
               		<!-- show message of  Current Page and Items-->
-              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Items:<a>${pagebean.totalRows}</a></td>
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Amount:<a>${pagebean.totalRows}</a></td>
       			</tr>
               </tfoot>
               <tbody>
@@ -183,8 +183,8 @@
             			<td>${vo.products_sequence }</td>
             			<td>${vo.mark }</td>            			          			
             			<td>
-            				<a class="label label-default  edit" title="${vo.softpaq_id }" id="${idStatus.index+0 }">edit</a>
-            				<a class="label label-default  delete" title="${vo.softpaq_id }" id="${idStatus.index+0 }">delete</a>
+            				<a class="label label-info  edit" title="${vo.softpaq_id }" id="${idStatus.index+0 }">edit</a>
+            				<a class="label label-warning  delete" title="${vo.softpaq_id }" id="${idStatus.index+0 }">delete</a>
             			</td>  
         			</tr>
         		</c:forEach> 
@@ -374,7 +374,7 @@
 		    		 var altered_products_sequence_Td ='<td>'+altered_products_sequence2+'</td>';
 		    		 var altered_mark_Td ='<td>'+altered_mark2+'</td>';		    		
 		    		 
-		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
+		    		 var altered_operate_Td ='<td><a class="label label-info  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-warning  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
 		    		 
 		    		 
 		    		 altered_Tds = altered_schedule_Td+

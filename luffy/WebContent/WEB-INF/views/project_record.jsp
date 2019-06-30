@@ -18,6 +18,8 @@
 	%>
 	<base href="<%=basePath%>">
     <link rel="icon" href="./icon/favicon.ico">
+    <script src="./assets/js/jquery.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
     <!-- Bootstrap core CSS -->
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet">    
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -26,9 +28,15 @@
     <link href="./assets/css/dashboard.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="./assets/js/jquery.min.js"></script>
     <script src="./assets/js/ie-emulation-modes-warning.js"></script>
-    <script type="text/javascript" src="./assets/js/daterangepicker.js"></script>   
+    <script type="text/javascript" src="./assets/js/daterangepicker.js"></script> 
+     <!-- Placed at the end of the document so the pages load faster -->   
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="./assets/js/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>  
+    
   </head>
 
   <body>
@@ -171,7 +179,7 @@
               		</td>
               		
               		<!-- show message of  Current Page and Items-->
-              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Items:<a>${pagebean.totalRows}</a></td>
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Amount:<a>${pagebean.totalRows}</a></td>
       			</tr>
               </tfoot>
               
@@ -188,8 +196,12 @@
             			<td>${biosVo.test_plan }</td>
             			<td>${biosVo.tester }</td>            			          			
             			<td>
-            				<a class="label label-default  edit" title="${biosVo.bios_id }" id="${idStatus.index+0 }">edit</a>
-            				<a class="label label-default  delete" title="${biosVo.bios_id }" id="${idStatus.index+0 }">delete</a>
+            				<a class="label label-info  edit" title="${biosVo.bios_id }" id="${idStatus.index+0 }">edit</a>
+            				<%-- <a class="btn btn-info btn-sm edit" title="${biosVo.bios_id }" id="${idStatus.index+0 }">
+            					<span class="glyphicon glyphicon-pencil"></span> edit
+            				</a> --%>
+            				<a class="label label-warning  delete" title="${biosVo.bios_id }" id="${idStatus.index+0 }">delete
+            				</a>
             			</td>  
         			</tr>  
         			
@@ -206,13 +218,7 @@
     
 	
    
-    <!-- Placed at the end of the document so the pages load faster -->   
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="./assets/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="./assets/js/holder.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+   
     
     
     <!-- Bios -->
@@ -433,7 +439,7 @@
 		    		 var altered_image_build_id_Td ='<td>'+altered_image_build_id2+'</td>';
 		    		 var altered_test_plan_Td ='<td>'+altered_test_plan2+'</td>';
 		    		 var altered_tester_Td ='<td>'+altered_tester2+'</td>';		    		
-		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
+		    		 var altered_operate_Td ='<td><a class="label label-info  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-warning  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
 		    		 altered_Tds = altered_chassis_Td+altered_platform_Td+altered_test_type_Td+altered_schedule_Td+altered_bios_version_Td+altered_image_build_id_Td+altered_test_plan_Td+altered_tester_Td+altered_operate_Td;
 		    		 $("#tr"+editId).html(altered_Tds);
 		    		 ////console.log(altered_Tds);

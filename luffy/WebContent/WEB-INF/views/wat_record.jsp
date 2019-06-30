@@ -174,7 +174,7 @@
               		</td>
               		
               		<!-- show message of  Current Page and Items-->
-              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Items:<a>${pagebean.totalRows}</a></td>
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Amount:<a>${pagebean.totalRows}</a></td>
       			</tr>
               </tfoot>
               <tbody>
@@ -192,8 +192,8 @@
             			<td>${vo.test_plan }</td>
             			<td>${vo.tester }</td>            			          			
             			<td>
-            				<a class="label label-default  edit" title="${vo.wat_id }" id="${idStatus.index+0 }">edit</a>
-            				<a class="label label-default  delete" title="${vo.wat_id }" id="${idStatus.index+0 }">delete</a>
+            				<a class="label label-info  edit" title="${vo.wat_id }" id="${idStatus.index+0 }">edit</a>
+            				<a class="label label-warning  delete" title="${vo.wat_id }" id="${idStatus.index+0 }">delete</a>
             			</td>  
         			</tr>
         		</c:forEach> 
@@ -456,7 +456,7 @@
 		    		 var altered_image_build_id_Td ='<td>'+altered_image_build_id2+'</td>';
 		    		 var altered_test_plan_Td ='<td>'+altered_test_plan2+'</td>';
 		    		 var altered_tester_Td ='<td>'+altered_tester2+'</td>';		    		
-		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
+		    		 var altered_operate_Td ='<td><a class="label label-info  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-warning  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
 		    		 altered_Tds = altered_chassis_Td
 		    		 +altered_platform_Td
 		    		 
