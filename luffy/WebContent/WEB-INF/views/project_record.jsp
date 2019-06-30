@@ -88,6 +88,7 @@
          	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> New</a>
 		 </span>
           <div class="table-responsive">
+          	<form id="paging" method="post" action="./record/pageshow.action"> 
             <table class="table table-striped table-condensed">
               <thead>
                 <tr>
@@ -104,36 +105,77 @@
               </thead>
               
               <tfoot>
+              	
               	<tr>
+              		<!-- config perPageRows -->
               		<td style="text-align:center;vertical-align:middle;" colspan="1">
-              			<select class="form-control" name="perPageRows">
+              			<select id="perPageRows" class="form-control"  name="perPageRows">
+              			  <option value="10">-change-</option>
 					      <option value="10">10</option>	
-					      <option value="15" selected="selected">15</option>
+					      <option value="15">15</option>
 					      <option value="20">20</option>	
 					      <option value="25">25</option>	
 					      <option value="30">30</option>									     
 					    </select>
+					    <!-- <input type=hidden value="1" name="currentPage"> -->
               		</td> 
               		
+              		<!-- paging -->
               		<td style="text-align:center;vertical-align:middle;" colspan="7">
-              			<!-- Start  End --> 
-              			<ul class="pagination">
-              			<!-- <ul class="pager"> -->
-						    <li><a href="#">Start</a></li>
-						    <li><a href="#">&laquo;</a></li>
-							<c:forEach begin="${data['pagebean'].pageRangeStart}" end="${data['pagebean'].pageRangeEnd}" step="1" var="i">    
-							 	<li><a href="#">${i }</a></li>
-               				 </c:forEach>
-               				<li><a href="#">&raquo;</a></li>
-						    <li><a href="#">End</a></li>
-						</ul>
+              			
+              			<%-- <c:if test="${pagebean.totalPage==1 }">
+							<ul class="pagination">
+								<li><a href="./record/paging.action?currentPage=1">1</a></li>
+							</ul>
+						 </c:if> --%>
+              			
+              			<c:if test="${pagebean.totalPage>1 && pagebean.currentPage == 1}">
+							<ul class="pagination">
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+									<li><a href="./record/paging.action?currentPage=${i }">${i }</a></li>
+								 </c:forEach>
+								 
+								<li><a href="./record/paging.action?currentPage=${pagebean.currentPage+1 }">&raquo;</a></li>
+								<li><a href="./record/paging.action?currentPage=${pagebean.totalPage }">End</a></li>
+							</ul>
+						 </c:if> 
+						 
+              			<c:if test="${pagebean.totalPage>1 && pagebean.currentPage == pagebean.totalPage}">
+              				<ul class="pagination">
+								<li><a href="./record/paging.action?currentPage=1">Start</a></li>
+						    	<li><a href="./record/paging.action?currentPage=${pagebean.currentPage-1 }">&laquo;</a></li>
+						    	
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+								 	<li><a href="./record/paging.action?currentPage=${i }">${i }</a></li>
+	               				</c:forEach>
+							</ul>
+              			</c:if>
+              			
+              			<c:if test="${pagebean.currentPage>1 && pagebean.currentPage < pagebean.totalPage}">
+              			<%-- <c:if test="${pagebean.currentPage < pagebean.totalPage}"> --%>
+              				<ul class="pagination">
+	              				<!-- <ul class="pager"> -->
+							    <li><a href="./record/paging.action?currentPage=1">Start</a></li>
+							    <li><a href="./record/paging.action?currentPage=${pagebean.currentPage-1 }">&laquo;</a></li>
+							    
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+								 	<li><a href="./record/paging.action?currentPage=${i }">${i }</a></li>
+	               				 </c:forEach>
+	               				 
+	               				<li><a href="./record/paging.action?currentPage=${pagebean.currentPage+1 }">&raquo;</a></li>
+							    <li><a href="./record/paging.action?currentPage=${pagebean.totalPage }">End</a></li>
+							</ul>
+              			</c:if>
+						
               		</td>
-              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${data['pagebean'].currentPage}</a> &nbsp Items:<a>${data['pagebean'].totalRows}</a></td>
+              		
+              		<!-- show message of  Current Page and Items-->
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Items:<a>${pagebean.totalRows}</a></td>
       			</tr>
               </tfoot>
               
               <tbody>
-              	<c:forEach items='${data["vos"]}' varStatus="idStatus" var="biosVo" >              		
+              	<c:forEach items='${vos}' varStatus="idStatus" var="biosVo" >             		
                 	
                 	<tr id="tr${idStatus.index+0 }">               		
             			<td>${biosVo.chassis }</td> 
@@ -154,7 +196,8 @@
               </tbody>
              
             </table>
-          </div>
+            </form>
+           </div>
         </div>
       </div>
     </div>
@@ -421,7 +464,12 @@
 	           return false;  
 	       }  
 	       return true;  
-	    }   
+	    }
+	  
+	  	/* change the amount of data displayed per page, and then submit the form */
+	  	$("#perPageRows").change(function(){
+	  		$("#paging").submit();
+	  	});
     </script>
     
     

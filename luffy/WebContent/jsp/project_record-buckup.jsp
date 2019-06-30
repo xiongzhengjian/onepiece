@@ -61,27 +61,35 @@
           <ul class="nav nav-sidebar">
             <li class="active"><a>Sustaining Test<span class="sr-only">(current)</span></a></li>
             <li><a  href="./record/projectrecord.action">BIOS pre-release</a></li>
-            <li><a href="./ofood/personal.action">Commodity</a></li>
-            <li><a href="#">Softpaq</a></li>
-            <li><a href="#">WAT</a></li>
-            <li><a href="#">SWT</a></li>
+            <li><a href="./record/commodity.action">Commodity</a></li>
+            <!-- <li><a href="./record/softpaq.action">Softpaq</a></li> -->
+             <li><a href="./record/softpaq2.action">Softpaq</a></li>
+            <li><a href="./record/wat.action">WAT</a></li>
+            <li><a href="./record/softrollrespin.action">Image softroll&respin</a></li>
           </ul>
-           <ul class="nav nav-sidebar">
-            <li><a>Import</a></li>
-            <li><a>Export</a></li>            
+          <ul class="nav nav-sidebar">
+            <!-- <li><a href="./record/import.action">Import</a></li> -->
+            <li><a href="./record/export.action">Export</a></li>                   
           </ul>
           
-        
           
+          <form method="POST" enctype="multipart/form-data" id="form1" action="./record/import.action"">  
+             <!-- <label>Import </label> -->
+            <input id="upfile" type="file" name="upfile"><br>     
+            <input type=hidden value="bios" name="category">
+            <input type="submit" value="Import"  onclick="return checkData()">
+    	  </form>
+    	
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h4 class="page-header">BIOS tasks record</h4>          
   		 <span class="sub-header">
-         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> new</a>
+         	<a type="button" class="btn  btn-success btn-sm  glyphicon glyphicon-plus" href="./record/addbiosdata.action"> New</a>
 		 </span>
           <div class="table-responsive">
-            <table class="table table-striped">
+          	<form id="paging" method="post" action="./record/pageshow.action"> 
+            <table class="table table-striped table-condensed">
               <thead>
                 <tr>
                   <th>Chassis</th>                  
@@ -95,8 +103,79 @@
                   <th>Operate</th>  
                 </tr>
               </thead>
+              
+              <tfoot>
+              	
+              	<tr>
+              		<!-- config perPageRows -->
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">
+              			<select id="perPageRows" class="form-control"  name="perPageRows">
+					      <option value="10">10</option>	
+					      <option selected="selected" value="15">15</option>
+					      <option value="20">20</option>	
+					      <option value="25">25</option>	
+					      <option value="30">30</option>									     
+					    </select>
+					     <input type=hidden value="1" name="currentPage">
+              		</td> 
+              		
+              		<!-- paging -->
+              		<td style="text-align:center;vertical-align:middle;" colspan="7">
+              			
+              			<c:if test="${pagebean.totalPage==1 }">
+							<ul class="pagination">
+								<li><a href="./record/paging.action?currentPage=1">1</a></li>
+							</ul>
+						 </c:if>
+              			
+              			<%-- <c:if test="${pagebean.perPageRows < pagebean.totalRows && pagebean.currentPage == 1}"> --%>
+              			<c:if test="${pagebean.totalPage > 1 && pagebean.currentPage == 1}">
+							<ul class="pagination">
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+									<li><a href="./record/paging.action?currentPage=${i }">${i }</a></li>
+								 </c:forEach>
+								 
+								<li><a href="./record/paging.action?currentPage=${pagebean.currentPage+1 }">&raquo;</a></li>
+								<li><a href="./record/paging.action?currentPage=${pagebean.totalPage }">End</a></li>
+							</ul>
+						 </c:if> 
+						 
+              			<c:if test="${pagebean.totalPage > 1 && pagebean.currentPage == pagebean.totalPage}">
+              				<ul class="pagination">
+								<li><a href="./record/paging.action?currentPage=1">Start</a></li>
+						    	<li><a href="./record/paging.action?currentPage=${pagebean.currentPage-1 }">&laquo;</a></li>
+						    	
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+								 	<li><a href="./record/paging.action?currentPage=${i }">${i }</a></li>
+	               				</c:forEach>
+							</ul>
+              			</c:if>
+              			
+              			<c:if test="${pagebean.currentPage > 1 && pagebean.currentPage < pagebean.totalPage}">
+              			<%-- <c:if test="${pagebean.currentPage < pagebean.totalPage}"> --%>
+              				<ul class="pagination">
+	              				<!-- <ul class="pager"> -->
+							    <li><a href="./record/paging.action?currentPage=1">Start</a></li>
+							    <li><a href="./record/paging.action?currentPage=${pagebean.currentPage-1 }">&laquo;</a></li>
+							    
+								<c:forEach begin="${pagebean.pageRangeStart}" end="${pagebean.pageRangeEnd}" step="1" var="i">    
+								 	<li><a href="./record/paging.action?currentPage=${i }">${i }</a></li>
+	               				 </c:forEach>
+	               				 
+	               				<li><a href="./record/paging.action?currentPage=${pagebean.currentPage+1 }">&raquo;</a></li>
+							    <li><a href="./record/paging.action?currentPage=${pagebean.totalPage }">End</a></li>
+							</ul>
+              			</c:if>
+						
+              		</td>
+              		
+              		<!-- show message of  Current Page and Items-->
+              		<td style="text-align:center;vertical-align:middle;" colspan="1">Current Page:<a>${pagebean.currentPage}</a> &nbsp Items:<a>${pagebean.totalRows}</a></td>
+      			</tr>
+              </tfoot>
+              
               <tbody>
-              	<c:forEach items="${biosVos}" varStatus="idStatus" var="biosVo" >              		
+              	<c:forEach items='${vos}' varStatus="idStatus" var="biosVo" >             		
                 	
                 	<tr id="tr${idStatus.index+0 }">               		
             			<td>${biosVo.chassis }</td> 
@@ -115,8 +194,10 @@
         			
         		</c:forEach> 
               </tbody>
+             
             </table>
-          </div>
+            </form>
+           </div>
         </div>
       </div>
     </div>
@@ -162,7 +243,7 @@
 	 		 			option_chassises +='<option value=\"'+n.chassis+'\">' + n.chassis + '</option>'; 
 	 		 		 });
 	 		 		 //Add the created options to the target Select
-	 		 		 console.log(option_chassises);
+	 		 		 ////console.log(option_chassises);
 	 		 		 //$('#chassis0').append(option_chassises);
 	 		 		 
 	 		 		 
@@ -226,10 +307,10 @@
 			 		 	   	dataType: "json",
 			 		 	    contentType:'application/json',
 			 		 	  	complete: function(data){
-			 		 			//console.log(data);
+			 		 			////console.log(data);
 			 		 			var responseJSON = data.responseJSON;
 			 		 			var platforms = responseJSON.platforms;
-			 		 			//console.log(platforms);
+			 		 			////console.log(platforms);
 			 		 			 //Create platform option
 	 		 		 			var option_platform = "<option>-platforms-</option>";
 	 		 		 			//Add option based on the length of the array
@@ -264,7 +345,7 @@
 	    		
 	    		 new_test_type +='</select></div></td>';
 	    		 $(current_Tds[2]).html(new_test_type);
-	    		 //console.log(common_test_type);
+	    		 ////console.log(common_test_type);
 	    		 
 	    		 /* schedule */
 	    		 var new_schedule ='<td><div class="form-group">';
@@ -311,7 +392,7 @@
 	    		 //
 	    		 $("#"+editId).click(function(){
 	    			 var data_Id = this.title;
-	    			 //console.log(data_Id);
+	    			 ////console.log(data_Id);
 	    			 //Fetch the contents of each field after modification
 	    			 var altered_chassis2 = $("#chassis"+this.id).val();
 	  				 var altered_platform2 = $("#platform"+this.id).val();
@@ -321,7 +402,7 @@
 	  				 var altered_image_build_id2 = $("#image_build_id"+this.id).val();	
 	  				 var altered_test_plan2 = $("#test_plan"+this.id).val();	  				
 	  				 var altered_tester2 = $("#tester"+this.id).val();		  				
-	  				 console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
+	  				 ////console.log(altered_chassis2+"--;"+altered_platform2+"--;"+altered_test_type2+"--;"+altered_schedule2+"--;"+altered_bios_version2+"--;"+altered_image_build_id2+"--;"+altered_test_plan2+"--;"+altered_tester2); 
 	    			 
 	  				 //------------Modify database data through Ajax
 	  				 var param = { bios_id:data_Id,chassis:altered_chassis2,platform:altered_platform2,test_type:altered_test_type2,schedule:altered_schedule2,bios_version:altered_bios_version2,image_build_id:altered_image_build_id2,test_plan:altered_test_plan2,tester:altered_tester2};	
@@ -341,15 +422,54 @@
 			 		 	});
 	    			 
 	    			//Revert to table mode after successful update 
-	    			
-	  				
+	    			 /* platform */
+	    			 var altered_Tds = '';
+		    		 var altered_chassis_Td ='<td>'+altered_chassis2+'</td>'; 
+		    		 var altered_platform_Td ='<td>'+altered_platform2+'</td>';
+		    		 var altered_test_type_Td ='<td>'+altered_test_type2+'</td>';
+		    		 var altered_schedule_Td ='<td>'+altered_schedule2+'</td>';
+		    		 var altered_bios_version_Td ='<td>'+altered_bios_version2+'</td>';
+		    		 var altered_image_build_id_Td ='<td>'+altered_image_build_id2+'</td>';
+		    		 var altered_test_plan_Td ='<td>'+altered_test_plan2+'</td>';
+		    		 var altered_tester_Td ='<td>'+altered_tester2+'</td>';		    		
+		    		 var altered_operate_Td ='<td><a class="label label-default  edit" title="'+this.title+'" id="'+this.id+'">edit</a> <a class="label label-default  delete" title="'+this.title+'" id="'+this.id+'">delete</a></td>';		    		 
+		    		 altered_Tds = altered_chassis_Td+altered_platform_Td+altered_test_type_Td+altered_schedule_Td+altered_bios_version_Td+altered_image_build_id_Td+altered_test_plan_Td+altered_tester_Td+altered_operate_Td;
+		    		 $("#tr"+editId).html(altered_Tds);
+		    		 ////console.log(altered_Tds);
 	  				
 	    		 });
 	    		 
 	    		 
  			});
  			
+ /*------------------delete-------------------------*/
+ 			$(".delete").click(function(){
+ 				alert('Delete function is provided later');
+ 			});
+ 			
     	}
+    </script>
+    
+    <script type="text/javascript">
+	  //Verify that the file meets the requirements  
+	    function checkData(){  
+	       var fileDir = $("#upfile").val();  
+	       var suffix = fileDir.substr(fileDir.lastIndexOf("."));  
+	       if("" == fileDir){  
+	           alert("Select the Excel file you want to import!");  
+	           return false;  
+	       }  
+	       if(".xlsx" != suffix ){  
+	           alert("Select Excel format for file import!");  
+	           return false;  
+	       }  
+	       return true;  
+	    }
+	  
+	  	/* change the amount of data displayed per page, and then submit the form */
+	  	$("#perPageRows").change(function(){
+	  		$("#paging").submit();
+	  	});
     </script>
     
     

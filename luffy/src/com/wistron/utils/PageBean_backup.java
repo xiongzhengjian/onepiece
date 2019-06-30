@@ -1,7 +1,7 @@
 package com.wistron.utils;
 
 
-public class PageBean<T> {
+public class PageBean_backup<T> {
 	
 	
 	//total number of records
@@ -25,24 +25,20 @@ public class PageBean<T> {
 	
 	
 	
-	public PageBean() {
+	public PageBean_backup() {
 		super();
 	}
 	
-	public PageBean(int totalRows,int perPageRows,int currentPage) {
+	public PageBean_backup(int totalRows,int perPageRows,int currentPage) {
 		super();
 		this.currentPage = currentPage;
 		this.perPageRows = perPageRows;
 		this.totalRows = totalRows;
 		
 		//initialize tatalPage
-//		if(totalRows>perPageRows && totalRows%perPageRows==0) {//Faulty logic 
-		if(totalRows % perPageRows==0) {
+		if(totalRows%perPageRows==0) {
 			this.totalPage = totalRows / perPageRows;
-		}else if(totalRows<perPageRows) {
-			this.totalPage=1;
-		}
-		else{
+		}else {
 			this.totalPage = totalRows / perPageRows +1;
 		}
 		

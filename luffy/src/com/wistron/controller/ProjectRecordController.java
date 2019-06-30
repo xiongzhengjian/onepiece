@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,7 @@ public class ProjectRecordController {
 	private ProjectDaoImpl projectDao = new ProjectDaoImpl();
 	private BiosDaoImpl biosDao = new BiosDaoImpl();
 	private int perPageRows = 15;
+	private int currentPage = 1;
 	
 	
 	
@@ -76,11 +78,7 @@ public class ProjectRecordController {
 	 */
 	@RequestMapping("/record/projectrecord")
 	public String projectrecord(HttpSession session,Model model) throws ParseException {
-		
 		int totalRows = biosDao.count();
-		int currentPage = 1;
-		
-		
 		
 		PageBean<BiosVo> pageBean = new PageBean<BiosVo>(totalRows,perPageRows,currentPage);
 		//List<Bios> list = biosDao.findAll();
@@ -101,11 +99,29 @@ public class ProjectRecordController {
 			biosVos.add(biosVo);
 		}
 		Map<String,Object> data = new HashMap<String,Object>();
-		data.put("vos", biosVos);
-		data.put("pagebean", pageBean);
-		model.addAttribute("data",data);
+//		data.put("vos", biosVos);
+//		data.put("pagebean", pageBean);
+//		model.addAttribute("data",data);
+		model.addAttribute("pagebean",pageBean);
+		model.addAttribute("vos",biosVos);
 		
 		return "/WEB-INF/views/project_record.jsp";
+	}
+	
+	@RequestMapping("/record/paging")
+	public String paging(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_currentPage = request.getParameter("currentPage");
+		currentPage = Integer.parseInt(str_currentPage.trim());		
+		return "redirect:./projectrecord.action";
+	}
+	
+	@RequestMapping("/record/pageshow")
+	public String pageshow(HttpSession session,Model model,HttpServletRequest request) throws ParseException {
+		String str_perPageRows = request.getParameter("perPageRows");
+		//String str_currentPage = request.getParameter("currentPage");
+		//currentPage = Integer.parseInt(str_currentPage.trim());	
+		perPageRows = Integer.parseInt(str_perPageRows.trim());		
+		return "redirect:./projectrecord.action";
 	}
 	
 	/**
