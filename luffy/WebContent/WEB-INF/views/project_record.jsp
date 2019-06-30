@@ -115,9 +115,10 @@
               
               <tfoot>
               	
-              	<tr>
+              	<!-- <tr class="alert alert-success alert-dismissable"> -->
+              	<tr class="alert alert-info">
               		<!-- config perPageRows -->
-              		<td style="text-align:center;vertical-align:middle;" colspan="1">
+              		<td style="text-align:center;vertical-align:middle;" colspan="1" >
               			<select id="perPageRows" class="form-control"  name="perPageRows">
               			  <option value="10">-change-</option>
 					      <option value="10">10</option>	

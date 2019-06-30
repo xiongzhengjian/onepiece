@@ -51,7 +51,7 @@ public class ExcelRecordDaoImpl {
 	
 	public List<Wat> findAllWat(){
 		SqlSession sqlSession = factory.openSession();		
-		List<Wat> list = sqlSession.selectList("com.wistron.record.wat.findAll");
+		List<Wat> list = sqlSession.selectList("com.wistron.record.wat.findAllWat");
 		return list;
 	}
 	

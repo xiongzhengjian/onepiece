@@ -26,7 +26,7 @@ public class Test_PageBean {
 		int totalRows = biosDao.count();
 		int currentPage = 2;
 		int perPageRows = 15;
-		PageBean<Bios> pageBean = new PageBean<Bios>(totalRows,perPageRows,currentPage);
+		PageBean pageBean = new PageBean(totalRows,perPageRows,currentPage);
 		List<Bios> data = biosDao.limitFindAll(new Limit(pageBean.getOffset(),pageBean.getPerPageRows()));
 //		pageBean.setData(data);
 		

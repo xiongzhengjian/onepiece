@@ -108,7 +108,7 @@
 <!-- -------------------------paging------------------------------------------- -->
                <tfoot>
               	
-              	<tr>
+              	<tr class="alert alert-info">
               		<!-- config perPageRows -->
               		<td style="text-align:center;vertical-align:middle;" colspan="1">
               			<select id="perPageRows" class="form-control"  name="perPageRows">
