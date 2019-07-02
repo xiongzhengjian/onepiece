@@ -99,8 +99,8 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>SWT</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary"  role="button">Sign up today</a></p>
+              <p><code>file://</code> </p>
+              <p><a class="btn btn-lg btn-primary"  role="button">Ready to achieve</a></p>
             </div>
           </div>
         </div>
@@ -109,8 +109,8 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>FIT/WAT</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary"  role="button">Learn more</a></p>
+              <p></p>
+              <p><a class="btn btn-lg btn-primary"  role="button">Ready to achieve</a></p>
             </div>
           </div>
         </div>
@@ -119,8 +119,8 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Auto Stress/HWQA</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary"  role="button">Browse gallery</a></p>
+              <p></p>
+              <p><a class="btn btn-lg btn-primary"  role="button">Ready to achieve</a></p>
             </div>
           </div>
         </div>

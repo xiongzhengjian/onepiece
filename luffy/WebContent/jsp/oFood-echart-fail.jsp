@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" import="java.util.*"%>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">   
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -19,7 +20,7 @@
 	<base href="<%=basePath%>">
     <link rel="icon" href="./icon/favicon.ico">
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -55,7 +56,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="./ofood/captain.action?user_id=${session_user.user_id }">Home</a></li>           
+            <li><a href="./home.action">Home</a></li>           
             <li><a >Hi! ${session_user.name }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -72,13 +73,13 @@
             <li class="active"><a>Overview <span class="sr-only">(current)</span></a></li>
             <li><a  href="#" data-toggle="modal" data-target="#myModal">Order meal</a></li>
             <li><a href="./ofood/personal.action">Personal</a></li>
-            <li><a href="#">Export</a></li>
+            <li><a>Export</a></li>
           </ul>
           
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Order situation</h1>
+          <h1 class="page-header">Order Situation</h1>
 
           <div class="row placeholders">
             <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
@@ -87,51 +88,32 @@
           
           
 
-          <h6 class="sub-header" id="current_date">未报餐详情</h6>
-          <div class="table-responsive">
-            <table class="table table-striped">
+         <!--  <div class="table-responsive"> -->
+            <table class="table table-condensed table-hover">
+            <caption>未报餐详情</caption>
               <thead>
                 <tr>
                   <th>no</th>                  
-                  <th>site</th>
+                  <!-- <th>site</th> -->
                   <th>department</th>
                   <th>name</th>
-                  <th>employeeID</th>
-                  <th>email</th>
-                  
+                  <th>employeeID</th>                  
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>                  
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>                 
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                  <td>consectetur</td>                               
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                  <td>Integer</td>                             
-                </tr>
-                
+              	<c:forEach items="${nomealstatusUsers}" varStatus="idStatus" var="vo" >
+              		<tr>               		
+            			<td>${idStatus.index+0 }</td> 
+            			<td>${vo.department }</td>
+            			<td>${vo.name }</td>
+            			<td>${vo.staffid }</td>
+        			</tr>  
+              	</c:forEach>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
     
     <!-- login（Modal） -->
@@ -228,9 +210,9 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./assets/js/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="./assets/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -390,8 +372,216 @@
     			//console.log(clicks);
     			
     		}
-    	} 
     	/* window.open ("page.html", "newwindow", "height=100, width=100, top=0, left=0,toolbar=no, menubar=no, scrollbars=no, resizable=no, location=n o, status=no");  */ 
+    		var posList = [
+        	    'left', 'right', 'top', 'bottom',
+        	    'inside',
+        	    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
+        	    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
+        	];
+
+        	var configParameters = {
+        	    rotate: {
+        	        min: -90,
+        	        max: 90
+        	    },
+        	    align: {
+        	        options: {
+        	            left: 'left',
+        	            center: 'center',
+        	            right: 'right'
+        	        }
+        	    },
+        	    verticalAlign: {
+        	        options: {
+        	            top: 'top',
+        	            middle: 'middle',
+        	            bottom: 'bottom'
+        	        }
+        	    },
+        	    position: {
+        	        options: echarts.util.reduce(posList, function (map, pos) {
+        	            map[pos] = pos;
+        	            return map;
+        	        }, {})
+        	    },
+        	    distance: {
+        	        min: 0,
+        	        max: 100
+        	    }
+        	};
+
+        	var config = {
+        	    rotate: 90,
+        	    align: 'left',
+        	    verticalAlign: 'middle',
+        	    position: 'insideBottom',
+        	    distance: 15,
+        	    onChange: function () {
+        	        var labelOption = {
+        	            normal: {
+        	                rotate: config.rotate,
+        	                align: config.align,
+        	                verticalAlign: config.verticalAlign,
+        	                position: config.position,
+        	                distance: config.distance
+        	            }
+        	        };
+        	        myChart.setOption({
+        	            series: [{
+        	                label: labelOption
+        	            }, {
+        	                label: labelOption
+        	            }, {
+        	                label: labelOption
+        	            }, {
+        	                label: labelOption
+        	            }]
+        	        });
+        	    }
+        	};
+
+
+        	var labelOption = {
+        	    normal: {
+        	        show: true,
+        	        position: config.position,
+        	        distance: config.distance,
+        	        align: config.align,
+        	        verticalAlign: config.verticalAlign,
+        	        rotate: config.rotate,
+        	        formatter: '{c}  {name|{a}}',
+        	        fontSize: 10,
+        	        rich: {
+        	            name: {
+        	                textBorderColor: '#fff'
+        	            }
+        	        }
+        	    }
+        	};
+
+        	var option = {
+        	    color: ['#003366', '#006699', '#e5323e','#4cabce'],
+        	    tooltip: {
+        	        trigger: 'axis',
+        	        axisPointer: {
+        	            type: 'shadow'
+        	        }
+        	    },
+        	    legend: {
+        	        data: ['人数', '已报餐', '未报餐', '报餐率'] 
+        	    	/* data: [] */
+        	    },
+        	    toolbox: {
+        	        show: true,
+        	        orient: 'vertical',
+        	        left: 'right',
+        	        top: 'center',
+        	        feature: {
+        	            mark: {show: true},
+        	            dataView: {show: true, readOnly: false},
+        	            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+        	            restore: {show: true},
+        	            saveAsImage: {show: true}
+        	        }
+        	    },
+        	    calculable: true,
+        	    xAxis: [
+        	        {
+        	            type: 'category',
+        	            axisTick: {show: false},
+        	            data: []
+        	            /* data: [] */
+        	        }
+        	    ],
+        	    yAxis: [
+        	        {
+        	            type: 'value'
+        	        }
+        	    ],
+        	    series: [
+        	        {
+        	            name: '人数',
+        	            type: 'bar',
+        	            barGap: 0,
+        	            label: labelOption,
+        	            data: []
+        	       	    /* data: [] */
+        	        },
+        	        {
+        	            name: '已报餐',
+        	            type: 'bar',
+        	            label: labelOption,
+        	            data: [] 
+        	        	/* data: [] */
+        	        },
+        	        {
+        	            name: '未报餐',
+        	            type: 'bar',
+        	            label: labelOption,
+        	            data: [] 
+        	        	/* data: [] */
+        	        },
+        	        {
+        	            name: '报餐率',
+        	            type: 'bar',
+        	            label: labelOption,
+        	            data: []
+        	        	/* data: [] */
+        	        }
+        	        
+        	    ]
+        	};
+        	
+     		
+        	 
+    	    $.ajax({ 
+    		 	   url:  './ofood/ordersituation.action',
+    		 	   data: "{t:"+new Date().getTime()+"}",
+    		 	   type: "POST",
+    		 	   dataType: "json",
+    		 	   contentType:'application/json',
+    		 	   complete: function(data){		 		
+    		 		 var situationData = data.responseText;
+    		 		 var obj_situationData = JSON.parse(situationData);		 		 
+    		 		 var listorderSituation = obj_situationData.listorderSituation;
+    		 		 var nomealstatusUsers = obj_situationData.nomealstatusUsers;
+    	 			//Deal with the Order situation
+    	 			console.log(listorderSituation);
+    	 			/* console.log(option.xAxis[0].data[1]);
+    	 			console.log(option.series[0].data[1]);
+    	 			console.log(option.series[1].data[1]);
+    	 			console.log(option.series[2].data[1]);
+    	 			console.log(option.series[3].data[1]); */
+    		 		var data_size = listorderSituation.length;
+    	 			option.xAxis[0].data=new Array(data_size); 
+    	 			option.series[0].data=new Array(data_size);
+    	 			option.series[1].data=new Array(data_size);
+    	 			option.series[2].data=new Array(data_size);
+    	 			option.series[3].data=new Array(data_size);
+    	 			 for(var n=0;n<data_size;n++){
+    	 				option.xAxis[0].data[n]=listorderSituation[n].dept;
+    	 				option.series[0].data[n] = listorderSituation[n].employeesNum;
+    	 				option.series[1].data[n] = listorderSituation[n].orderedNum;
+    	 				option.series[2].data[n] = listorderSituation[n].notOrderedNum;
+    	 			    option.series[3].data[n] = listorderSituation[n].orderRate;
+    	 			    
+    	 			    
+    	 				
+    	 				console.log(listorderSituation[n].dept+";"+listorderSituation[n].employeesNum+";"+listorderSituation[n].orderedNum+";"+listorderSituation[n].notOrderedNum+";"+listorderSituation[n].orderRate);
+    	 				console.log("==="+option.xAxis[0].data[n]+";"+option.series[0].data[n]+";"+option.series[1].data[n]+";"+option.series[2].data[n]+";"+option.series[3].data[n]);
+    	 				
+    	 				} 
+    	 			}
+    	 	   
+    	 	   		});
+    	 // init echarts instance
+        	var myChart = echarts.init(document.getElementById('main'));
+    	    // 使用刚指定的配置项和数据显示图表。
+    	    myChart.setOption(option);  
+    	} 
+    	
+    	
     </script>
     
    
@@ -399,212 +589,8 @@
     <script type="text/javascript">
  		
  		
-    	var posList = [
-    	    'left', 'right', 'top', 'bottom',
-    	    'inside',
-    	    'insideTop', 'insideLeft', 'insideRight', 'insideBottom',
-    	    'insideTopLeft', 'insideTopRight', 'insideBottomLeft', 'insideBottomRight'
-    	];
-
-    	var configParameters = {
-    	    rotate: {
-    	        min: -90,
-    	        max: 90
-    	    },
-    	    align: {
-    	        options: {
-    	            left: 'left',
-    	            center: 'center',
-    	            right: 'right'
-    	        }
-    	    },
-    	    verticalAlign: {
-    	        options: {
-    	            top: 'top',
-    	            middle: 'middle',
-    	            bottom: 'bottom'
-    	        }
-    	    },
-    	    position: {
-    	        options: echarts.util.reduce(posList, function (map, pos) {
-    	            map[pos] = pos;
-    	            return map;
-    	        }, {})
-    	    },
-    	    distance: {
-    	        min: 0,
-    	        max: 100
-    	    }
-    	};
-
-    	var config = {
-    	    rotate: 90,
-    	    align: 'left',
-    	    verticalAlign: 'middle',
-    	    position: 'insideBottom',
-    	    distance: 15,
-    	    onChange: function () {
-    	        var labelOption = {
-    	            normal: {
-    	                rotate: config.rotate,
-    	                align: config.align,
-    	                verticalAlign: config.verticalAlign,
-    	                position: config.position,
-    	                distance: config.distance
-    	            }
-    	        };
-    	        myChart.setOption({
-    	            series: [{
-    	                label: labelOption
-    	            }, {
-    	                label: labelOption
-    	            }, {
-    	                label: labelOption
-    	            }, {
-    	                label: labelOption
-    	            }]
-    	        });
-    	    }
-    	};
-
-
-    	var labelOption = {
-    	    normal: {
-    	        show: true,
-    	        position: config.position,
-    	        distance: config.distance,
-    	        align: config.align,
-    	        verticalAlign: config.verticalAlign,
-    	        rotate: config.rotate,
-    	        formatter: '{c}  {name|{a}}',
-    	        fontSize: 10,
-    	        rich: {
-    	            name: {
-    	                textBorderColor: '#fff'
-    	            }
-    	        }
-    	    }
-    	};
-
-    	var option = {
-    	    color: ['#003366', '#006699', '#e5323e','#4cabce'],
-    	    tooltip: {
-    	        trigger: 'axis',
-    	        axisPointer: {
-    	            type: 'shadow'
-    	        }
-    	    },
-    	    legend: {
-    	        data: ['人数', '已报餐', '未报餐', '报餐率'] 
-    	    	/* data: [] */
-    	    },
-    	    toolbox: {
-    	        show: true,
-    	        orient: 'vertical',
-    	        left: 'right',
-    	        top: 'center',
-    	        feature: {
-    	            mark: {show: true},
-    	            dataView: {show: true, readOnly: false},
-    	            magicType: {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-    	            restore: {show: true},
-    	            saveAsImage: {show: true}
-    	        }
-    	    },
-    	    calculable: true,
-    	    xAxis: [
-    	        {
-    	            type: 'category',
-    	            axisTick: {show: false},
-    	            data: []
-    	            /* data: [] */
-    	        }
-    	    ],
-    	    yAxis: [
-    	        {
-    	            type: 'value'
-    	        }
-    	    ],
-    	    series: [
-    	        {
-    	            name: '人数',
-    	            type: 'bar',
-    	            barGap: 0,
-    	            label: labelOption,
-    	            data: []
-    	       	    /* data: [] */
-    	        },
-    	        {
-    	            name: '已报餐',
-    	            type: 'bar',
-    	            label: labelOption,
-    	            data: [] 
-    	        	/* data: [] */
-    	        },
-    	        {
-    	            name: '未报餐',
-    	            type: 'bar',
-    	            label: labelOption,
-    	            data: [] 
-    	        	/* data: [] */
-    	        },
-    	        {
-    	            name: '报餐率',
-    	            type: 'bar',
-    	            label: labelOption,
-    	            data: []
-    	        	/* data: [] */
-    	        }
-    	        
-    	    ]
-    	};
-    	
- 		
     	 
-	    $.ajax({ 
-		 	   url:  './ofood/ordersituation.action',
-		 	   data: "{t:"+new Date().getTime()+"}",
-		 	   type: "POST",
-		 	   dataType: "json",
-		 	   contentType:'application/json',
-		 	   complete: function(data){		 		
-		 		 var situationData = data.responseText;
-		 		 var obj_situationData = JSON.parse(situationData);		 		 
-		 		 var listorderSituation = obj_situationData.listorderSituation;
-		 		 var nomealstatusUsers = obj_situationData.nomealstatusUsers;
-	 			//Deal with the Order situation
-	 			console.log(listorderSituation);
-	 			/* console.log(option.xAxis[0].data[1]);
-	 			console.log(option.series[0].data[1]);
-	 			console.log(option.series[1].data[1]);
-	 			console.log(option.series[2].data[1]);
-	 			console.log(option.series[3].data[1]); */
-		 		var data_size = listorderSituation.length;
-	 			option.xAxis[0].data=new Array(data_size); 
-	 			option.series[0].data=new Array(data_size);
-	 			option.series[1].data=new Array(data_size)
-	 			option.series[2].data=new Array(data_size)
-	 			option.series[3].data=new Array(data_size)
-	 			 for(var n=0;n<data_size;n++){
-	 				option.xAxis[0].data[n]=listorderSituation[n].dept;
-	 				option.series[0].data[n] = listorderSituation[n].employeesNum;
-	 				option.series[1].data[n] = listorderSituation[n].orderedNum;
-	 				option.series[2].data[n] = listorderSituation[n].notOrderedNum;
-	 			    option.series[3].data[n] = listorderSituation[n].orderRate;
-	 			    
-	 			    
-	 				
-	 				console.log(listorderSituation[n].dept+";"+listorderSituation[n].employeesNum+";"+listorderSituation[n].orderedNum+";"+listorderSituation[n].notOrderedNum+";"+listorderSituation[n].orderRate);
-	 				console.log("==="+option.xAxis[0].data[n]+";"+option.series[0].data[n]+";"+option.series[1].data[n]+";"+option.series[2].data[n]+";"+option.series[3].data[n]);
-	 				
-	 				} 
-	 			}
-	 	   
-	 	   		}); 
-	 // init echarts instance
-    	var myChart = echarts.init(document.getElementById('main'));
-	    // 使用刚指定的配置项和数据显示图表。
-	    myChart.setOption(option);  
+	 
     </script>
     
     

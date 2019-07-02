@@ -217,7 +217,7 @@
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
     
     
-    <!-- Bios -->
+    <!-- Commodity -->
     <script type="text/javascript">
     
     	window.onload = function(){

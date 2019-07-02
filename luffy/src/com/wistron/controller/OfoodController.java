@@ -48,6 +48,8 @@ public class OfoodController {
 		return "/WEB-INF/views/captain.jsp";
 	}
 	
+	
+	
 	/**
 	 * Today's reservation information
 	 * listorderSituation = listOrderSituationStep1 + listOrderSituationStep2
@@ -58,7 +60,6 @@ public class OfoodController {
 		List<OrderSituation> listorderSituation  = new ArrayList<OrderSituation>();
 		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
 		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
-		List<Uservo> nomealstatusUsers = userDao.findNomealstatus();
 		
 		for(int i=0;i<listOrderSituationStep1.size();i++) {
 			OrderSituation orderSituationStep1 = listOrderSituationStep1.get(i);
@@ -79,12 +80,12 @@ public class OfoodController {
 		}
 		Map<String,List> orderSituationvo = new HashMap<String,List>();
 		orderSituationvo.put("listorderSituation", listorderSituation);
-		orderSituationvo.put("nomealstatusUsers", nomealstatusUsers);
-		//System.out.println(orderSituationvo);
+		//model.addAttribute(orderSituationvo);
 		return orderSituationvo;
 		
 		
 	}
+	
 	
 	
 	
