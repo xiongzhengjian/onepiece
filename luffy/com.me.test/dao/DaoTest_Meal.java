@@ -2,6 +2,8 @@ package dao;
 
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -38,6 +40,17 @@ public class DaoTest_Meal {
 		System.out.println(all);
 		
 	}
+	
+	@Test
+	public void findTodayData() throws Exception {
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+		//Find out if the user has a meal record for the day
+		
+		 //int value = mealDao.findTodayData(today);
+		//System.out.println(value);
+		
+	}
+	
 
 	
 	

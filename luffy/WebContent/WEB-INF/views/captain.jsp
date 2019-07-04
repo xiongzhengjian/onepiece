@@ -52,7 +52,7 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><li><a href="#">Logout</a></li> 
                   <li><a>OT</a></li>
-                  <li><a href="oFood.action">oFood</a></li>                  
+                  <li><a href="ofood/oFood.action">oFood</a></li>                  
                 </ul>
               </nav>
             </div>

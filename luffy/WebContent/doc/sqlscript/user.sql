@@ -60,6 +60,11 @@ select  t_d.message as dept ,count(*)  as orderedNum
  #Reset user's mealstatus value to 0 at 00:5 per day
 create event luffy_rest_mealstauts
 	on schedule every 1 DAY starts '2019-07-03 00:05:00'
+    ON COMPLETION PRESERVE ENABLE
     do
 		UPDATE luffy.user SET luffy.user.mealstatus = 0 where luffy.user.user_id>0;
+        
+drop event if exists luffy_rest_mealstauts;
+
+update user set mealstatus=1 where mealstatus=0 and department=8;
 

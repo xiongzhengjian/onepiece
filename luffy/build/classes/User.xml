@@ -52,4 +52,8 @@
  		user t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id where t_u.mealstatus=1 group by t_u.department
 	</select>
 	
+	<update id="updateMealStatus" parameterType="java.lang.String">
+		update user set mealstatus = 1 where staffid = #{staffid}
+	</update>
+	
 </mapper>

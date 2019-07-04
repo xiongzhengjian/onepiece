@@ -508,7 +508,7 @@
 		     	};
 				//ffd966  e5323e  4cabce  003366   ff9900
 		     	var option = {
-		     	    color: ['#000000', '#00ff00', '#ff0000'],
+		     	    color: ['#000000', '#00ff00', '#ff0000','#003366'],
 		     	    tooltip: {
 		     	        trigger: 'axis',
 		     	        axisPointer: {
@@ -516,7 +516,7 @@
 		     	        }
 		     	    },
 		     	    legend: {
-		     	        data: ['人数', '已报餐', '未报餐'] 
+		     	        data: ['人数', '已报餐', '未报餐', '报餐率'] 
 		     	    },
 		     	    toolbox: {
 		     	        show: true,
@@ -563,8 +563,13 @@
 		     	            type: 'bar',
 		     	            label: labelOption,
 		     	            data: [] 
+		     	        },
+		     	        {
+		     	            name: '报餐率',
+		     	            type: 'bar',
+		     	            label: labelOption,
+		     	            data: []
 		     	        }
-		     	        
 		     	        
 		     	    ]
 		     	};
@@ -582,13 +587,13 @@
  	 			option.series[0].data=new Array(data_size);
  	 			option.series[1].data=new Array(data_size);
  	 			option.series[2].data=new Array(data_size);
- 	 			//option.series[3].data=new Array(data_size);
+ 	 			option.series[3].data=new Array(data_size);
  	 			 for(var n=0;n<data_size;n++){
  	 				option.xAxis[0].data[n]=listorderSituation[n].dept;
  	 				option.series[0].data[n] = listorderSituation[n].employeesNum;
  	 				option.series[1].data[n] = listorderSituation[n].orderedNum;
  	 				option.series[2].data[n] = listorderSituation[n].notOrderedNum;
- 	 			    //option.series[3].data[n] = listorderSituation[n].orderRate;
+ 	 			    option.series[3].data[n] = listorderSituation[n].orderRate;
  	 			    
  	 			    
  	 				

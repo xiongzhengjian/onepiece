@@ -35,19 +35,28 @@ public class OfoodController {
 	private MealDaoImpl mealDao = new MealDaoImpl();
 	private UserDaoImpl userDao = new UserDaoImpl();
 	
-	/**
-	 * go to home page while it is also called captain
-	 * @return
-	 */
-	@RequestMapping("/ofood/captain")
-	public String home(HttpSession session) {
-		User user = (User) session.getAttribute("session_user");
-		if(user==null) {
-			return "/html/error.html";
+		@RequestMapping("/ofood/oFood")
+		public String oFood(Model model,HttpSession session) throws Exception {	
+			User user =  (User) session.getAttribute("session_user");
+			String today_Str = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+			Date today_date = new SimpleDateFormat("yyyy-MM-dd").parse(today_Str);
+			Meal meal = new Meal();
+			meal.setDate(today_date);
+			meal.setUser(user.getUser_id());
+			//Find out if the user has a meal record for the day
+			int count = mealDao.findTodayData(meal);
+			//it is mean have ordered a meal on today if the value greater than 0 ,then set the value of mealstatus to 1 which is belong to user table 
+			if(count>0) {
+				
+				String staffid = user.getStaffid(); 
+				userDao.updateMealStatus(staffid);
+			}
+			
+			List<Uservo> nomealstatusUsers = userDao.findNomealstatus();
+			model.addAttribute("nomealstatusUsers", nomealstatusUsers);
+			//model.addAttribute(orderSituationvo);
+			return "/WEB-INF/views/oFood.jsp";
 		}
-		return "/WEB-INF/views/captain.jsp";
-	}
-	
 	
 	
 	/**
@@ -134,7 +143,7 @@ public class OfoodController {
 			}else {
 				//create a meal and initialize it
 				meal = new Meal("WCQ",user_id);					
-				meal.setDate(weekday);	
+				meal.setDate(weekday_jsp);	//yyyy-MM-dd 00:00:00
 				//0 breakfast; 1 lunch;  2 dinner
 				meal.setType(ordersubmit.getType());
 				//0 don't want ; 1 want
@@ -146,9 +155,9 @@ public class OfoodController {
 		}	
 			if(list.size()>0) {//Add tips for successful meal plan submission
 				mealDao.ofood(list);
-				return "/WEB-INF/views/oFood.jsp";	
+				return "redirect:./oFood.action";	
 			}else {//Add tip for "repeat submission, please jump to personal details page if you need to modify" 
-				return "/WEB-INF/views/oFood.jsp";	
+				return "redirect:./oFood.action";		
 			}
 			
 	}

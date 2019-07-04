@@ -64,5 +64,11 @@ public class UserDaoImpl {
 		List<OrderSituation> listOrderSituationStep2 = sqlSession.selectList("com.wistron.meal.user.orderSituationStep2");
 		return listOrderSituationStep2;
 	}
+
+	public void updateMealStatus(String staffid) {
+		SqlSession sqlSession = factory.openSession();
+		sqlSession.update("com.wistron.meal.user.updateMealStatus",staffid);
+		sqlSession.commit();
+	}
 	
 }

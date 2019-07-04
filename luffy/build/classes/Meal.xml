@@ -32,6 +32,9 @@
 		meal_id=#{meal_id} and user=#{user}
 	</update>
 	
+	<select id="findTodayData" parameterType="com.wistron.pojo.Meal" resultType="java.lang.Integer">
+		select count(*) from  meal where  date=#{date} and user=#{user}
+	</select> 
 	
 	
 </mapper>

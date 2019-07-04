@@ -53,6 +53,12 @@ public class MealDaoImpl {
 		sqlSession.commit();
 		return rows;
 	}
+
+	public int findTodayData(Meal meal) {
+		SqlSession sqlSession = factory.openSession();
+		Integer value = sqlSession.selectOne("com.wistron.meal.ofood.findTodayData", meal);
+		return value;
+	}
 	
 	
 	
