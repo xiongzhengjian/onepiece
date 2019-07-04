@@ -63,8 +63,11 @@ create event luffy_rest_mealstauts
     ON COMPLETION PRESERVE ENABLE
     do
 		UPDATE luffy.user SET luffy.user.mealstatus = 0 where luffy.user.user_id>0;
+
+show create event luffy_rest_mealstauts;
         
 drop event if exists luffy_rest_mealstauts;
+ 
 
 update user set mealstatus=1 where mealstatus=0 and department=8;
 
