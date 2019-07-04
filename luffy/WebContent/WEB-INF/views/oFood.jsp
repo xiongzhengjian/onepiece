@@ -90,16 +90,19 @@
               <thead>
                 <tr>
                   <th>部门</th>
+                  <th>未报餐人数</th>
                   <th>报餐率</th>
                 </tr>
               </thead>
               <tbody>
               	 <tr>
                   <td>1STC00</td>
+                  <td>10</td>
                   <td>50%</td>
                 </tr>
                 <tr>
                   <td>1STQ00</td>
+                  <td>1</td>
                   <td>30%</td>
                 </tr>
               </tbody>
@@ -115,16 +118,18 @@
                   <!-- <th>site</th> -->
                   <th>Department</th>
                   <th>Name</th>
-                  <th>EmployeeID</th>                  
+                  <th>EmployeeID</th>
+                   <th>Email</th>                  
                 </tr>
               </thead>
               <tbody>
               	<c:forEach items="${nomealstatusUsers}" varStatus="idStatus" var="vo" >
               		<tr>               		
-            			<td>${idStatus.index+0 }</td> 
+            			<td>${idStatus.index+1 }</td> 
             			<td>${vo.department }</td>
             			<td>${vo.name }</td>
             			<td>${vo.staffid }</td>
+            			<td>${vo.email }</td>
         			</tr>  
               	</c:forEach>
               </tbody>
