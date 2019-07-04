@@ -24,7 +24,8 @@ drop event if exists meal_status;
 show variables like 'event_scheduler';
 
 #Reset user's mealstatus value to 0 at 16:50 per day
-create event reste_mealstauts
+create event test_reste_mealstauts
 	on schedule every 1 DAY starts '2019-07-04 16:50:00'
     do
-		UPDATE test.user SET test.user.mealstatus = 0 where test.user.user_id>0;
+		UPDATE test.user SET test.user.mealstatus = test.user.mealstatus+1 where test.user.user_id>0;
+drop event if exists test_rest_mealstauts;

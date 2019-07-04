@@ -56,3 +56,10 @@ from user as t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id  
 #order_situation_detail: 1.dept 1.2 orderedNum 1.3 notOrderedNum 1.4 orderRate
 select  t_d.message as dept ,count(*)  as orderedNum
  from user t_u inner join dictionary t_d on t_u.department=t_d.dictionary_id where t_u.mealstatus=1 group by t_u.department ;
+ 
+ #Reset user's mealstatus value to 0 at 00:5 per day
+create event luffy_rest_mealstauts
+	on schedule every 1 DAY starts '2019-07-03 00:05:00'
+    do
+		UPDATE luffy.user SET luffy.user.mealstatus = 0 where luffy.user.user_id>0;
+
