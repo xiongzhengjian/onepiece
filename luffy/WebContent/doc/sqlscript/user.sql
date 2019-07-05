@@ -71,3 +71,18 @@ drop event if exists luffy_rest_mealstauts;
 
 update user set mealstatus=1 where mealstatus=0 and department=8;
 
+alter table user modify column department varchar(10);
+
+update user set department = '1STQ10' where department='7';
+
+select department as dept,count(user_id) as employeesNum from user group by department;
+
+#1STQ00
+select count(user_id) as 1STQ00 from user where department='1STQ00' and  mealstatus=1;
+#1STQ10
+select count(user_id)  as 1STQ10 from user where department='1STQ10' and  mealstatus=1;
+#1STQ20
+select count(user_id) as 1STQ20 from user where department='1STQ20' and  mealstatus=1;
+
+
+

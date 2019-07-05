@@ -8,7 +8,7 @@ public class User{
 	private char sex;
 	private String email;
 	//the foreign key of table User which is associated with table Dictionary
-	private int department;
+	private String department;
 	//status of order a meal:0 default  1 done
 	private int mealstatus;
 	//is the member attendance:1 default, 0 dosn't attendance
@@ -19,7 +19,7 @@ public class User{
 	public User() {
 		super();
 	}
-	public User(int user_id, String staffid, String name, String enname, char sex, String email, int department,
+	public User(int user_id, String staffid, String name, String enname, char sex, String email, String department,
 			int mealstatus, int attendance) {
 		super();
 		this.user_id = user_id;
@@ -32,7 +32,7 @@ public class User{
 		this.mealstatus = mealstatus;
 		this.attendance = attendance;
 	}
-	public User(int user_id, String staffid, String name, String enname, char sex, String email, int department) {
+	public User(int user_id, String staffid, String name, String enname, char sex, String email, String department) {
 		super();
 		this.user_id = user_id;
 		this.staffid = staffid;
@@ -44,7 +44,7 @@ public class User{
 		
 	}	
 	
-	public User(int user_id, String staffid, String name, String enname, char sex, String email, int department,
+	public User(int user_id, String staffid, String name, String enname, char sex, String email, String department,
 			int mealstatus) {
 		super();
 		this.user_id = user_id;
@@ -58,7 +58,7 @@ public class User{
 	}	
 
 	
-	public User(String staffid, String name, String enname, char sex, String email, int department) {
+	public User(String staffid, String name, String enname, char sex, String email, String department) {
 		super();		
 		this.staffid = staffid;
 		this.name = name;
@@ -103,10 +103,10 @@ public class User{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getDepartment() {
+	public String getDepartment() {
 		return department;
 	}
-	public void setDepartment(int department) {
+	public void setDepartment(String department) {
 		this.department = department;
 	}
 	public int getMealstatus() {

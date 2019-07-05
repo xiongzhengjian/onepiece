@@ -50,19 +50,29 @@ public class UserDaoImpl {
 	 * find  1 dept 2 emplloyeeNum value after group by department
 	 * @return
 	 */
-	public List<OrderSituation> orderSituationStep1(){
+	public List<OrderSituation> userAmount(){
 		SqlSession sqlSession = factory.openSession();	
-		List<OrderSituation> listOrderSituationStep1 = sqlSession.selectList("com.wistron.meal.user.orderSituationStep1");
+		List<OrderSituation> listOrderSituationStep1 = sqlSession.selectList("com.wistron.meal.user.userAmount");
 		return listOrderSituationStep1;
 	}
 	/**
-	 * find   3 orderedNum 4 notOrderedNum 5 orderRatem value after group by department
+	 * find  1STQ00 orderedNum 
 	 * @return
 	 */
-	public List<OrderSituation> orderSituationStep2(){
+	public int deptStq00(){
 		SqlSession sqlSession = factory.openSession();	
-		List<OrderSituation> listOrderSituationStep2 = sqlSession.selectList("com.wistron.meal.user.orderSituationStep2");
-		return listOrderSituationStep2;
+		int stq00 = sqlSession.selectOne("com.wistron.meal.user.1stq00");
+		return stq00;
+	}
+	public int deptStq10(){
+		SqlSession sqlSession = factory.openSession();	
+		int stq00 = sqlSession.selectOne("com.wistron.meal.user.1stq10");
+		return stq00;
+	}
+	public int deptStq20(){
+		SqlSession sqlSession = factory.openSession();	
+		int stq00 = sqlSession.selectOne("com.wistron.meal.user.1stq20");
+		return stq00;
 	}
 
 	public void updateMealStatus(String staffid) {

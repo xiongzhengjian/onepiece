@@ -67,20 +67,25 @@ public class OfoodController {
 	@ResponseBody
 	public Map<String,List> orderSituation() {
 		List<OrderSituation> listorderSituation  = new ArrayList<OrderSituation>();
-		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
-		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
+		//Step1:The first step is to count how many departments there are and how many people there are
+		List<OrderSituation> userAmount = userDao.userAmount();
+		//Step2:The second step is to count the total number of people who have ordered meal in each department today
+		List<Integer> listOrderedAmout = new ArrayList<Integer>();
+		listOrderedAmout.add(userDao.deptStq00());
+		listOrderedAmout.add(userDao.deptStq10());
+		listOrderedAmout.add(userDao.deptStq20());
 		
-		for(int i=0;i<listOrderSituationStep1.size();i++) {
-			OrderSituation orderSituationStep1 = listOrderSituationStep1.get(i);
-			OrderSituation orderSituationStep2 = listOrderSituationStep2.get(i);
+		for(int i=0;i<userAmount.size();i++) {
+			OrderSituation orderSituationStep1 = userAmount.get(i);
+			//Create the order details object for each department
 			OrderSituation orderSituation = new OrderSituation();
 			
-			orderSituation.setDept(orderSituationStep1.getDept());
 			
+			orderSituation.setDept(orderSituationStep1.getDept());
 			int employeesNum = orderSituationStep1.getEmployeesNum();
 			orderSituation.setEmployeesNum(employeesNum);
 			
-			int orderedNum = orderSituationStep2.getOrderedNum();
+			int orderedNum = listOrderedAmout.get(i);
 			orderSituation.setOrderedNum(orderedNum);
 			orderSituation.setNotOrderedNum(employeesNum-orderedNum);
 			orderSituation.setOrderRate((double)orderedNum/employeesNum);
