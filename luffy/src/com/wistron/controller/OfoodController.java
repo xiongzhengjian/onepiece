@@ -178,6 +178,7 @@ public class OfoodController {
 		}	
 			if(list.size()>0) {//Add tips for successful meal plan submission
 				mealDao.ofood(list);
+				//list.clear();
 				return "redirect:./oFood.action";	
 			}else {//Add tip for "repeat submission, please jump to personal details page if you need to modify" 
 				return "redirect:./oFood.action";		

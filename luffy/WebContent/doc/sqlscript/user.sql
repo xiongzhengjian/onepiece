@@ -92,3 +92,5 @@ select count(user_id) as 1STQ20 from user where department='1STQ20' and  mealsta
 
 select * from user where mealstatus=0 group by user_id;
 
+select * from user where mealstatus=1;
+

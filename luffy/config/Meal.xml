@@ -17,7 +17,7 @@
 	<select id="findAll" parameterType="com.wistron.pojo.vo.Ordersubmit" resultType="com.wistron.pojo.Meal">
 		select * from meal 
 			where
-		 user=#{user_id} and date>=#{today}
+		 user=#{user_id} and date >= #{today}
 	</select>
 	
 	<select id="findAllLater" parameterType="com.wistron.pojo.vo.Ordersubmit" resultType="com.wistron.pojo.Meal">

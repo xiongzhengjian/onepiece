@@ -64,7 +64,7 @@ public class Ordersubmit {
 	}
 	
 	public String getToday() {
-		String today = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 		return today;
 	}		
 	
