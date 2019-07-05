@@ -57,7 +57,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./home.action">Home</a></li>           
-            <li><a >Hi! ${session_user.name }</a></li>
+            <li><a >Hi ${session_user.name }</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -86,25 +86,27 @@
    			 <div id="main" style="width: 1200px;height:400px;"></div>           
           </div>
           <table class="table table-condensed table-hover">
-            <caption>总览</caption>
+            <caption>Outline</caption>
               <thead>
                 <tr>
-                  <th>部门</th>
+                  <th>总人数</th>
+                  <th>报餐人数</th>
                   <th>未报餐人数</th>
                   <th>报餐率</th>
                 </tr>
               </thead>
               <tbody>
-              	 <tr>
-                  <td>1STC00</td>
-                  <td>10</td>
-                  <td>50%</td>
-                </tr>
                 <tr>
-                  <td>1STQ00</td>
-                  <td>1</td>
-                  <td>30%</td>
+                  <td>${outline.employeesNum }</td>
+                  <td>${outline.orderedNum }</td>
+                  <td>${outline.notOrderedNum }</td>
+                  <td>${outline.orderRate }%</td>
                 </tr>
+               <!--  <tr>
+                  <td>1STC00</td>
+                  <td>##</td>
+                  <td>##</td>
+                </tr> -->
               </tbody>
            </table>
           

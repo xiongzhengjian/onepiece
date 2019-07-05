@@ -35,8 +35,14 @@ public class OfoodController {
 	private MealDaoImpl mealDao = new MealDaoImpl();
 	private UserDaoImpl userDao = new UserDaoImpl();
 	
+	//how many departments there are and how many people there are
+	private List<OrderSituation> userAmount;
+	
 		@RequestMapping("/ofood/oFood")
 		public String oFood(Model model,HttpSession session) throws Exception {	
+			//Step1:The first step is to count how many departments there are and how many people there are
+			userAmount = userDao.userAmount();
+			
 			User user =  (User) session.getAttribute("session_user");
 			String today_Str = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 			Date today_date = new SimpleDateFormat("yyyy-MM-dd").parse(today_Str);
@@ -47,14 +53,31 @@ public class OfoodController {
 			int count = mealDao.findTodayData(meal);
 			//it is mean have ordered a meal on today if the value greater than 0 ,then set the value of mealstatus to 1 which is belong to user table 
 			if(count>0) {
-				
 				String staffid = user.getStaffid(); 
 				userDao.updateMealStatus(staffid);
 			}
 			
+			
 			List<Uservo> nomealstatusUsers = userDao.findNomealstatus();
 			model.addAttribute("nomealstatusUsers", nomealstatusUsers);
-			//model.addAttribute(orderSituationvo);
+			// figure out the total number of user at 1STQ00
+			int amoutUser = 0;			
+			for(int i=0;i<userAmount.size();i++) {
+				OrderSituation orderSituation = userAmount.get(i);
+				int employeesNum = orderSituation.getEmployeesNum();
+				amoutUser+=employeesNum;
+			}
+			//figure out the rate of meal
+			int notOrderedNum = nomealstatusUsers.size();
+			double rate = (amoutUser-notOrderedNum)/(double)(amoutUser)*100;
+			
+			OrderSituation orderSituation = new OrderSituation();
+			orderSituation.setEmployeesNum(amoutUser);
+			orderSituation.setOrderedNum(amoutUser-notOrderedNum);
+			orderSituation.setNotOrderedNum(notOrderedNum);
+			orderSituation.setOrderRate(rate);
+			
+			model.addAttribute("outline",orderSituation);
 			return "/WEB-INF/views/oFood.jsp";
 		}
 	
@@ -65,13 +88,12 @@ public class OfoodController {
 	 */
 	@RequestMapping("/ofood/ordersituation")
 	@ResponseBody
-	public Map<String,List> orderSituation() {
+	public Map<String,List<OrderSituation>> orderSituation() {
 		List<OrderSituation> listorderSituation  = new ArrayList<OrderSituation>();
-		//Step1:The first step is to count how many departments there are and how many people there are
-		List<OrderSituation> userAmount = userDao.userAmount();
+		
 		//Step2:The second step is to count the total number of people who have ordered meal in each department today
 		List<Integer> listOrderedAmout = new ArrayList<Integer>();
-		listOrderedAmout.add(userDao.deptStq00());
+		//listOrderedAmout.add(userDao.deptStq00());
 		listOrderedAmout.add(userDao.deptStq10());
 		listOrderedAmout.add(userDao.deptStq20());
 		
@@ -92,17 +114,13 @@ public class OfoodController {
 			
 			listorderSituation.add(orderSituation);
 		}
-		Map<String,List> orderSituationvo = new HashMap<String,List>();
+		Map<String,List<OrderSituation>> orderSituationvo = new HashMap<String,List<OrderSituation>>();
 		orderSituationvo.put("listorderSituation", listorderSituation);
 		//model.addAttribute(orderSituationvo);
 		return orderSituationvo;
 		
 		
 	}
-	
-	
-	
-	
 	
 	
 	
@@ -197,10 +215,10 @@ public class OfoodController {
 		int user_id = user.getUser_id();
 		String decide = request.getParameter("decide");
 		String meal_id = request.getParameter("meal_id");
-		String type_page = request.getParameter("type");
+		//String type_page = request.getParameter("type");
 		int toUpdateDecide = Integer.parseInt(decide);
 		int target_meal_id = Integer.parseInt(meal_id);
-		int type = Integer.parseInt(type_page);
+		//int type = Integer.parseInt(type_page);
 		//System.out.println("id:"+target_meal_id+"  user_id:"+user_id+"  decide:"+toUpdateDecide+"  type:"+type);
 		Meal meal = new Meal(target_meal_id,user_id,toUpdateDecide);
 		int status = mealDao.update(meal);
@@ -232,7 +250,7 @@ public class OfoodController {
 			sources.add(ordered_date_mysql);			
 			
 		}
-		//
+		
 		if(sources.contains(weekday_jsp)) {
 			return true;
 		}	

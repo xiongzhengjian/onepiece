@@ -11,11 +11,13 @@ public class OrderSituation {
 	//The number of employees
 	private int employeesNum;
 	//Number of people who have made a reservation
-	private int orderedNum=0;
+	private int orderedNum;
 	//The number of people who haven't made a reservation yet
 	private int notOrderedNum;
 	//Reservation rate
 	private double orderRate;
+	
+	
 	
 	public OrderSituation() {
 		super();

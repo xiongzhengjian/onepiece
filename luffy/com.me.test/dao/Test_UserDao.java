@@ -45,15 +45,15 @@ public class Test_UserDao {
 	 * insert a data into table user
 	 * @throws Exception 
 	 */
-	@Test
-	public void testInsertUser() throws Exception{
-		User user1 =  new User(4,"Q17111011","陈美玲","Gina C Chen",'f',"Gina@Wistron.com",3);
-		User user2 =  new User(5,"Q18060501","刘常凤","Fia Liu",'f',"Fia@Wistron.com",3);
-		SqlSession sqlSession = factory.openSession();
-		int row = sqlSession.insert("com.wistron.meal.user.insertUser",user2);
-		sqlSession.commit();
-		sqlSession.close();		
-	}
+//	@Test
+//	public void testInsertUser() throws Exception{
+//		//User user1 =  new User(4,"Q17111011","陈美玲","Gina C Chen",'f',"Gina@Wistron.com",3);
+//		//User user2 =  new User(5,"Q18060501","刘常凤","Fia Liu",'f',"Fia@Wistron.com",3);
+//		SqlSession sqlSession = factory.openSession();
+//		int row = sqlSession.insert("com.wistron.meal.user.insertUser",user2);
+//		sqlSession.commit();
+//		sqlSession.close();		
+//	}
 	
 	@Test
 	public void testUpdateUser() throws Exception{
@@ -79,18 +79,18 @@ public class Test_UserDao {
 		
 	}
 	
-	@Test
-	public void orderSituationStep1() throws Exception{		
-		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
-		System.out.println(listOrderSituationStep1);
-		
-	}
-	@Test
-	public void orderSituationStep2() throws Exception{		
-		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
-		System.out.println(listOrderSituationStep2);
-		
-	}
+//	@Test
+//	public void orderSituationStep1() throws Exception{		
+//		List<OrderSituation> listOrderSituationStep1 = userDao.orderSituationStep1();
+//		System.out.println(listOrderSituationStep1);
+//		
+//	}
+//	@Test
+//	public void orderSituationStep2() throws Exception{		
+//		List<OrderSituation> listOrderSituationStep2 = userDao.orderSituationStep2();
+//		System.out.println(listOrderSituationStep2);
+//		
+//	}
 	
 	
 }
