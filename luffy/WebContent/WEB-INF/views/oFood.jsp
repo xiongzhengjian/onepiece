@@ -89,10 +89,10 @@
             <caption>Outline</caption>
               <thead>
                 <tr>
-                  <th>总人数</th>
-                  <th>报餐人数</th>
-                  <th>未报餐人数</th>
-                  <th>报餐率</th>
+                  <th class="label-default">总人数</th>
+                  <th class="label-success">报餐人数</th>
+                  <th class="label-warning">未报餐人数</th>
+                  <th class="label-info">报餐率</th>
                 </tr>
               </thead>
               <tbody>
@@ -115,6 +115,7 @@
             <table class="table table-condensed table-hover table-bordered">
             <caption>未报餐详情</caption>
               <thead>
+                <!-- <tr class="label-default"> -->
                 <tr>
                   <th>No</th>                  
                   <!-- <th>site</th> -->
