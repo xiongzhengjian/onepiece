@@ -74,6 +74,7 @@ update user set mealstatus=1 where mealstatus=0 and department=8;
 alter table user modify column department varchar(10);
 
 update user set department = '1STQ10' where department='7';
+update user set department = '1STQ20' where department='8';
 
 select department as dept,count(user_id) as employeesNum from user group by department;
 

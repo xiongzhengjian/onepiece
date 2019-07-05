@@ -97,10 +97,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>${outline.employeesNum }</td>
-                  <td>${outline.orderedNum }</td>
-                  <td>${outline.notOrderedNum }</td>
-                  <td>${outline.orderRate }%</td>
+                  <td><b>${outline.employeesNum }</b></td>
+                  <td><b>${outline.orderedNum }</b></td>
+                  <td style="color: rgb(212, 106, 64);"><b>${outline.notOrderedNum }</b></td>
+                  <td><b>${outline.orderRate }%</b></td>
                 </tr>
                <!--  <tr>
                   <td>1STC00</td>
