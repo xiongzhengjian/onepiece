@@ -16,16 +16,6 @@ public class OnePieceController {
 	
 	private UserDaoImpl userDao = new UserDaoImpl();
 	
-	
-	
-	
-	/**
-	 * springMvc中默认支持的参数类型:也就是说在controller方法中可以加入这些也可以不加,  加不加看自己需不需要,都行.
-	 *HttpServletRequest
-	 *HttpServletResponse
-	 *HttpSession
-	 *Model
-	 */
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request,Model model,HttpSession session) {
 		String staffid = request.getParameter("staffid");

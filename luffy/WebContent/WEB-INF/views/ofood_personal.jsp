@@ -85,7 +85,7 @@
                 <c:forEach items="${meals}" varStatus="idStatus" var="meal" >              		
                 	<tr>               		
             			<%-- <td>${meal.site }</td>  --%>
-            			<td class="weekday">星期几</td>
+            			<td class="weekday">##</td>
             			<td class="date">${meal.date }</td> 
             			<td>${(meal.type==1)?'午餐':'晚餐' }</td>             			
             			<%-- <td class="decided">${(meal.decide==0)?'No':'Yes' }</td> --%>	

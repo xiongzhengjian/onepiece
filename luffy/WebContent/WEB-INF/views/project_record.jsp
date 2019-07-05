@@ -87,7 +87,12 @@
             <input type=hidden value="bios" name="category">
             <input type="submit" value="Import"  onclick="return checkData()">
     	  </form>
-    	
+    		
+   		 	<!-- <div class="form-group">
+			    <label for="exampleInputFile">File input</label>
+			    <input type="file" id="exampleInputFile">
+			    <p class="help-block">Example block-level help text here.</p>
+ 			</div> -->
           
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

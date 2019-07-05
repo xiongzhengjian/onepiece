@@ -48,6 +48,7 @@
           <div class="masthead clearfix">
             <div class="inner">
               <h3 class="masthead-brand">${session_user.enname }</h3>
+             
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><li><a href="#">Logout</a></li> 
@@ -61,7 +62,7 @@
           <div class="inner cover">
             <h1 class="cover-heading">Life</h1>
             <p class="lead">生活就像一盒巧克力，你永远不知道下一颗会是什么味道。</p>
-            <p class="lead">Life is like a box of chocolate,you never kown what you are going to get.</p>
+            <p class="lead">Has worked at Wistron for <span class="badge">300</span> working days</p>
             <p class="lead">
               <a href="./grandline.action" class="btn btn-lg btn-default">Let's go</a>
             </p>
