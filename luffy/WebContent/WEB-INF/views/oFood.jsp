@@ -85,7 +85,7 @@
             <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
    			 <div id="main" style="width: 1200px;height:400px;"></div>           
           </div>
-          <table class="table table-condensed table-hover">
+          <table class="table table-condensed  table-bordered">
             <caption>Outline</caption>
               <thead>
                 <tr>
@@ -112,7 +112,7 @@
           
 
          <!--  <div class="table-responsive"> -->
-            <table class="table table-condensed table-hover">
+            <table class="table table-condensed table-hover table-bordered">
             <caption>未报餐详情</caption>
               <thead>
                 <tr>
