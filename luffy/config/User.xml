@@ -43,7 +43,7 @@
 		
 	</select> -->
 	<select id="findNomealstatus" resultType="com.wistron.pojo.vo.Uservo">
-		select * from user where mealstatus=0 group by user_id		
+		select * from user where mealstatus=0 order by department
 	</select>
 	
 	<!-- <select id="orderSituationStep1" resultType="com.wistron.pojo.vo.OrderSituation">
