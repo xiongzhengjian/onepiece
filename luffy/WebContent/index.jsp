@@ -51,7 +51,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#" data-toggle="modal" data-target="#myModal">Plan</a></li>
+                  <li><a href="#" data-toggle="modal" data-target="#myModal">OT</a></li>
                   <li><a href="#" data-toggle="modal" data-target="#myModal">oFood</a></li>
                   <li><a  href="#" data-toggle="modal" data-target="#myModal">login</a>
 				  </li>
@@ -97,7 +97,7 @@
 						  <div class="form-group">
 						    <label for="username" class="col-sm-2 control-label">用户名</label>
 						    <div class="col-sm-10">
-						      <input type="text" class="form-control" id="username" placeholder="请输入您的工号" name="staffid">
+						      <input type="text" class="form-control" id="staffid" placeholder="请输入您的工号" name="staffid">
 						    </div>
 						  </div>
 						  <div class="form-group">

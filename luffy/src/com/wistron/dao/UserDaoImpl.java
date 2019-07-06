@@ -80,5 +80,11 @@ public class UserDaoImpl {
 		sqlSession.update("com.wistron.meal.user.updateMealStatus",ids);
 		sqlSession.commit();
 	}
+
+	public void update(User user) {
+		SqlSession sqlSession = factory.openSession();
+		sqlSession.update("com.wistron.meal.user.update",user);
+		sqlSession.commit();
+	}
 	
 }

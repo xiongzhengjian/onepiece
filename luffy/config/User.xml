@@ -79,4 +79,10 @@
 		</foreach>
 	</update>
 	
+	<update id="update" parameterType="com.wistron.pojo.User">
+		update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}
+			where
+		 user_id=#{user_id}
+	</update>
+	
 </mapper>

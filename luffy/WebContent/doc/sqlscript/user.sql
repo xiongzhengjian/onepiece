@@ -95,3 +95,8 @@ select * from user where mealstatus=0 order by department;
 
 select * from user where mealstatus=1;
 
+alter table user add column hireDate date;
+update user set hireDate='2017-10-17' where user_id>0;
+#Trx Exception
+select * from information_schema.innodb_trx;
+kill 537;

@@ -1,8 +1,11 @@
 package com.wistron.pojo;
 
+import java.util.Date;
+
 public class User{
 	private int user_id;
 	private String staffid;	
+	private String password;
 	private String name;
 	private String enname;
 	private char sex;
@@ -13,12 +16,30 @@ public class User{
 	private int mealstatus;
 	//is the member attendance:1 default, 0 dosn't attendance
 	private int attendance;
+	private Date hireDate;
 	
 	
 	
 	public User() {
 		super();
 	}
+	
+	public User(int user_id, String staffid, String password, String name, String enname, char sex, String email,
+			String department, int mealstatus, int attendance, Date hireDate) {
+		super();
+		this.user_id = user_id;
+		this.staffid = staffid;
+		this.password = password;
+		this.name = name;
+		this.enname = enname;
+		this.sex = sex;
+		this.email = email;
+		this.department = department;
+		this.mealstatus = mealstatus;
+		this.attendance = attendance;
+		this.hireDate = hireDate;
+	}
+
 	public User(int user_id, String staffid, String name, String enname, char sex, String email, String department,
 			int mealstatus, int attendance) {
 		super();
@@ -121,12 +142,28 @@ public class User{
 	public void setAttendance(int attendance) {
 		this.attendance = attendance;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public Date getHireDate() {
+		return hireDate;
+	}
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", staffid=" + staffid + ", name=" + name + ", enname=" + enname + ", sex="
-				+ sex + ", email=" + email + ", department=" + department + ", mealstatus=" + mealstatus
-				+ ", attendance=" + attendance + "]";
+		return "User [user_id=" + user_id + ", staffid=" + staffid + ", password=" + password + ", name=" + name
+				+ ", enname=" + enname + ", sex=" + sex + ", email=" + email + ", department=" + department
+				+ ", mealstatus=" + mealstatus + ", attendance=" + attendance + ", hireDate=" + hireDate + "]";
 	}
+	
+	
+	
 	
 	
 	

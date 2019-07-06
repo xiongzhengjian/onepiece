@@ -3,8 +3,11 @@ package com.wistron.pojo.vo;
 public class Uservo{
 	private int user_id;
 	private String staffid;	
+	private String password;
+	private String originPassword;
 	private String name;
 	private String enname;
+	private String hireDate;
 	private char sex;
 	private String email;
 	//the foreign key of table User which is associated with table Dictionary
@@ -34,6 +37,25 @@ public class Uservo{
 		this.department = department;
 		this.mealstatus = mealstatus;
 		this.attendance = attendance;
+	}
+	
+	
+	public Uservo(int user_id, String staffid, String password, String originPassword, String name, String enname,
+			String hireDate, char sex, String email, String department, int mealstatus, int attendance, String dept) {
+		super();
+		this.user_id = user_id;
+		this.staffid = staffid;
+		this.password = password;
+		this.originPassword = originPassword;
+		this.name = name;
+		this.enname = enname;
+		this.hireDate = hireDate;
+		this.sex = sex;
+		this.email = email;
+		this.department = department;
+		this.mealstatus = mealstatus;
+		this.attendance = attendance;
+		this.dept = dept;
 	}
 	public Uservo(int user_id, String staffid, String name, String enname, char sex, String email, String department) {
 		super();
@@ -130,12 +152,34 @@ public class Uservo{
 	public void setDept(String dept) {
 		this.dept = dept;
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getOriginPassword() {
+		return originPassword;
+	}
+	public void setOriginPassword(String originPassword) {
+		this.originPassword = originPassword;
+	}
+	
+	public String getHireDate() {
+		return hireDate;
+	}
+	public void setHireDate(String hireDate) {
+		this.hireDate = hireDate;
+	}
 	@Override
 	public String toString() {
-		return "Uservo [user_id=" + user_id + ", staffid=" + staffid + ", name=" + name + ", enname=" + enname
-				+ ", sex=" + sex + ", email=" + email + ", department=" + department + ", mealstatus=" + mealstatus
-				+ ", attendance=" + attendance + ", dept=" + dept + "]";
+		return "Uservo [user_id=" + user_id + ", staffid=" + staffid + ", password=" + password + ", originPassword="
+				+ originPassword + ", name=" + name + ", enname=" + enname + ", hireDate=" + hireDate + ", sex=" + sex
+				+ ", email=" + email + ", department=" + department + ", mealstatus=" + mealstatus + ", attendance="
+				+ attendance + ", dept=" + dept + "]";
 	}
+	
 	
 	
 	
