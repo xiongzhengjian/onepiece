@@ -49,12 +49,19 @@ public class OfoodController {
 			Meal meal = new Meal();
 			meal.setDate(today_date);
 			meal.setUser(user.getUser_id());
-			//Find out if the user has a meal record for the day
-			int count = mealDao.findTodayData(meal);
+			//Find out if the users has a meal record for the day
+			List<Meal> todayOrderedMeals = mealDao.findTodayData(meal);
+			//List<Integer> todayOrderedMeals = mealDao.findTodayData(meal);
+			int count = todayOrderedMeals.size();
 			//it is mean have ordered a meal on today if the value greater than 0 ,then set the value of mealstatus to 1 which is belong to user table 
 			if(count>0) {
-				String staffid = user.getStaffid(); 
-				userDao.updateMealStatus(staffid);
+				//Gets the ids of all users who have booked a meal today
+				List<Integer> ids = new ArrayList<Integer>();
+				for(int i=0;i<count;i++) {
+					Meal mealMsg = todayOrderedMeals.get(i);
+					ids.add(mealMsg.getUser());
+				}
+				userDao.updateMealStatus(ids);
 			}
 			
 			

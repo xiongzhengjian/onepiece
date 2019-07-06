@@ -75,9 +75,9 @@ public class UserDaoImpl {
 		return stq00;
 	}
 
-	public void updateMealStatus(String staffid) {
+	public void updateMealStatus(List<Integer> ids) {
 		SqlSession sqlSession = factory.openSession();
-		sqlSession.update("com.wistron.meal.user.updateMealStatus",staffid);
+		sqlSession.update("com.wistron.meal.user.updateMealStatus",ids);
 		sqlSession.commit();
 	}
 	

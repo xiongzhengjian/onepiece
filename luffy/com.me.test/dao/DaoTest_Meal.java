@@ -41,18 +41,18 @@ public class DaoTest_Meal {
 		
 	}
 	
-	@Test
-	public void findTodayData() throws Exception {
-		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-		//Find out if the user has a meal record for the day
-		
-		 Meal meal = new Meal();
-		 meal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(today));
-		 meal.setUser(11);
-		int value = mealDao.findTodayData(meal);
-		System.out.println(value);
-		
-	}
+//	@Test
+//	public void findTodayData() throws Exception {
+//		String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+//		//Find out if the user has a meal record for the day
+//		
+//		 Meal meal = new Meal();
+//		 meal.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(today));
+//		 meal.setUser(11);
+//		int value = mealDao.findTodayData(meal);
+//		System.out.println(value);
+//		
+//	}
 	
 
 	

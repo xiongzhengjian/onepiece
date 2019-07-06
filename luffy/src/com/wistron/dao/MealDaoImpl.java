@@ -54,11 +54,17 @@ public class MealDaoImpl {
 		return rows;
 	}
 
-	public int findTodayData(Meal meal) {
+	public List<Meal> findTodayData(Meal meal) {
 		SqlSession sqlSession = factory.openSession();
-		Integer value = sqlSession.selectOne("com.wistron.meal.ofood.findTodayData", meal);
-		return value;
+		List<Meal> list = sqlSession.selectList("com.wistron.meal.ofood.findTodayData", meal);
+		return list;
 	}
+	
+//	public List<Integer> findTodayData(Meal meal) {
+//		SqlSession sqlSession = factory.openSession();
+//		List<Integer> list = sqlSession.selectList("com.wistron.meal.ofood.findTodayData", meal);
+//		return list;
+//	}
 	
 	
 	

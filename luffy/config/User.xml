@@ -72,8 +72,11 @@
 		select count(user_id) as 1STQ00 from user where department='1STQ20' and  mealstatus=1
 	</select>
 	
-	<update id="updateMealStatus" parameterType="java.lang.String">
-		update user set mealstatus = 1 where staffid = #{staffid}
+	<update id="updateMealStatus" parameterType="java.util.ArrayList">
+		update user set mealstatus = 1 where user_id in 
+		<foreach collection="list" item="id" index="index" open="(" close=")" separator=",">
+	  		#{id}
+		</foreach>
 	</update>
 	
 </mapper>
