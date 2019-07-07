@@ -28,7 +28,8 @@ public class MealDaoImpl {
 	public int ofood(List<Meal> meals) {
 		SqlSession sqlSession = factory.openSession();
 		int row = sqlSession.insert("com.wistron.meal.ofood.insert_meal", meals);
-		sqlSession.commit();	
+		sqlSession.commit();
+		sqlSession.close();
 		return row;
 	}
 	/**
@@ -38,12 +39,14 @@ public class MealDaoImpl {
 	public List<Meal> findAll(Ordersubmit ordersubmit){
 		SqlSession sqlSession = factory.openSession();
 		meals = sqlSession.selectList("com.wistron.meal.ofood.findAll",ordersubmit);
+		sqlSession.close();
 		return meals;
 	}
 	
 	public List<Meal> findAllLater(Ordersubmit ordersubmit){
 		SqlSession sqlSession = factory.openSession();
 		meals = sqlSession.selectList("com.wistron.meal.ofood.findAllLater",ordersubmit);
+		sqlSession.close();
 		return meals;
 	}
 
@@ -51,12 +54,14 @@ public class MealDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int rows = sqlSession.update("com.wistron.meal.ofood.update", meal);
 		sqlSession.commit();
+		sqlSession.close();
 		return rows;
 	}
 
 	public List<Meal> findTodayData(Meal meal) {
 		SqlSession sqlSession = factory.openSession();
 		List<Meal> list = sqlSession.selectList("com.wistron.meal.ofood.findTodayData", meal);
+		sqlSession.close();
 		return list;
 	}
 	

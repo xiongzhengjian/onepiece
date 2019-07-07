@@ -26,24 +26,28 @@ public class UserDaoImpl {
 		
 		SqlSession sqlSession = factory.openSession();
 		User user = sqlSession.selectOne("com.wistron.meal.user.findUserByStaffid",staffid);
+		sqlSession.close();
 		return user;
 	}
 	
 	public User findUserById(int user_id) {
 		SqlSession sqlSession = factory.openSession();
 		User user = sqlSession.selectOne("com.wistron.meal.user.findUserById", user_id);
+		sqlSession.close();
 		return user;
 	}
 
 	public OrderSituation orderSituation() {
 		SqlSession sqlSession = factory.openSession();
 		OrderSituation orderSituation = sqlSession.selectOne("com.wistron.meal.user.orderSituation");
+		sqlSession.close();
 		return orderSituation;
 	}
 	
 	public List<Uservo> findNomealstatus(){
 		SqlSession sqlSession = factory.openSession();		
 		List<Uservo> uservos = sqlSession.selectList("com.wistron.meal.user.findNomealstatus");
+		sqlSession.close();
 		return uservos;
 	}
 	/**
@@ -53,6 +57,7 @@ public class UserDaoImpl {
 	public List<OrderSituation> userAmount(){
 		SqlSession sqlSession = factory.openSession();	
 		List<OrderSituation> listOrderSituationStep1 = sqlSession.selectList("com.wistron.meal.user.userAmount");
+		sqlSession.close();
 		return listOrderSituationStep1;
 	}
 	/**
@@ -62,16 +67,19 @@ public class UserDaoImpl {
 	public int deptStq00(){
 		SqlSession sqlSession = factory.openSession();	
 		int stq00 = sqlSession.selectOne("com.wistron.meal.user.1stq00");
+		sqlSession.close();
 		return stq00;
 	}
 	public int deptStq10(){
 		SqlSession sqlSession = factory.openSession();	
 		int stq00 = sqlSession.selectOne("com.wistron.meal.user.1stq10");
+		sqlSession.close();
 		return stq00;
 	}
 	public int deptStq20(){
 		SqlSession sqlSession = factory.openSession();	
 		int stq00 = sqlSession.selectOne("com.wistron.meal.user.1stq20");
+		sqlSession.close();
 		return stq00;
 	}
 
@@ -79,12 +87,14 @@ public class UserDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		sqlSession.update("com.wistron.meal.user.updateMealStatus",ids);
 		sqlSession.commit();
+		sqlSession.close();
 	}
 
 	public void update(User user) {
 		SqlSession sqlSession = factory.openSession();
 		sqlSession.update("com.wistron.meal.user.update",user);
 		sqlSession.commit();
+		sqlSession.close();
 	}
 	
 }

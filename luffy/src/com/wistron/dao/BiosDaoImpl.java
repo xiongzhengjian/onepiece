@@ -33,7 +33,8 @@ public class BiosDaoImpl {
 	public int insertBioses(List<Bios> bioses){
 		SqlSession sqlSession = factory.openSession();
 		int rows = sqlSession.insert("com.wistron.record.bios.insertBioses", bioses);
-		sqlSession.commit();	
+		sqlSession.commit();
+		sqlSession.close();
 		return rows;
 	}
 	
@@ -44,6 +45,7 @@ public class BiosDaoImpl {
 	public List<Bios> findAll(){
 		SqlSession sqlSession = factory.openSession();		
 		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.findAll");
+		sqlSession.close();
 		return list;
 	}
 
@@ -52,20 +54,22 @@ public class BiosDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int row = sqlSession.update("com.wistron.record.bios.update", bios);
 		sqlSession.commit();
+		sqlSession.close();
 		return row;
 	}
 
 
 	public List<Bios> limitFindAll(Limit limit) {
-		SqlSession sqlSession = factory.openSession();
-		
+		SqlSession sqlSession = factory.openSession();		
 		List<Bios> list = sqlSession.selectList("com.wistron.record.bios.limitFindAll",limit);
+		sqlSession.close();
 		return list;
 	}
 	
 	public int count() {
 		SqlSession sqlSession = factory.openSession();
 		int  totalrows = sqlSession.selectOne("com.wistron.record.bios.count");
+		sqlSession.close();
 		return totalrows;
 	}
 	

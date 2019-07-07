@@ -34,6 +34,7 @@ public class ProjectDaoImpl {
 	public List<Project> findChassises(){
 		SqlSession sqlSession = factory.openSession();
 		projects = sqlSession.selectList("com.wistron.record.project.findchassises");
+		sqlSession.close();
 		return projects;
 	}
 	
@@ -44,6 +45,7 @@ public class ProjectDaoImpl {
 	public List<Project> findPlatform(String chassis){
 		SqlSession sqlSession = factory.openSession();
 		projects = sqlSession.selectList("com.wistron.record.project.findplatform",chassis);
+		sqlSession.close();
 		return projects;
 	}
 	

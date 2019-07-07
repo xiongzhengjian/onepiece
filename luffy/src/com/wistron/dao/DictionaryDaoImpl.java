@@ -25,6 +25,7 @@ public class DictionaryDaoImpl {
 	public Dictionary findById(Integer id) throws Exception {		
 		 SqlSession sqlSession = factory.openSession();
 		 Dictionary dictionary = sqlSession.selectOne("wistron.pojo.dictionary.findById",id);	
+		 sqlSession.close();
 		return dictionary;
 	}
 	
@@ -32,6 +33,7 @@ public class DictionaryDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int row = sqlSession.insert("wistron.pojo.dictionary.insert", dic);
 		sqlSession.commit();	
+		sqlSession.close();
 		return row;
 	}
 	
@@ -39,6 +41,7 @@ public class DictionaryDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int i = sqlSession.update("wistron.pojo.dictionary.update", dic);
 		sqlSession.commit();
+		sqlSession.close();
 		return i;
 	}
 	
@@ -46,12 +49,14 @@ public class DictionaryDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int i = sqlSession.delete("wistron.pojo.dictionary.delete", id);
 		sqlSession.commit();
+		sqlSession.close();
 		return i;
 	}
 	
 	public List<Dictionary> findAll(){
 		SqlSession sqlSession = factory.openSession();
 		List<Dictionary> list = sqlSession.selectList("wistron.pojo.dictionary.findAll");
+		sqlSession.close();
 		return list;
 	}
 	

@@ -27,6 +27,7 @@ public class SoftpaqDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int rows = sqlSession.insert("com.wistron.record.softpaq.insertMultiple", softpaq);
 		sqlSession.commit();	
+		sqlSession.close();
 		return rows;
 	}
 	
@@ -37,6 +38,7 @@ public class SoftpaqDaoImpl {
 	public List<Softpaq> findAll(){
 		SqlSession sqlSession = factory.openSession();		
 		List<Softpaq> list = sqlSession.selectList("com.wistron.record.softpaq.findAll");
+		sqlSession.close();
 		return list;
 	}
 
@@ -45,6 +47,7 @@ public class SoftpaqDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int row = sqlSession.update("com.wistron.record.softpaq.update", softpaq);
 		sqlSession.commit();
+		sqlSession.close();
 		return row;
 	}
 	

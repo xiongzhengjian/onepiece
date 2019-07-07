@@ -30,6 +30,7 @@ public class SoftrollRespinDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int rows = sqlSession.insert("com.wistron.record.softrollrespin.insertMultiple", list);
 		sqlSession.commit();	
+		sqlSession.close();
 		return rows;
 	}
 	
@@ -40,6 +41,7 @@ public class SoftrollRespinDaoImpl {
 	public List<SoftrollRespin> findAll(){
 		SqlSession sqlSession = factory.openSession();		
 		List<SoftrollRespin> list = sqlSession.selectList("com.wistron.record.softrollrespin.findAll");
+		sqlSession.close();
 		return list;
 	}
 
@@ -48,18 +50,21 @@ public class SoftrollRespinDaoImpl {
 		SqlSession sqlSession = factory.openSession();
 		int row = sqlSession.update("com.wistron.record.softrollrespin.update", dao);
 		sqlSession.commit();
+		sqlSession.close();
 		return row;
 	}
 	
 	public List<SoftrollRespin> limitFindAll(Limit limit) {
 		SqlSession sqlSession = factory.openSession();
 		List<SoftrollRespin> list = sqlSession.selectList("com.wistron.record.softrollrespin.limitFindAll",limit);
+		sqlSession.close();
 		return list;
 	}
 	
 	public int count() {
 		SqlSession sqlSession = factory.openSession();
 		int  totalrows = sqlSession.selectOne("com.wistron.record.softrollrespin.count");
+		sqlSession.close();
 		return totalrows;
 	}
 	
