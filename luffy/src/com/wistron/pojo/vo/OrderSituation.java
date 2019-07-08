@@ -15,7 +15,7 @@ public class OrderSituation {
 	//The number of people who haven't made a reservation yet
 	private int notOrderedNum;
 	//Reservation rate
-	private double orderRate;
+	private String orderRate;
 	
 	
 	
@@ -55,11 +55,14 @@ public class OrderSituation {
 		this.notOrderedNum = notOrderedNum;
 	}
 
-	public double getOrderRate() {
+
+	
+	
+	public String getOrderRate() {
 		return orderRate;
 	}
 
-	public void setOrderRate(double orderRate) {
+	public void setOrderRate(String orderRate) {
 		this.orderRate = orderRate;
 	}
 

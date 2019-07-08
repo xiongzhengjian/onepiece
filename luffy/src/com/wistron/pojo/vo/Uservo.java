@@ -18,6 +18,11 @@ public class Uservo{
 	private int attendance;
 	//dictionary message
 	private String dept;
+	//0 need't to remember user and password. 1 need remember
+	private int remember;
+	
+	private int days;
+	private String years;
 	
 	
 	
@@ -172,13 +177,35 @@ public class Uservo{
 	public void setHireDate(String hireDate) {
 		this.hireDate = hireDate;
 	}
+	public int getRemember() {
+		return remember;
+	}
+	public void setRemember(int remember) {
+		this.remember = remember;
+	}
+	
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
+	public String getYears() {
+		return years;
+	}
+	public void setYears(String years) {
+		this.years = years;
+	}
 	@Override
 	public String toString() {
 		return "Uservo [user_id=" + user_id + ", staffid=" + staffid + ", password=" + password + ", originPassword="
 				+ originPassword + ", name=" + name + ", enname=" + enname + ", hireDate=" + hireDate + ", sex=" + sex
 				+ ", email=" + email + ", department=" + department + ", mealstatus=" + mealstatus + ", attendance="
-				+ attendance + ", dept=" + dept + "]";
+				+ attendance + ", dept=" + dept + ", remember=" + remember + ", days=" + days + ", years=" + years
+				+ "]";
 	}
+	
+	
 	
 	
 	

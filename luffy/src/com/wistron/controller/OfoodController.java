@@ -2,6 +2,7 @@ package com.wistron.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,12 +78,18 @@ public class OfoodController {
 			//figure out the rate of meal
 			int notOrderedNum = nomealstatusUsers.size();
 			double rate = (amoutUser-notOrderedNum)/(double)(amoutUser)*100;
+			DecimalFormat df = new DecimalFormat("#.00");
+			String orderRate_Str = df.format(rate);
 			
 			OrderSituation orderSituation = new OrderSituation();
+			//the amount of user
 			orderSituation.setEmployeesNum(amoutUser);
+			//the number of  booked  meal user
 			orderSituation.setOrderedNum(amoutUser-notOrderedNum);
+			//the number of no book meal user
 			orderSituation.setNotOrderedNum(notOrderedNum);
-			orderSituation.setOrderRate(rate);
+			//the rate of book
+			orderSituation.setOrderRate(orderRate_Str);
 			
 			model.addAttribute("outline",orderSituation);
 			return "/WEB-INF/views/oFood.jsp";
@@ -117,7 +124,10 @@ public class OfoodController {
 			int orderedNum = listOrderedAmout.get(i);
 			orderSituation.setOrderedNum(orderedNum);
 			orderSituation.setNotOrderedNum(employeesNum-orderedNum);
-			orderSituation.setOrderRate((double)orderedNum/employeesNum);
+			double orderRate = (double)orderedNum/employeesNum;
+			DecimalFormat df = new DecimalFormat("#.00");
+			String orderRate_Str = df.format(orderRate);
+			orderSituation.setOrderRate(orderRate_Str);
 			
 			listorderSituation.add(orderSituation);
 		}

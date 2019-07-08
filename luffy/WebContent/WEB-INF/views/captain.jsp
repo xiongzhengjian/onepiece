@@ -56,7 +56,7 @@
              
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><li><a href="#">Logout</a></li> 
+                  <li class="active"><li><a href="./logout.action">Logout</a></li> 
                   <li><a>OT</a></li>
                   <li><a href="ofood/oFood.action">oFood</a></li>                  
                 </ul>
@@ -67,7 +67,7 @@
           <div class="inner cover">
             <h1 class="cover-heading">Life</h1>
             <p class="lead">生活就像一盒巧克力，你永远不知道下一颗会是什么味道。</p>
-            <p class="lead">You've been at Wistron for <b class="label-default">${days }</b> days</p>
+            <p class="lead">You've been at Wistron for <b class="label-default">${DandY.days }</b> days <b class="label-default">${DandY.years }</b> years</p>
             <p class="lead">
               <a href="./grandline.action" class="btn btn-lg btn-default">Let's go</a>
             </p>
@@ -171,7 +171,7 @@
 	 		 	   	dataType: "json",
 	 		 	    contentType:'application/json',
 	 		 	  	complete: function(data){			 		 	  	
-	 		 			console.log(data.responseJSON);
+	 		 			//console.log(data.responseJSON);
 	 		 			var user = data.responseJSON;
 	 		 			$("#name").val(user.name);
 	 		 			$("#enname").val(user.enname);

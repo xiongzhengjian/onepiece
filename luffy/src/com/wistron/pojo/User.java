@@ -18,6 +18,9 @@ public class User{
 	private int attendance;
 	private Date hireDate;
 	
+	//0 need't to remember user and password. 1 need remember
+	private int remember;
+	
 	
 	
 	public User() {
@@ -155,12 +158,24 @@ public class User{
 	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
+	
+	public int getRemember() {
+		return remember;
+	}
+
+	public void setRemember(int remember) {
+		this.remember = remember;
+	}
+
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", staffid=" + staffid + ", password=" + password + ", name=" + name
 				+ ", enname=" + enname + ", sex=" + sex + ", email=" + email + ", department=" + department
-				+ ", mealstatus=" + mealstatus + ", attendance=" + attendance + ", hireDate=" + hireDate + "]";
+				+ ", mealstatus=" + mealstatus + ", attendance=" + attendance + ", hireDate=" + hireDate + ", remember="
+				+ remember + "]";
 	}
+
+	
 	
 	
 	

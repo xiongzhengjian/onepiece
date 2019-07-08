@@ -31,3 +31,5 @@ create event test_rest_mealstauts
     do
 		UPDATE test.user SET test.user.mealstatus = 0 where test.user.user_id>0;
 drop event if exists test_rest_mealstauts;
+
+show processlist;

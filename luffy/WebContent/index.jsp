@@ -110,11 +110,12 @@
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <div class="checkbox">
 						        <label>
-						          <input type="checkbox" onclick="remember()">请记住我
+						          <input id="remember" type="checkbox" value="1" name="remember">请记住我						          
 						        </label>
 						      </div>
 						    </div>
 						  </div>
+						 
 						  <div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <button type="submit">登录</button>
@@ -141,6 +142,38 @@
     <script src="./assets/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+   <!-- remember user and the password -->
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		//console.log(document.cookie);
+    		var cookies = document.cookie.split(';');
+    		//define a function which is to return the cookies that are needed.
+    		function get_cookie(cookie_key){
+    			var length = cookies.length;
+    			for(var i=0;i<length;i++){
+    				var key_value = cookies[i].split('=');
+    				if(key_value[0].trim()==cookie_key){
+    					return key_value[1].trim();
+    				}
+    			}
+    			return '';
+    		}
+    		
+    		var remember = get_cookie('remember');
+    		var username = get_cookie('username');
+    		var password = get_cookie('password');
+    		//console.log(remember+"----"+username+"----"+password);
+    		if(remember=='1'){
+    			$("#staffid").val(username);
+    			$("#password").val(password);
+    			var remember_checkbox =   document.getElementById("remember");
+    			remember_checkbox.checked = "checked";
+    		}
+    		
+    	});
+    </script>
+    
 
 </body>
 </html>
