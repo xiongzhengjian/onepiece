@@ -66,8 +66,8 @@ public class OnePieceController {
 			Cookie cookie_name = new Cookie("username",staffid);
 			Cookie cookie_psw = new Cookie("password",password);
 			Cookie cookie_remember = new Cookie("remember",""+remember);
-			// tomcat下多应用共享
-			cookie_name.setPath("/");
+			//  share with apps with in tomcat
+ 			cookie_name.setPath("/");
 			cookie_psw.setPath("/");
 			cookie_remember.setPath("/");
 			cookie_name.setMaxAge(43200);
