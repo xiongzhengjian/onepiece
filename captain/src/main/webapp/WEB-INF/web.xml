@@ -12,6 +12,17 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+
+  <!--Configure Spring's listener, which by default only loads the applicationcontext.xml configuration file in the WEB-INF directory-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!--As described above, the path to the configuration file is required so that it can find the applicationcontext.xml file under the Resource path-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
   <servlet>
     <servlet-name>captain</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

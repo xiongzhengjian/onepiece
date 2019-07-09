@@ -16,8 +16,11 @@
 	 	http://www.springframework.org/schema/task
 	 	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
 	 	 <!-- @Controller annotation scan -->
-	 	 <context:component-scan base-package="com.wistron.controller"></context:component-scan>
-	 	 
+	 	<!-- <context:component-scan base-package="com.wistron.controller"></context:component-scan>-->
+		<context:component-scan base-package="com.wistron">
+			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		</context:component-scan>
+
 	 	 <!--Annotation driven:
 	 	 		processor mapper and processor adapter configured with the latest version of annotations for our display
 	 	  -->
@@ -25,23 +28,26 @@
 	 	  
       	 <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
       	 
-      	 <!-- 
-      	 	Configure custom converters
-      	 		Note:be sure to configure custom converters on annotation drivers
-      	  -->
-      	  <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-      	  	<property name="converters">
-      	  		<set>
-      	  			<!-- specifies the full path name of the custom converter -->
-      	  			<bean class="com.wistron.controller.converter.CustomStrToDateConverter"></bean>
-      	  		</set>
-      	  	</property>
-      	  </bean>
+
       	  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		     <property name="maxUploadSize" value="5242880" />
 		     <property name="maxInMemorySize" value="4096" />
 		     <property name="defaultEncoding" value="UTF-8"></property>
     	 </bean>
+
+
+		<!--
+			  Configure custom converters
+				  Note:be sure to configure custom converters on annotation drivers
+		   -->
+		<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+			<property name="converters">
+				<set>
+					<!-- specifies the full path name of the custom converter -->
+					<bean class="com.wistron.controller.converter.CustomStrToDateConverter"></bean>
+				</set>
+			</property>
+		</bean>
 
       	
       
