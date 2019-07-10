@@ -5,10 +5,12 @@ import com.wistron.pojo.Project;
 import com.wistron.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service("projectService")
+@Transactional
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired

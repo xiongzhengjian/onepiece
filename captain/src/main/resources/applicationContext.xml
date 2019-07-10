@@ -35,6 +35,7 @@
             <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
                 <property name="basePackage" value="com.wistron.dao"/>
             </bean>
+
     <!--Configure declarative transaction management for Spring-->
         <!--1.Configure the transaction manager-->
             <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
