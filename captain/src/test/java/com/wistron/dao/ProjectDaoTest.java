@@ -47,5 +47,11 @@ public class ProjectDaoTest {
 
     @Test
     public void findPlatform() {
+        ProjectDao dao = sqlSession.getMapper(ProjectDao.class);
+        List<Project> platform = dao.findPlatform("Shave3");
+        for (Project project : platform) {
+            System.out.println(project);
+        }
+
     }
 }
