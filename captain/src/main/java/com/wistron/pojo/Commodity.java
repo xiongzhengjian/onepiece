@@ -133,15 +133,23 @@ public class Commodity {
 	public void setTester(String tester) {
 		this.tester = tester;
 	}
+
 	@Override
 	public String toString() {
-		return "Commodity [commodity_id=" + commodity_id + ", owner=" + owner + ", chassis=" + chassis + ", platform="
-				+ platform + ", type=" + type + ", name=" + name + ", pn_sn=" + pn_sn + ", start=" + start + ", end="
-				+ end + ", bios_version=" + bios_version + ", image_build_id=" + image_build_id + ", test_plan="
-				+ test_plan + ", tester=" + tester + "]";
+		return "Commodity{" +
+				"commodity_id=" + commodity_id +
+				", owner='" + owner + '\'' +
+				", chassis='" + chassis + '\'' +
+				", platform='" + platform + '\'' +
+				", type='" + type + '\'' +
+				", name='" + name + '\'' +
+				", pn_sn='" + pn_sn + '\'' +
+				", start=" + start +
+				", end=" + end +
+				", bios_version='" + bios_version + '\'' +
+				", image_build_id='" + image_build_id + '\'' +
+				", test_plan='" + test_plan + '\'' +
+				", tester='" + tester + '\'' +
+				'}';
 	}
-	
-	
-	
-	
 }
