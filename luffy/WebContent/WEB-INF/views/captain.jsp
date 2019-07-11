@@ -66,7 +66,7 @@
 
           <div class="inner cover">
             <h1 class="cover-heading">Work</h1>
-            <p class="lead">凡事若能尽心尽力，人生便可无怨无悔</p>
+            <p class="lead">将自己的一生奉献给一门职业，埋头苦干，孜孜不倦，这样的人最有魅力。</p>
             <p class="lead">You've been at Wistron for <b class="label-default">${DandY.days }</b> days <b class="label-default">${DandY.years }</b> years</p>
             <p class="lead">
               <a href="./grandline.action" class="btn btn-lg btn-default">Let's go</a>
