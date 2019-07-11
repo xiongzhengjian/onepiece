@@ -2,6 +2,7 @@ package com.wistron.dao;
 
 import com.wistron.pojo.*;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -26,17 +27,32 @@ public interface ExcelRecordDao {
     @Select("select * from softrollrespin")
     public List<SoftrollRespin> findAllSoftrollrespin();
 
-    @Insert("insert into bios " +
+    @Insert({"<script>" +
+            "insert into bios " +
             "(bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester)" +
             "values" +
-            "(#{bios.bios_id},#{bios.owner},#{bios.chassis},#{bios.platform},#{bios.test_type},#{bios.start},#{bios.end},#{bios.bios_version},#{bios.image_build_id},#{bios.test_plan},#{bios.tester})")
-    public int insertBioses(List<Bios> bioses);
+            "<foreach collection='list' item='bios' index='index' separator=','>" +
+                "(#{bios.bios_id},#{bios.owner},#{bios.chassis},#{bios.platform},#{bios.test_type},#{bios.start},#{bios.end},#{bios.bios_version},#{bios.image_build_id},#{bios.test_plan},#{bios.tester})" +
+            "</foreach>" +
+            "</script>"})
+    @Options(useGeneratedKeys=true, keyProperty="bios_id", keyColumn="bios_id")
+    public int insertBioses(List<Bios> list);
 
 
-    @Insert("insert into commodity " +
-            "(commodity_id,owner,chassis,platform,type,name,pn_sn,start,end,bios_version,image_build_id,test_plan,tester)" +
-            "values" +
-            "(#{commodity.commodity_id},#{commodity.owner},#{commodity.chassis},#{commodity.platform},#{commodity.type},#{commodity.name},#{commodity.pn_sn},#{commodity.start},#{commodity.end},#{commodity.bios_version},#{commodity.image_build_id},#{commodity.test_plan},#{commodity.tester})")
+//    @Insert("insert into commodity " +
+//            "(commodity_id,owner,chassis,platform,type,name,pn_sn,start,end,bios_version,image_build_id,test_plan,tester)" +
+//            "values" +
+//            "(#{commodity.commodity_id},#{commodity.owner},#{commodity.chassis},#{commodity.platform},#{commodity.type},#{commodity.name},#{commodity.pn_sn},#{commodity.start},#{commodity.end},#{commodity.bios_version},#{commodity.image_build_id},#{commodity.test_plan},#{commodity.tester})")
+//
+    @Insert({"<script>" +
+                "insert into commodity " +
+                "(commodity_id,owner,chassis,platform,type,name,pn_sn,start,end,bios_version,image_build_id,test_plan,tester)" +
+                    "values" +
+                "<foreach collection='list' item='commodity' index='index' separator=','>" +
+                    "(#{commodity.commodity_id},#{commodity.owner},#{commodity.chassis},#{commodity.platform},#{commodity.type},#{commodity.name},#{commodity.pn_sn},#{commodity.start},#{commodity.end},#{commodity.bios_version},#{commodity.image_build_id},#{commodity.test_plan},#{commodity.tester})"+
+                "</foreach>" +
+            "</script>"})
+    @Options(useGeneratedKeys=true, keyProperty="commodity_id", keyColumn="commodity_id")
     public int insertCommodities(List<Commodity> commodity);
 
     @Select("insert into softpaq  (softpaq_id,owner,chassis,platform,sp_number,softpaq_title,version,start,end,bios_version,image_build_id,test_plan,tester)" +
