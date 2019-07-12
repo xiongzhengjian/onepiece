@@ -3,6 +3,7 @@ package com.wistron.dao;
 import com.wistron.pojo.Bios;
 import com.wistron.pojo.vo.Limit;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -10,11 +11,19 @@ import java.util.List;
 
 public interface BiosDao {
 
-    @Insert("insert into bios " +
+
+
+    @Insert({"<script>" +
+            "insert into bios " +
             "(bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester)" +
             "values" +
-            "(#{bios.bios_id},#{bios.owner},#{bios.chassis},#{bios.platform},#{bios.test_type},#{bios.start},#{bios.end},#{bios.bios_version},#{bios.image_build_id},#{bios.test_plan},#{bios.tester})")
-    public int insertBioses(List<Bios> bioses);
+            "<foreach collection='list' item='bios' index='index' separator=','>" +
+            "(#{bios.bios_id},#{bios.owner},#{bios.chassis},#{bios.platform},#{bios.test_type},#{bios.start},#{bios.end},#{bios.bios_version},#{bios.image_build_id},#{bios.test_plan},#{bios.tester})" +
+            "</foreach>" +
+            "</script>"})
+    @Options(useGeneratedKeys=true, keyProperty="bios_id", keyColumn="bios_id")
+    public int insertBioses(List<Bios> list);
+
 
     @Select("select bios_id,owner,chassis,platform,test_type,start,end,bios_version,image_build_id,test_plan,tester from bios order by bios_id desc")
     public List<Bios> findAll();

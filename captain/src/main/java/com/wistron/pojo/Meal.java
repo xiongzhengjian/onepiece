@@ -28,6 +28,14 @@ public class Meal {
 		this.user = user;
 	}
 
+	public Meal(Date date, String site, int user, int type, int decide) {
+		this.date = date;
+		this.site = site;
+		this.user = user;
+		this.type = type;
+		this.decide = decide;
+	}
+
 	public Meal(int meal_id, Date date, String site, int user, int type, int decide) {
 		super();
 		this.meal_id = meal_id;

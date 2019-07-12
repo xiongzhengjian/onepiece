@@ -1,6 +1,8 @@
 package com.wistron.dao;
 
 import com.wistron.pojo.Softpaq;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -8,10 +10,25 @@ import java.util.List;
 
 public interface SoftpaqDao {
 
-    @Select("insert into softpaq  (softpaq_id,owner,chassis,platform,sp_number,softpaq_title,version,start,end,bios_version,image_build_id,test_plan,tester)" +
+    @Insert({"<script>" +
+            "insert into softpaq (softpaq_id,owner,chassis,platform,sp_number,softpaq_title,version,start,end,bios_version,image_build_id,test_plan,tester)" +
             "values" +
-            "(#{softpaq.softpaq_id},#{softpaq.owner},#{softpaq.chassis},#{softpaq.platform},#{softpaq.sp_number},#{softpaq.softpaq_title},#{softpaq.version},#{softpaq.start},#{softpaq.end},#{softpaq.bios_version},#{softpaq.image_build_id},#{softpaq.test_plan},#{softpaq.tester})")
+            "<foreach collection='list' item='softpaq' index='index' separator=','>" +
+            "(#{softpaq.softpaq_id},#{softpaq.owner},#{softpaq.chassis},#{softpaq.platform},#{softpaq.sp_number},#{softpaq.softpaq_title},#{softpaq.version},#{softpaq.start},#{softpaq.end},#{softpaq.bios_version},#{softpaq.image_build_id},#{softpaq.test_plan},#{softpaq.tester})" +
+            "</foreach>" +
+            "</script>"})
+    @Options(useGeneratedKeys=true)
     public int insertMultiple(List<Softpaq> softpaq);
+
+//    @Insert({"<script>" +
+//            "insert into softpaq (softpaq_id,owner,chassis,platform,sp_number,softpaq_title,version,start,end,bios_version,image_build_id,test_plan,tester)" +
+//            "values" +
+//            "<foreach collection='list' item='softpaq' index='index' separator=','>" +
+//            "(#{softpaq.softpaq_id},#{softpaq.owner},#{softpaq.chassis},#{softpaq.platform},#{softpaq.sp_number},#{softpaq.softpaq_title},#{softpaq.version},#{softpaq.start},#{softpaq.end},#{softpaq.bios_version},#{softpaq.image_build_id},#{softpaq.test_plan},#{softpaq.tester})" +
+//            "</foreach>" +
+//            "</script>"})
+//    @Options(useGeneratedKeys=true)
+//    public int insertSoftpaq(List<Softpaq> softpaq);
 
 
     @Select("select * from softpaq order by softpaq_id desc")

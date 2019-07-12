@@ -3,6 +3,7 @@ package com.wistron.dao;
 import com.wistron.pojo.Meal;
 import com.wistron.pojo.vo.Ordersubmit;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -10,11 +11,17 @@ import java.util.List;
 
 public interface MealDao {
 
-    @Insert("insert into meal " +
-            "(meal_id,date,site,user,type,decide)" +
-            " values " +
-            "(#{meal.meal_id},#{meal.date},#{meal.site},#{meal.user},#{meal.type},#{meal.decide})")
-    public int insertOrderedMeals(List<Meal> meals);
+
+
+    @Insert({"<script>" +
+            "insert into meal (meal_id,date,site,user,type,decide)" +
+            "values" +
+            "<foreach collection='list' item='dao' index='index' separator=','>" +
+                "(#{dao.meal_id},#{dao.date},#{dao.site},#{dao.user},#{dao.type},#{dao.decide})" +
+            "</foreach>" +
+            "</script>"})
+    @Options(useGeneratedKeys=true)
+    public int ofood(List<Meal> list);
 
     @Select("select * from meal where user=#{user_id} and date >= #{today}")
     public List<Meal> findAll(Ordersubmit ordersubmit);

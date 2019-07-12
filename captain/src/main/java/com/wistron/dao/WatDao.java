@@ -3,6 +3,7 @@ package com.wistron.dao;
 import com.wistron.pojo.Wat;
 import com.wistron.pojo.vo.Limit;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -10,9 +11,14 @@ import java.util.List;
 
 public interface WatDao {
 
-    @Insert("insert into wat (wat_id,owner,chassis,platform,device_name,PN_SN,start,end,bios_version,image_build_id,test_plan,tester) " +
-                "values" +
-            "(#{dao.wat_id},#{dao.owner},#{dao.chassis},#{dao.platform},#{dao.device_name},#{dao.pn_sn},#{dao.start},#{dao.end},#{dao.bios_version},#{dao.image_build_id},#{dao.test_plan},#{dao.tester})")
+    @Insert({"<script>" +
+            "insert into wat (wat_id,owner,chassis,platform,device_name,PN_SN,start,end,bios_version,image_build_id,test_plan,tester)" +
+            "values" +
+            "<foreach collection='list' item='dao' index='index' separator=','>" +
+            "(#{dao.wat_id},#{dao.owner},#{dao.chassis},#{dao.platform},#{dao.device_name},#{dao.pn_sn},#{dao.start},#{dao.end},#{dao.bios_version},#{dao.image_build_id},#{dao.test_plan},#{dao.tester})" +
+            "</foreach>" +
+            "</script>"})
+    @Options(useGeneratedKeys=true)
     public int insertMultiple(List<Wat> list);
 
     @Select("select * from wat  order by wat_id desc")
