@@ -16,21 +16,21 @@ public interface UserDao {
     @Select("select * from user where user_id = #{id}")
     public User findUserById(int user_id);
 
-    //public OrderSituation orderSituation();
+    public OrderSituation orderSituation();
 
     @Select("select * from user where mealstatus=0 order by department")
     public List<Uservo> findNomealstatus();
 
     @Select("select department as dept,count(user_id) as employeesNum from user group by department")
-    public List<OrderSituation> findUserAmount();
+    public List<OrderSituation> userAmount();
 
     //public int findDeptStq00();
 
     @Select("select count(user_id) as 1STQ00 from user where department='1STQ10' and  mealstatus=1")
-    public int findDeptStq10();
+    public int deptStq10();
 
     @Select("select count(user_id) as 1STQ00 from user where department='1STQ20' and  mealstatus=1")
-    public int findDeptStq20();
+    public int deptStq20();
 
     @Update("update user set mealstatus = 1 where user_id in (#{list})")
     public void updateMealStatus(List<Integer> ids);

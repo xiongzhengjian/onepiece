@@ -31,7 +31,7 @@ public interface CommodityDao {
 
     @Update("update commodity set " +
             "owner=#{owner},chassis=#{chassis},platform=#{platform},type=#{type},name=#{name}, pn_sn=#{pn_sn},start=#{start},end=#{end},bios_version=#{bios_version},image_build_id=#{image_build_id}, test_plan=#{test_plan},tester=#{tester} " +
-            "where" +
+            "where " +
             "commodity_id=#{commodity_id}")
     public int updateCommodity(Commodity commodity);
 

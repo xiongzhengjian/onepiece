@@ -66,7 +66,7 @@ public class UserDaoTest {
 
     @Test
     public void findDeptStq10() {
-        int deptStq10 = userDao.findDeptStq10();
+        int deptStq10 = userDao.deptStq10();
         System.out.println(deptStq10);
     }
 

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.wistron.dao.UserDao;
+import com.wistron.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +24,7 @@ import com.wistron.pojo.vo.Uservo;
 public class OnePieceController {
 
 	@Autowired
-	private UserDao userDao;
+	private UserService userService;
 	
 	@RequestMapping("/home")
 	public String home(HttpSession session) {
@@ -45,7 +45,7 @@ public class OnePieceController {
 	}
 	
 	@RequestMapping("/login")
-	public String login(HttpSession session,HttpServletResponse response,HttpServletRequest request, Uservo uservo,Model model) throws Exception {
+	public String login(HttpSession session,HttpServletResponse response,HttpServletRequest request, Uservo uservo) throws Exception {
 		String staffid = uservo.getStaffid();
 		String password = uservo.getPassword();
 		int remember = uservo.getRemember();
@@ -54,7 +54,7 @@ public class OnePieceController {
 			return "/index.jsp";
 		}
 		
-		User user = userDao.findUserByStaffid(staffid);
+		User user = userService.findUserByStaffid(staffid);
 		//the staffid or password is wrong if user is null  
 		if(user==null) {
 			return "/index.jsp";
@@ -105,7 +105,6 @@ public class OnePieceController {
 	     }
 	     uvo.setYears(years_str);
 	     session.setAttribute("DandY", uvo);
-//		return "./WEB-INF/views/captain.jsp";
 		return "/WEB-INF/views/captain.jsp";
 	}
 	
@@ -122,13 +121,13 @@ public class OnePieceController {
 			String hireDate = uservo.getHireDate();
 			Date date = new SimpleDateFormat("yyyy-MM-dd").parse(hireDate);
 			user.setHireDate(date);
-			userDao.update(user);
+			userService.update(user);
 			
 		//update password branch
 		}else {
 			String staffid = user.getStaffid();
 			//get the user message from database
-			User originuser = userDao.findUserByStaffid(staffid);
+			User originuser = userService.findUserByStaffid(staffid);
 			String pojo_password = originuser.getPassword();
 			//Change the password if the original password is the same as the database password
 			if(pojo_password.equals(originPassword)) {
@@ -139,13 +138,13 @@ public class OnePieceController {
 				String hireDate = uservo.getHireDate();
 				Date date = new SimpleDateFormat("yyyy-MM-dd").parse(hireDate);
 				user.setHireDate(date);
-				userDao.update(user);
+				userService.update(user);
 			}
 		}
 		
 		
 		String staffid = user.getStaffid();
-		User newuser = userDao.findUserByStaffid(staffid);
+		User newuser = userService.findUserByStaffid(staffid);
 		session.removeAttribute("session_user");
 		session.setAttribute("session_user", newuser);
 		

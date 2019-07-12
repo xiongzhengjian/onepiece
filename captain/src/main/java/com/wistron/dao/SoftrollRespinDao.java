@@ -29,7 +29,7 @@ public interface SoftrollRespinDao {
 
     @Update("update softrollrespin set " +
             "owner=#{owner}, chassis=#{chassis},platform=#{platform},test_function=#{test_function},  start=#{start},end=#{end},bios_version=#{bios_version}, image_build_id=#{image_build_id},test_plan=#{test_plan}, tester=#{tester} " +
-                "where" +
+                "where " +
             "softrollrespin_id=#{softrollrespin_id}")
     public int update(SoftrollRespin dao);
 

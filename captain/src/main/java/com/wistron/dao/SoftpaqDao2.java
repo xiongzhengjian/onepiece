@@ -37,7 +37,7 @@ public interface SoftpaqDao2 {
     public List<Softpaq2> findAll();
 
     @Update("update softpaq2 set owner=#{owner},start=#{start},end=#{end},sp_number=#{sp_number},softpaq_title=#{softpaq_title},version=#{version},platform=#{platform},sptest_tool_status=#{sptest_tool_status},installation_status=#{installation_status},function_status=#{function_status},products_sequence=#{products_sequence},mark=#{mark}" +
-            "where" +
+            "where " +
             "softpaq_id=#{softpaq_id}")
     public int update(Softpaq2 softpaq);
 
