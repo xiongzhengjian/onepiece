@@ -35,10 +35,17 @@ public interface UserDao {
     @Update("update user set mealstatus = 1 where user_id in (#{list})")
     public void updateMealStatus(List<Integer> ids);
 
-    @Update("update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}" +
-            " where " +
-            "user_id=#{user_id}"
-    )
+//    @Update("update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}" +
+//            " where " +
+//            "user_id=#{user_id}"
+//    )
+    @Update({"<script>" +
+            "update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}" +
+            "where " +
+                "<foreach collection='list' item='id' index='index' separator=','>" +
+                    "user_id=#{id}" +
+                "</foreach>" +
+            "</script>"})
     public void update(User user);
 
 }

@@ -163,7 +163,7 @@
 							    <tr id="trs0">
 							      <td>							    
 									<div class="form-group">
-									    <label for="name">Weekday</label>
+									    <label>Weekday</label>
 									    <!-- <select class="form-control" name="orderlist[0].weekday"></select>	 -->
 									   	<p class="form-control" id="show_weekday_lunch">today</p>
 									   	<input type=hidden name="orderlist[0].weekday" id="today_weekday_lunch" value=""/>					    
@@ -171,14 +171,14 @@
 							      </td>
 							      <td>
 							      	<div class="form-group">
-									    <label for="name">Meal</label>
+									    <label>Meal</label>
 									    <p class="form-control" id="show_type_lunch">午餐</p>
 									    <input type=hidden name="orderlist[0].type" value="1"/>								    
   									</div>
 							      </td>
 							      <td>
 							      	<div class="form-group">
-									    <label for="name">Decide</label>									  
+									    <label>Decide</label>
 										<select class="form-control" name="orderlist[0].decide">
 									      <option value="1">要吃</option>
 									      <option value="0">不吃</option>									     

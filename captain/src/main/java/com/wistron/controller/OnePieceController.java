@@ -22,6 +22,7 @@ import com.wistron.pojo.vo.Uservo;
 
 @Controller
 public class OnePieceController {
+	//http://localhost/luffy/druid/index.html
 
 	@Autowired
 	private UserService userService;

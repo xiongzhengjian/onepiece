@@ -77,9 +77,8 @@ public class UserDaoTest {
     @Test
     public void updateMealStatus() {
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(2);
-        list.add(3);
-        list.add(4);
+
+        list.add(11);
         list.add(5);
         userDao.updateMealStatus(list);
     }
