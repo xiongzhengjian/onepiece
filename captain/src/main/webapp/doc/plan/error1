@@ -1,0 +1,14 @@
+[2019-07-13 02:22:25,835] Artifact luffy.war: Artifact is being deployed, please wait...
+13-Jul-2019 14:22:35.657 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [E:\soft\apache-tomcat-9.0.21-windows-x64\apache-tomcat-9.0.21\webapps\manager]
+13-Jul-2019 14:22:35.931 INFO [Catalina-utility-2] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+13-Jul-2019 14:22:36.153 INFO [Catalina-utility-2] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [E:\soft\apache-tomcat-9.0.21-windows-x64\apache-tomcat-9.0.21\webapps\manager] has finished in [496] ms
+13-Jul-2019 14:22:40.390 INFO [RMI TCP Connection(3)-127.0.0.1] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+ERROR StatusLogger No Log4j 2 configuration file found. Using default configuration (logging only errors to the console), or user programmatically provided configurations. Set system property 'log4j2.debug' to show Log4j 2 internal initialization logging. See https://logging.apache.org/log4j/2.x/manual/configuration.html for instructions on how to configure Log4j 2
+[2019-07-13 02:22:45,861] Artifact luffy.war: Artifact is deployed successfully
+[2019-07-13 02:22:45,861] Artifact luffy.war: Deploy took 20,026 milliseconds
+
+
+
+2019-07-13 14:27:28,204 DEBUG [org.apache.ibatis.logging.LogFactory] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2019-07-13 14:27:29,087 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'configuration' or 'configLocation' not specified, using default MyBatis Configuration
+2019-07-13 14:27:29,170 DEBUG [org.mybatis.spring.SqlSessionFactoryBean] - Property 'mapperLocations' was not specified or no matching resources found

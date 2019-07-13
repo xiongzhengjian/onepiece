@@ -89,13 +89,29 @@
         <!--2.Configure transaction notification-->
             <tx:advice id="txAdvice" transaction-manager="transactionManager">
                 <tx:attributes>
-                    <tx:method name="find" read-only="true"/>
-                    <tx:method name="limitFind" read-only="true"/>
+                    <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
+                    <tx:method name="limitFind" propagation="SUPPORTS" read-only="true"/>
+
+
+                    <tx:method name="add*" propagation="REQUIRED" />
+                    <tx:method name="append*" propagation="REQUIRED" />
+                    <tx:method name="insert*" propagation="REQUIRED" />
+                    <tx:method name="save*" propagation="REQUIRED" />
+                    <tx:method name="update*" propagation="REQUIRED" />
+                    <tx:method name="modify*" propagation="REQUIRED" />
+                    <tx:method name="edit*" propagation="REQUIRED" />
+                    <tx:method name="delete*" propagation="REQUIRED" />
+                    <tx:method name="remove*" propagation="REQUIRED" />
+                    <tx:method name="repair" propagation="REQUIRED" />
+
+
+                    <tx:method name="*" propagation="SUPPORTS" />
                     <tx:method name="*" isolation="DEFAULT"/>
                 </tx:attributes>
             </tx:advice>
         <!--3.Configuring AOP enhancements-->
             <aop:config>
                 <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wistron.service.impl.*ServiceImpl.*(..))"/>
+                <!--<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wistron.service..*Impl.*(..))"/>-->
             </aop:config>
 </beans>

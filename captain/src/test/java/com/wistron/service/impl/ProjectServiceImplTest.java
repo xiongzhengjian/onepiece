@@ -58,4 +58,9 @@ public class ProjectServiceImplTest {
     @Test
     public void findPlatform() {
     }
+
+
+
+    /*------------------Log4j2 Test*/
+
 }
