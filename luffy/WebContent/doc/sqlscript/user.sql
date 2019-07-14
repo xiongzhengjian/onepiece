@@ -109,3 +109,6 @@ alter table user modify column hireDate date default '2017-10-17';
 alter table user modify column password char(10) default '000000';
 update user set password='000000' where user_id>0;
 alter table user modify column enname varchar(20) default 'luffy';
+
+#-------------2019-07-14
+select * from user where user_id in (11,5);

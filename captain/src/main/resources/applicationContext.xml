@@ -105,8 +105,8 @@
                     <tx:method name="repair" propagation="REQUIRED" />
 
 
-                    <tx:method name="*" propagation="SUPPORTS" />
-                    <tx:method name="*" isolation="DEFAULT"/>
+                    <!--<tx:method name="*" propagation="SUPPORTS" />-->
+                    <!--<tx:method name="*" isolation="DEFAULT"/>-->
                 </tx:attributes>
             </tx:advice>
         <!--3.Configuring AOP enhancements-->

@@ -32,20 +32,23 @@ public interface UserDao {
     @Select("select count(user_id) as 1STQ00 from user where department='1STQ20' and  mealstatus=1")
     public int deptStq20();
 
-    @Update("update user set mealstatus = 1 where user_id in (#{list})")
+//    @Update("update user set mealstatus = 1 where user_id in (#{list})")
+
+    /* "<foreach collection='list' item='pojo' start='(' index='index' separator=','> end=')'" +*/
+    /*"<foreach collection='list' item='pojo' start='(' index='index' separator=','end=')'>" +*/
+//    @Update("update user set mealstatus = 1 where user_id in (#{list})")
+    @Update({"<script>" +
+            "update user set mealstatus = 1 where user_id in " +
+            "<foreach collection='list' item='pojo'  index='index' open='(' separator=',' close=')'>" +
+                "#{pojo}" +
+            "</foreach>" +
+            "</script>"})
     public void updateMealStatus(List<Integer> ids);
 
-//    @Update("update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}" +
-//            " where " +
-//            "user_id=#{user_id}"
-//    )
-    @Update({"<script>" +
-            "update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}" +
-            "where " +
-                "<foreach collection='list' item='id' index='index' separator=','>" +
-                    "user_id=#{id}" +
-                "</foreach>" +
-            "</script>"})
+    @Update("update user set password=#{password},name=#{name},enname=#{enname},email=#{email},hireDate=#{hireDate}" +
+            " where " +
+            "user_id=#{user_id}"
+    )
     public void update(User user);
 
 }
