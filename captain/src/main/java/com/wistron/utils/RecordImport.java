@@ -1,32 +1,23 @@
 package com.wistron.utils;
 
+import com.wistron.dao.ExcelRecordDao;
+import com.wistron.pojo.*;
+import org.apache.poi.ss.usermodel.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.wistron.service.ExcelRecordService;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import com.wistron.pojo.Bios;
-import com.wistron.pojo.Commodity;
-import com.wistron.pojo.Softpaq2;
-import com.wistron.pojo.SoftrollRespin;
-import com.wistron.pojo.Wat;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-
-@Component("com.wistron.utils.RecordImport2")
-public class RecordImport2 {
+@Component("com.wistron.utils.RecordImport")
+public class RecordImport {
 
 	@Autowired
-	private ExcelRecordService excelRecordService;
+	private ExcelRecordDao excelRecordDao;
 	
 	
 	
@@ -88,7 +79,7 @@ public class RecordImport2 {
 //					System.out.println(newDataList);
 					
 					//Insert the data into the database
-					excelRecordService.insertBioses(new_bios_list);
+					excelRecordDao.insertBioses(new_bios_list);
 				}
 				
 				
@@ -150,7 +141,7 @@ public class RecordImport2 {
 //					System.out.println(newDataList);
 					
 					//Insert the data into the database
-					excelRecordService.insertCommodities(new_commodity_list);
+					excelRecordDao.insertCommodities(new_commodity_list);
 					
 				}
 				
@@ -210,7 +201,7 @@ public class RecordImport2 {
 //					System.out.println(newDataList);
 					
 					//Insert the data into the database
-					excelRecordService.insertSoftpaq2(new_softpaq_list);
+					excelRecordDao.insertSoftpaq2(new_softpaq_list);
 				}
 				
 				
@@ -269,7 +260,7 @@ public class RecordImport2 {
 					System.out.println(new_wat_list);
 					
 					//Insert the data into the database
-					excelRecordService.insertWat(new_wat_list);
+					excelRecordDao.insertWat(new_wat_list);
 				}
 				
 				
@@ -331,7 +322,7 @@ public class RecordImport2 {
 //					System.out.println(new_isr_list);
 					
 					//Insert the data into the database
-					excelRecordService.insertIsr(new_isr_list);
+					excelRecordDao.insertIsr(new_isr_list);
 				}
 				
 				inputStream.close();			        

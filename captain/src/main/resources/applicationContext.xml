@@ -105,6 +105,8 @@
                     <tx:method name="delete*" propagation="REQUIRED" />
                     <tx:method name="remove*" propagation="REQUIRED" />
                     <tx:method name="repair" propagation="REQUIRED" />
+                    <tx:method name="export*" propagation="REQUIRED" />
+                    <tx:method name="import*" propagation="REQUIRED" />
 
 
                     <!--<tx:method name="*" propagation="SUPPORTS" />-->
@@ -113,7 +115,7 @@
             </tx:advice>
         <!--3.Configuring AOP enhancements-->
             <aop:config>
-                <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wistron.service.impl.*ServiceImpl.*(..))"/>
+                <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wistron.service.impl.*ServiceImpl*.*(..))"/>
                 <!--<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.wistron.service..*Impl.*(..))"/>-->
             </aop:config>
 </beans>

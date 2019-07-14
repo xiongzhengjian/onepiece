@@ -1,44 +1,30 @@
 package com.wistron.utils;
 
+import com.wistron.dao.ExcelRecordDao;
+import com.wistron.pojo.*;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.servlet.ServletOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
-
-import com.wistron.service.ExcelRecordService;
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.PrintSetup;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import com.wistron.pojo.Bios;
-import com.wistron.pojo.Commodity;
-import com.wistron.pojo.Softpaq2;
-import com.wistron.pojo.SoftrollRespin;
-import com.wistron.pojo.Wat;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-@Component("com.wistron.utils.RecordExport2")
-public class RecordExport2 {
+@Component("com.wistron.utils.RecordExport")
+public class RecordExport {
 	
 	@Autowired
-	private ExcelRecordService excelRecordService;
+	private ExcelRecordDao excelRecordDao;
 	
 	
 	
 	
 	public void exportAllRecord(ServletOutputStream out) throws Exception {
 //	    ExcelRecordDaoImpl  daoImple = new ExcelRecordDaoImpl();
-		List<Bios> biosdata = excelRecordService.findAllBios();
+		List<Bios> biosdata = excelRecordDao.findAllBios();
 		//create a workbook
 		Workbook wb = new XSSFWorkbook();
 		//create style of the workbook 
@@ -156,7 +142,7 @@ public class RecordExport2 {
         
         
         //get data from database
-		List<Commodity> commoditydata = excelRecordService.findAllCommodity();
+		List<Commodity> commoditydata = excelRecordDao.findAllCommodity();
         
         int commodityrownum = 1;
         int commoditydatasize=commoditydata.size();
@@ -255,7 +241,7 @@ public class RecordExport2 {
         
         
       //get data from database
-		List<Softpaq2> softpaqdata = excelRecordService.findAllSoftpaq2();
+		List<Softpaq2> softpaqdata = excelRecordDao.findAllSoftpaq2();
         
         int softpaqrownum = 1;
         int softpaqdatasize=softpaqdata.size();
@@ -344,7 +330,7 @@ public class RecordExport2 {
         watSheet.createFreezePane(0, 1);
         
       //get data from database
-		List<Wat> watdata = excelRecordService.findAllWat();
+		List<Wat> watdata = excelRecordDao.findAllWat();
         
         int watrownum = 1;
         int watdatasize=watdata.size();
@@ -439,7 +425,7 @@ public class RecordExport2 {
 		
         
         //get data from database
-		List<SoftrollRespin> softrollrespindata = excelRecordService.findAllSoftrollrespin();
+		List<SoftrollRespin> softrollrespindata = excelRecordDao.findAllSoftrollrespin();
         
        
         int size5=softrollrespindata.size();

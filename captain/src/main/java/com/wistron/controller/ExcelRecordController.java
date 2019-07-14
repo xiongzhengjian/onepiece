@@ -6,29 +6,29 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wistron.service.ExcelRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.wistron.utils.RecordExport2;
-import com.wistron.utils.RecordImport2;
-
 @Controller
 public class ExcelRecordController {
 
-	@Resource
-	private  RecordExport2 export;
+//	@Resource
+//	private  RecordExport2 export;
+//
+//	@Resource
+//	private RecordImport2 importExcel;
 
-	@Resource
-	private RecordImport2 importExcel;
+	@Autowired
+	private ExcelRecordService service;
 	
 	@RequestMapping("/record/export")
 	public void exportExcel(HttpSession session,HttpServletResponse response) throws Exception{
@@ -39,7 +39,8 @@ public class ExcelRecordController {
 	    response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode("records_"+datetime+".xlsx", "UTF-8"));
 //	    RecordExport export = new RecordExport();
 //	    RecordExport2 export = new RecordExport2();
-	    export.exportAllRecord(out);
+//	    export.exportAllRecord(out);
+		service.exportAllRecord(out);
 		
 	}
 
@@ -52,8 +53,8 @@ public class ExcelRecordController {
 		InputStream inputStream = file.getInputStream();
 //		RecordImport importExcel = new RecordImport();
 //		RecordImport2 importExcel = new RecordImport2();
-		importExcel.importAllRecord(inputStream);
-		
+//		importExcel.importAllRecord(inputStream);
+		service.importAllRecord(inputStream);
 		switch(category) {
 			case "bios":
 				return "redirect:./projectrecord.action";
