@@ -3,8 +3,12 @@ package com.wistron.service;
 import com.wistron.pojo.User;
 import com.wistron.pojo.vo.OrderSituation;
 import com.wistron.pojo.vo.Uservo;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+
 
 public interface UserService {
 

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("watService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class WatServiceImpl implements WatService {
     @Autowired
     private WatDao dao;

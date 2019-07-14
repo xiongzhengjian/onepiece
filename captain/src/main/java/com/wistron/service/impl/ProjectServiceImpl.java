@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("projectService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class ProjectServiceImpl implements ProjectService {
 
     @Autowired

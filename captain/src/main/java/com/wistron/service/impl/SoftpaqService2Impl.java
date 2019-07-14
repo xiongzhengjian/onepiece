@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("softpaqService2")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class SoftpaqService2Impl implements SoftpaqService2 {
 
     @Autowired

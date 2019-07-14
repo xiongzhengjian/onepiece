@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("softrollRespinService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class SoftrollRespinServiceImpl implements SoftrollRespinService {
 
     @Autowired

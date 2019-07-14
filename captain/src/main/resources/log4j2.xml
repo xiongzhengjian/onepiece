@@ -7,29 +7,38 @@
     <Filter type="ThresholdFilter" level="trace"/>
 
     <Appenders>
-        <Appender type="Console" name="STDOUT">
+
+       <!-- <Appender type="Console" name="STDOUT">
             <Layout type="PatternLayout" pattern="%m MDC%X%n"/>
             <Filters>
                 <Filter type="MarkerFilter" marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
                 <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
             </Filters>
         </Appender>
+
         <Appender type="Console" name="FLOW">
-            <Layout type="PatternLayout" pattern="%C{1}.%M %m %ex%n"/><!-- class and line number -->
+            <Layout type="PatternLayout" pattern="%C{1}.%M %m %ex%n"/>&lt;!&ndash; class and line number &ndash;&gt;
             <Filters>
                 <Filter type="MarkerFilter" marker="FLOW" onMatch="ACCEPT" onMismatch="NEUTRAL"/>
                 <Filter type="MarkerFilter" marker="EXCEPTION" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
         </Appender>
+
         <Appender type="File" name="File" fileName="${filename}">
             <Layout type="PatternLayout">
                 <Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
             </Layout>
+        </Appender>-->
+
+        <!--                            Myself                     -->
+        <Appender type="Console" name="Mybatis">
+            <Layout type="PatternLayout" pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
         </Appender>
+
     </Appenders>
 
     <Loggers>
-        <Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
+        <!--<Logger name="org.apache.logging.log4j.test1" level="debug" additivity="false">
             <Filter type="ThreadContextMapFilter">
                 <KeyValuePair key="test" value="123"/>
             </Filter>
@@ -38,10 +47,18 @@
 
         <Logger name="org.apache.logging.log4j.test2" level="debug" additivity="false">
             <AppenderRef ref="File"/>
+        </Logger>-->
+
+
+        <!--                            Myself                     -->
+        <!--<Logger name="com.wistron.dao" level="TRACE" additivity="false">-->
+        <Logger name="com.wistron.dao" level="debug" additivity="false">
+            <AppenderRef ref="Mybatis"/>
         </Logger>
 
         <Root level="trace">
-            <AppenderRef ref="STDOUT"/>
+            <!--<AppenderRef ref="STDOUT"/>-->
+            <AppenderRef ref="Mybatis"/>
         </Root>
     </Loggers>
 

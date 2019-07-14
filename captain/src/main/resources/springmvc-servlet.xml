@@ -17,8 +17,16 @@
 	 	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
 	 	 <!-- @Controller annotation scan -->
 	 	<!-- <context:component-scan base-package="com.wistron.controller"></context:component-scan>-->
-		<context:component-scan base-package="com.wistron">
+		<context:component-scan base-package="com.wistron.controller">
+
 			<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+
+
+			<!-- ControllerAdvice must be included to handle global exceptions。 -->
+			<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" />
+			<!-- !!!It's a good idea to add this line to allow SpringMVC to manage without the Service layer to avoid the issue of transaction failure。 -->
+			<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+
 		</context:component-scan>
 
 	 	 <!--Annotation driven:

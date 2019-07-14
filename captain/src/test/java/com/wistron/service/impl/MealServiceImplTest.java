@@ -20,8 +20,8 @@ public class MealServiceImplTest extends BaseTest {
 
     @Test
     public void ofood() {
-        Meal meal1 = new Meal(new Date(),"WCQ",11,1,1);
-        Meal meal2 = new Meal(new Date(),"WCQ",11,1,1);
+        Meal meal1 = new Meal(new Date(),"WCQ",5,1,1);
+        Meal meal2 = new Meal(new Date(),"WCQ",5,1,1);
         List<Meal> list = new ArrayList<>();
         list.add(meal1);
         list.add(meal2);

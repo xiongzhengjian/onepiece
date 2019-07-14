@@ -44,7 +44,8 @@ public class UserServiceImplTest extends BaseTest {
 
     @Test
     public void deptStq20() {
-
+        int i = service.deptStq20();
+        System.out.println(i);
     }
 
     @Test

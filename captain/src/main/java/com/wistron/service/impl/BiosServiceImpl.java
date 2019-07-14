@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("biosService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class BiosServiceImpl implements BiosService {
 
     @Autowired

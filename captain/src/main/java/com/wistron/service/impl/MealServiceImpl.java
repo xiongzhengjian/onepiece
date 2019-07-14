@@ -6,12 +6,14 @@ import com.wistron.pojo.vo.Ordersubmit;
 import com.wistron.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service("mealService")
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 public class MealServiceImpl implements MealService {
 
     @Autowired

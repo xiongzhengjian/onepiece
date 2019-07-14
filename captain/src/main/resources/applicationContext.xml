@@ -21,7 +21,7 @@
 
     <!--Spring integrates the mybatis framework-->
         <!--1.Configure the database connection pool-->
-            <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+           <!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
                 <property name="driverClass" value="com.mysql.jdbc.Driver"/>
                 <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/luffy?characterEncoding=utf-8"/>
                 <property name="user" value="root"/>
@@ -78,13 +78,15 @@
             </bean>
 
     <!--Configure declarative transaction management for Spring-->
+
+
         <!--1.Configure the transaction manager-->
             <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
                 <property name="dataSource" ref="dataSource"/>
             </bean>
 
         <!--Manage transactions using annotations-->
-       <!-- <tx:annotation-driven transaction-manager="transactionManager"/>-->
+        <tx:annotation-driven transaction-manager="transactionManager"/>
 
         <!--2.Configure transaction notification-->
             <tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -93,7 +95,7 @@
                     <tx:method name="limitFind" propagation="SUPPORTS" read-only="true"/>
 
 
-                    <tx:method name="add*" propagation="REQUIRED" />
+                    <tx:method name="add*" propagation="REQUIRED"/>
                     <tx:method name="append*" propagation="REQUIRED" />
                     <tx:method name="insert*" propagation="REQUIRED" />
                     <tx:method name="save*" propagation="REQUIRED" />
