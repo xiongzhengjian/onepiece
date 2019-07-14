@@ -23,6 +23,7 @@ drop event if exists test_meal_status;
 
 #查看是否开启定时器
 show variables like 'event_scheduler';
+show variables like 'event_scheduler';
 
 #Reset user's mealstatus value to 0 at 16:50 per day
 create event test_rest_mealstauts

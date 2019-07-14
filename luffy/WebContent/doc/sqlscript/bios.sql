@@ -52,3 +52,6 @@ select * from bios
 		order by bios_id desc
 		limit 5,10;
 select count(bios_id) as totalrows from bios;
+
+#---------------2019-07-14
+select * from bios where bios_id = 1;

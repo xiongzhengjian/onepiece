@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.ServletOutputStream;
 import java.io.InputStream;
 
-@Service("excelRecordService2")
+@Service("excelRecordService")
 @Transactional(rollbackFor = Exception.class)
 public class ExcelRecordServiceImpl implements ExcelRecordService {
 
