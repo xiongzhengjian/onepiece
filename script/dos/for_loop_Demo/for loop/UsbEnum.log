@@ -1,0 +1,40 @@
+Hub [0] RootHub
+Hub [1] RootHub
+	Hub [1:1] Generic USB Hub
+		Device [1:1:2]
+		      Name          : Intel(R) Wireless Bluetooth(R)
+		      Description   :  
+		      Serial Number : n/a
+		      InstanceID    : USB\VID_8087&PID_0025\7&21809D95&0&2
+		      VendorID      : 32903
+		      ProductID     : 37
+
+		Device [1:1:3]
+		      Name          : Synaptics VFS7552 Touch Fingerprint Sensor with PurePrint(TM)
+		      Description   :  
+		      Serial Number : 74019C861718
+		      InstanceID    : USB\VID_06CB&PID_00B7\74019C861718
+		      VendorID      : 1739
+		      ProductID     : 183
+
+
+	Device [1:2]
+	      Name          : USB Composite Device
+	      Description   :  
+	      Serial Number : 0X0001
+	      InstanceID    : USB\VID_0408&PID_5343\0X0001
+	      VendorID      : 1032
+	      ProductID     : 21315
+
+Hub [2] RootHub
+	Device [2:3]
+	      Name          : Unknown USB Device (Device Descriptor Request Failed)
+	      Description   : 
+	      Serial Number : n/a
+	      InstanceID    : USB\VID_0000&PID_0002\6&184C5BFA&0&3
+	      VendorID      : 0
+	      ProductID     : 0
+
+	Hub [2:7] Generic SuperSpeed USB Hub
+
+
