@@ -1,0 +1,10 @@
+
+Microsoft DiskPart version 10.0.17763.1
+
+Copyright (C) Microsoft Corporation.
+On computer: TESTTXD123
+
+  Disk ###  Status         Size     Free     Dyn  Gpt
+  --------  -------------  -------  -------  ---  ---
+  Disk 0    Online          119 GB  2102 MB         
+  Disk 1    Online           57 GB    52 MB         
